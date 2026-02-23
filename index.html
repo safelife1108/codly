@@ -56,8 +56,8 @@
       color: #aaa;
     }
 
-    /* HERO LIVE PORTFOLIO */
-    .hero-portfolio {
+    /* HERO SLIDER */
+    .hero-slider {
       margin-top: 50px;
       width: 95%;
       max-width: 1100px;
@@ -66,41 +66,39 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-      background: #000;
+      background: #111;
       border: 1px solid #222;
     }
 
-    .hero-card {
+    .slide {
       position: absolute;
       inset: 0;
       opacity: 0;
-      transform: scale(1.05);
-      transition: opacity 1s ease, transform 1s ease;
+      transition: opacity 1s ease;
     }
 
-    .hero-card.active {
+    .slide.active {
       opacity: 1;
-      transform: scale(1);
       z-index: 1;
     }
 
-    .hero-card iframe {
+    .slide img {
       width: 100%;
       height: 100%;
-      border: none;
-      background: #000;
+      object-fit: cover;
+      filter: grayscale(10%);
     }
 
-    .hero-caption {
+    .caption {
       position: absolute;
       bottom: 0;
+      left: 0;
       width: 100%;
-      padding: 16px 20px;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2), transparent);
+      padding: 18px 22px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2), transparent);
       color: #fff;
-      font-size: 18px;
+      font-size: 20px;
       text-align: left;
-      pointer-events: none;
     }
 
     /* SECTIONS */
@@ -214,10 +212,9 @@
       font-size: 14px;
     }
 
-    /* Small screens */
     @media (max-width: 768px) {
       header h1 { font-size: 42px; }
-      .hero-portfolio { height: 360px; }
+      .hero-slider { height: 360px; }
     }
   </style>
 </head>
@@ -229,26 +226,26 @@
     <h2>We make tech easy for you.</h2>
     <p>Build smarter. Grow faster.</p>
 
-    <div class="hero-portfolio">
-      <div class="hero-card active">
-        <iframe src="https://example.com" loading="lazy"></iframe>
-        <div class="hero-caption">Corporate Website</div>
+    <div class="hero-slider">
+      <div class="slide active">
+        <img src="https://picsum.photos/1200/600?random=1" alt="Project 1">
+        <div class="caption">E-Commerce Website</div>
       </div>
-      <div class="hero-card">
-        <iframe src="https://developer.mozilla.org" loading="lazy"></iframe>
-        <div class="hero-caption">Developer Platform</div>
+      <div class="slide">
+        <img src="https://picsum.photos/1200/600?random=2" alt="Project 2">
+        <div class="caption">Startup Landing Page</div>
       </div>
-      <div class="hero-card">
-        <iframe src="https://www.wikipedia.org" loading="lazy"></iframe>
-        <div class="hero-caption">Information Platform</div>
+      <div class="slide">
+        <img src="https://picsum.photos/1200/600?random=3" alt="Project 3">
+        <div class="caption">AI Dashboard</div>
       </div>
-      <div class="hero-card">
-        <iframe src="https://wordpress.com" loading="lazy"></iframe>
-        <div class="hero-caption">Blog & CMS Platform</div>
+      <div class="slide">
+        <img src="https://picsum.photos/1200/600?random=4" alt="Project 4">
+        <div class="caption">Mobile App UI</div>
       </div>
-      <div class="hero-card">
-        <iframe src="https://pages.github.com" loading="lazy"></iframe>
-        <div class="hero-caption">Project Landing Page</div>
+      <div class="slide">
+        <img src="https://picsum.photos/1200/600?random=5" alt="Project 5">
+        <div class="caption">Business Website</div>
       </div>
     </div>
   </header>
@@ -323,14 +320,14 @@
   </footer>
 
   <script>
-    const heroCards = document.querySelectorAll(".hero-card");
-    let currentIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
 
     setInterval(() => {
-      heroCards[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % heroCards.length;
-      heroCards[currentIndex].classList.add("active");
-    }, 5000); // change every 5 seconds
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }, 4000);
   </script>
 
 </body>
