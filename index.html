@@ -28,6 +28,31 @@
       overflow-x: hidden;
     }
 
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(5,5,5,0.8);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #222;
+      z-index: 1000;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-links a {
+      margin-left: 20px;
+      color: #ccc;
+    }
+    .nav-links a:hover { color: #fff; }
+
     /* HERO */
     header {
       min-height: 100vh;
@@ -37,48 +62,60 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 80px 20px;
+      padding: 120px 20px 80px;
     }
 
     header h1 {
       font-size: 64px;
       letter-spacing: 3px;
     }
-
     header h2 {
       margin-top: 12px;
       font-weight: normal;
       color: #ddd;
     }
-
     header p {
       margin-top: 10px;
       color: #aaa;
     }
 
     /* HERO SLIDER */
-    .hero-slider {
+    .hero-slider-wrap {
       margin-top: 50px;
       width: 95%;
       max-width: 1100px;
-      height: 520px;
+      perspective: 1200px;
+    }
+
+    .hero-slider {
       position: relative;
+      width: 100%;
+      height: 520px;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
       background: #111;
       border: 1px solid #222;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
     }
 
     .slide {
       position: absolute;
       inset: 0;
       opacity: 0;
-      transition: opacity 1s ease;
+      transform: rotateY(60deg) scale(0.9);
+      transition: transform 0.9s ease, opacity 0.9s ease;
+      backface-visibility: hidden;
     }
 
     .slide.active {
       opacity: 1;
+      transform: rotateY(0deg) scale(1);
+      z-index: 2;
+    }
+
+    .slide.prev {
+      opacity: 0;
+      transform: rotateY(-60deg) scale(0.9);
       z-index: 1;
     }
 
@@ -99,6 +136,25 @@
       color: #fff;
       font-size: 20px;
       text-align: left;
+    }
+
+    .slider-controls {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .slider-controls button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #0f0f0f;
+      color: #fff;
+      cursor: pointer;
+    }
+    .slider-controls button:hover {
+      background: #1a1a1a;
     }
 
     /* SECTIONS */
@@ -142,6 +198,40 @@
     .service-box p {
       color: #bbb;
       font-size: 15px;
+    }
+
+    /* PORTFOLIO GRID */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .portfolio-item {
+      background: #0f0f0f;
+      border: 1px solid #222;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-6px);
+      border-color: #444;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .portfolio-item .pi-body {
+      padding: 14px;
+    }
+    .portfolio-item h4 {
+      margin-bottom: 6px;
+    }
+    .portfolio-item p {
+      color: #bbb;
+      font-size: 14px;
     }
 
     /* CONTACT */
@@ -220,38 +310,58 @@
 </head>
 <body>
 
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <strong>Codly</strong>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- HERO -->
   <header>
     <h1>Codly</h1>
     <h2>We make tech easy for you.</h2>
     <p>Build smarter. Grow faster.</p>
 
-    <div class="hero-slider">
-      <div class="slide active">
-        <img src="https://picsum.photos/1200/600?random=1" alt="Project 1">
-        <div class="caption">E-Commerce Website</div>
+    <div class="hero-slider-wrap">
+      <div class="hero-slider" id="heroSlider">
+        <!-- Replace these image URLs with your real project screenshots -->
+        <div class="slide active">
+          <img src="https://picsum.photos/1200/600?random=11" alt="E-Commerce Website">
+          <div class="caption">E-Commerce Website</div>
+        </div>
+        <div class="slide">
+          <img src="https://picsum.photos/1200/600?random=12" alt="Startup Landing Page">
+          <div class="caption">Startup Landing Page</div>
+        </div>
+        <div class="slide">
+          <img src="https://picsum.photos/1200/600?random=13" alt="AI Dashboard">
+          <div class="caption">AI Dashboard</div>
+        </div>
+        <div class="slide">
+          <img src="https://picsum.photos/1200/600?random=14" alt="Mobile App UI">
+          <div class="caption">Mobile App UI</div>
+        </div>
+        <div class="slide">
+          <img src="https://picsum.photos/1200/600?random=15" alt="Business Website">
+          <div class="caption">Business Website</div>
+        </div>
       </div>
-      <div class="slide">
-        <img src="https://picsum.photos/1200/600?random=2" alt="Project 2">
-        <div class="caption">Startup Landing Page</div>
-      </div>
-      <div class="slide">
-        <img src="https://picsum.photos/1200/600?random=3" alt="Project 3">
-        <div class="caption">AI Dashboard</div>
-      </div>
-      <div class="slide">
-        <img src="https://picsum.photos/1200/600?random=4" alt="Project 4">
-        <div class="caption">Mobile App UI</div>
-      </div>
-      <div class="slide">
-        <img src="https://picsum.photos/1200/600?random=5" alt="Project 5">
-        <div class="caption">Business Website</div>
+
+      <div class="slider-controls">
+        <button id="prevBtn">◀ Prev</button>
+        <button id="nextBtn">Next ▶</button>
       </div>
     </div>
   </header>
 
   <!-- SERVICES -->
-  <section>
+  <section id="services">
     <h2 class="section-title">Our Services</h2>
     <div class="services">
       <div class="service-box">
@@ -273,8 +383,58 @@
     </div>
   </section>
 
+  <!-- PORTFOLIO PAGE / SECTION -->
+  <section id="portfolio">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio-grid">
+      <!-- Same projects, grid view -->
+      <div class="portfolio-item">
+        <img src="https://picsum.photos/600/400?random=21" alt="">
+        <div class="pi-body">
+          <h4>E-Commerce Website</h4>
+          <p>Online store with modern UI and payment integration.</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://picsum.photos/600/400?random=22" alt="">
+        <div class="pi-body">
+          <h4>Startup Landing Page</h4>
+          <p>High-conversion landing page for a SaaS startup.</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://picsum.photos/600/400?random=23" alt="">
+        <div class="pi-body">
+          <h4>AI Dashboard</h4>
+          <p>Analytics dashboard with charts and real-time data.</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://picsum.photos/600/400?random=24" alt="">
+        <div class="pi-body">
+          <h4>Mobile App UI</h4>
+          <p>Clean and modern mobile application interface.</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://picsum.photos/600/400?random=25" alt="">
+        <div class="pi-body">
+          <h4>Business Website</h4>
+          <p>Corporate website with services and contact system.</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://picsum.photos/600/400?random=26" alt="">
+        <div class="pi-body">
+          <h4>Automation Panel</h4>
+          <p>Admin panel for managing automated workflows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
-  <section>
+  <section id="contact">
     <h2 class="section-title">Contact Us</h2>
     <div class="contact">
       <form onsubmit="event.preventDefault(); alert('Form submitted (demo). Connect to email service later.');">
@@ -303,9 +463,9 @@
       </div>
       <div>
         <h3>Company</h3>
-        <a href="#">About</a>
-        <a href="#">Portfolio</a>
-        <a href="#">Contact</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
       </div>
       <div>
         <h3>Contact</h3>
@@ -321,13 +481,49 @@
 
   <script>
     const slides = document.querySelectorAll(".slide");
-    let currentSlide = 0;
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    let current = 0;
+    let autoTimer = null;
 
-    setInterval(() => {
-      slides[currentSlide].classList.remove("active");
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add("active");
-    }, 4000);
+    function showSlide(index, direction = 1) {
+      slides[current].classList.remove("active");
+      slides[current].classList.add("prev");
+
+      current = (index + slides.length) % slides.length;
+
+      slides.forEach(s => s.classList.remove("prev"));
+      slides[current].classList.add("active");
+    }
+
+    function nextSlide() {
+      showSlide(current + 1, 1);
+    }
+
+    function prevSlide() {
+      showSlide(current - 1, -1);
+    }
+
+    nextBtn.addEventListener("click", () => {
+      nextSlide();
+      resetAuto();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      prevSlide();
+      resetAuto();
+    });
+
+    function startAuto() {
+      autoTimer = setInterval(nextSlide, 4000);
+    }
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      startAuto();
+    }
+
+    startAuto();
   </script>
 
 </body>
