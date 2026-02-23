@@ -28,42 +28,6 @@
       overflow-x: hidden;
     }
 
-    /* LOADER */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      flex-direction: column;
-    }
-
-    #loader h1 {
-      font-size: 42px;
-      letter-spacing: 4px;
-    }
-
-    #loader p {
-      margin-top: 10px;
-      color: var(--muted);
-    }
-
-    .spinner {
-      margin-top: 30px;
-      width: 60px;
-      height: 60px;
-      border: 4px solid #333;
-      border-top: 4px solid #fff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
     /* HERO */
     header {
       min-height: 100vh;
@@ -74,7 +38,6 @@
       justify-content: center;
       text-align: center;
       padding: 80px 20px;
-      overflow: hidden;
     }
 
     header h1 {
@@ -93,58 +56,50 @@
       color: #aaa;
     }
 
-    /* 3D SCENE */
-    .scene {
+    /* HERO PORTFOLIO SLIDER */
+    .hero-portfolio {
+      margin-top: 50px;
+      width: 90%;
+      max-width: 900px;
+      height: 420px;
       position: relative;
-      width: 360px;
-      height: 360px;
-      margin-top: 70px;
-      perspective: 1200px;
-    }
-
-    .carousel {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      transform-style: preserve-3d;
-      animation: spin 22s infinite linear;
-    }
-
-    .portfolio-card {
-      position: absolute;
-      width: 220px;
-      height: 140px;
-      background: linear-gradient(135deg, #222, #111);
-      border: 1px solid #333;
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-      backface-visibility: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      background: #000;
+    }
+
+    .hero-card {
+      position: absolute;
+      inset: 0;
       opacity: 0;
-      transform: scale(0.7);
-      transition: all 0.8s ease;
+      transform: scale(1.05);
+      transition: opacity 1s ease, transform 1s ease;
       display: flex;
       flex-direction: column;
     }
 
-    .portfolio-card.show {
+    .hero-card.active {
       opacity: 1;
       transform: scale(1);
     }
 
-    .portfolio-card img {
+    .hero-card img {
       width: 100%;
-      height: 90px;
+      height: 100%;
       object-fit: cover;
-      filter: grayscale(100%);
+      filter: grayscale(20%);
     }
 
-    .portfolio-card span {
-      padding: 8px;
-      font-size: 14px;
-      text-align: center;
+    .hero-caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
       color: #fff;
-      background: #0a0a0a;
+      font-size: 20px;
+      text-align: left;
     }
 
     /* SECTIONS */
@@ -260,45 +215,32 @@
 </head>
 <body>
 
-  <!-- LOADER -->
-  <div id="loader">
-    <h1>CODLY</h1>
-    <p>Loading experience...</p>
-    <div class="spinner"></div>
-  </div>
-
   <!-- HERO -->
   <header>
     <h1>Codly</h1>
     <h2>We make tech easy for you.</h2>
     <p>Build smarter. Grow faster.</p>
 
-    <div class="scene">
-      <div class="carousel" id="carousel">
-        <div class="portfolio-card">
-          <img src="https://picsum.photos/400/200?1">
-          <span>E-Commerce Website</span>
-        </div>
-        <div class="portfolio-card">
-          <img src="https://picsum.photos/400/200?2">
-          <span>Startup Landing Page</span>
-        </div>
-        <div class="portfolio-card">
-          <img src="https://picsum.photos/400/200?3">
-          <span>AI Dashboard</span>
-        </div>
-        <div class="portfolio-card">
-          <img src="https://picsum.photos/400/200?4">
-          <span>Mobile App UI</span>
-        </div>
-        <div class="portfolio-card">
-          <img src="https://picsum.photos/400/200?5">
-          <span>Business Website</span>
-        </div>
-        <div class="portfolio-card">
-          <img src="https://picsum.photos/400/200?6">
-          <span>Automation Panel</span>
-        </div>
+    <div class="hero-portfolio">
+      <div class="hero-card active">
+        <img src="https://picsum.photos/1200/600?1" alt="Project 1">
+        <div class="hero-caption">E-Commerce Website</div>
+      </div>
+      <div class="hero-card">
+        <img src="https://picsum.photos/1200/600?2" alt="Project 2">
+        <div class="hero-caption">Startup Landing Page</div>
+      </div>
+      <div class="hero-card">
+        <img src="https://picsum.photos/1200/600?3" alt="Project 3">
+        <div class="hero-caption">AI Dashboard</div>
+      </div>
+      <div class="hero-card">
+        <img src="https://picsum.photos/1200/600?4" alt="Project 4">
+        <div class="hero-caption">Mobile App UI</div>
+      </div>
+      <div class="hero-card">
+        <img src="https://picsum.photos/1200/600?5" alt="Project 5">
+        <div class="hero-caption">Business Website</div>
       </div>
     </div>
   </header>
@@ -373,25 +315,14 @@
   </footer>
 
   <script>
-    // Loader
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-      }, 1200);
-    });
+    const heroCards = document.querySelectorAll(".hero-card");
+    let currentIndex = 0;
 
-    // 3D Carousel Setup
-    const cards = document.querySelectorAll(".portfolio-card");
-    const count = cards.length;
-    const radius = 280;
-
-    cards.forEach((card, i) => {
-      const angle = (360 / count) * i;
-      card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-      setTimeout(() => {
-        card.classList.add("show");
-      }, i * 400);
-    });
+    setInterval(() => {
+      heroCards[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % heroCards.length;
+      heroCards[currentIndex].classList.add("active");
+    }, 3000); // change every 3 seconds
   </script>
 
 </body>
