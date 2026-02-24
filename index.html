@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Codly — We make tech easy for you</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<title>Codly — We make tech easy for you</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --black:#050505; --dark:#0d0d0d; --grey:#1a1a1a; --white:#fff; --muted:#aaa;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Arial,sans-serif}
-    body{background:var(--black);color:var(--white);overflow-x:hidden}
+<style>
+:root{--black:#050505;--dark:#0d0d0d;--grey:#1a1a1a;--white:#fff;--muted:#aaa}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Arial,sans-serif}
+body{background:var(--black);color:var(--white);overflow-x:hidden}
 
-    /* LOADER */
-    #loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
-    .spinner{width:60px;height:60px;border:4px solid #333;border-top:4px solid #fff;border-radius:50%;animation:spin 1s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
+/* Loader */
+#loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
+.spinner{width:60px;height:60px;border:4px solid #333;border-top:4px solid #fff;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;background:rgba(5,5,5,.8);backdrop-filter:blur(6px);border-bottom:1px solid #222;z-index:1000}
-    .nav-inner{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-    .nav-links a{margin-left:20px;color:#ccc;text-decoration:none}
-    .nav-links a:hover{color:#fff}
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;background:rgba(5,5,5,.8);backdrop-filter:blur(6px);border-bottom:1px solid #222;z-index:1000}
+.nav-inner{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.nav-links a{margin-left:20px;color:#ccc;text-decoration:none}
+.nav-links a:hover{color:#fff}
 
-    /* HERO */
-    header{min-height:100vh;background:radial-gradient(circle at top,#1a1a1a,#000);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px}
-    header h1{font-size:64px;letter-spacing:3px}
-    header h2{margin-top:12px;color:#ddd;font-weight:normal}
-    header p{margin-top:10px;color:#aaa}
+/* Hero */
+header{min-height:100vh;background:radial-gradient(circle at top,#1a1a1a,#000);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px}
+header h1{font-size:64px;letter-spacing:3px}
+header h2{margin-top:12px;color:#ddd;font-weight:normal}
+header p{margin-top:10px;color:#aaa}
 
-    .hero-wrap{margin-top:40px;width:95%;max-width:1100px;perspective:1200px}
-    .hero-slider{position:relative;width:100%;height:520px;border-radius:16px;overflow:hidden;background:#111;border:1px solid #222;box-shadow:0 20px 60px rgba(0,0,0,.7)}
-    .slide{position:absolute;inset:0;opacity:0;transform:rotateY(60deg) scale(.9);transition:transform .9s ease,opacity .9s ease}
-    .slide.active{opacity:1;transform:rotateY(0) scale(1);z-index:2}
-    .slide img{width:100%;height:100%;object-fit:cover}
-    .caption{position:absolute;bottom:0;left:0;width:100%;padding:18px 22px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.2),transparent);text-align:left}
+.hero-wrap{margin-top:40px;width:95%;max-width:1100px;perspective:1200px}
+.hero-slider{position:relative;width:100%;height:520px;border-radius:16px;overflow:hidden;background:#111;border:1px solid #222;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.slide{position:absolute;inset:0;opacity:0;transform:rotateY(60deg) scale(.9);transition:transform .9s ease,opacity .9s ease}
+.slide.active{opacity:1;transform:rotateY(0) scale(1);z-index:2}
+.slide img{width:100%;height:100%;object-fit:contain;background:#0b0b0b}
+.caption{position:absolute;bottom:0;left:0;width:100%;padding:18px 22px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.2),transparent);text-align:left}
 
-    .controls{margin-top:12px;display:flex;justify-content:center;gap:12px}
-    .controls button{padding:10px 16px;border-radius:8px;border:1px solid #333;background:#0f0f0f;color:#fff;cursor:pointer}
-    .controls button:hover{background:#1a1a1a}
+.controls{margin-top:12px;display:flex;justify-content:center;gap:12px}
+.controls button{padding:10px 16px;border-radius:8px;border:1px solid #333;background:#0f0f0f;color:#fff;cursor:pointer}
+.controls button:hover{background:#1a1a1a}
 
-    section{padding:90px 20px;max-width:1200px;margin:auto}
-    .section-title{text-align:center;font-size:38px;margin-bottom:60px}
+section{padding:90px 20px;max-width:1200px;margin:auto}
+.section-title{text-align:center;font-size:38px;margin-bottom:60px}
 
-    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-    .portfolio-item{background:#0f0f0f;border:1px solid #222;border-radius:12px;overflow:hidden}
-    .portfolio-item img{width:100%;height:180px;object-fit:cover}
-    .pi-body{padding:14px;color:#bbb}
+/* Portfolio */
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.portfolio-item{background:#0f0f0f;border:1px solid #222;border-radius:12px;overflow:hidden}
+.portfolio-item img{width:100%;height:180px;object-fit:contain;background:#0b0b0b}
+.pi-body{padding:14px;color:#bbb}
 
-    footer{background:#040404;border-top:1px solid #222;padding:80px 20px;margin-top:100px}
-    .footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px}
-    footer p,footer a{color:#aaa;text-decoration:none;display:block;margin-bottom:8px;font-size:14px}
-    .copyright{text-align:center;margin-top:50px;color:#666;font-size:14px}
+/* Footer */
+footer{background:#040404;border-top:1px solid #222;padding:80px 20px;margin-top:100px}
+.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px}
+footer p,footer a{color:#aaa;text-decoration:none;display:block;margin-bottom:8px;font-size:14px}
+.copyright{text-align:center;margin-top:50px;color:#666;font-size:14px}
 
-    @media(max-width:768px){
-      header h1{font-size:42px}
-      .hero-slider{height:360px}
-    }
-  </style>
+@media(max-width:768px){
+  header h1{font-size:42px}
+  .hero-slider{height:360px}
+}
+</style>
 </head>
 <body>
 
@@ -72,10 +72,21 @@
     <strong>Codly</strong>
     <div class="nav-links">
       <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
+
+<!-- FAKE PROJECT IMAGES (SVG DATA) -->
+<!-- These are YOUR OWN designed "screenshots" -->
+<script>
+const projects = [
+  {title:"Business Website", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23111111'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>Codly Corp</text><rect x='60' y='120' width='500' height='60' fill='%23333333'/><rect x='60' y='200' width='700' height='40' fill='%232a2a2a'/><rect x='60' y='260' width='700' height='40' fill='%232a2a2a'/><rect x='60' y='320' width='300' height='50' fill='%23ffffff'/><text x='80' y='355' fill='black' font-size='20'>Get Started</text></svg>`},
+  {title:"E-Commerce Store", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>Shoply</text><rect x='60' y='120' width='250' height='200' fill='%232a2a2a'/><rect x='340' y='120' width='250' height='200' fill='%232a2a2a'/><rect x='620' y='120' width='250' height='200' fill='%232a2a2a'/><rect x='900' y='120' width='250' height='200' fill='%232a2a2a'/></svg>`},
+  {title:"Mobile App UI", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/><rect x='470' y='120' width='260' height='60' fill='%23333333'/><rect x='470' y='200' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='280' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='360' width='260' height='60' fill='%23ffffff'/></svg>`},
+  {title:"AI Dashboard", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='250' height='600' fill='%23222222'/><rect x='300' y='100' width='350' height='200' fill='%232a2a2a'/><rect x='700' y='100' width='350' height='200' fill='%232a2a2a'/><rect x='300' y='350' width='750' height='150' fill='%23333333'/></svg>`},
+  {title:"Automation Panel", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><rect x='50' y='120' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='220' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='320' width='1100' height='60' fill='%232a2a2a'/></svg>`}
+];
+</script>
 
 <header>
   <h1>Codly</h1>
@@ -83,30 +94,7 @@
   <p>Build smarter. Grow faster.</p>
 
   <div class="hero-wrap">
-    <div class="hero-slider">
-      <!-- REAL WEBSITE SCREENSHOTS -->
-      <div class="slide active">
-        <img src="https://s.wordpress.com/mshots/v1/https://www.apple.com?w=1200" alt="">
-        <div class="caption">Apple — Corporate Website</div>
-      </div>
-      <div class="slide">
-        <img src="https://s.wordpress.com/mshots/v1/https://www.amazon.com?w=1200" alt="">
-        <div class="caption">Amazon — E-Commerce</div>
-      </div>
-      <div class="slide">
-        <img src="https://s.wordpress.com/mshots/v1/https://www.notion.so?w=1200" alt="">
-        <div class="caption">Notion — Web App</div>
-      </div>
-      <div class="slide">
-        <img src="https://s.wordpress.com/mshots/v1/https://www.spotify.com?w=1200" alt="">
-        <div class="caption">Spotify — App Website</div>
-      </div>
-      <div class="slide">
-        <img src="https://s.wordpress.com/mshots/v1/https://github.com?w=1200" alt="">
-        <div class="caption">GitHub — Developer Platform</div>
-      </div>
-    </div>
-
+    <div class="hero-slider" id="slider"></div>
     <div class="controls">
       <button id="prev">◀ Prev</button>
       <button id="next">Next ▶</button>
@@ -116,60 +104,53 @@
 
 <section id="portfolio">
   <h2 class="section-title">Portfolio</h2>
-  <div class="portfolio-grid">
-    <div class="portfolio-item"><img src="https://s.wordpress.com/mshots/v1/https://www.apple.com?w=600"><div class="pi-body">Apple-style Corporate Site</div></div>
-    <div class="portfolio-item"><img src="https://s.wordpress.com/mshots/v1/https://www.amazon.com?w=600"><div class="pi-body">E-Commerce Platform</div></div>
-    <div class="portfolio-item"><img src="https://s.wordpress.com/mshots/v1/https://www.notion.so?w=600"><div class="pi-body">Web App Dashboard</div></div>
-    <div class="portfolio-item"><img src="https://s.wordpress.com/mshots/v1/https://www.spotify.com?w=600"><div class="pi-body">App Marketing Site</div></div>
-    <div class="portfolio-item"><img src="https://s.wordpress.com/mshots/v1/https://github.com?w=600"><div class="pi-body">Developer Platform</div></div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="section-title">Contact Us</h2>
-  <div style="max-width:600px;margin:auto;background:#0d0d0d;padding:40px;border-radius:14px;border:1px solid #222">
-    <form onsubmit="event.preventDefault();alert('Form submitted (demo)');">
-      <input style="width:100%;padding:14px;margin:12px 0;background:#0f0f0f;border:1px solid #333;color:#fff;border-radius:8px" placeholder="Your Name" required>
-      <input style="width:100%;padding:14px;margin:12px 0;background:#0f0f0f;border:1px solid #333;color:#fff;border-radius:8px" placeholder="Your Email" required>
-      <textarea style="width:100%;padding:14px;margin:12px 0;background:#0f0f0f;border:1px solid #333;color:#fff;border-radius:8px" rows="5" placeholder="Your Message" required></textarea>
-      <button style="width:100%;padding:16px;border:none;border-radius:10px;background:#fff;color:#000;font-weight:bold">Send Message</button>
-    </form>
-  </div>
+  <div class="portfolio-grid" id="portfolioGrid"></div>
 </section>
 
 <footer>
   <div class="footer-grid">
     <div><h3>Codly</h3><p>We make tech easy for you.</p></div>
-    <div><h3>Company</h3><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a></div>
     <div><h3>Contact</h3><p>Email: hello@codly.com</p></div>
   </div>
   <div class="copyright">© 2026 Codly. All rights reserved.</div>
 </footer>
 
 <script>
-  // Loader
-  window.addEventListener("load",()=>{setTimeout(()=>{document.getElementById("loader").style.display="none"},1000)});
+window.addEventListener("load",()=>{setTimeout(()=>{document.getElementById("loader").style.display="none"},1000)});
 
-  // Slider
-  const slides=document.querySelectorAll(".slide");
-  const prev=document.getElementById("prev");
-  const next=document.getElementById("next");
-  let current=0, timer=null;
+// Build slides
+const slider=document.getElementById("slider");
+const grid=document.getElementById("portfolioGrid");
 
-  function show(i){
-    slides[current].classList.remove("active");
-    current=(i+slides.length)%slides.length;
-    slides[current].classList.add("active");
-  }
-  function nextSlide(){show(current+1)}
-  function prevSlide(){show(current-1)}
+projects.forEach((p,i)=>{
+  const slide=document.createElement("div");
+  slide.className="slide"+(i===0?" active":"");
+  slide.innerHTML=`<img src="${p.img}"><div class="caption">${p.title}</div>`;
+  slider.appendChild(slide);
 
-  next.onclick=()=>{nextSlide();reset()}
-  prev.onclick=()=>{prevSlide();reset()}
+  const item=document.createElement("div");
+  item.className="portfolio-item";
+  item.innerHTML=`<img src="${p.img}"><div class="pi-body">${p.title}</div>`;
+  grid.appendChild(item);
+});
 
-  function auto(){timer=setInterval(nextSlide,4000)}
-  function reset(){clearInterval(timer);auto()}
-  auto();
+const slides=document.querySelectorAll(".slide");
+let current=0,timer=null;
+
+function show(i){
+  slides[current].classList.remove("active");
+  current=(i+slides.length)%slides.length;
+  slides[current].classList.add("active");
+}
+function next(){show(current+1)}
+function prev(){show(current-1)}
+
+document.getElementById("next").onclick=()=>{next();reset()}
+document.getElementById("prev").onclick=()=>{prev();reset()}
+
+function auto(){timer=setInterval(next,4000)}
+function reset(){clearInterval(timer);auto()}
+auto();
 </script>
 
 </body>
