@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Codly — We make tech easy for you</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <style>
 :root{--black:#050505;--dark:#0d0d0d;--grey:#1a1a1a;--white:#fff;--muted:#aaa}
@@ -76,15 +76,55 @@ footer p,footer a{color:#aaa;text-decoration:none;display:block;margin-bottom:8p
   </div>
 </nav>
 
-<!-- FAKE PROJECT IMAGES (SVG DATA) -->
-<!-- These are YOUR OWN designed "screenshots" -->
 <script>
+/* UI MOCKUP "SCREENSHOTS" (Your own fake projects) */
 const projects = [
-  {title:"Business Website", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23111111'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>Codly Corp</text><rect x='60' y='120' width='500' height='60' fill='%23333333'/><rect x='60' y='200' width='700' height='40' fill='%232a2a2a'/><rect x='60' y='260' width='700' height='40' fill='%232a2a2a'/><rect x='60' y='320' width='300' height='50' fill='%23ffffff'/><text x='80' y='355' fill='black' font-size='20'>Get Started</text></svg>`},
-  {title:"E-Commerce Store", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>Shoply</text><rect x='60' y='120' width='250' height='200' fill='%232a2a2a'/><rect x='340' y='120' width='250' height='200' fill='%232a2a2a'/><rect x='620' y='120' width='250' height='200' fill='%232a2a2a'/><rect x='900' y='120' width='250' height='200' fill='%232a2a2a'/></svg>`},
-  {title:"Mobile App UI", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/><rect x='470' y='120' width='260' height='60' fill='%23333333'/><rect x='470' y='200' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='280' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='360' width='260' height='60' fill='%23ffffff'/></svg>`},
-  {title:"AI Dashboard", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='250' height='600' fill='%23222222'/><rect x='300' y='100' width='350' height='200' fill='%232a2a2a'/><rect x='700' y='100' width='350' height='200' fill='%232a2a2a'/><rect x='300' y='350' width='750' height='150' fill='%23333333'/></svg>`},
-  {title:"Automation Panel", img: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><rect x='50' y='120' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='220' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='320' width='1100' height='60' fill='%232a2a2a'/></svg>`}
+  { title:"Business Website",
+    img:`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
+    <rect width='1200' height='600' fill='%23101010'/>
+    <rect x='0' y='0' width='1200' height='70' fill='%23222222'/>
+    <text x='40' y='45' fill='white' font-size='28'>Codly Corp</text>
+    <rect x='60' y='120' width='500' height='60' fill='%23333333'/>
+    <rect x='60' y='200' width='700' height='40' fill='%232a2a2a'/>
+    <rect x='60' y='260' width='700' height='40' fill='%232a2a2a'/>
+    <rect x='60' y='330' width='220' height='50' fill='%23ffffff'/>
+    <text x='85' y='363' fill='black' font-size='18'>Get Started</text>
+    </svg>`},
+  { title:"E-Commerce Store",
+    img:`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
+    <rect width='1200' height='600' fill='%23101010'/>
+    <rect x='0' y='0' width='1200' height='70' fill='%23222222'/>
+    <text x='40' y='45' fill='white' font-size='28'>Shoply</text>
+    <rect x='60' y='120' width='250' height='200' fill='%232a2a2a'/>
+    <rect x='340' y='120' width='250' height='200' fill='%232a2a2a'/>
+    <rect x='620' y='120' width='250' height='200' fill='%232a2a2a'/>
+    <rect x='900' y='120' width='250' height='200' fill='%232a2a2a'/>
+    </svg>`},
+  { title:"Mobile App UI",
+    img:`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
+    <rect width='1200' height='600' fill='%23101010'/>
+    <rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/>
+    <rect x='470' y='120' width='260' height='60' fill='%23333333'/>
+    <rect x='470' y='200' width='260' height='60' fill='%232a2a2a'/>
+    <rect x='470' y='280' width='260' height='60' fill='%232a2a2a'/>
+    <rect x='470' y='360' width='260' height='60' fill='%23ffffff'/>
+    </svg>`},
+  { title:"AI Dashboard",
+    img:`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
+    <rect width='1200' height='600' fill='%23101010'/>
+    <rect x='0' y='0' width='250' height='600' fill='%23222222'/>
+    <rect x='300' y='100' width='350' height='200' fill='%232a2a2a'/>
+    <rect x='700' y='100' width='350' height='200' fill='%232a2a2a'/>
+    <rect x='300' y='350' width='750' height='150' fill='%23333333'/>
+    </svg>`},
+  { title:"Automation Panel",
+    img:`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
+    <rect width='1200' height='600' fill='%23101010'/>
+    <rect x='0' y='0' width='1200' height='70' fill='%23222222'/>
+    <rect x='50' y='120' width='1100' height='60' fill='%232a2a2a'/>
+    <rect x='50' y='220' width='1100' height='60' fill='%232a2a2a'/>
+    <rect x='50' y='320' width='1100' height='60' fill='%232a2a2a'/>
+    </svg>`}
 ];
 </script>
 
@@ -118,7 +158,6 @@ const projects = [
 <script>
 window.addEventListener("load",()=>{setTimeout(()=>{document.getElementById("loader").style.display="none"},1000)});
 
-// Build slides
 const slider=document.getElementById("slider");
 const grid=document.getElementById("portfolioGrid");
 
