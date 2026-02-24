@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{--black:#050505;--dark:#0d0d0d;--grey:#1a1a1a;--white:#fff;--muted:#aaa}
+:root{
+  --black:#050505;--dark:#0d0d0d;--grey:#1a1a1a;--white:#fff;--muted:#aaa;--accent:#00e5ff;
+}
 *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Arial,sans-serif}
 body{background:var(--black);color:var(--white);overflow-x:hidden}
 
@@ -32,7 +34,7 @@ header p{margin-top:10px;color:#aaa}
 .slide{position:absolute;inset:0;opacity:0;transform:rotateY(60deg) scale(.9);transition:transform .9s ease,opacity .9s ease}
 .slide.active{opacity:1;transform:rotateY(0) scale(1);z-index:2}
 .slide img{width:100%;height:100%;object-fit:contain;background:#0b0b0b}
-.caption{position:absolute;bottom:0;left:0;width:100%;padding:18px 22px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.2),transparent);text-align:left}
+.caption{position:absolute;bottom:0;left:0;width:100%;padding:18px 22px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.2),transparent);text-align:left;font-weight:600}
 
 .controls{margin-top:12px;display:flex;justify-content:center;gap:12px}
 .controls button{padding:10px 16px;border-radius:8px;border:1px solid #333;background:#0f0f0f;color:#fff;cursor:pointer}
@@ -43,7 +45,8 @@ section{padding:90px 20px;max-width:1200px;margin:auto}
 
 /* Portfolio */
 .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.portfolio-item{background:#0f0f0f;border:1px solid #222;border-radius:12px;overflow:hidden;cursor:pointer}
+.portfolio-item{background:#0f0f0f;border:1px solid #222;border-radius:12px;overflow:hidden;cursor:pointer;transition:.2s}
+.portfolio-item:hover{transform:translateY(-6px);border-color:#444}
 .portfolio-item img{width:100%;height:180px;object-fit:contain;background:#0b0b0b}
 .pi-body{padding:14px;color:#bbb}
 
@@ -84,71 +87,28 @@ footer p,footer a{color:#aaa;text-decoration:none;display:block;margin-bottom:8p
 </nav>
 
 <script>
-/* Realistic UI Mockups with CODLY branding, charts, cards, layouts */
-function makeBizSite(){
-return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-<rect width='1200' height='600' fill='%23101010'/>
-<rect x='0' y='0' width='1200' height='70' fill='%23222222'/>
-<text x='40' y='45' fill='white' font-size='28'>CODLY • BizSite</text>
-<rect x='60' y='120' width='500' height='60' fill='%233a3a3a'/>
-<text x='70' y='160' fill='white' font-size='26'>Grow Your Business with Codly</text>
-<rect x='60' y='210' width='700' height='40' fill='%232a2a2a'/>
-<rect x='60' y='260' width='700' height='40' fill='%232a2a2a'/>
-<rect x='60' y='330' width='220' height='50' fill='%2300e5ff'/>
-<text x='95' y='363' fill='black' font-size='18'>Get Started</text>
-</svg>`}
+/* Premium UI Mockups (realistic layouts, charts, cards, branding) */
+function biz1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • BizSite</text><rect x='60' y='130' width='520' height='70' fill='%232a2a2a'/><text x='80' y='175' fill='white' font-size='28'>Grow Your Business</text><rect x='60' y='230' width='720' height='40' fill='%23222222'/><rect x='60' y='290' width='720' height='40' fill='%23222222'/><rect x='60' y='360' width='240' height='55' fill='%2300e5ff'/><text x='95' y='397' fill='black' font-size='20'>Get Started</text></svg>`;}
+function biz2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • BizSite</text><rect x='60' y='120' width='300' height='180' fill='%232a2a2a'/><rect x='400' y='120' width='300' height='180' fill='%232a2a2a'/><rect x='740' y='120' width='300' height='180' fill='%232a2a2a'/></svg>`;}
 
-function makeShop(){
-return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-<rect width='1200' height='600' fill='%23101010'/>
-<rect x='0' y='0' width='1200' height='70' fill='%23222222'/>
-<text x='40' y='45' fill='white' font-size='28'>CODLY • Shoply</text>
-<rect x='60' y='120' width='250' height='200' fill='%232a2a2a'/>
-<rect x='340' y='120' width='250' height='200' fill='%232a2a2a'/>
-<rect x='620' y='120' width='250' height='200' fill='%232a2a2a'/>
-<rect x='900' y='120' width='250' height='200' fill='%232a2a2a'/>
-<text x='60' y='360' fill='white' font-size='20'>Featured Products</text>
-</svg>`}
+function shop1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • Shoply</text><rect x='60' y='120' width='250' height='220' fill='%232a2a2a'/><rect x='340' y='120' width='250' height='220' fill='%232a2a2a'/><rect x='620' y='120' width='250' height='220' fill='%232a2a2a'/><rect x='900' y='120' width='250' height='220' fill='%232a2a2a'/></svg>`;}
+function shop2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • Shoply</text><rect x='60' y='120' width='500' height='300' fill='%232a2a2a'/><rect x='600' y='120' width='500' height='60' fill='%23222222'/><rect x='600' y='200' width='500' height='60' fill='%23222222'/></svg>`;}
 
-function makeDashboard(){
-return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-<rect width='1200' height='600' fill='%23101010'/>
-<rect x='0' y='0' width='250' height='600' fill='%23222222'/>
-<text x='30' y='50' fill='white' font-size='24'>CODLY</text>
-<rect x='300' y='100' width='350' height='200' fill='%232a2a2a'/>
-<rect x='700' y='100' width='350' height='200' fill='%232a2a2a'/>
-<rect x='300' y='350' width='750' height='150' fill='%23333333'/>
-<text x='320' y='130' fill='white' font-size='18'>Sales Chart</text>
-<text x='720' y='130' fill='white' font-size='18'>Users Chart</text>
-</svg>`}
+function dash1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='240' height='600' fill='%23222222'/><text x='30' y='50' fill='white' font-size='22'>CODLY</text><rect x='300' y='120' width='350' height='200' fill='%232a2a2a'/><rect x='700' y='120' width='350' height='200' fill='%232a2a2a'/><rect x='300' y='360' width='750' height='140' fill='%23333333'/></svg>`;}
+function dash2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='240' height='600' fill='%23222222'/><rect x='300' y='120' width='750' height='300' fill='%232a2a2a'/></svg>`;}
 
-function makeApp(){
-return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-<rect width='1200' height='600' fill='%23101010'/>
-<rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/>
-<text x='510' y='130' fill='white' font-size='22'>CODLY App</text>
-<rect x='470' y='170' width='260' height='60' fill='%232a2a2a'/>
-<rect x='470' y='250' width='260' height='60' fill='%232a2a2a'/>
-<rect x='470' y='330' width='260' height='60' fill='%2300e5ff'/>
-</svg>`}
+function app1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/><text x='510' y='130' fill='white' font-size='22'>CODLY App</text><rect x='470' y='170' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='250' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='330' width='260' height='60' fill='%2300e5ff'/></svg>`;}
+function app2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/><rect x='470' y='140' width='260' height='300' fill='%232a2a2a'/></svg>`;}
 
-function makeAutomation(){
-return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-<rect width='1200' height='600' fill='%23101010'/>
-<rect x='0' y='0' width='1200' height='70' fill='%23222222'/>
-<text x='40' y='45' fill='white' font-size='28'>CODLY • AutoFlow</text>
-<rect x='50' y='120' width='1100' height='60' fill='%232a2a2a'/>
-<rect x='50' y='220' width='1100' height='60' fill='%232a2a2a'/>
-<rect x='50' y='320' width='1100' height='60' fill='%232a2a2a'/>
-<text x='60' y='155' fill='white' font-size='18'>Workflow Rule #1</text>
-</svg>`}
+function auto1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • AutoFlow</text><rect x='50' y='120' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='220' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='320' width='1100' height='60' fill='%232a2a2a'/></svg>`;}
+function auto2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><rect x='50' y='120' width='500' height='300' fill='%232a2a2a'/><rect x='580' y='120' width='570' height='300' fill='%232a2a2a'/></svg>`;}
 
-const projects = [
- {id:"biz", title:"BizSite — Business Website", screens:[makeBizSite(), makeBizSite()]},
- {id:"shop", title:"Shoply — E-Commerce", screens:[makeShop(), makeShop()]},
- {id:"dash", title:"DashPro — Dashboard", screens:[makeDashboard(), makeDashboard()]},
- {id:"app", title:"Appify — Mobile App", screens:[makeApp(), makeApp()]},
- {id:"auto", title:"AutoFlow — Automation Panel", screens:[makeAutomation(), makeAutomation()]}
+const projects=[
+ {id:"biz",title:"BizSite — Business Website",screens:[biz1(),biz2()]},
+ {id:"shop",title:"Shoply — E-Commerce",screens:[shop1(),shop2()]},
+ {id:"dash",title:"DashPro — Dashboard",screens:[dash1(),dash2()]},
+ {id:"app",title:"Appify — Mobile App",screens:[app1(),app2()]},
+ {id:"auto",title:"AutoFlow — Automation Panel",screens:[auto1(),auto2()]}
 ];
 </script>
 
@@ -189,13 +149,9 @@ const grid=document.getElementById("portfolioGrid");
 const details=document.getElementById("details");
 
 let heroScreens=[];
-projects.forEach(p=>{
-  p.screens.forEach(sc=>{
-    heroScreens.push({title:p.title,img:sc});
-  });
-});
+projects.forEach(p=>p.screens.forEach(sc=>heroScreens.push({title:p.title,img:sc})));
 
-// Build hero slides
+// Build hero
 heroScreens.forEach((p,i)=>{
   const d=document.createElement("div");
   d.className="slide"+(i===0?" active":"");
@@ -203,7 +159,7 @@ heroScreens.forEach((p,i)=>{
   slider.appendChild(d);
 });
 
-// Build portfolio grid + details
+// Build portfolio
 projects.forEach(p=>{
   const item=document.createElement("div");
   item.className="portfolio-item";
@@ -216,7 +172,7 @@ function showDetail(p){
   details.innerHTML="";
   const wrap=document.createElement("div");
   wrap.className="project-detail active";
-  wrap.innerHTML=`<a href="#portfolio" class="back-btn">← Back to Portfolio</a><h2>${p.title}</h2><p style="color:#aaa;margin:10px 0 30px">Demo concept project by Codly</p>`;
+  wrap.innerHTML=`<a href="#portfolio" class="back-btn">← Back to Portfolio</a><h2>${p.title}</h2><p style="color:#aaa;margin:10px 0 30px">Concept project by Codly (Demo)</p>`;
   p.screens.forEach(sc=>{
     const img=document.createElement("img");
     img.src=sc;
@@ -227,12 +183,13 @@ function showDetail(p){
 }
 
 // Slider logic
-const slides=document.querySelectorAll(".slide");
+const slides=()=>document.querySelectorAll(".slide");
 let current=0,timer=null;
 function show(i){
-  slides[current].classList.remove("active");
-  current=(i+slides.length)%slides.length;
-  slides[current].classList.add("active");
+  const s=slides();
+  s[current].classList.remove("active");
+  current=(i+s.length)%s.length;
+  s[current].classList.add("active");
 }
 function next(){show(current+1)}
 function prev(){show(current-1)}
