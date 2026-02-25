@@ -5,7 +5,6 @@
 <title>SteelCraft Engineering & Fabrication</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
 :root{
@@ -40,21 +39,11 @@ img{max-width:100%;display:block}
   background:#f59e0b;
   animation:load 1.6s infinite;
 }
-@keyframes load{
-  0%{width:0%}
-  50%{width:80%}
-  100%{width:0%}
-}
+@keyframes load{0%{width:0%}50%{width:80%}100%{width:0%}}
 
 /* HEADER */
-header{
-  position:sticky;top:0;z-index:1000;
-  background:#0f1720;color:#fff;
-}
-.nav{
-  max-width:1200px;margin:auto;padding:14px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+header{position:sticky;top:0;z-index:1000;background:#0f1720;color:#fff}
+.nav{max-width:1200px;margin:auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .brand{font-weight:800;letter-spacing:.5px}
 .brand span{color:var(--accent)}
 .nav a{margin-left:16px;color:#e5e7eb;font-weight:500}
@@ -64,7 +53,7 @@ header{
 .hero{
   background:
     linear-gradient(135deg,rgba(15,23,32,.85),rgba(31,42,54,.85)),
-    url("https://images.unsplash.com/photo-1581091215367-59ab6c5d1b66?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    url("https://source.unsplash.com/1600x900/?industrial,fabrication,steel") center/cover no-repeat;
   color:#fff;
 }
 .hero-inner{
@@ -172,28 +161,24 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
         <button class="btn secondary">View Projects</button>
       </div>
     </div>
+
     <div class="hero-card">
-      <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80">
+      <img src="https://source.unsplash.com/800x600/?welding,fabrication">
     </div>
   </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT & OTHER SECTIONS (unchanged content) -->
 <section id="about">
   <div class="container">
     <div class="section-title"><h2>About SteelCraft</h2><p>Your trusted fabrication partner</p></div>
     <div class="about">
-      <div>
-        <p>SteelCraft Engineering is a leading fabrication company serving industrial and infrastructure projects.</p>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1581092334511-8b1b6f4c7b62?auto=format&fit=crop&w=1200&q=80">
-      </div>
+      <div><p>SteelCraft Engineering is a leading fabrication company serving industrial and infrastructure projects.</p></div>
+      <div><img src="https://source.unsplash.com/800x600/?workshop,steel"></div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services" style="background:#f8fafc">
   <div class="container">
     <div class="section-title"><h2>Our Services</h2></div>
@@ -208,20 +193,18 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <div class="section-title"><h2>Our Projects</h2></div>
     <div class="projects">
-      <div class="project-card"><img src="https://images.unsplash.com/photo-1581092160613-bf3b8c1e1c2f?auto=format&fit=crop&w=1200&q=80"><span>Factory Structure</span></div>
-      <div class="project-card"><img src="https://images.unsplash.com/photo-1581092919534-1b8a0c1c9f77?auto=format&fit=crop&w=1200&q=80"><span>Machinery Installation</span></div>
-      <div class="project-card"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80"><span>Welding Works</span></div>
-      <div class="project-card"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80"><span>Steel Structures</span></div>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?factory,steel"><span>Factory Structure</span></div>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?machinery,industrial"><span>Machinery Installation</span></div>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?welding,industrial"><span>Welding Works</span></div>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?construction,steel"><span>Steel Structures</span></div>
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
 <section style="background:#f8fafc">
   <div class="container">
     <div class="section-title"><h2>Why Choose Us</h2></div>
@@ -234,7 +217,6 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   </div>
 </section>
 
-<!-- CLIENTS -->
 <section>
   <div class="container">
     <div class="section-title"><h2>Our Clients</h2></div>
@@ -247,38 +229,26 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   </div>
 </section>
 
-<!-- QUOTE -->
 <section id="quote" class="quote">
   <div class="container">
     <div class="section-title"><h2>Request a Quote</h2></div>
     <div class="quote-form">
-      <input placeholder="Your Name">
-      <input placeholder="Phone">
-      <input placeholder="Email">
-      <textarea rows="4" placeholder="Project Details"></textarea>
+      <input placeholder="Your Name"><input placeholder="Phone"><input placeholder="Email"><textarea rows="4" placeholder="Project Details"></textarea>
       <button class="btn primary" onclick="alert('Thank you! We will contact you soon.')">Submit</button>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="section-title"><h2>Contact Us</h2></div>
     <div class="contact-grid">
-      <div class="contact-box">
-        <p>Mumbai, India</p>
-        <p>+91 90000 00000</p>
-        <p>info@steelcraftengineering.com</p>
-      </div>
-      <div class="contact-box">
-        <iframe src="https://www.google.com/maps?q=Mumbai,India&output=embed" width="100%" height="300" style="border:0;border-radius:12px;"></iframe>
-      </div>
+      <div class="contact-box"><p>Mumbai, India</p><p>+91 90000 00000</p><p>info@steelcraftengineering.com</p></div>
+      <div class="contact-box"><iframe src="https://www.google.com/maps?q=Mumbai,India&output=embed" width="100%" height="300" style="border:0;border-radius:12px;"></iframe></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div><h4>SteelCraft Engineering</h4><p>Industrial fabrication solutions.</p></div>
