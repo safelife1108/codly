@@ -2,203 +2,100 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Codly — We make tech easy for you</title>
+<title>Business Website Demo - Codly</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
-:root{
-  --black:#050505;--dark:#0d0d0d;--grey:#1a1a1a;--white:#fff;--muted:#aaa;--accent:#00e5ff;
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Arial,sans-serif}
-body{background:var(--black);color:var(--white);overflow-x:hidden}
+body{margin:0;font-family:Arial,Segoe UI,sans-serif;background:#f6f7fb;color:#222}
+header{background:#0b0f1a;color:#fff;padding:80px 20px;text-align:center}
+header h1{font-size:48px;margin-bottom:10px}
+header p{font-size:18px;color:#ccc}
+.btn{display:inline-block;margin-top:20px;padding:12px 22px;background:#00e5ff;color:#000;text-decoration:none;border-radius:6px;font-weight:bold}
 
-/* Loader */
-#loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
-.spinner{width:60px;height:60px;border:4px solid #333;border-top:4px solid #fff;border-radius:50%;animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+section{padding:60px 20px;max-width:1100px;margin:auto}
+.section-title{text-align:center;font-size:36px;margin-bottom:40px}
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;background:rgba(5,5,5,.85);backdrop-filter:blur(6px);border-bottom:1px solid #222;z-index:1000}
-.nav-inner{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-.nav-links a{margin-left:20px;color:#ccc;text-decoration:none}
-.nav-links a:hover{color:#fff}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.service-box{background:#fff;padding:25px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+.service-box h3{margin-bottom:10px}
 
-/* Hero */
-header{min-height:100vh;background:radial-gradient(circle at top,#1a1a1a,#000);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px}
-header h1{font-size:64px;letter-spacing:3px}
-header h2{margin-top:12px;color:#ddd;font-weight:normal}
-header p{margin-top:10px;color:#aaa}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.about img{width:100%;border-radius:10px}
 
-.hero-wrap{margin-top:40px;width:95%;max-width:1100px;perspective:1200px}
-.hero-slider{position:relative;width:100%;height:520px;border-radius:16px;overflow:hidden;background:#111;border:1px solid #222;box-shadow:0 20px 60px rgba(0,0,0,.7)}
-.slide{position:absolute;inset:0;opacity:0;transform:rotateY(60deg) scale(.9);transition:transform .9s ease,opacity .9s ease}
-.slide.active{opacity:1;transform:rotateY(0) scale(1);z-index:2}
-.slide img{width:100%;height:100%;object-fit:contain;background:#0b0b0b}
-.caption{position:absolute;bottom:0;left:0;width:100%;padding:18px 22px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.2),transparent);text-align:left;font-weight:600}
+.contact-box{background:#fff;padding:30px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.1);max-width:600px;margin:auto}
+.contact-box input,.contact-box textarea{width:100%;padding:12px;margin-bottom:12px;border:1px solid #ccc;border-radius:6px}
+.contact-box button{width:100%;padding:12px;border:none;background:#0b0f1a;color:#fff;border-radius:6px;font-size:16px;cursor:pointer}
 
-.controls{margin-top:12px;display:flex;justify-content:center;gap:12px}
-.controls button{padding:10px 16px;border-radius:8px;border:1px solid #333;background:#0f0f0f;color:#fff;cursor:pointer}
-.controls button:hover{background:#1a1a1a}
+footer{background:#0b0f1a;color:#aaa;text-align:center;padding:30px;margin-top:60px}
 
-section{padding:90px 20px;max-width:1200px;margin:auto}
-.section-title{text-align:center;font-size:38px;margin-bottom:60px}
-
-/* Portfolio */
-.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.portfolio-item{background:#0f0f0f;border:1px solid #222;border-radius:12px;overflow:hidden;cursor:pointer;transition:.2s}
-.portfolio-item:hover{transform:translateY(-6px);border-color:#444}
-.portfolio-item img{width:100%;height:180px;object-fit:contain;background:#0b0b0b}
-.pi-body{padding:14px;color:#bbb}
-
-/* Project Details */
-.project-detail{display:none}
-.project-detail.active{display:block}
-.project-detail img{width:100%;max-width:900px;margin:20px auto;display:block;background:#0b0b0b;border:1px solid #222;border-radius:12px}
-.back-btn{display:inline-block;margin-bottom:20px;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:8px;text-decoration:none}
-
-/* Footer */
-footer{background:#040404;border-top:1px solid #222;padding:80px 20px;margin-top:100px}
-.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px}
-footer p,footer a{color:#aaa;text-decoration:none;display:block;margin-bottom:8px;font-size:14px}
-.copyright{text-align:center;margin-top:50px;color:#666;font-size:14px}
-
-@media(max-width:768px){
-  header h1{font-size:42px}
-  .hero-slider{height:360px}
+@media(max-width:800px){
+  .about{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<div id="loader">
-  <h1>CODLY</h1>
-  <p>Loading experience...</p>
-  <div class="spinner"></div>
-</div>
-
-<nav>
-  <div class="nav-inner">
-    <strong>Codly</strong>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#portfolio">Portfolio</a>
-    </div>
-  </div>
-</nav>
-
-<script>
-/* Premium UI Mockups (realistic layouts, charts, cards, branding) */
-function biz1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • BizSite</text><rect x='60' y='130' width='520' height='70' fill='%232a2a2a'/><text x='80' y='175' fill='white' font-size='28'>Grow Your Business</text><rect x='60' y='230' width='720' height='40' fill='%23222222'/><rect x='60' y='290' width='720' height='40' fill='%23222222'/><rect x='60' y='360' width='240' height='55' fill='%2300e5ff'/><text x='95' y='397' fill='black' font-size='20'>Get Started</text></svg>`;}
-function biz2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • BizSite</text><rect x='60' y='120' width='300' height='180' fill='%232a2a2a'/><rect x='400' y='120' width='300' height='180' fill='%232a2a2a'/><rect x='740' y='120' width='300' height='180' fill='%232a2a2a'/></svg>`;}
-
-function shop1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • Shoply</text><rect x='60' y='120' width='250' height='220' fill='%232a2a2a'/><rect x='340' y='120' width='250' height='220' fill='%232a2a2a'/><rect x='620' y='120' width='250' height='220' fill='%232a2a2a'/><rect x='900' y='120' width='250' height='220' fill='%232a2a2a'/></svg>`;}
-function shop2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • Shoply</text><rect x='60' y='120' width='500' height='300' fill='%232a2a2a'/><rect x='600' y='120' width='500' height='60' fill='%23222222'/><rect x='600' y='200' width='500' height='60' fill='%23222222'/></svg>`;}
-
-function dash1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='240' height='600' fill='%23222222'/><text x='30' y='50' fill='white' font-size='22'>CODLY</text><rect x='300' y='120' width='350' height='200' fill='%232a2a2a'/><rect x='700' y='120' width='350' height='200' fill='%232a2a2a'/><rect x='300' y='360' width='750' height='140' fill='%23333333'/></svg>`;}
-function dash2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='240' height='600' fill='%23222222'/><rect x='300' y='120' width='750' height='300' fill='%232a2a2a'/></svg>`;}
-
-function app1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/><text x='510' y='130' fill='white' font-size='22'>CODLY App</text><rect x='470' y='170' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='250' width='260' height='60' fill='%232a2a2a'/><rect x='470' y='330' width='260' height='60' fill='%2300e5ff'/></svg>`;}
-function app2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='450' y='80' width='300' height='440' rx='30' fill='%23222222'/><rect x='470' y='140' width='260' height='300' fill='%232a2a2a'/></svg>`;}
-
-function auto1(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><text x='40' y='45' fill='white' font-size='28'>CODLY • AutoFlow</text><rect x='50' y='120' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='220' width='1100' height='60' fill='%232a2a2a'/><rect x='50' y='320' width='1100' height='60' fill='%232a2a2a'/></svg>`;}
-function auto2(){return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><rect width='1200' height='600' fill='%23101010'/><rect x='0' y='0' width='1200' height='70' fill='%23222222'/><rect x='50' y='120' width='500' height='300' fill='%232a2a2a'/><rect x='580' y='120' width='570' height='300' fill='%232a2a2a'/></svg>`;}
-
-const projects=[
- {id:"biz",title:"BizSite — Business Website",screens:[biz1(),biz2()]},
- {id:"shop",title:"Shoply — E-Commerce",screens:[shop1(),shop2()]},
- {id:"dash",title:"DashPro — Dashboard",screens:[dash1(),dash2()]},
- {id:"app",title:"Appify — Mobile App",screens:[app1(),app2()]},
- {id:"auto",title:"AutoFlow — Automation Panel",screens:[auto1(),auto2()]}
-];
-</script>
-
-<header id="home">
-  <h1>Codly</h1>
-  <h2>We make tech easy for you.</h2>
-  <p>Build smarter. Grow faster.</p>
-
-  <div class="hero-wrap">
-    <div class="hero-slider" id="slider"></div>
-    <div class="controls">
-      <button id="prev">◀ Prev</button>
-      <button id="next">Next ▶</button>
-    </div>
-  </div>
+<header>
+  <h1>Your Business Name</h1>
+  <p>We help customers with our professional services</p>
+  <a href="#contact" class="btn">Contact Us</a>
 </header>
 
-<section id="portfolio">
-  <h2 class="section-title">Portfolio</h2>
-  <div class="portfolio-grid" id="portfolioGrid"></div>
+<section>
+  <h2 class="section-title">Our Services</h2>
+  <div class="services">
+    <div class="service-box">
+      <h3>Service One</h3>
+      <p>Short description of your service.</p>
+    </div>
+    <div class="service-box">
+      <h3>Service Two</h3>
+      <p>Short description of your service.</p>
+    </div>
+    <div class="service-box">
+      <h3>Service Three</h3>
+      <p>Short description of your service.</p>
+    </div>
+    <div class="service-box">
+      <h3>Service Four</h3>
+      <p>Short description of your service.</p>
+    </div>
+  </div>
 </section>
 
-<section id="details"></section>
+<section>
+  <h2 class="section-title">About Us</h2>
+  <div class="about">
+    <div>
+      <p>
+        This is a demo business website template built by Codly.
+        You can write here about your business, your experience, your mission and your values.
+        This section helps build trust with customers.
+      </p>
+      <p>
+        You can explain why customers should choose you and what makes your business special.
+      </p>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop" alt="Business">
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact Us</h2>
+  <div class="contact-box">
+    <form onsubmit="event.preventDefault(); alert('Message sent (demo)');">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
 
 <footer>
-  <div class="footer-grid">
-    <div><h3>Codly</h3><p>We make tech easy for you.</p></div>
-    <div><h3>Contact</h3><p>Email: hello@codly.com</p></div>
-  </div>
-  <div class="copyright">© 2026 Codly. All rights reserved.</div>
+  <p>© 2026 Your Business Name. Built by Codly.</p>
 </footer>
-
-<script>
-window.addEventListener("load",()=>{setTimeout(()=>{document.getElementById("loader").style.display="none"},1000)});
-
-const slider=document.getElementById("slider");
-const grid=document.getElementById("portfolioGrid");
-const details=document.getElementById("details");
-
-let heroScreens=[];
-projects.forEach(p=>p.screens.forEach(sc=>heroScreens.push({title:p.title,img:sc})));
-
-// Build hero
-heroScreens.forEach((p,i)=>{
-  const d=document.createElement("div");
-  d.className="slide"+(i===0?" active":"");
-  d.innerHTML=`<img src="${p.img}"><div class="caption">${p.title}</div>`;
-  slider.appendChild(d);
-});
-
-// Build portfolio
-projects.forEach(p=>{
-  const item=document.createElement("div");
-  item.className="portfolio-item";
-  item.innerHTML=`<img src="${p.screens[0]}"><div class="pi-body">${p.title}</div>`;
-  item.onclick=()=>showDetail(p);
-  grid.appendChild(item);
-});
-
-function showDetail(p){
-  details.innerHTML="";
-  const wrap=document.createElement("div");
-  wrap.className="project-detail active";
-  wrap.innerHTML=`<a href="#portfolio" class="back-btn">← Back to Portfolio</a><h2>${p.title}</h2><p style="color:#aaa;margin:10px 0 30px">Concept project by Codly (Demo)</p>`;
-  p.screens.forEach(sc=>{
-    const img=document.createElement("img");
-    img.src=sc;
-    wrap.appendChild(img);
-  });
-  details.appendChild(wrap);
-  details.scrollIntoView({behavior:"smooth"});
-}
-
-// Slider logic
-const slides=()=>document.querySelectorAll(".slide");
-let current=0,timer=null;
-function show(i){
-  const s=slides();
-  s[current].classList.remove("active");
-  current=(i+s.length)%s.length;
-  s[current].classList.add("active");
-}
-function next(){show(current+1)}
-function prev(){show(current-1)}
-document.getElementById("next").onclick=()=>{next();reset()}
-document.getElementById("prev").onclick=()=>{prev();reset()}
-function auto(){timer=setInterval(next,4000)}
-function reset(){clearInterval(timer);auto()}
-auto();
-</script>
 
 </body>
 </html>
