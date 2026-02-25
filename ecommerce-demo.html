@@ -1,116 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Codly Market — Premium Marketplace Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Codly Market — Marketplace Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
-body{background:#faf7f4;color:#2b2b2b;line-height:1.5}
+body{background:#faf7f4;color:#2b2b2b}
 
-/* ===== COLORS ===== */
+/* COLORS */
 :root{
   --dark:#2f1f17;
   --brown:#3b2419;
   --accent:#a56a43;
   --light:#f4ece6;
-  --text:#2b2b2b;
 }
 
-/* ===== LOADER ===== */
+/* LOADER */
 #loader{
   position:fixed;inset:0;background:var(--dark);
   display:flex;align-items:center;justify-content:center;flex-direction:column;
   z-index:9999;color:#f3e7de
 }
-#loader h1{letter-spacing:3px;margin-bottom:16px}
-.spinner{width:48px;height:48px;border:4px solid #5a3b2e;border-top:4px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+.spinner{width:50px;height:50px;border:4px solid #5a3b2e;border-top:4px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ===== HEADER ===== */
-header{position:sticky;top:0;z-index:1000;background:var(--dark);color:#f3e7de}
+/* HEADER */
+header{background:var(--dark);color:#f3e7de;position:sticky;top:0;z-index:1000}
 .topbar{max-width:1200px;margin:auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
-.logo{font-weight:800;letter-spacing:1px;color:#d4a373}
+.logo{font-weight:800;color:#d4a373}
 .search{flex:1;display:flex}
-.search input{flex:1;padding:10px 12px;border:none;border-radius:6px 0 0 6px;outline:none}
-.search button{padding:10px 14px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:0 6px 6px 0;cursor:pointer}
+.search input{flex:1;padding:10px;border:none;border-radius:6px 0 0 6px}
+.search button{padding:10px 14px;border:none;background:var(--accent);color:#fff;border-radius:0 6px 6px 0;cursor:pointer}
 .actions button{background:#3b2419;border:1px solid #5a3b2e;color:#f3e7de;padding:8px 12px;border-radius:6px;cursor:pointer}
 
-/* ===== CATEGORY BAR ===== */
-.catbar{background:#3b2419;color:#e6d5c7}
-.catbar .inner{max-width:1200px;margin:auto;display:flex;gap:16px;padding:8px 16px;overflow:auto}
-.catbar a{color:#e6d5c7;text-decoration:none;font-size:14px;white-space:nowrap}
-.catbar a:hover{color:#d4a373}
+.catbar{background:#3b2419}
+.catbar .inner{max-width:1200px;margin:auto;padding:8px 16px;display:flex;gap:16px;overflow:auto}
+.catbar a{color:#e6d5c7;text-decoration:none;font-size:14px}
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .container{max-width:1200px;margin:20px auto;padding:0 16px}
-.grid{display:grid;grid-template-columns:240px 1fr;gap:16px}
+.hidden{display:none}
 
-/* ===== SIDEBAR ===== */
-aside{background:#fff;border-radius:12px;padding:12px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-aside h3{margin-bottom:10px;color:var(--brown)}
-.filter button{display:block;width:100%;text-align:left;margin-bottom:8px;padding:8px 10px;border-radius:8px;border:1px solid #e6ded8;background:#fff;cursor:pointer}
-.filter button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-/* ===== HERO ===== */
-.hero{background:linear-gradient(180deg,var(--light),#fff);border-radius:16px;padding:20px;margin-bottom:16px;display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:center}
-.hero h1{font-size:32px;color:var(--brown)}
-.hero p{color:#6b4a3a;margin:8px 0}
-.hero img{width:100%;border-radius:12px}
-
-/* ===== PRODUCTS ===== */
+/* PRODUCTS */
 .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-.card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e6ded8;display:flex;flex-direction:column;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e6ded8;box-shadow:0 6px 20px rgba(0,0,0,.06);display:flex;flex-direction:column}
 .card img{width:100%;height:160px;object-fit:cover;cursor:pointer}
 .card .body{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
-.badge{display:inline-block;background:#b91c1c;color:#fff;font-size:11px;padding:2px 6px;border-radius:999px;width:max-content}
-.price{font-weight:800;color:var(--accent)}
-.old{color:#999;text-decoration:line-through;font-size:12px;margin-left:6px}
+.price{color:var(--accent);font-weight:800}
+.old{color:#999;text-decoration:line-through;font-size:12px}
 .card button{margin-top:auto;padding:8px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer}
 
-/* ===== CART DRAWER ===== */
-#cartDrawer{position:fixed;top:0;right:-360px;width:360px;height:100vh;background:#fff;box-shadow:-10px 0 30px rgba(0,0,0,.2);transition:.3s;z-index:2000;display:flex;flex-direction:column}
-#cartDrawer.open{right:0}
-.cart-header{padding:12px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
-.cart-items{flex:1;overflow:auto;padding:12px}
-.cart-item{display:flex;gap:8px;margin-bottom:10px}
-.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:6px}
-.cart-footer{padding:12px;border-top:1px solid #eee}
-.cart-footer button{width:100%;padding:10px;background:var(--accent);border:none;font-weight:800;border-radius:8px;color:#fff}
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
 
-/* ===== MODALS ===== */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:3000}
-.modal-content{background:#fff;border-radius:12px;padding:20px;max-width:500px;width:90%}
-.modal-content img{width:100%;border-radius:8px}
-.modal-content h3{margin:10px 0}
-.modal-content button{margin-top:10px;padding:10px 14px;border:none;background:var(--accent);color:#fff;border-radius:8px;font-weight:700}
-
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{background:var(--dark);color:#d8c6b8;margin-top:40px}
 .footer-inner{max-width:1200px;margin:auto;padding:40px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
-footer h4{color:#f3e7de;margin-bottom:10px}
-footer a, footer p{color:#d8c6b8;font-size:14px;text-decoration:none;display:block;margin-bottom:6px}
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){.grid{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
+/* FORMS */
+input, textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ddd}
+.btn{padding:10px 14px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer}
 </style>
 </head>
 <body>
 
-<div id="loader"><h1>CODLY MARKET</h1><div class="spinner"></div></div>
+<!-- LOADER -->
+<div id="loader">
+  <h2>CODLY MARKET</h2>
+  <div class="spinner"></div>
+</div>
 
+<!-- HEADER -->
 <header>
   <div class="topbar">
-    <div class="logo">CODLY</div>
+    <div class="logo" onclick="goHome()">CODLY</div>
     <div class="search">
-      <input id="searchInput" placeholder="Search products..." />
-      <button onclick="applySearch()">Search</button>
+      <input id="searchInput" placeholder="Search products...">
+      <button onclick="renderProducts()">Search</button>
     </div>
     <div class="actions">
-      <button onclick="openLogin()">Login</button>
-      <button onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</button>
-      <button onclick="openAdmin()">Admin</button>
+      <button onclick="showPage('login')">Login</button>
+      <button onclick="showPage('cart')">Cart (<span id="cartCount">0</span>)</button>
     </div>
   </div>
   <div class="catbar">
@@ -125,88 +98,57 @@ footer a, footer p{color:#d8c6b8;font-size:14px;text-decoration:none;display:blo
 </header>
 
 <div class="container">
-  <div class="grid">
-    <aside>
-      <h3>Categories</h3>
-      <div class="filter">
-        <button class="active" onclick="setCategory('all')">All</button>
-        <button onclick="setCategory('fashion')">Fashion</button>
-        <button onclick="setCategory('electronics')">Electronics</button>
-        <button onclick="setCategory('footwear')">Footwear</button>
-        <button onclick="setCategory('accessories')">Accessories</button>
-      </div>
-    </aside>
 
-    <main>
-      <div class="hero">
-        <div>
-          <h1>Big Deals, Premium Style</h1>
-          <p>Full marketplace demo with product pages, cart, checkout, login & admin UI.</p>
-          <span class="badge">SALE</span>
-        </div>
-        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" />
-      </div>
+<!-- HOME -->
+<div id="home" class="page active">
+  <h2>Big Deals, Premium Style</h2>
+  <p>Marketplace demo inspired by Amazon / Flipkart style.</p>
+  <br>
+  <div class="products" id="productGrid"></div>
+</div>
 
-      <div class="products" id="productGrid"></div>
-    </main>
-  </div>
+<!-- PRODUCT DETAIL -->
+<div id="productPage" class="page">
+  <button class="btn" onclick="goHome()">← Back</button>
+  <div id="productDetail"></div>
 </div>
 
 <!-- CART -->
-<div id="cartDrawer">
-  <div class="cart-header"><strong>Your Cart</strong><button onclick="toggleCart()">Close</button></div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-footer"><button onclick="openCheckout()">Checkout</button></div>
+<div id="cart" class="page">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <br>
+  <button class="btn" onclick="showPage('checkout')">Proceed to Checkout</button>
 </div>
 
-<!-- PRODUCT MODAL -->
-<div class="modal" id="productModal">
-  <div class="modal-content" id="productModalContent"></div>
+<!-- CHECKOUT -->
+<div id="checkout" class="page">
+  <h2>Checkout</h2>
+  <input placeholder="Full Address">
+  <input placeholder="Card Number">
+  <button class="btn" onclick="alert('Order placed (demo)')">Place Order</button>
 </div>
 
-<!-- LOGIN MODAL -->
-<div class="modal" id="loginModal">
-  <div class="modal-content">
-    <h3>Login (Demo)</h3>
-    <input placeholder="Email" style="width:100%;padding:10px;margin-bottom:8px">
-    <input placeholder="Password" type="password" style="width:100%;padding:10px;margin-bottom:8px">
-    <button onclick="closeLogin()">Login</button>
-  </div>
+<!-- LOGIN -->
+<div id="login" class="page">
+  <h2>Login</h2>
+  <input placeholder="Email">
+  <input type="password" placeholder="Password">
+  <button class="btn" onclick="goHome()">Login</button>
 </div>
 
-<!-- CHECKOUT MODAL -->
-<div class="modal" id="checkoutModal">
-  <div class="modal-content">
-    <h3>Checkout (Demo)</h3>
-    <p>Enter address & payment (UI only)</p>
-    <input placeholder="Address" style="width:100%;padding:10px;margin-bottom:8px">
-    <input placeholder="Card Number" style="width:100%;padding:10px;margin-bottom:8px">
-    <button onclick="closeCheckout()">Place Order</button>
-  </div>
 </div>
 
-<!-- ADMIN MODAL -->
-<div class="modal" id="adminModal">
-  <div class="modal-content">
-    <h3>Admin Dashboard (Demo)</h3>
-    <p>Orders: 24</p>
-    <p>Products: 120</p>
-    <p>Revenue: ₹2,45,000</p>
-    <button onclick="closeAdmin()">Close</button>
-  </div>
-</div>
-
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div><h4>Codly Market</h4><p>Premium marketplace demo.</p></div>
-    <div><h4>Shop</h4><a>Fashion</a><a>Electronics</a><a>Footwear</a><a>Accessories</a></div>
-    <div><h4>Support</h4><a>Help Center</a><a>Returns</a><a>Shipping</a><a>Contact</a></div>
-    <div><h4>Contact</h4><p>Mumbai, India</p><p>+91 90000 00000</p><p>support@codlymarket.in</p></div>
+    <div><h4>Codly Market</h4><p>Marketplace demo for portfolio.</p></div>
+    <div><h4>Contact</h4><p>Mumbai, India</p><p>support@codlymarket.in</p></div>
   </div>
 </footer>
 
 <script>
-window.addEventListener("load", ()=>setTimeout(()=>document.getElementById("loader").style.display="none",800));
+window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader").style.display="none",800));
 
 const products=[
 {id:1,title:"Sneakers",cat:"footwear",price:2499,old:3199,img:"https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000"},
@@ -216,41 +158,67 @@ const products=[
 {id:5,title:"Jacket",cat:"fashion",price:2899,old:3599,img:"https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1000"},
 ];
 
-let currentCategory="all";let cart=[];
+let currentCategory="all";
+let cart=[];
+
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function goHome(){ showPage("home"); }
+
+function setCategory(cat){ currentCategory=cat; renderProducts(); }
 
 function renderProducts(){
-  const grid=document.getElementById("productGrid");grid.innerHTML="";
+  const grid=document.getElementById("productGrid");
+  grid.innerHTML="";
   const q=document.getElementById("searchInput").value.toLowerCase();
   products.filter(p=>{
-    const catOk=currentCategory==="all"||p.cat===currentCategory;
-    const qOk=p.title.toLowerCase().includes(q);
-    return catOk&&qOk;
+    return (currentCategory==="all"||p.cat===currentCategory) && p.title.toLowerCase().includes(q);
   }).forEach(p=>{
-    const card=document.createElement("div");card.className="card";
-    card.innerHTML=`<img src="${p.img}" onclick="openProduct(${p.id})">
-    <div class="body"><span class="badge">Deal</span><strong>${p.title}</strong>
-    <div><span class="price">₹${p.price}</span> <span class="old">₹${p.old}</span></div>
-    <button onclick="addToCart(${p.id})">Add to Cart</button></div>`;
+    const card=document.createElement("div");
+    card.className="card";
+    card.innerHTML=`
+      <img src="${p.img}" onclick="openProduct(${p.id})">
+      <div class="body">
+        <strong>${p.title}</strong>
+        <div><span class="price">₹${p.price}</span> <span class="old">₹${p.old}</span></div>
+        <button onclick="addToCart(${p.id})">Add to Cart</button>
+      </div>
+    `;
     grid.appendChild(card);
   });
 }
 
-function setCategory(cat){currentCategory=cat;document.querySelectorAll(".filter button").forEach(b=>b.classList.remove("active"));renderProducts();}
-function applySearch(){renderProducts();}
+function openProduct(id){
+  const p=products.find(x=>x.id===id);
+  const box=document.getElementById("productDetail");
+  box.innerHTML=`
+    <h2>${p.title}</h2>
+    <img src="${p.img}" style="max-width:300px;width:100%;border-radius:12px">
+    <p>Price: ₹${p.price}</p>
+    <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
+  `;
+  showPage("productPage");
+}
 
-function addToCart(id){const p=products.find(x=>x.id===id);cart.push(p);updateCart();}
-function updateCart(){document.getElementById("cartCount").textContent=cart.length;const box=document.getElementById("cartItems");box.innerHTML="";cart.forEach(item=>{const div=document.createElement("div");div.className="cart-item";div.innerHTML=`<img src="${item.img}"><div><strong>${item.title}</strong><div>₹${item.price}</div></div>`;box.appendChild(div);});}
-function toggleCart(){document.getElementById("cartDrawer").classList.toggle("open");}
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  cart.push(p);
+  document.getElementById("cartCount").textContent=cart.length;
+  renderCart();
+}
 
-function openProduct(id){const p=products.find(x=>x.id===id);const m=document.getElementById("productModal");document.getElementById("productModalContent").innerHTML=`<img src="${p.img}"><h3>${p.title}</h3><p>Price: ₹${p.price}</p><button onclick="addToCart(${p.id})">Add to Cart</button>`;m.style.display="flex";}
-document.getElementById("productModal").onclick=e=>{if(e.target.id==="productModal")e.target.style.display="none";}
-
-function openLogin(){document.getElementById("loginModal").style.display="flex";}
-function closeLogin(){document.getElementById("loginModal").style.display="none";}
-function openCheckout(){document.getElementById("checkoutModal").style.display="flex";}
-function closeCheckout(){document.getElementById("checkoutModal").style.display="none";}
-function openAdmin(){document.getElementById("adminModal").style.display="flex";}
-function closeAdmin(){document.getElementById("adminModal").style.display="none";}
+function renderCart(){
+  const box=document.getElementById("cartItems");
+  box.innerHTML="";
+  cart.forEach(item=>{
+    const div=document.createElement("div");
+    div.innerHTML=`<p>${item.title} - ₹${item.price}</p>`;
+    box.appendChild(div);
+  });
+}
 
 renderProducts();
 </script>
