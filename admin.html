@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Codly Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,sans-serif}
+body{background:#0f1115;color:#fff}
+a{text-decoration:none;color:inherit}
+.hidden{display:none}
+
+/* LOGIN */
+#login{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+}
+.login-box{
+  background:#171c26;padding:30px;border-radius:14px;width:320px;
+}
+.login-box h2{text-align:center;margin-bottom:20px;color:#ff4d4d}
+.login-box input{width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #333;background:#0f1115;color:#fff}
+.login-box button{width:100%;padding:12px;border:none;border-radius:8px;background:#ff4d4d;color:#000;font-weight:700}
+
+/* LAYOUT */
+#app{display:flex;min-height:100vh}
+.sidebar{
+  width:240px;background:#0b0d12;padding:20px;border-right:1px solid #222
+}
+.sidebar h3{color:#ff4d4d;margin-bottom:20px}
+.sidebar a{display:block;padding:10px;border-radius:8px;color:#ccc;margin-bottom:6px}
+.sidebar a:hover,.sidebar a.active{background:#171c26;color:#fff}
+
+.main{flex:1;padding:20px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.card{background:#171c26;padding:20px;border-radius:14px;margin-bottom:20px}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #222;text-align:left}
+th{color:#ff4d4d}
+
+/* BUTTONS */
+.btn{padding:8px 12px;border-radius:6px;border:none;cursor:pointer;font-weight:600}
+.btn.add{background:#22c55e;color:#000}
+.btn.del{background:#ef4444;color:#000}
+.btn.gray{background:#374151;color:#fff}
+
+/* SELECT */
+select{padding:8px;border-radius:6px;background:#0f1115;color:#fff;border:1px solid #333}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-box">
+    <h2>Codly Admin</h2>
+    <input id="user" placeholder="Username" value="admin">
+    <input id="pass" type="password" placeholder="Password" value="admin">
+    <button onclick="login()">Login</button>
+    <p style="margin-top:10px;font-size:12px;color:#aaa;text-align:center">
+      Demo login: admin / admin
+    </p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+  <div class="sidebar">
+    <h3>Codly Admin</h3>
+    <a href="#" class="active" onclick="showSection('dashboard')">Dashboard</a>
+    <a href="#" onclick="showSection('pages')">Pages</a>
+    <a href="#" onclick="showSection('programs')">Programs / Services</a>
+    <a href="#" onclick="showSection('trainers')">Trainers / Staff</a>
+    <a href="#" onclick="showSection('products')">Products</a>
+    <a href="#" onclick="showSection('branches')">Branches</a>
+    <a href="#" onclick="showSection('orders')">Orders</a>
+    <a href="#" onclick="showSection('messages')">Leads / Messages</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <h2 id="title">Dashboard</h2>
+      <div>
+        <select id="siteSelect" onchange="changeSite()">
+          <option>PowerFlex Gym</option>
+          <option>Fabrication Demo</option>
+          <option>Codly Market</option>
+          <option>Safe Life</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="section">
+      <div class="card">
+        <h3>Welcome to Codly Admin</h3>
+        <p style="color:#aaa;margin-top:8px">
+          Manage all your demo websites from one panel. Switch site from top right.
+        </p>
+      </div>
+      <div class="card">
+        <p>📊 Total Pages: 12</p>
+        <p>📦 Products: 48</p>
+        <p>👥 Trainers/Staff: 9</p>
+        <p>📩 Leads: 23</p>
+        <p>🛒 Orders: 15</p>
+      </div>
+    </div>
+
+    <!-- PAGES -->
+    <div id="pages" class="section hidden">
+      <div class="card">
+        <h3>Pages</h3>
+        <button class="btn add" onclick="addRow('pagesTable')">+ Add Page</button>
+      </div>
+      <div class="card">
+        <table id="pagesTable">
+          <tr><th>Page Name</th><th>Status</th><th>Action</th></tr>
+          <tr><td>Home</td><td>Published</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+          <tr><td>About</td><td>Published</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROGRAMS -->
+    <div id="programs" class="section hidden">
+      <div class="card">
+        <h3>Programs / Services</h3>
+        <button class="btn add" onclick="addRow('progTable')">+ Add</button>
+      </div>
+      <div class="card">
+        <table id="progTable">
+          <tr><th>Name</th><th>Type</th><th>Action</th></tr>
+          <tr><td>Strength Training</td><td>Program</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+          <tr><td>Cardio Fitness</td><td>Program</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- TRAINERS -->
+    <div id="trainers" class="section hidden">
+      <div class="card">
+        <h3>Trainers / Staff</h3>
+        <button class="btn add" onclick="addRow('trainerTable')">+ Add</button>
+      </div>
+      <div class="card">
+        <table id="trainerTable">
+          <tr><th>Name</th><th>Role</th><th>Action</th></tr>
+          <tr><td>Rajesh Kumar</td><td>Head Coach</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+          <tr><td>Priya Sharma</td><td>Trainer</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div id="products" class="section hidden">
+      <div class="card">
+        <h3>Products</h3>
+        <button class="btn add" onclick="addRow('prodTable')">+ Add Product</button>
+      </div>
+      <div class="card">
+        <table id="prodTable">
+          <tr><th>Product</th><th>Price</th><th>Stock</th><th>Action</th></tr>
+          <tr><td>Shoes</td><td>₹1999</td><td>20</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+          <tr><td>T-Shirt</td><td>₹999</td><td>50</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- BRANCHES -->
+    <div id="branches" class="section hidden">
+      <div class="card">
+        <h3>Branches</h3>
+        <button class="btn add" onclick="addRow('branchTable')">+ Add Branch</button>
+      </div>
+      <div class="card">
+        <table id="branchTable">
+          <tr><th>Branch</th><th>City</th><th>Action</th></tr>
+          <tr><td>Andheri</td><td>Mumbai</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+          <tr><td>Thane</td><td>Mumbai</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div id="orders" class="section hidden">
+      <div class="card">
+        <h3>Orders</h3>
+      </div>
+      <div class="card">
+        <table>
+          <tr><th>Order ID</th><th>Customer</th><th>Status</th></tr>
+          <tr><td>#1001</td><td>Rohit</td><td>Pending</td></tr>
+          <tr><td>#1002</td><td>Amit</td><td>Completed</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div id="messages" class="section hidden">
+      <div class="card">
+        <h3>Leads / Messages</h3>
+      </div>
+      <div class="card">
+        <table>
+          <tr><th>Name</th><th>Email</th><th>Message</th></tr>
+          <tr><td>Rahul</td><td>rahul@mail.com</td><td>Need gym membership</td></tr>
+          <tr><td>Neha</td><td>neha@mail.com</td><td>Need website</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function login(){
+  const u=document.getElementById("user").value;
+  const p=document.getElementById("pass").value;
+  if(u==="admin" && p==="admin"){
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+  }else{
+    alert("Wrong login");
+  }
+}
+function logout(){
+  location.reload();
+}
+function showSection(id){
+  document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+  document.getElementById("title").innerText = id.charAt(0).toUpperCase()+id.slice(1);
+}
+function addRow(tableId){
+  const t=document.getElementById(tableId);
+  const cols=t.rows[0].cells.length;
+  const r=t.insertRow();
+  for(let i=0;i<cols-1;i++){
+    const c=r.insertCell();
+    c.innerText="New";
+  }
+  const c=r.insertCell();
+  c.innerHTML='<button class="btn del" onclick="delRow(this)">Delete</button>';
+}
+function delRow(btn){
+  btn.parentElement.parentElement.remove();
+}
+function changeSite(){
+  const site=document.getElementById("siteSelect").value;
+  alert("Switched to: "+site+" (Demo only)");
+}
+</script>
+
+</body>
+</html>
