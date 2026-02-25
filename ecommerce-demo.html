@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Codly Market — Full Platform Demo</title>
+<title>Codly Market — Real Marketplace Demo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -21,9 +21,18 @@ a{text-decoration:none;color:inherit}
   z-index:9999; transition:opacity .6s ease;
 }
 .loader-logo{font-size:42px;font-weight:800;letter-spacing:2px;color:#d4a373}
-.loader-bar{width:200px;height:6px;background:#3b2419;border-radius:999px;overflow:hidden;margin-top:20px}
+.loader-bar{width:240px;height:6px;background:#3b2419;border-radius:999px;overflow:hidden;margin-top:20px}
 .loader-bar span{display:block;height:100%;width:0%;background:#a56a43;animation:load 1.6s infinite}
 @keyframes load{0%{width:0%}50%{width:80%}100%{width:0%}}
+
+/* TOAST */
+#toast{
+  position:fixed; bottom:20px; right:20px;
+  background:#2f1f17; color:#fff; padding:12px 16px;
+  border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.3);
+  opacity:0; transform:translateY(20px); transition:.3s; z-index:9999;
+}
+#toast.show{opacity:1; transform:translateY(0)}
 
 /* HEADER */
 header{position:sticky;top:0;z-index:1000;background:var(--dark);color:#f3e7de}
@@ -51,20 +60,22 @@ input,textarea,select{width:100%;padding:10px;margin-bottom:10px;border-radius:6
 
 /* HERO */
 .hero{
-  background:linear-gradient(180deg,var(--light),#fff);
-  border-radius:16px;padding:20px;
-  display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:center
+  background:linear-gradient(135deg,#f4ece6,#fff);
+  border-radius:20px;padding:28px;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center
 }
-.hero h1{font-size:36px;color:var(--brown)}
-.hero img{width:100%;border-radius:12px}
+.hero h1{font-size:40px;color:var(--brown)}
+.hero p{color:#6b4a3a;margin:10px 0}
+.hero img{width:100%;border-radius:16px}
 
 /* GRID */
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
 .card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e6ded8;box-shadow:0 6px 20px rgba(0,0,0,.06);display:flex;flex-direction:column}
-.card img{width:100%;height:160px;object-fit:cover;cursor:pointer}
+.card img{width:100%;height:180px;object-fit:cover;cursor:pointer}
 .card .body{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
 .price{color:var(--accent);font-weight:800}
 .old{color:#999;text-decoration:line-through;font-size:12px}
+.stock{font-size:12px}
 .card button{margin-top:auto;padding:8px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer}
 
 /* PRODUCT */
@@ -76,19 +87,15 @@ input,textarea,select{width:100%;padding:10px;margin-bottom:10px;border-radius:6
 .stars span{color:#ccc}
 .stars .filled{color:#f59e0b}
 
-/* COMPARE */
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
 /* FOOTER */
-footer{background:var(--dark);color:#d8c6b8;margin-top:40px}
-.footer-inner{max-width:1200px;margin:auto;padding:40px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+footer{background:var(--dark);color:#d8c6b8;margin-top:60px}
+.footer-inner{max-width:1200px;margin:auto;padding:50px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
 footer h4{color:#f3e7de;margin-bottom:10px}
-footer p{font-size:14px}
+footer p, footer a{font-size:14px;color:#d8c6b8;display:block;margin-bottom:6px}
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   .product-layout{grid-template-columns:1fr}
-  .compare-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -99,22 +106,17 @@ footer p{font-size:14px}
   <div class="loader-bar"><span></span></div>
 </div>
 
+<div id="toast">Added to cart</div>
+
 <header>
   <div class="topbar">
     <div class="logo" onclick="goHome()">CODLY</div>
     <div class="search">
-      <input id="searchInput" placeholder="Search products...">
+      <input id="searchInput" placeholder="Search brands, shoes, sneakers, camera, watch...">
       <button onclick="renderProducts()">Search</button>
     </div>
     <div class="actions">
-      <span id="userLabel"></span>
-      <button onclick="showPage('login')" id="loginBtn">Login</button>
-      <button onclick="logout()" id="logoutBtn" class="hidden">Logout</button>
-      <button onclick="showPage('admin')" id="adminBtn" class="hidden">Admin</button>
-      <button onclick="showPage('compare')">Compare</button>
-      <button onclick="showPage('wishlist')">Wishlist</button>
       <button onclick="showPage('cart')">Cart (<span id="cartCount">0</span>)</button>
-      <button onclick="showPage('orders')">Orders</button>
     </div>
   </div>
   <div class="catbar">
@@ -134,232 +136,108 @@ footer p{font-size:14px}
 <div id="home" class="page active">
   <div class="hero">
     <div>
-      <h1>Build Real Marketplaces with Codly</h1>
-      <p>Full platform demo: auth, orders, admin, stock, coupons, tracking.</p>
-      <button class="btn" onclick="setCategory('all')">Shop Now</button>
+      <h1>Shop Smart. Sell Bigger.</h1>
+      <p>Search brands, products, shoes, gadgets and more. Real marketplace experience by Codly.</p>
+      <button class="btn" onclick="setCategory('all')">Explore Store</button>
     </div>
     <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop">
   </div>
-  <h3 style="margin:20px 0 10px">Products</h3>
-  <div class="products" id="productGrid"></div>
-</div>
 
-<!-- LOGIN -->
-<div id="login" class="page">
-  <h2>Login / Register</h2>
-  <div class="box">
-    <input id="authName" placeholder="Name">
-    <input id="authEmail" placeholder="Email">
-    <input id="authPass" type="password" placeholder="Password">
-    <select id="authRole">
-      <option value="user">User</option>
-      <option value="seller">Seller/Admin</option>
-    </select>
-    <button class="btn" onclick="register()">Register</button>
-    <button class="btn secondary" onclick="login()">Login</button>
-  </div>
+  <h3 style="margin:24px 0 12px">Products</h3>
+  <div class="products" id="productGrid"></div>
 </div>
 
 <!-- PRODUCT -->
 <div id="productPage" class="page">
   <button class="btn secondary" onclick="goHome()">← Back</button>
   <div id="productDetail"></div>
-  <div class="box">
-    <h3>Reviews</h3>
-    <div id="reviewList"></div>
-    <select id="reviewRating">
-      <option value="5">★★★★★</option>
-      <option value="4">★★★★☆</option>
-      <option value="3">★★★☆☆</option>
-      <option value="2">★★☆☆☆</option>
-      <option value="1">★☆☆☆☆</option>
-    </select>
-    <textarea id="reviewText" placeholder="Write review"></textarea>
-    <button class="btn" onclick="addReview()">Submit</button>
-  </div>
 </div>
 
 <!-- CART -->
 <div id="cart" class="page">
   <h2>Your Cart</h2>
   <div id="cartItems" class="box"></div>
-  <button class="btn" onclick="goCheckout()">Checkout</button>
-</div>
-
-<!-- CHECKOUT -->
-<div id="checkout" class="page">
-  <h2>Checkout</h2>
-  <div class="box">
-    <h4>Select Address</h4>
-    <div id="addressList"></div>
-    <input id="newAddress" placeholder="Add new address">
-    <button class="btn secondary" onclick="addAddress()">Add Address</button>
-  </div>
-  <div class="box">
-    <input id="couponInput" placeholder="Coupon (CODLY10 / CODLY20)">
-    <button class="btn secondary" onclick="applyCoupon()">Apply Coupon</button>
-    <p id="discountInfo"></p>
-    <button class="btn" onclick="placeOrder()">Pay Now</button>
-  </div>
-</div>
-
-<!-- SUCCESS -->
-<div id="success" class="page">
-  <div class="box">
-    <h2>Payment Successful ✅</h2>
-    <p>Your order has been placed.</p>
-    <button class="btn" onclick="goHome()">Continue Shopping</button>
-  </div>
-</div>
-
-<!-- ORDERS -->
-<div id="orders" class="page">
-  <h2>Your Orders</h2>
-  <div id="orderItems"></div>
-</div>
-
-<!-- TRACK -->
-<div id="track" class="page">
-  <h2>Order Tracking</h2>
-  <div id="trackBox" class="box"></div>
-</div>
-
-<!-- WISHLIST -->
-<div id="wishlist" class="page">
-  <h2>Wishlist</h2>
-  <div id="wishItems" class="box"></div>
-</div>
-
-<!-- COMPARE -->
-<div id="compare" class="page">
-  <h2>Compare Products</h2>
-  <div id="compareGrid" class="compare-grid"></div>
-</div>
-
-<!-- ADMIN -->
-<div id="admin" class="page">
-  <h2>Seller / Admin Panel</h2>
-  <div class="box">
-    <h3>Add Product</h3>
-    <input id="aTitle" placeholder="Title">
-    <input id="aPrice" placeholder="Price">
-    <input id="aStock" placeholder="Stock">
-    <input id="aCat" placeholder="Category">
-    <input id="aImg" placeholder="Image URL">
-    <button class="btn" onclick="addProduct()">Add</button>
-  </div>
-  <div class="box">
-    <h3>Create Coupon</h3>
-    <input id="cCode" placeholder="Code">
-    <input id="cDiscount" placeholder="Discount %">
-    <button class="btn" onclick="addCoupon()">Add Coupon</button>
-  </div>
-  <div class="box">
-    <h3>Orders (Manage Status)</h3>
-    <div id="adminOrders"></div>
-  </div>
 </div>
 
 </div>
 
 <footer>
   <div class="footer-inner">
-    <div><h4>Codly Market</h4><p>Full platform demo for clients.</p></div>
-    <div><h4>Contact</h4><p>Mumbai, India</p><p>support@codly.in</p></div>
+    <div>
+      <h4>Codly</h4>
+      <p>We build real websites, apps and platforms for businesses.</p>
+    </div>
+    <div>
+      <h4>Marketplace</h4>
+      <a>Fashion</a><a>Electronics</a><a>Footwear</a><a>Accessories</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a>About Us</a><a>Careers</a><a>Blog</a><a>Press</a>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <a>Help Center</a><a>Returns</a><a>Shipping</a><a>Contact</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Mumbai, India</p>
+      <p>support@codly.in</p>
+      <p>+91 90000 00000</p>
+    </div>
   </div>
 </footer>
 
 <script>
 /* LOADER */
-window.addEventListener("load",()=>setTimeout(()=>{document.getElementById("loader").style.opacity="0";setTimeout(()=>loader.style.display="none",600)},1200));
+window.addEventListener("load",()=>setTimeout(()=>{loader.style.opacity="0";setTimeout(()=>loader.style.display="none",600)},1200));
+
+/* TOAST */
+function showToast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2000);
+}
 
 /* DATA */
-let users=JSON.parse(localStorage.getItem("users")||"[]");
-let currentUser=JSON.parse(localStorage.getItem("currentUser")||"null");
-let products=JSON.parse(localStorage.getItem("products")||"null")||[
-{id:1,title:"Sneakers",cat:"footwear",price:2499,old:3199,stock:5,imgs:["https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000","https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000"]},
-{id:2,title:"Headphones",cat:"electronics",price:1999,old:2499,stock:10,imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000","https://images.unsplash.com/photo-1518444021430-6c1a6b44f3a7?q=80&w=1000"]},
-{id:3,title:"Watch",cat:"accessories",price:3499,old:4299,stock:3,imgs:["https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000","https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000"]},
+let products=[
+{id:1,title:"Nike Running Sneakers",brand:"Nike",keywords:"shoes sneakers running sports",cat:"footwear",price:2999,old:3999,stock:5,imgs:["https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000","https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000"]},
+{id:2,title:"Sony Headphones",brand:"Sony",keywords:"headphone music audio",cat:"electronics",price:1999,old:2499,stock:10,imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000","https://images.unsplash.com/photo-1518444021430-6c1a6b44f3a7?q=80&w=1000"]},
+{id:3,title:"Fossil Watch",brand:"Fossil",keywords:"watch time luxury",cat:"accessories",price:3499,old:4299,stock:3,imgs:["https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000","https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000"]},
+{id:4,title:"DSLR Camera",brand:"Canon",keywords:"camera photography dslr",cat:"electronics",price:18999,old:22999,stock:2,imgs:["https://images.unsplash.com/photo-1512499617640-c2f999fe2b8c?q=80&w=1000","https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=1000"]},
+{id:5,title:"Leather Jacket",brand:"Zara",keywords:"jacket fashion winter",cat:"fashion",price:2899,old:3599,stock:8,imgs:["https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1000","https://images.unsplash.com/photo-1495121605193-b116b5b09a59?q=80&w=1000"]},
 ];
-let cart=JSON.parse(localStorage.getItem("cart")||"[]");
-let orders=JSON.parse(localStorage.getItem("orders")||"[]");
-let wishlist=JSON.parse(localStorage.getItem("wishlist")||"[]");
-let reviews=JSON.parse(localStorage.getItem("reviews")||"{}");
-let addresses=JSON.parse(localStorage.getItem("addresses")||"[]");
-let coupons=JSON.parse(localStorage.getItem("coupons")||'{"CODLY10":10,"CODLY20":20}');
-let compareList=JSON.parse(localStorage.getItem("compare")||"[]");
-let couponDiscount=0;
+
+let cart=[];
 let currentCategory="all";
 let currentProduct=null;
-
-function saveAll(){
-  localStorage.setItem("users",JSON.stringify(users));
-  localStorage.setItem("currentUser",JSON.stringify(currentUser));
-  localStorage.setItem("products",JSON.stringify(products));
-  localStorage.setItem("cart",JSON.stringify(cart));
-  localStorage.setItem("orders",JSON.stringify(orders));
-  localStorage.setItem("wishlist",JSON.stringify(wishlist));
-  localStorage.setItem("reviews",JSON.stringify(reviews));
-  localStorage.setItem("addresses",JSON.stringify(addresses));
-  localStorage.setItem("coupons",JSON.stringify(coupons));
-  localStorage.setItem("compare",JSON.stringify(compareList));
-}
 
 /* NAV */
 function showPage(id){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-  if(id==="orders") renderOrders();
-  if(id==="admin") renderAdmin();
-  if(id==="wishlist") renderWishlist();
-  if(id==="compare") renderCompare();
+  if(id==="cart") renderCart();
 }
 function goHome(){showPage("home")}
 function setCategory(c){currentCategory=c;renderProducts()}
 
-/* AUTH */
-function register(){
-  const n=authName.value,e=authEmail.value,p=authPass.value,r=authRole.value;
-  if(!e||!p)return alert("Fill all");
-  if(users.find(u=>u.email===e))return alert("User exists");
-  users.push({name:n,email:e,pass:p,role:r});
-  saveAll(); alert("Registered. Now login.");
-}
-function login(){
-  const e=authEmail.value,p=authPass.value;
-  const u=users.find(x=>x.email===e&&x.pass===p);
-  if(!u)return alert("Invalid");
-  currentUser=u; saveAll(); updateAuthUI(); goHome();
-}
-function logout(){currentUser=null; saveAll(); updateAuthUI(); goHome();}
-function updateAuthUI(){
-  if(currentUser){
-    userLabel.textContent="Hi, "+(currentUser.name||"User");
-    loginBtn.classList.add("hidden"); logoutBtn.classList.remove("hidden");
-    if(currentUser.role==="seller") adminBtn.classList.remove("hidden"); else adminBtn.classList.add("hidden");
-  }else{
-    userLabel.textContent=""; loginBtn.classList.remove("hidden"); logoutBtn.classList.add("hidden"); adminBtn.classList.add("hidden");
-  }
-}
-updateAuthUI();
-
-/* PRODUCTS */
+/* SEARCH + PRODUCTS */
 function renderProducts(){
   const grid=document.getElementById("productGrid"); grid.innerHTML="";
   const q=searchInput.value.toLowerCase();
   products.filter(p=>{
-    return (currentCategory==="all"||p.cat===currentCategory)&&p.title.toLowerCase().includes(q);
+    const text=(p.title+" "+p.brand+" "+p.keywords+" "+p.cat).toLowerCase();
+    return (currentCategory==="all"||p.cat===currentCategory) && text.includes(q);
   }).forEach(p=>{
     const card=document.createElement("div"); card.className="card";
     card.innerHTML=`
       <img src="${p.imgs[0]}" onclick="openProduct(${p.id})">
       <div class="body">
         <strong>${p.title}</strong>
+        <div class="stock">${p.stock>0?"In Stock":"Out of Stock"}</div>
         <div><span class="price">₹${p.price}</span> <span class="old">₹${p.old}</span></div>
-        <div>Stock: ${p.stock}</div>
-        <button ${p.stock<=0?"disabled":""} onclick="addToCart(${p.id})">${p.stock<=0?"Out of Stock":"Add to Cart"}</button>
-        <button onclick="toggleCompare(${p.id})">Compare</button>
-        <button onclick="addToWishlist(${p.id})">Wishlist</button>
+        <button ${p.stock<=0?"disabled":""} onclick="addToCart(${p.id})">Add to Cart</button>
       </div>`;
     grid.appendChild(card);
   });
@@ -368,7 +246,6 @@ function renderProducts(){
 /* PRODUCT PAGE */
 function openProduct(id){
   const p=products.find(x=>x.id===id); currentProduct=id;
-  const avg=getAvgRating(id);
   productDetail.innerHTML=`
     <div class="product-layout">
       <div>
@@ -379,13 +256,13 @@ function openProduct(id){
       </div>
       <div class="box">
         <h2>${p.title}</h2>
-        <div class="stars">${renderStars(avg)}</div>
+        <p><b>Brand:</b> ${p.brand}</p>
         <p><b>Price:</b> ₹${p.price} <span class="old">₹${p.old}</span></p>
         <p>Stock: ${p.stock}</p>
         <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
       </div>
     </div>`;
-  renderReviews(); showPage("productPage");
+  showPage("productPage");
 }
 function switchImg(el,src){
   mainImg.src=src;
@@ -393,164 +270,30 @@ function switchImg(el,src){
   el.classList.add("active");
 }
 
-/* REVIEWS */
-function renderStars(n){let s="";for(let i=1;i<=5;i++)s+=`<span class="${i<=n?"filled":""}">★</span>`;return s;}
-function getAvgRating(id){const arr=reviews[id]||[];if(!arr.length)return 0;return Math.round(arr.reduce((a,b)=>a+b.rating,0)/arr.length);}
-function renderReviews(){
-  const arr=reviews[currentProduct]||[];
-  reviewList.innerHTML=arr.length?arr.map(r=>`<p>${renderStars(r.rating)} ${r.text}</p>`).join(""):"<p>No reviews</p>";
-}
-function addReview(){
-  if(!currentUser)return alert("Login first");
-  const t=reviewText.value.trim(); const r=parseInt(reviewRating.value);
-  if(!t)return;
-  if(!reviews[currentProduct])reviews[currentProduct]=[];
-  reviews[currentProduct].push({rating:r,text:t});
-  reviewText.value=""; saveAll(); renderReviews();
-}
-
 /* CART */
 function addToCart(id){
-  if(!currentUser)return showPage("login");
   const p=products.find(x=>x.id===id);
-  if(p.stock<=0)return alert("Out of stock");
+  if(p.stock<=0)return;
   const f=cart.find(i=>i.id===id);
   if(f)f.qty++; else cart.push({id:id,qty:1});
-  saveAll(); updateCartCount();
+  showToast("Added to cart");
+  updateCartCount();
 }
 function renderCart(){
   cartItems.innerHTML="";
-  if(!cart.length){cartItems.innerHTML="<p>Empty cart</p>";return;}
+  if(!cart.length){cartItems.innerHTML="<p>Cart is empty</p>";return;}
   let total=0;
   cart.forEach(i=>{
     const p=products.find(x=>x.id===i.id);
     total+=p.price*i.qty;
     cartItems.innerHTML+=`<p>${p.title} x ${i.qty} = ₹${p.price*i.qty}</p>`;
   });
-  if(couponDiscount>0){
-    const d=Math.round(total*couponDiscount/100); total-=d;
-    cartItems.innerHTML+=`<p>Coupon: -${couponDiscount}%</p>`;
-  }
   cartItems.innerHTML+=`<b>Total: ₹${total}</b>`;
 }
 function updateCartCount(){cartCount.textContent=cart.reduce((s,i)=>s+i.qty,0)}
 
-/* CHECKOUT */
-function goCheckout(){
-  if(!currentUser)return showPage("login");
-  showPage("checkout"); renderAddresses();
-}
-function renderAddresses(){
-  addressList.innerHTML="";
-  addresses.forEach((a,i)=>{
-    addressList.innerHTML+=`<p><input type="radio" name="addr" value="${i}"> ${a}</p>`;
-  });
-}
-function addAddress(){
-  if(newAddress.value.trim()){addresses.push(newAddress.value.trim()); newAddress.value=""; saveAll(); renderAddresses();}
-}
-
-/* COUPON */
-function applyCoupon(){
-  const c=couponInput.value.trim().toUpperCase();
-  if(coupons[c]){couponDiscount=coupons[c]; discountInfo.textContent="Applied "+coupons[c]+"% off";}
-  else{couponDiscount=0; discountInfo.textContent="Invalid coupon";}
-}
-
-/* ORDER */
-function placeOrder(){
-  if(!cart.length)return alert("Cart empty");
-  const sel=document.querySelector('input[name="addr"]:checked');
-  if(!sel)return alert("Select address");
-  cart.forEach(i=>{
-    const p=products.find(x=>x.id===i.id);
-    if(p.stock<i.qty)return alert("Not enough stock");
-  });
-  cart.forEach(i=>{
-    const p=products.find(x=>x.id===i.id);
-    p.stock-=i.qty;
-  });
-  orders.push({id:Date.now(),user:currentUser.email,items:JSON.parse(JSON.stringify(cart)),status:"Placed"});
-  cart=[]; couponDiscount=0; saveAll(); updateCartCount(); showPage("success");
-}
-
-/* ORDERS + TRACK */
-function renderOrders(){
-  orderItems.innerHTML="";
-  const my=orders.filter(o=>o.user===currentUser?.email);
-  if(!my.length){orderItems.innerHTML="<p>No orders</p>";return;}
-  my.forEach(o=>{
-    orderItems.innerHTML+=`<div class="box"><p>Order #${o.id}</p><p>Status: ${o.status}</p><button class="btn secondary" onclick="trackOrder(${o.id})">Track</button></div>`;
-  });
-}
-function trackOrder(id){
-  const o=orders.find(x=>x.id===id);
-  trackBox.innerHTML=`<h3>Order #${o.id}</h3><p>Status: ${o.status}</p>`;
-  showPage("track");
-}
-
-/* WISHLIST */
-function addToWishlist(id){
-  if(!wishlist.includes(id))wishlist.push(id);
-  saveAll();
-}
-function renderWishlist(){
-  wishItems.innerHTML="";
-  wishlist.forEach(id=>{
-    const p=products.find(x=>x.id===id);
-    if(p)wishItems.innerHTML+=`<p>${p.title}</p>`;
-  });
-}
-
-/* COMPARE */
-function toggleCompare(id){
-  if(compareList.includes(id))compareList=compareList.filter(x=>x!==id);
-  else{if(compareList.length>=2)return alert("Only 2"); compareList.push(id);}
-  saveAll();
-}
-function renderCompare(){
-  compareGrid.innerHTML="";
-  if(compareList.length<2){compareGrid.innerHTML="<p>Select 2 products</p>";return;}
-  compareList.forEach(id=>{
-    const p=products.find(x=>x.id===id);
-    compareGrid.innerHTML+=`<div class="box"><h3>${p.title}</h3><p>₹${p.price}</p><p>Stock: ${p.stock}</p></div>`;
-  });
-}
-
-/* ADMIN */
-function renderAdmin(){
-  if(!currentUser||currentUser.role!=="seller"){adminOrders.innerHTML="<p>Not authorized</p>";return;}
-  adminOrders.innerHTML="";
-  orders.forEach(o=>{
-    adminOrders.innerHTML+=`
-      <div class="box">
-        <p>Order #${o.id} (${o.user})</p>
-        <select onchange="changeStatus(${o.id},this.value)">
-          <option ${o.status==="Placed"?"selected":""}>Placed</option>
-          <option ${o.status==="Packed"?"selected":""}>Packed</option>
-          <option ${o.status==="Shipped"?"selected":""}>Shipped</option>
-          <option ${o.status==="Delivered"?"selected":""}>Delivered</option>
-        </select>
-      </div>`;
-  });
-}
-function changeStatus(id,st){
-  const o=orders.find(x=>x.id===id); o.status=st; saveAll(); alert("Status updated");
-}
-function addProduct(){
-  const t=aTitle.value, pr=parseInt(aPrice.value), st=parseInt(aStock.value), c=aCat.value, img=aImg.value;
-  if(!t||!pr||!st||!c||!img)return alert("Fill all");
-  products.push({id:Date.now(),title:t,cat:c,price:pr,old:pr+500,stock:st,imgs:[img,img]});
-  saveAll(); renderProducts(); alert("Added");
-}
-function addCoupon(){
-  const code=cCode.value.trim().toUpperCase(); const d=parseInt(cDiscount.value);
-  if(!code||!d)return;
-  coupons[code]=d; saveAll(); alert("Coupon added");
-}
-
 /* INIT */
-renderProducts(); updateCartCount(); updateAuthUI();
+renderProducts(); updateCartCount();
 </script>
 </body>
 </html>
