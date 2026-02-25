@@ -9,240 +9,105 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
 body{background:#050505;color:#fff;line-height:1.6}
 
-/* Loader */
+/* ===== LOADER ===== */
 #loader{
-  position:fixed;
-  inset:0;
-  background:#050505;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
+  position:fixed;inset:0;
+  background:radial-gradient(800px 400px at 20% -10%, #1a1a1a, #050505);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
   z-index:9999;
 }
-#loader h1{letter-spacing:4px;margin-bottom:20px}
-.spinner{
-  width:60px;height:60px;
-  border:4px solid #333;
-  border-top:4px solid #00e5ff;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
+#loader h1{letter-spacing:6px;margin-bottom:20px;font-size:28px}
+.loader-bar{
+  width:220px;height:4px;background:#222;border-radius:4px;overflow:hidden;
 }
-@keyframes spin{to{transform:rotate(360deg)}}
+.loader-bar span{
+  display:block;height:100%;width:40%;
+  background:#00e5ff;
+  animation:load 1.2s infinite;
+}
+@keyframes load{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(300%)}
+}
 
-/* General */
+/* ===== GENERAL ===== */
 .container{max-width:1200px;margin:auto;padding:0 20px}
 a{text-decoration:none;color:inherit}
 .btn{
-  display:inline-block;
-  padding:14px 26px;
-  border-radius:10px;
-  background:#00e5ff;
-  color:#000;
-  font-weight:700;
-  transition:.3s;
+  display:inline-block;padding:14px 26px;border-radius:10px;
+  background:#00e5ff;color:#000;font-weight:700;transition:.3s;
 }
-.btn.secondary{
-  background:transparent;
-  color:#fff;
-  border:1px solid #333;
-}
+.btn.secondary{background:transparent;color:#fff;border:1px solid #333}
 .btn:hover{transform:translateY(-2px);opacity:.9}
 
-/* Header / Hero */
+/* ===== HERO ===== */
 header{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  background:
-    radial-gradient(800px 300px at 20% -10%, #1a1a1a, #050505),
-    linear-gradient(#050505,#050505);
+  min-height:100vh;display:flex;align-items:center;
+  background:radial-gradient(800px 300px at 20% -10%, #1a1a1a, #050505);
 }
 .hero{
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  gap:60px;
-  align-items:center;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;
 }
-.hero h1{
-  font-size:64px;
-  line-height:1.05;
-  letter-spacing:-1px;
-}
-.hero p{
-  margin-top:20px;
-  font-size:18px;
-  color:#bbb;
-  max-width:520px;
-}
+.hero h1{font-size:64px;line-height:1.05;letter-spacing:-1px}
+.hero p{margin-top:20px;font-size:18px;color:#bbb;max-width:520px}
 .hero-actions{margin-top:30px}
 .hero-actions a{margin-right:14px}
 
-/* Hero Image Card */
 .hero-card{
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  background:#0e0e0e;border:1px solid #1f1f1f;border-radius:20px;
+  overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);
 }
-.hero-card img{
-  width:100%;
-  display:block;
-}
+.hero-card img{width:100%;display:block}
 
-/* Sections */
+/* ===== SECTIONS ===== */
 section{padding:100px 0}
-.section-title{
-  text-align:center;
-  font-size:42px;
-  margin-bottom:60px;
-}
+.section-title{text-align:center;font-size:42px;margin-bottom:60px}
 
 /* Services */
-.services{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px;
-}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
 .service{
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:16px;
-  padding:28px;
-  transition:.3s;
+  background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:28px;transition:.3s
 }
-.service:hover{
-  transform:translateY(-6px);
-  border-color:#333;
-}
-.service h3{margin-bottom:10px}
+.service:hover{transform:translateY(-6px);border-color:#333}
 .service p{color:#aaa;font-size:14px}
 
 /* About */
-.about{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-.about img{
-  width:100%;
-  border-radius:16px;
-  border:1px solid #1f1f1f;
-}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{width:100%;border-radius:16px;border:1px solid #1f1f1f}
 
 /* Stats */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:24px;
-  text-align:center;
-}
-.stat{
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:16px;
-  padding:30px;
-}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;text-align:center}
+.stat{background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:30px}
 .stat h2{font-size:42px;margin-bottom:6px;color:#00e5ff}
 .stat p{color:#aaa}
 
-/* Testimonials */
-.testimonials{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
-}
-.testimonial{
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:16px;
-  padding:28px;
-}
-.testimonial p{color:#aaa;margin-bottom:12px}
-.testimonial strong{color:#00e5ff}
-
-/* Process */
-.process{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;
-  text-align:center;
-}
-.process-step{
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:16px;
-  padding:28px;
-}
-.process-step h3{color:#00e5ff;margin-bottom:8px}
-.process-step p{color:#aaa;font-size:14px}
-
-/* FAQ */
-.faq{
-  max-width:800px;
-  margin:auto;
-}
-.faq-item{
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:12px;
-  padding:20px;
-  margin-bottom:12px;
-}
-.faq-item h4{margin-bottom:6px}
-.faq-item p{color:#aaa;font-size:14px}
-
-/* Contact */
+/* Contact Box */
 .contact-box{
-  max-width:600px;
-  margin:auto;
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:20px;
-  padding:40px;
+  max-width:600px;margin:auto;background:#0e0e0e;border:1px solid #1f1f1f;
+  border-radius:20px;padding:40px
 }
-.contact-box input,
-.contact-box textarea{
-  width:100%;
-  padding:14px;
-  margin-bottom:12px;
-  border-radius:10px;
-  border:1px solid #333;
-  background:#0b0b0b;
-  color:#fff;
+.contact-box input,.contact-box textarea{
+  width:100%;padding:14px;margin-bottom:12px;border-radius:10px;
+  border:1px solid #333;background:#0b0b0b;color:#fff
 }
 .contact-box button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:10px;
-  background:#00e5ff;
-  color:#000;
-  font-weight:700;
-  cursor:pointer;
+  width:100%;padding:14px;border:none;border-radius:10px;
+  background:#00e5ff;color:#000;font-weight:700;cursor:pointer
 }
 
-/* CTA */
-.cta{
-  background:#0e0e0e;
-  border:1px solid #1f1f1f;
-  border-radius:20px;
-  padding:60px 20px;
-  text-align:center;
-}
-.cta h2{margin-bottom:12px}
-.cta p{color:#aaa;margin-bottom:20px}
+/* Map */
+.map{margin-top:40px;border-radius:16px;overflow:hidden;border:1px solid #1f1f1f}
 
-/* Footer */
+/* ===== FOOTER ===== */
 footer{
-  background:#040404;
-  border-top:1px solid #1f1f1f;
-  padding:60px 0;
-  text-align:center;
-  color:#777;
+  background:#040404;border-top:1px solid #1f1f1f;padding:80px 0 30px;margin-top:100px
 }
+.footer-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px
+}
+footer h3{margin-bottom:12px}
+footer p,footer a{color:#aaa;font-size:14px;margin-bottom:8px;display:block}
+.footer-bottom{text-align:center;margin-top:40px;color:#666;font-size:13px}
 
 /* Responsive */
 @media(max-width:900px){
@@ -257,7 +122,7 @@ footer{
 <!-- LOADER -->
 <div id="loader">
   <h1>CODLY</h1>
-  <div class="spinner"></div>
+  <div class="loader-bar"><span></span></div>
 </div>
 
 <!-- HERO -->
@@ -265,17 +130,14 @@ footer{
   <div class="container hero">
     <div>
       <h1>We build modern<br>business websites.</h1>
-      <p>
-        This is a premium demo business website template by Codly.
-        Clean, fast, and professional design to help businesses look trustworthy online.
-      </p>
+      <p>Premium demo business website template by Codly. Clean, fast and professional.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn">Start Your Project</a>
         <a href="#services" class="btn secondary">Our Services</a>
       </div>
     </div>
     <div class="hero-card">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" alt="Demo">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop">
     </div>
   </div>
 </header>
@@ -285,10 +147,10 @@ footer{
   <div class="container">
     <h2 class="section-title">Our Services</h2>
     <div class="services">
-      <div class="service"><h3>Website Development</h3><p>Professional business websites that look clean and modern.</p></div>
-      <div class="service"><h3>App Development</h3><p>Simple and powerful mobile or web applications.</p></div>
-      <div class="service"><h3>UI / UX Design</h3><p>Designs focused on clarity, trust and conversions.</p></div>
-      <div class="service"><h3>Support & Maintenance</h3><p>We keep your website updated and running smoothly.</p></div>
+      <div class="service"><h3>Website Development</h3><p>Professional business websites.</p></div>
+      <div class="service"><h3>App Development</h3><p>Modern web & mobile apps.</p></div>
+      <div class="service"><h3>UI/UX Design</h3><p>Clean and conversion focused design.</p></div>
+      <div class="service"><h3>Support</h3><p>Ongoing updates and maintenance.</p></div>
     </div>
   </div>
 </section>
@@ -297,16 +159,13 @@ footer{
 <section>
   <div class="container about">
     <div>
-      <h2>About This Business</h2>
+      <h2>About Our Company</h2>
       <p style="color:#aaa;margin-top:16px">
-        This is a demo business website template created by Codly. It shows how a professional business site should look and feel.
-      </p>
-      <p style="color:#aaa;margin-top:10px">
-        A good website builds trust, improves your brand image, and helps customers contact you easily.
+        This is a demo business website template by Codly. Replace this text with real business info.
       </p>
     </div>
     <div>
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="About">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
     </div>
   </div>
 </section>
@@ -315,58 +174,10 @@ footer{
 <section>
   <div class="container">
     <div class="stats">
-      <div class="stat"><h2>10+</h2><p>Projects Delivered</p></div>
-      <div class="stat"><h2>100%</h2><p>Client Satisfaction</p></div>
-      <div class="stat"><h2>24/7</h2><p>Support Available</p></div>
-      <div class="stat"><h2>Fast</h2><p>Delivery Time</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section>
-  <div class="container">
-    <h2 class="section-title">What Clients Say</h2>
-    <div class="testimonials">
-      <div class="testimonial"><p>“Very professional and clean website. My business looks more trustworthy now.”</p><strong>— Local Business Owner</strong></div>
-      <div class="testimonial"><p>“Fast delivery and good support. The design is modern and easy to use.”</p><strong>— Startup Founder</strong></div>
-      <div class="testimonial"><p>“Great experience working with Codly. Simple and effective website.”</p><strong>— Service Provider</strong></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section>
-  <div class="container">
-    <h2 class="section-title">Our Process</h2>
-    <div class="process">
-      <div class="process-step"><h3>1. Discuss</h3><p>We understand your business and goals.</p></div>
-      <div class="process-step"><h3>2. Design</h3><p>We create a clean and modern design.</p></div>
-      <div class="process-step"><h3>3. Build</h3><p>We develop your website with care.</p></div>
-      <div class="process-step"><h3>4. Launch</h3><p>We publish and support your website.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section>
-  <div class="container">
-    <h2 class="section-title">Frequently Asked Questions</h2>
-    <div class="faq">
-      <div class="faq-item"><h4>How long does it take?</h4><p>Usually 5–10 days depending on the project size.</p></div>
-      <div class="faq-item"><h4>Is it mobile friendly?</h4><p>Yes, all websites are fully responsive.</p></div>
-      <div class="faq-item"><h4>Do you provide support?</h4><p>Yes, we provide ongoing support and updates.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section>
-  <div class="container">
-    <div class="cta">
-      <h2>Ready to start your project?</h2>
-      <p>Let’s build something professional for your business.</p>
-      <a href="#contact" class="btn">Contact Us Now</a>
+      <div class="stat"><h2>10+</h2><p>Projects</p></div>
+      <div class="stat"><h2>100%</h2><p>Satisfaction</p></div>
+      <div class="stat"><h2>24/7</h2><p>Support</p></div>
+      <div class="stat"><h2>Fast</h2><p>Delivery</p></div>
     </div>
   </div>
 </section>
@@ -376,26 +187,61 @@ footer{
   <div class="container">
     <h2 class="section-title">Contact Us</h2>
     <div class="contact-box">
+      <p><strong>Address:</strong> 101 Tech Street, Andheri East, Mumbai, India</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Email:</strong> hello@codly.in</p>
+      <br>
       <form onsubmit="event.preventDefault(); alert('Message sent (demo)');">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
         <textarea rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
       </form>
+
+      <div class="map">
+        <iframe 
+          src="https://www.google.com/maps?q=Mumbai&output=embed"
+          width="100%" height="300" style="border:0;" loading="lazy"></iframe>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Your Business Name. Demo template by Codly.</p>
+  <div class="container footer-grid">
+    <div>
+      <h3>Codly</h3>
+      <p>We build modern websites, apps and digital solutions for businesses.</p>
+    </div>
+    <div>
+      <h3>Services</h3>
+      <a>Web Development</a>
+      <a>App Development</a>
+      <a>UI/UX Design</a>
+      <a>Support</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>101 Tech Street, Mumbai</p>
+      <p>+91 98765 43210</p>
+      <p>hello@codly.in</p>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <a>About Us</a>
+      <a>Privacy Policy</a>
+      <a>Terms & Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Codly. Demo template.</div>
 </footer>
 
 <script>
 window.addEventListener("load", function(){
   setTimeout(function(){
-    document.getElementById("loader").style.display = "none";
-  }, 800);
+    document.getElementById("loader").style.display="none";
+  }, 900);
 });
 </script>
 
