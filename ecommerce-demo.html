@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Codly Market — Marketplace Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<title>Codly Market — Single-File Marketplace Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
-body{background:#faf7f4;color:#2b2b2b}
-
-/* COLORS */
 :root{
-  --dark:#2f1f17;
-  --brown:#3b2419;
-  --accent:#a56a43;
-  --light:#f4ece6;
+  --dark:#2f1f17; --brown:#3b2419; --accent:#a56a43; --light:#f4ece6; --text:#2b2b2b;
 }
+body{background:#faf7f4;color:var(--text)}
+a{color:inherit;text-decoration:none}
 
-/* LOADER */
-#loader{
-  position:fixed;inset:0;background:var(--dark);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
-  z-index:9999;color:#f3e7de
-}
-.spinner{width:50px;height:50px;border:4px solid #5a3b2e;border-top:4px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+/* Loader */
+#loader{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:9999;color:#f3e7de}
+.spinner{width:48px;height:48px;border:4px solid #5a3b2e;border-top:4px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* HEADER */
-header{background:var(--dark);color:#f3e7de;position:sticky;top:0;z-index:1000}
+/* Header */
+header{position:sticky;top:0;z-index:1000;background:var(--dark);color:#f3e7de}
 .topbar{max-width:1200px;margin:auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
-.logo{font-weight:800;color:#d4a373}
+.logo{font-weight:800;color:#d4a373;cursor:pointer}
 .search{flex:1;display:flex}
 .search input{flex:1;padding:10px;border:none;border-radius:6px 0 0 6px}
 .search button{padding:10px 14px;border:none;background:var(--accent);color:#fff;border-radius:0 6px 6px 0;cursor:pointer}
@@ -37,43 +29,42 @@ header{background:var(--dark);color:#f3e7de;position:sticky;top:0;z-index:1000}
 
 .catbar{background:#3b2419}
 .catbar .inner{max-width:1200px;margin:auto;padding:8px 16px;display:flex;gap:16px;overflow:auto}
-.catbar a{color:#e6d5c7;text-decoration:none;font-size:14px}
+.catbar a{color:#e6d5c7;font-size:14px}
 
-/* LAYOUT */
+/* Layout */
 .container{max-width:1200px;margin:20px auto;padding:0 16px}
 .hidden{display:none}
+.page{display:none}
+.page.active{display:block}
 
-/* PRODUCTS */
+/* Grid */
 .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
 .card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e6ded8;box-shadow:0 6px 20px rgba(0,0,0,.06);display:flex;flex-direction:column}
 .card img{width:100%;height:160px;object-fit:cover;cursor:pointer}
 .card .body{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
+.badge{background:#b91c1c;color:#fff;font-size:11px;padding:2px 6px;border-radius:999px;width:max-content}
 .price{color:var(--accent);font-weight:800}
 .old{color:#999;text-decoration:line-through;font-size:12px}
 .card button{margin-top:auto;padding:8px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer}
 
-/* PAGES */
-.page{display:none}
-.page.active{display:block}
+/* Buttons & forms */
+.btn{padding:10px 14px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer}
+input,textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ddd}
 
-/* FOOTER */
+/* Lists */
+.list{background:#fff;border-radius:12px;border:1px solid #e6ded8;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:12px}
+
+/* Footer */
 footer{background:var(--dark);color:#d8c6b8;margin-top:40px}
 .footer-inner{max-width:1200px;margin:auto;padding:40px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
-
-/* FORMS */
-input, textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ddd}
-.btn{padding:10px 14px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer}
+footer h4{color:#f3e7de;margin-bottom:10px}
+footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <h2>CODLY MARKET</h2>
-  <div class="spinner"></div>
-</div>
+<div id="loader"><h2>CODLY MARKET</h2><div class="spinner"></div></div>
 
-<!-- HEADER -->
 <header>
   <div class="topbar">
     <div class="logo" onclick="goHome()">CODLY</div>
@@ -83,7 +74,9 @@ input, textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;bor
     </div>
     <div class="actions">
       <button onclick="showPage('login')">Login</button>
+      <button onclick="showPage('wishlist')">Wishlist</button>
       <button onclick="showPage('cart')">Cart (<span id="cartCount">0</span>)</button>
+      <button onclick="showPage('orders')">Orders</button>
     </div>
   </div>
   <div class="catbar">
@@ -102,21 +95,21 @@ input, textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;bor
 <!-- HOME -->
 <div id="home" class="page active">
   <h2>Big Deals, Premium Style</h2>
-  <p>Marketplace demo inspired by Amazon / Flipkart style.</p>
+  <p>Single-file marketplace demo with real flows (home → product → cart → checkout → orders).</p>
   <br>
   <div class="products" id="productGrid"></div>
 </div>
 
-<!-- PRODUCT DETAIL -->
+<!-- PRODUCT -->
 <div id="productPage" class="page">
   <button class="btn" onclick="goHome()">← Back</button>
-  <div id="productDetail"></div>
+  <div id="productDetail" class="list" style="margin-top:12px"></div>
 </div>
 
 <!-- CART -->
 <div id="cart" class="page">
   <h2>Your Cart</h2>
-  <div id="cartItems"></div>
+  <div id="cartItems" class="list"></div>
   <br>
   <button class="btn" onclick="showPage('checkout')">Proceed to Checkout</button>
 </div>
@@ -124,25 +117,38 @@ input, textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;bor
 <!-- CHECKOUT -->
 <div id="checkout" class="page">
   <h2>Checkout</h2>
-  <input placeholder="Full Address">
+  <input id="addr" placeholder="Full Address">
   <input placeholder="Card Number">
-  <button class="btn" onclick="alert('Order placed (demo)')">Place Order</button>
+  <button class="btn" onclick="placeOrder()">Place Order</button>
 </div>
 
 <!-- LOGIN -->
 <div id="login" class="page">
-  <h2>Login</h2>
+  <h2>Login (Demo)</h2>
   <input placeholder="Email">
   <input type="password" placeholder="Password">
   <button class="btn" onclick="goHome()">Login</button>
 </div>
 
+<!-- WISHLIST -->
+<div id="wishlist" class="page">
+  <h2>Wishlist</h2>
+  <div id="wishItems" class="list"></div>
 </div>
 
-<!-- FOOTER -->
+<!-- ORDERS -->
+<div id="orders" class="page">
+  <h2>Your Orders</h2>
+  <div id="orderItems" class="list"></div>
+</div>
+
+</div>
+
 <footer>
   <div class="footer-inner">
-    <div><h4>Codly Market</h4><p>Marketplace demo for portfolio.</p></div>
+    <div><h4>Codly Market</h4><p>Single-file marketplace demo for portfolio.</p></div>
+    <div><h4>Shop</h4><a>Fashion</a><a>Electronics</a><a>Footwear</a><a>Accessories</a></div>
+    <div><h4>Support</h4><a>Help Center</a><a>Returns</a><a>Shipping</a><a>Contact</a></div>
     <div><h4>Contact</h4><p>Mumbai, India</p><p>support@codlymarket.in</p></div>
   </div>
 </footer>
@@ -159,11 +165,18 @@ const products=[
 ];
 
 let currentCategory="all";
-let cart=[];
+let cart=JSON.parse(localStorage.getItem("cart")||"[]");
+let wishlist=JSON.parse(localStorage.getItem("wishlist")||"[]");
+let orders=JSON.parse(localStorage.getItem("orders")||"[]");
+
+function save(){ localStorage.setItem("cart",JSON.stringify(cart)); localStorage.setItem("wishlist",JSON.stringify(wishlist)); localStorage.setItem("orders",JSON.stringify(orders)); }
 
 function showPage(id){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+  if(id==="cart") renderCart();
+  if(id==="wishlist") renderWishlist();
+  if(id==="orders") renderOrders();
 }
 
 function goHome(){ showPage("home"); }
@@ -171,22 +184,21 @@ function goHome(){ showPage("home"); }
 function setCategory(cat){ currentCategory=cat; renderProducts(); }
 
 function renderProducts(){
-  const grid=document.getElementById("productGrid");
-  grid.innerHTML="";
+  const grid=document.getElementById("productGrid"); grid.innerHTML="";
   const q=document.getElementById("searchInput").value.toLowerCase();
   products.filter(p=>{
     return (currentCategory==="all"||p.cat===currentCategory) && p.title.toLowerCase().includes(q);
   }).forEach(p=>{
-    const card=document.createElement("div");
-    card.className="card";
+    const card=document.createElement("div"); card.className="card";
     card.innerHTML=`
       <img src="${p.img}" onclick="openProduct(${p.id})">
       <div class="body">
+        <span class="badge">Deal</span>
         <strong>${p.title}</strong>
         <div><span class="price">₹${p.price}</span> <span class="old">₹${p.old}</span></div>
         <button onclick="addToCart(${p.id})">Add to Cart</button>
-      </div>
-    `;
+        <button onclick="addToWishlist(${p.id})">♡ Wishlist</button>
+      </div>`;
     grid.appendChild(card);
   });
 }
@@ -197,30 +209,78 @@ function openProduct(id){
   box.innerHTML=`
     <h2>${p.title}</h2>
     <img src="${p.img}" style="max-width:300px;width:100%;border-radius:12px">
-    <p>Price: ₹${p.price}</p>
+    <p><b>Price:</b> ₹${p.price}</p>
+    <p>High quality product. Fast delivery. Secure checkout.</p>
     <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
+    <button class="btn" onclick="addToWishlist(${p.id})">Add to Wishlist</button>
   `;
   showPage("productPage");
 }
 
 function addToCart(id){
   const p=products.find(x=>x.id===id);
-  cart.push(p);
-  document.getElementById("cartCount").textContent=cart.length;
-  renderCart();
+  const found=cart.find(i=>i.id===id);
+  if(found) found.qty+=1; else cart.push({...p,qty:1});
+  save(); updateCartCount();
+}
+
+function removeFromCart(id){
+  cart=cart.filter(i=>i.id!==id);
+  save(); renderCart(); updateCartCount();
 }
 
 function renderCart(){
-  const box=document.getElementById("cartItems");
-  box.innerHTML="";
+  const box=document.getElementById("cartItems"); box.innerHTML="";
+  if(cart.length===0){ box.innerHTML="<p>Your cart is empty.</p>"; return; }
+  let total=0;
   cart.forEach(item=>{
+    total+=item.price*item.qty;
     const div=document.createElement("div");
-    div.innerHTML=`<p>${item.title} - ₹${item.price}</p>`;
+    div.innerHTML=`
+      <p><b>${item.title}</b> - ₹${item.price} x ${item.qty}</p>
+      <button class="btn" onclick="removeFromCart(${item.id})">Remove</button>
+      <hr>`;
+    box.appendChild(div);
+  });
+  const t=document.createElement("p"); t.innerHTML=`<b>Total: ₹${total}</b>`; box.appendChild(t);
+}
+
+function addToWishlist(id){
+  if(!wishlist.includes(id)) wishlist.push(id);
+  save();
+}
+
+function renderWishlist(){
+  const box=document.getElementById("wishItems"); box.innerHTML="";
+  if(wishlist.length===0){ box.innerHTML="<p>No items in wishlist.</p>"; return; }
+  wishlist.forEach(id=>{
+    const p=products.find(x=>x.id===id);
+    const div=document.createElement("div");
+    div.innerHTML=`<p>${p.title} - ₹${p.price}</p>`;
     box.appendChild(div);
   });
 }
 
-renderProducts();
+function placeOrder(){
+  if(cart.length===0){ alert("Cart is empty"); return; }
+  orders.push({date:new Date().toLocaleString(), items:[...cart]});
+  cart=[]; save(); updateCartCount(); alert("Order placed (demo)");
+  showPage("orders");
+}
+
+function renderOrders(){
+  const box=document.getElementById("orderItems"); box.innerHTML="";
+  if(orders.length===0){ box.innerHTML="<p>No orders yet.</p>"; return; }
+  orders.forEach(o=>{
+    const div=document.createElement("div");
+    div.innerHTML=`<p><b>Order on:</b> ${o.date}</p><p>Items: ${o.items.length}</p><hr>`;
+    box.appendChild(div);
+  });
+}
+
+function updateCartCount(){ document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0); }
+
+renderProducts(); updateCartCount();
 </script>
 </body>
 </html>
