@@ -9,6 +9,27 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
 body{background:#050505;color:#fff;line-height:1.6}
 
+/* Loader */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+}
+#loader h1{letter-spacing:4px;margin-bottom:20px}
+.spinner{
+  width:60px;height:60px;
+  border:4px solid #333;
+  border-top:4px solid #00e5ff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 /* General */
 .container{max-width:1200px;margin:auto;padding:0 20px}
 a{text-decoration:none;color:inherit}
@@ -127,6 +148,52 @@ section{padding:100px 0}
 .stat h2{font-size:42px;margin-bottom:6px;color:#00e5ff}
 .stat p{color:#aaa}
 
+/* Testimonials */
+.testimonials{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+.testimonial{
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:16px;
+  padding:28px;
+}
+.testimonial p{color:#aaa;margin-bottom:12px}
+.testimonial strong{color:#00e5ff}
+
+/* Process */
+.process{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+  text-align:center;
+}
+.process-step{
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:16px;
+  padding:28px;
+}
+.process-step h3{color:#00e5ff;margin-bottom:8px}
+.process-step p{color:#aaa;font-size:14px}
+
+/* FAQ */
+.faq{
+  max-width:800px;
+  margin:auto;
+}
+.faq-item{
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:12px;
+}
+.faq-item h4{margin-bottom:6px}
+.faq-item p{color:#aaa;font-size:14px}
+
 /* Contact */
 .contact-box{
   max-width:600px;
@@ -157,6 +224,17 @@ section{padding:100px 0}
   cursor:pointer;
 }
 
+/* CTA */
+.cta{
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:20px;
+  padding:60px 20px;
+  text-align:center;
+}
+.cta h2{margin-bottom:12px}
+.cta p{color:#aaa;margin-bottom:20px}
+
 /* Footer */
 footer{
   background:#040404;
@@ -175,6 +253,12 @@ footer{
 </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <h1>CODLY</h1>
+  <div class="spinner"></div>
+</div>
 
 <!-- HERO -->
 <header>
@@ -201,22 +285,10 @@ footer{
   <div class="container">
     <h2 class="section-title">Our Services</h2>
     <div class="services">
-      <div class="service">
-        <h3>Website Development</h3>
-        <p>Professional business websites that look clean and modern.</p>
-      </div>
-      <div class="service">
-        <h3>App Development</h3>
-        <p>Simple and powerful mobile or web applications.</p>
-      </div>
-      <div class="service">
-        <h3>UI / UX Design</h3>
-        <p>Designs focused on clarity, trust and conversions.</p>
-      </div>
-      <div class="service">
-        <h3>Support & Maintenance</h3>
-        <p>We keep your website updated and running smoothly.</p>
-      </div>
+      <div class="service"><h3>Website Development</h3><p>Professional business websites that look clean and modern.</p></div>
+      <div class="service"><h3>App Development</h3><p>Simple and powerful mobile or web applications.</p></div>
+      <div class="service"><h3>UI / UX Design</h3><p>Designs focused on clarity, trust and conversions.</p></div>
+      <div class="service"><h3>Support & Maintenance</h3><p>We keep your website updated and running smoothly.</p></div>
     </div>
   </div>
 </section>
@@ -227,12 +299,10 @@ footer{
     <div>
       <h2>About This Business</h2>
       <p style="color:#aaa;margin-top:16px">
-        This is a demo business website template created by Codly.
-        It is designed to show how a professional business website can look.
-        You can replace this text with your company story, mission, and values.
+        This is a demo business website template created by Codly. It shows how a professional business site should look and feel.
       </p>
       <p style="color:#aaa;margin-top:10px">
-        A good website builds trust and helps customers contact you easily.
+        A good website builds trust, improves your brand image, and helps customers contact you easily.
       </p>
     </div>
     <div>
@@ -245,22 +315,58 @@ footer{
 <section>
   <div class="container">
     <div class="stats">
-      <div class="stat">
-        <h2>10+</h2>
-        <p>Projects Delivered</p>
-      </div>
-      <div class="stat">
-        <h2>100%</h2>
-        <p>Client Satisfaction</p>
-      </div>
-      <div class="stat">
-        <h2>24/7</h2>
-        <p>Support Available</p>
-      </div>
-      <div class="stat">
-        <h2>Fast</h2>
-        <p>Delivery Time</p>
-      </div>
+      <div class="stat"><h2>10+</h2><p>Projects Delivered</p></div>
+      <div class="stat"><h2>100%</h2><p>Client Satisfaction</p></div>
+      <div class="stat"><h2>24/7</h2><p>Support Available</p></div>
+      <div class="stat"><h2>Fast</h2><p>Delivery Time</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="container">
+    <h2 class="section-title">What Clients Say</h2>
+    <div class="testimonials">
+      <div class="testimonial"><p>“Very professional and clean website. My business looks more trustworthy now.”</p><strong>— Local Business Owner</strong></div>
+      <div class="testimonial"><p>“Fast delivery and good support. The design is modern and easy to use.”</p><strong>— Startup Founder</strong></div>
+      <div class="testimonial"><p>“Great experience working with Codly. Simple and effective website.”</p><strong>— Service Provider</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Our Process</h2>
+    <div class="process">
+      <div class="process-step"><h3>1. Discuss</h3><p>We understand your business and goals.</p></div>
+      <div class="process-step"><h3>2. Design</h3><p>We create a clean and modern design.</p></div>
+      <div class="process-step"><h3>3. Build</h3><p>We develop your website with care.</p></div>
+      <div class="process-step"><h3>4. Launch</h3><p>We publish and support your website.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item"><h4>How long does it take?</h4><p>Usually 5–10 days depending on the project size.</p></div>
+      <div class="faq-item"><h4>Is it mobile friendly?</h4><p>Yes, all websites are fully responsive.</p></div>
+      <div class="faq-item"><h4>Do you provide support?</h4><p>Yes, we provide ongoing support and updates.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta">
+      <h2>Ready to start your project?</h2>
+      <p>Let’s build something professional for your business.</p>
+      <a href="#contact" class="btn">Contact Us Now</a>
     </div>
   </div>
 </section>
@@ -284,6 +390,14 @@ footer{
 <footer>
   <p>© 2026 Your Business Name. Demo template by Codly.</p>
 </footer>
+
+<script>
+window.addEventListener("load", function(){
+  setTimeout(function(){
+    document.getElementById("loader").style.display = "none";
+  }, 800);
+});
+</script>
 
 </body>
 </html>
