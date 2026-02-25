@@ -1,78 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Codly Boutique — Editorial Store Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<title>Codly Market — Marketplace Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
-body{background:#faf7f4;color:#2b2b2b;line-height:1.6}
+body{background:#f3f4f6;color:#111;line-height:1.5}
 
 /* ===== LOADER ===== */
 #loader{
-  position:fixed;inset:0;background:#2f1f17;
+  position:fixed;inset:0;background:#111;
   display:flex;align-items:center;justify-content:center;flex-direction:column;
-  z-index:9999;color:#f3e7de;
+  z-index:9999;color:#fff
 }
-#loader h1{letter-spacing:4px;margin-bottom:16px}
-.loader-line{width:220px;height:3px;background:#5a3b2e;overflow:hidden;border-radius:3px}
-.loader-line span{display:block;height:100%;width:40%;background:#d4a373;animation:load 1.2s infinite;}
-@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+#loader h1{letter-spacing:3px;margin-bottom:16px}
+.spinner{width:48px;height:48px;border:4px solid #444;border-top:4px solid #ff9900;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== HEADER ===== */
+header{
+  position:sticky;top:0;z-index:1000;
+  background:#131921;color:#fff;
+}
+.topbar{
+  max-width:1200px;margin:auto;padding:10px 16px;
+  display:flex;gap:12px;align-items:center
+}
+.logo{font-weight:800;letter-spacing:1px;color:#ff9900}
+.search{flex:1;display:flex}
+.search input{
+  flex:1;padding:10px 12px;border:none;border-radius:4px 0 0 4px;outline:none
+}
+.search button{
+  padding:10px 14px;border:none;background:#ff9900;color:#111;font-weight:700;border-radius:0 4px 4px 0;cursor:pointer
+}
+.actions{display:flex;gap:12px;align-items:center}
+.actions button{
+  background:#232f3e;border:1px solid #2f3b4a;color:#fff;padding:8px 12px;border-radius:4px;cursor:pointer
+}
+
+/* ===== CATEGORY BAR ===== */
+.catbar{
+  background:#232f3e;color:#ddd
+}
+.catbar .inner{
+  max-width:1200px;margin:auto;display:flex;gap:16px;padding:8px 16px;overflow:auto
+}
+.catbar a{color:#ddd;text-decoration:none;font-size:14px;white-space:nowrap}
+.catbar a:hover{color:#fff}
 
 /* ===== LAYOUT ===== */
-.wrapper{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.container{max-width:1200px;margin:20px auto;padding:0 16px}
+.grid{
+  display:grid;grid-template-columns:240px 1fr;gap:16px
+}
 
-/* ===== SIDEBAR ===== */
-aside{background:#2f1f17;color:#f3e7de;padding:30px 24px;position:sticky;top:0;height:100vh}
-.brand{font-size:22px;font-weight:800;letter-spacing:2px;margin-bottom:40px}
-.nav a{display:block;color:#e6d5c7;text-decoration:none;margin-bottom:16px;font-size:15px}
-.nav a:hover{color:#d4a373}
-.nav .cta{margin-top:30px;display:inline-block;padding:10px 18px;border-radius:999px;background:#d4a373;color:#2f1f17;font-weight:700}
-
-/* ===== MAIN ===== */
-main{padding:0}
+/* ===== SIDEBAR FILTER ===== */
+aside{
+  background:#fff;border-radius:8px;padding:12px
+}
+aside h3{margin-bottom:10px}
+.filter button{
+  display:block;width:100%;text-align:left;margin-bottom:8px;padding:8px 10px;border-radius:6px;border:1px solid #ddd;background:#fff;cursor:pointer
+}
+.filter button.active{background:#ff9900;color:#111;border-color:#ff9900}
 
 /* ===== HERO ===== */
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:80px 60px;background:linear-gradient(180deg,#f4ece6,#faf7f4)}
-.hero h1{font-size:54px;line-height:1.05;color:#3b2419}
-.hero p{margin-top:16px;font-size:18px;color:#6b4a3a;max-width:520px}
-.hero img{width:100%;border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.15)}
-
-/* ===== SECTIONS ===== */
-section{padding:80px 60px}
-.section-title{font-size:36px;margin-bottom:40px;color:#3b2419}
-
-/* ===== COLLECTIONS ===== */
-.collections{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
-.collection{position:relative;border-radius:24px;overflow:hidden;cursor:pointer}
-.collection img{width:100%;height:100%;object-fit:cover}
-.collection span{position:absolute;bottom:16px;left:16px;background:#fff;padding:10px 16px;border-radius:999px;font-weight:600}
-
-/* ===== OFFER ===== */
-.offer{background:#3b2419;color:#f3e7de;display:flex;justify-content:space-between;align-items:center;padding:40px 60px}
-.offer span{color:#d4a373}
+.hero{
+  background:#fff;border-radius:8px;padding:16px;margin-bottom:16px;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:center
+}
+.hero h1{font-size:32px}
+.hero p{color:#555;margin:8px 0}
+.hero img{width:100%;border-radius:8px}
 
 /* ===== PRODUCTS ===== */
-.products{column-count:3;column-gap:20px}
-.product{background:#fff;border-radius:20px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);overflow:hidden;break-inside:avoid}
-.product img{width:100%;display:block}
-.product-body{padding:16px}
-.price{color:#a56a43;font-weight:800}
+.products{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px
+}
+.card{
+  background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb;display:flex;flex-direction:column
+}
+.card img{width:100%;height:160px;object-fit:cover}
+.card .body{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
+.badge{display:inline-block;background:#ef4444;color:#fff;font-size:11px;padding:2px 6px;border-radius:999px}
+.price{font-weight:800;color:#111}
+.old{color:#999;text-decoration:line-through;font-size:12px;margin-left:6px}
+.card button{
+  margin-top:auto;padding:8px;border:none;background:#ff9900;font-weight:700;border-radius:6px;cursor:pointer
+}
+
+/* ===== CART DRAWER ===== */
+#cartDrawer{
+  position:fixed;top:0;right:-360px;width:360px;height:100vh;background:#fff;box-shadow:-10px 0 30px rgba(0,0,0,.2);transition:.3s;z-index:2000;display:flex;flex-direction:column
+}
+#cartDrawer.open{right:0}
+.cart-header{padding:12px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+.cart-items{flex:1;overflow:auto;padding:12px}
+.cart-item{display:flex;gap:8px;margin-bottom:10px}
+.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:6px}
+.cart-footer{padding:12px;border-top:1px solid #eee}
+.cart-footer button{width:100%;padding:10px;background:#ff9900;border:none;font-weight:800;border-radius:6px}
 
 /* ===== FOOTER ===== */
-footer{background:#2f1f17;color:#d8c6b8;padding:80px 60px 30px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px}
-footer h3{margin-bottom:12px;color:#f3e7de}
+footer{
+  background:#131921;color:#ddd;margin-top:40px
+}
+.footer-inner{
+  max-width:1200px;margin:auto;padding:40px 16px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px
+}
+footer h4{color:#fff;margin-bottom:10px}
+footer a, footer p{color:#ddd;font-size:14px;text-decoration:none;display:block;margin-bottom:6px}
 
-/* Responsive */
-@media(max-width:1000px){
-  .wrapper{grid-template-columns:1fr}
-  aside{position:relative;height:auto}
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
   .hero{grid-template-columns:1fr}
-  .collections{grid-template-columns:1fr}
-  .products{column-count:1}
-  section,.hero,.offer,footer{padding:40px 24px}
 }
 </style>
 </head>
@@ -80,88 +126,176 @@ footer h3{margin-bottom:12px;color:#f3e7de}
 
 <!-- LOADER -->
 <div id="loader">
-  <h1>CODLY BOUTIQUE</h1>
-  <div class="loader-line"><span></span></div>
+  <h1>CODLY MARKET</h1>
+  <div class="spinner"></div>
 </div>
 
-<div class="wrapper">
-
-<!-- SIDEBAR -->
-<aside>
-  <div class="brand">CODLY</div>
-  <div class="nav">
-    <a href="#collections">Collections</a>
-    <a href="#shop">Shop</a>
-    <a class="cta" onclick="filterProducts('all')">View All</a>
+<!-- HEADER -->
+<header>
+  <div class="topbar">
+    <div class="logo">CODLY</div>
+    <div class="search">
+      <input id="searchInput" placeholder="Search products..." />
+      <button onclick="applySearch()">Search</button>
+    </div>
+    <div class="actions">
+      <button onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</button>
+    </div>
   </div>
-</aside>
-
-<main>
-
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <h1>Editorial style.<br>Timeless products.</h1>
-    <p>Click a collection to explore products like real brand websites.</p>
+  <div class="catbar">
+    <div class="inner">
+      <a href="#" onclick="setCategory('all')">All</a>
+      <a href="#" onclick="setCategory('fashion')">Fashion</a>
+      <a href="#" onclick="setCategory('electronics')">Electronics</a>
+      <a href="#" onclick="setCategory('footwear')">Footwear</a>
+      <a href="#" onclick="setCategory('accessories')">Accessories</a>
+    </div>
   </div>
-  <div>
-    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop">
+</header>
+
+<div class="container">
+  <div class="grid">
+    <!-- SIDEBAR -->
+    <aside>
+      <h3>Categories</h3>
+      <div class="filter">
+        <button class="active" onclick="setCategory('all')">All</button>
+        <button onclick="setCategory('fashion')">Fashion</button>
+        <button onclick="setCategory('electronics')">Electronics</button>
+        <button onclick="setCategory('footwear')">Footwear</button>
+        <button onclick="setCategory('accessories')">Accessories</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <div class="hero">
+        <div>
+          <h1>Big Deals, Bigger Savings</h1>
+          <p>Marketplace-style demo inspired by Amazon, Flipkart, Myntra & Ajio. Perfect for showcasing to clients.</p>
+          <span class="badge">SALE</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" />
+      </div>
+
+      <div class="products" id="productGrid"></div>
+    </main>
   </div>
 </div>
 
-<!-- COLLECTIONS -->
-<section id="collections">
-  <h2 class="section-title">Collections</h2>
-  <div class="collections">
-    <div class="collection" onclick="filterProducts('footwear')"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200"><span>Footwear</span></div>
-    <div class="collection" onclick="filterProducts('accessories')"><img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200"><span>Accessories</span></div>
-    <div class="collection" onclick="filterProducts('gadgets')"><img src="https://images.unsplash.com/photo-1512499617640-c2f999fe2b8c?q=80&w=1200"><span>Gadgets</span></div>
+<!-- CART -->
+<div id="cartDrawer">
+  <div class="cart-header">
+    <strong>Your Cart</strong>
+    <button onclick="toggleCart()">Close</button>
   </div>
-</section>
-
-<!-- OFFER -->
-<div class="offer">
-  <strong>Season Sale</strong>
-  <div>Use code <span>CODLY15</span> and get 15% OFF</div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <button>Checkout (Demo)</button>
+  </div>
 </div>
-
-<!-- PRODUCTS -->
-<section id="shop">
-  <h2 class="section-title">Shop</h2>
-  <div class="products">
-    <div class="product" data-category="footwear"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000"><div class="product-body"><h3>Sneakers</h3><div class="price">₹2,499</div></div></div>
-    <div class="product" data-category="accessories"><img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000"><div class="product-body"><h3>Watch</h3><div class="price">₹3,499</div></div></div>
-    <div class="product" data-category="gadgets"><img src="https://images.unsplash.com/photo-1512499617640-c2f999fe2b8c?q=80&w=1000"><div class="product-body"><h3>Camera</h3><div class="price">₹18,999</div></div></div>
-    <div class="product" data-category="accessories"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000"><div class="product-body"><h3>Headphones</h3><div class="price">₹1,999</div></div></div>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div><h3>Codly Boutique</h3><p>Premium demo store.</p></div>
-    <div><h3>Contact</h3><p>Mumbai, India</p><p>+91 99887 66554</p></div>
+  <div class="footer-inner">
+    <div>
+      <h4>Codly Market</h4>
+      <p>Marketplace demo for portfolio & client demos.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a>Fashion</a><a>Electronics</a><a>Footwear</a><a>Accessories</a>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <a>Help Center</a><a>Returns</a><a>Shipping</a><a>Contact</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Mumbai, India</p>
+      <p>+91 90000 00000</p>
+      <p>support@codlymarket.in</p>
+    </div>
   </div>
 </footer>
 
-</main>
-</div>
-
 <script>
-window.addEventListener("load", ()=>{setTimeout(()=>{document.getElementById("loader").style.display="none"},900);});
+window.addEventListener("load", ()=>setTimeout(()=>document.getElementById("loader").style.display="none",800));
 
-function filterProducts(category){
-  const products = document.querySelectorAll(".product");
-  products.forEach(p=>{
-    if(category==="all" || p.dataset.category===category){
-      p.style.display="block";
-    } else {
-      p.style.display="none";
-    }
+const products = [
+  {id:1,title:"Sneakers",cat:"footwear",price:2499,old:3199,img:"https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000"},
+  {id:2,title:"Headphones",cat:"electronics",price:1999,old:2499,img:"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000"},
+  {id:3,title:"Watch",cat:"accessories",price:3499,old:4299,img:"https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000"},
+  {id:4,title:"Camera",cat:"electronics",price:18999,old:22999,img:"https://images.unsplash.com/photo-1512499617640-c2f999fe2b8c?q=80&w=1000"},
+  {id:5,title:"Jacket",cat:"fashion",price:2899,old:3599,img:"https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1000"},
+  {id:6,title:"Shoes Pro",cat:"footwear",price:3299,old:3999,img:"https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000"},
+  {id:7,title:"Sunglasses",cat:"accessories",price:1299,old:1699,img:"https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000"},
+  {id:8,title:"Smart Speaker",cat:"electronics",price:2199,old:2999,img:"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000"},
+];
+
+let currentCategory = "all";
+let cart = [];
+
+function renderProducts(){
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  products.filter(p=>{
+    const catOk = currentCategory==="all" || p.cat===currentCategory;
+    const qOk = p.title.toLowerCase().includes(q);
+    return catOk && qOk;
+  }).forEach(p=>{
+    const card = document.createElement("div");
+    card.className="card";
+    card.innerHTML = `
+      <img src="${p.img}">
+      <div class="body">
+        <span class="badge">Deal</span>
+        <strong>${p.title}</strong>
+        <div>
+          <span class="price">₹${p.price}</span>
+          <span class="old">₹${p.old}</span>
+        </div>
+        <button onclick="addToCart(${p.id})">Add to Cart</button>
+      </div>
+    `;
+    grid.appendChild(card);
   });
-  document.getElementById("shop").scrollIntoView({behavior:"smooth"});
 }
-</script>
 
+function setCategory(cat){
+  currentCategory = cat;
+  document.querySelectorAll(".filter button").forEach(b=>b.classList.remove("active"));
+  const btn = Array.from(document.querySelectorAll(".filter button")).find(b=>b.textContent.toLowerCase()===cat || (cat==="all" && b.textContent==="All"));
+  if(btn) btn.classList.add("active");
+  renderProducts();
+}
+
+function applySearch(){ renderProducts(); }
+
+function addToCart(id){
+  const p = products.find(x=>x.id===id);
+  cart.push(p);
+  updateCart();
+}
+
+function updateCart(){
+  document.getElementById("cartCount").textContent = cart.length;
+  const box = document.getElementById("cartItems");
+  box.innerHTML = "";
+  cart.forEach(item=>{
+    const div = document.createElement("div");
+    div.className="cart-item";
+    div.innerHTML = `<img src="${item.img}"><div><strong>${item.title}</strong><div>₹${item.price}</div></div>`;
+    box.appendChild(div);
+  });
+}
+
+function toggleCart(){
+  document.getElementById("cartDrawer").classList.toggle("open");
+}
+
+renderProducts();
+</script>
 </body>
 </html>
