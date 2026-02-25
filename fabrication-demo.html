@@ -5,6 +5,7 @@
 <title>SteelCraft Engineering & Fabrication</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
 :root{
@@ -23,17 +24,37 @@ img{max-width:100%;display:block}
   position:fixed;inset:0;
   background:#0f1720;
   color:#f59e0b;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:9999;transition:opacity .6s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:opacity .6s ease;
 }
-#loader h1{letter-spacing:2px}
-.loader-bar{width:220px;height:6px;background:#1f2a36;border-radius:999px;overflow:hidden;margin-top:16px}
-.loader-bar span{display:block;height:100%;width:0%;background:#f59e0b;animation:load 1.6s infinite}
-@keyframes load{0%{width:0%}50%{width:80%}100%{width:0%}}
+.loader-bar{
+  width:220px;height:6px;background:#1f2a36;
+  border-radius:999px;overflow:hidden;margin-top:16px;
+}
+.loader-bar span{
+  display:block;height:100%;width:0%;
+  background:#f59e0b;
+  animation:load 1.6s infinite;
+}
+@keyframes load{
+  0%{width:0%}
+  50%{width:80%}
+  100%{width:0%}
+}
 
 /* HEADER */
-header{position:sticky;top:0;z-index:1000;background:rgba(15,23,32,.95);color:#fff;backdrop-filter:blur(6px)}
-.nav{max-width:1200px;margin:auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+header{
+  position:sticky;top:0;z-index:1000;
+  background:#0f1720;color:#fff;
+}
+.nav{
+  max-width:1200px;margin:auto;padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
 .brand{font-weight:800;letter-spacing:.5px}
 .brand span{color:var(--accent)}
 .nav a{margin-left:16px;color:#e5e7eb;font-weight:500}
@@ -41,8 +62,9 @@ header{position:sticky;top:0;z-index:1000;background:rgba(15,23,32,.95);color:#f
 
 /* HERO */
 .hero{
-  background:linear-gradient(135deg,rgba(15,23,32,.85),rgba(31,42,54,.85)),
-  url("https://source.unsplash.com/1600x900/?factory,industry,steel") center/cover no-repeat;
+  background:
+    linear-gradient(135deg,rgba(15,23,32,.85),rgba(31,42,54,.85)),
+    url("https://images.unsplash.com/photo-1581091215367-59ab6c5d1b66?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
   color:#fff;
 }
 .hero-inner{
@@ -146,12 +168,12 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
         <div class="badge">🛡️ Quality & Safety</div>
       </div>
       <div class="cta">
-        <button class="btn primary" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Get a Quote</button>
-        <button class="btn secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+        <button class="btn primary">Get a Quote</button>
+        <button class="btn secondary">View Projects</button>
       </div>
     </div>
     <div class="hero-card">
-      <img src="https://source.unsplash.com/800x600/?welding,industry">
+      <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80">
     </div>
   </div>
 </div>
@@ -165,7 +187,7 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
         <p>SteelCraft Engineering is a leading fabrication company serving industrial and infrastructure projects.</p>
       </div>
       <div>
-        <img src="https://source.unsplash.com/800x600/?workshop,steel">
+        <img src="https://images.unsplash.com/photo-1581092334511-8b1b6f4c7b62?auto=format&fit=crop&w=1200&q=80">
       </div>
     </div>
   </div>
@@ -191,10 +213,10 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   <div class="container">
     <div class="section-title"><h2>Our Projects</h2></div>
     <div class="projects">
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?factory,steel"><span>Factory Structure</span></div>
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?machinery,industry"><span>Machinery Installation</span></div>
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?welding,workshop"><span>Welding Works</span></div>
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?industrial,construction"><span>Steel Structures</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1581092160613-bf3b8c1e1c2f?auto=format&fit=crop&w=1200&q=80"><span>Factory Structure</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1581092919534-1b8a0c1c9f77?auto=format&fit=crop&w=1200&q=80"><span>Machinery Installation</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80"><span>Welding Works</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80"><span>Steel Structures</span></div>
     </div>
   </div>
 </section>
