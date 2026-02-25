@@ -60,12 +60,9 @@ input,textarea,select{width:100%;padding:10px;margin-bottom:10px;border-radius:6
 
 /* HERO */
 .hero{
-  background:linear-gradient(135deg,#f4ece6,#fff);
   border-radius:20px;padding:28px;
   display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center
 }
-.hero h1{font-size:40px;color:var(--brown)}
-.hero p{color:#6b4a3a;margin:10px 0}
 .hero img{width:100%;border-radius:16px}
 
 /* GRID */
@@ -132,14 +129,39 @@ footer p, footer a{font-size:14px;color:#d8c6b8;display:block;margin-bottom:6px}
 
 <!-- HOME -->
 <div id="home" class="page active">
-  <div class="hero">
+
+  <!-- UNIQUE HERO (ONLY CHANGE) -->
+  <div class="hero" style="background:linear-gradient(135deg,#1f140f,#3b2419); color:#f4ece6;">
     <div>
-      <h1>Shop Smart. Sell Bigger.</h1>
-      <p>Search brands, shoes, gadgets and more. Real marketplace experience by Codly.</p>
-      <button class="btn" onclick="setCategory('all')">Explore Store</button>
+      <span style="background:#a56a43;color:#fff;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;">
+        ⚡ Powered by Codly
+      </span>
+      <h1 style="font-size:44px;line-height:1.1;margin:16px 0 10px;color:#f4ece6;">
+        Discover. Shop. Upgrade<br>
+        <span style="color:#d4a373;">Your Digital Lifestyle</span>
+      </h1>
+      <p style="color:#e6d5c7;max-width:520px;">
+        Search top brands, explore trending products, and experience a real marketplace demo built by Codly.
+        Fast, modern, and designed to impress your clients.
+      </p>
+      <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn" onclick="setCategory('all')">🛍️ Explore Store</button>
+        <button class="btn secondary" onclick="setCategory('electronics')">🔥 Trending Tech</button>
+      </div>
+      <div style="margin-top:20px;display:flex;gap:20px;flex-wrap:wrap;color:#e6d5c7;font-size:14px;">
+        <div>✅ 100+ Products</div>
+        <div>🚚 Fast Delivery Demo</div>
+        <div>🔒 Secure Checkout UI</div>
+      </div>
     </div>
-    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop">
+
+    <div style="position:relative;">
+      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" style="border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
+      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=600&auto=format&fit=crop"
+           style="position:absolute;bottom:-20px;left:-20px;width:45%;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.4);border:4px solid #1f140f;">
+    </div>
   </div>
+  <!-- END HERO -->
 
   <h3 style="margin:24px 0 12px">Products</h3>
   <div class="products" id="productGrid"></div>
@@ -203,21 +225,17 @@ let products=[
 {id:1,title:"Nike Air Running Sneakers",brand:"Nike",keywords:"shoes sneakers running sports",cat:"footwear",price:2999,old:3999,stock:5,imgs:["https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000","https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000"]},
 {id:2,title:"Adidas Street Sneakers",brand:"Adidas",keywords:"shoes sneakers casual",cat:"footwear",price:2799,old:3599,stock:7,imgs:["https://images.unsplash.com/photo-1528701800489-20be3c1a3a6b?q=80&w=1000","https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1000"]},
 {id:3,title:"Puma Sports Shoes",brand:"Puma",keywords:"shoes sports gym",cat:"footwear",price:2599,old:3299,stock:4,imgs:["https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1000","https://images.unsplash.com/photo-1600185365483-26d7c9a0c35b?q=80&w=1000"]},
-
 {id:4,title:"Sony Wireless Headphones",brand:"Sony",keywords:"headphone music audio",cat:"electronics",price:1999,old:2499,stock:10,imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000","https://images.unsplash.com/photo-1518444021430-6c1a6b44f3a7?q=80&w=1000"]},
 {id:5,title:"Apple iPhone Smartphone",brand:"Apple",keywords:"phone smartphone ios",cat:"electronics",price:69999,old:74999,stock:6,imgs:["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000","https://images.unsplash.com/photo-1510557880182-3d4d3cba35b6?q=80&w=1000"]},
 {id:6,title:"Canon DSLR Camera",brand:"Canon",keywords:"camera photography dslr",cat:"electronics",price:18999,old:22999,stock:3,imgs:["https://images.unsplash.com/photo-1512499617640-c2f999fe2b8c?q=80&w=1000","https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=1000"]},
-
 {id:7,title:"Fossil Luxury Watch",brand:"Fossil",keywords:"watch time luxury",cat:"accessories",price:3499,old:4299,stock:5,imgs:["https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000","https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000"]},
 {id:8,title:"Ray-Ban Sunglasses",brand:"Ray-Ban",keywords:"sunglasses eyewear fashion",cat:"accessories",price:2499,old:3199,stock:8,imgs:["https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1000","https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1000"]},
-
 {id:9,title:"Zara Leather Jacket",brand:"Zara",keywords:"jacket fashion winter",cat:"fashion",price:2899,old:3599,stock:9,imgs:["https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1000","https://images.unsplash.com/photo-1495121605193-b116b5b09a59?q=80&w=1000"]},
 {id:10,title:"H&M Casual T-Shirt",brand:"H&M",keywords:"tshirt fashion casual",cat:"fashion",price:799,old:999,stock:15,imgs:["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000","https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1000"]},
 ];
 
 let cart=[];
 let currentCategory="all";
-let currentProduct=null;
 
 /* NAV */
 function showPage(id){
@@ -251,7 +269,7 @@ function renderProducts(){
 
 /* PRODUCT PAGE */
 function openProduct(id){
-  const p=products.find(x=>x.id===id); currentProduct=id;
+  const p=products.find(x=>x.id===id);
   productDetail.innerHTML=`
     <div class="product-layout">
       <div>
