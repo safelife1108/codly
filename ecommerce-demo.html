@@ -71,7 +71,10 @@ header{position:sticky;top:0;z-index:1000;background:var(--dark);color:#f3e7de}
 
 /* Product page */
 .product-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.gallery img{width:100%;border-radius:12px}
+.gallery-main{width:100%;border-radius:12px}
+.thumbs{display:flex;gap:8px;margin-top:8px}
+.thumbs img{width:60px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
+.thumbs img.active{border-color:var(--accent)}
 .stars span{color:#ccc}
 .stars .filled{color:#f59e0b}
 
@@ -83,6 +86,9 @@ input,textarea,select{width:100%;padding:10px;margin-bottom:10px;border-radius:6
 /* Boxes */
 .box{background:#fff;border-radius:12px;border:1px solid #e6ded8;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:12px}
 
+/* Compare */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
 /* Footer */
 footer{background:var(--dark);color:#d8c6b8;margin-top:40px}
 .footer-inner{max-width:1200px;margin:auto;padding:40px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
@@ -93,6 +99,7 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   .product-layout{grid-template-columns:1fr}
+  .compare-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -108,6 +115,8 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
       <button onclick="renderProducts()">Search</button>
     </div>
     <div class="actions">
+      <button onclick="showPage('admin')">Admin</button>
+      <button onclick="showPage('compare')">Compare</button>
       <button onclick="showPage('profile')">Profile</button>
       <button onclick="showPage('wishlist')">Wishlist</button>
       <button onclick="showPage('cart')">Cart (<span id="cartCount">0</span>)</button>
@@ -129,11 +138,10 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
 
 <!-- HOME -->
 <div id="home" class="page active">
-
   <div class="hero">
     <div>
       <h1>Big Deals. Premium Experience.</h1>
-      <p>Your enterprise-style marketplace demo by Codly. Build real platforms like this for clients.</p>
+      <p>Enterprise marketplace demo by Codly with coupons, admin panel, compare, gallery & success page.</p>
       <button class="btn" onclick="setCategory('all')">Shop Now</button>
     </div>
     <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop">
@@ -162,7 +170,6 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
     <h3>Today’s Deals</h3>
     <div class="products" id="productGrid"></div>
   </div>
-
 </div>
 
 <!-- PRODUCT PAGE -->
@@ -198,8 +205,20 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
 <div id="checkout" class="page">
   <h2>Checkout</h2>
   <input id="addr" placeholder="Full Address">
+  <input id="couponInput" placeholder="Coupon code (try CODLY10)">
+  <button class="btn secondary" onclick="applyCoupon()">Apply Coupon</button>
+  <p id="discountInfo"></p>
   <input placeholder="Card Number">
   <button class="btn" onclick="placeOrder()">Place Order</button>
+</div>
+
+<!-- SUCCESS -->
+<div id="success" class="page">
+  <div class="box">
+    <h2>✅ Payment Successful</h2>
+    <p>Your order has been placed successfully.</p>
+    <button class="btn" onclick="goHome()">Continue Shopping</button>
+  </div>
 </div>
 
 <!-- PROFILE -->
@@ -225,6 +244,27 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
   <div id="orderItems" class="box"></div>
 </div>
 
+<!-- COMPARE -->
+<div id="compare" class="page">
+  <h2>Compare Products</h2>
+  <p>Select two products using "Compare" button on cards.</p>
+  <div class="compare-grid" id="compareGrid"></div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="page">
+  <h2>Seller / Admin Panel (Demo)</h2>
+  <div class="box">
+    <input id="aTitle" placeholder="Product title">
+    <input id="aPrice" placeholder="Price">
+    <input id="aOld" placeholder="Old price">
+    <input id="aCat" placeholder="Category (fashion/electronics/footwear/accessories)">
+    <input id="aImg" placeholder="Image URL">
+    <button class="btn" onclick="addProduct()">Add Product</button>
+  </div>
+  <div class="box" id="adminList"></div>
+</div>
+
 </div>
 
 <footer>
@@ -239,12 +279,12 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
 <script>
 window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader").style.display="none",800));
 
-const products=[
-{id:1,title:"Sneakers",cat:"footwear",price:2499,old:3199,img:"https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000"},
-{id:2,title:"Headphones",cat:"electronics",price:1999,old:2499,img:"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000"},
-{id:3,title:"Watch",cat:"accessories",price:3499,old:4299,img:"https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000"},
-{id:4,title:"Camera",cat:"electronics",price:18999,old:22999,img:"https://images.unsplash.com/photo-1512499617640-c2f999fe2b8c?q=80&w=1000"},
-{id:5,title:"Jacket",cat:"fashion",price:2899,old:3599,img:"https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1000"},
+let products=JSON.parse(localStorage.getItem("products")||"null") || [
+{id:1,title:"Sneakers",cat:"footwear",price:2499,old:3199,imgs:["https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1000","https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000"]},
+{id:2,title:"Headphones",cat:"electronics",price:1999,old:2499,imgs:["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000","https://images.unsplash.com/photo-1518444021430-6c1a6b44f3a7?q=80&w=1000"]},
+{id:3,title:"Watch",cat:"accessories",price:3499,old:4299,imgs:["https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000","https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000"]},
+{id:4,title:"Camera",cat:"electronics",price:18999,old:22999,imgs:["https://images.unsplash.com/photo-1512499617640-c2f999fe2b8c?q=80&w=1000","https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=1000"]},
+{id:5,title:"Jacket",cat:"fashion",price:2899,old:3599,imgs:["https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1000","https://images.unsplash.com/photo-1495121605193-b116b5b09a59?q=80&w=1000"]},
 ];
 
 let currentCategory="all";
@@ -254,13 +294,17 @@ let orders=JSON.parse(localStorage.getItem("orders")||"[]");
 let profile=JSON.parse(localStorage.getItem("profile")||"{}");
 let reviews=JSON.parse(localStorage.getItem("reviews")||"{}");
 let currentProduct=null;
+let compareList=JSON.parse(localStorage.getItem("compare")||"[]");
+let couponDiscount=0;
 
-function save(){
+function saveAll(){
+  localStorage.setItem("products",JSON.stringify(products));
   localStorage.setItem("cart",JSON.stringify(cart));
   localStorage.setItem("wishlist",JSON.stringify(wishlist));
   localStorage.setItem("orders",JSON.stringify(orders));
   localStorage.setItem("profile",JSON.stringify(profile));
   localStorage.setItem("reviews",JSON.stringify(reviews));
+  localStorage.setItem("compare",JSON.stringify(compareList));
 }
 
 function showPage(id){
@@ -270,6 +314,8 @@ function showPage(id){
   if(id==="wishlist") renderWishlist();
   if(id==="orders") renderOrders();
   if(id==="profile") loadProfile();
+  if(id==="compare") renderCompare();
+  if(id==="admin") renderAdmin();
 }
 
 function goHome(){ showPage("home"); }
@@ -285,14 +331,15 @@ function renderProducts(){
     const avg=getAvgRating(p.id);
     const card=document.createElement("div"); card.className="card";
     card.innerHTML=`
-      <img src="${p.img}" onclick="openProduct(${p.id})">
+      <img src="${p.imgs[0]}" onclick="openProduct(${p.id})">
       <div class="body">
         <span class="badge">Deal</span>
         <strong>${p.title}</strong>
-        <div>${renderStars(avg)}</div>
+        <div class="stars">${renderStars(avg)}</div>
         <div><span class="price">₹${p.price}</span> <span class="old">₹${p.old}</span></div>
         <button onclick="addToCart(${p.id})">Add to Cart</button>
         <button onclick="addToWishlist(${p.id})">♡ Wishlist</button>
+        <button onclick="toggleCompare(${p.id})">⇄ Compare</button>
       </div>`;
     grid.appendChild(card);
   });
@@ -305,8 +352,11 @@ function openProduct(id){
   const box=document.getElementById("productDetail");
   box.innerHTML=`
     <div class="product-layout">
-      <div class="gallery">
-        <img src="${p.img}">
+      <div>
+        <img id="mainImg" class="gallery-main" src="${p.imgs[0]}">
+        <div class="thumbs">
+          ${p.imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="switchImg(this,'${im}')">`).join("")}
+        </div>
       </div>
       <div class="box">
         <h2>${p.title}</h2>
@@ -322,6 +372,12 @@ function openProduct(id){
   `;
   renderReviews();
   showPage("productPage");
+}
+
+function switchImg(el,src){
+  document.getElementById("mainImg").src=src;
+  document.querySelectorAll(".thumbs img").forEach(i=>i.classList.remove("active"));
+  el.classList.add("active");
 }
 
 function renderStars(n){
@@ -349,19 +405,19 @@ function addReview(){
   if(!reviews[currentProduct]) reviews[currentProduct]=[];
   reviews[currentProduct].push({rating,text});
   document.getElementById("reviewText").value="";
-  save(); renderReviews(); renderProducts();
+  saveAll(); renderReviews(); renderProducts();
 }
 
 function addToCart(id){
   const p=products.find(x=>x.id===id);
   const found=cart.find(i=>i.id===id);
   if(found) found.qty+=1; else cart.push({...p,qty:1});
-  save(); updateCartCount();
+  saveAll(); updateCartCount();
 }
 
 function removeFromCart(id){
   cart=cart.filter(i=>i.id!==id);
-  save(); renderCart(); updateCartCount();
+  saveAll(); renderCart(); updateCartCount();
 }
 
 function renderCart(){
@@ -377,17 +433,22 @@ function renderCart(){
       <button class="btn secondary" onclick="removeFromCart(${item.id})">Remove</button></p><hr>`;
     box.appendChild(div);
   });
+  if(couponDiscount>0){
+    const disc = Math.round(total*couponDiscount/100);
+    total = total - disc;
+    box.innerHTML += `<p>Coupon applied: -${couponDiscount}%</p>`;
+  }
   const t=document.createElement("p"); t.innerHTML=`<b>Total: ₹${total}</b>`; box.appendChild(t);
 }
 
 function updateQty(id,val){
   const it=cart.find(i=>i.id===id);
-  if(it){ it.qty=parseInt(val)||1; save(); renderCart(); updateCartCount(); }
+  if(it){ it.qty=parseInt(val)||1; saveAll(); renderCart(); updateCartCount(); }
 }
 
 function addToWishlist(id){
   if(!wishlist.includes(id)) wishlist.push(id);
-  save();
+  saveAll();
 }
 
 function renderWishlist(){
@@ -404,8 +465,8 @@ function renderWishlist(){
 function placeOrder(){
   if(cart.length===0){ alert("Cart is empty"); return; }
   orders.push({date:new Date().toLocaleString(), items:[...cart]});
-  cart=[]; save(); updateCartCount(); alert("Order placed (demo)");
-  showPage("orders");
+  cart=[]; couponDiscount=0; saveAll(); updateCartCount();
+  showPage("success");
 }
 
 function renderOrders(){
@@ -429,7 +490,57 @@ function saveProfile(){
   profile.name=document.getElementById("pname").value;
   profile.email=document.getElementById("pemail").value;
   profile.address=document.getElementById("paddress").value;
-  save(); alert("Profile saved");
+  saveAll(); alert("Profile saved");
+}
+
+/* Coupons */
+function applyCoupon(){
+  const c=document.getElementById("couponInput").value.trim().toUpperCase();
+  if(c==="CODLY10"){ couponDiscount=10; document.getElementById("discountInfo").innerText="Coupon applied: 10% off"; }
+  else{ couponDiscount=0; document.getElementById("discountInfo").innerText="Invalid coupon"; }
+  renderCart();
+}
+
+/* Compare */
+function toggleCompare(id){
+  if(compareList.includes(id)) compareList=compareList.filter(x=>x!==id);
+  else{
+    if(compareList.length>=2) return alert("Only 2 products can be compared");
+    compareList.push(id);
+  }
+  saveAll();
+}
+
+function renderCompare(){
+  const grid=document.getElementById("compareGrid"); grid.innerHTML="";
+  if(compareList.length<2){ grid.innerHTML="<p>Select two products to compare.</p>"; return; }
+  compareList.forEach(id=>{
+    const p=products.find(x=>x.id===id);
+    const div=document.createElement("div");
+    div.className="box";
+    div.innerHTML=`<h3>${p.title}</h3><p>Price: ₹${p.price}</p><p>Category: ${p.cat}</p>`;
+    grid.appendChild(div);
+  });
+}
+
+/* Admin */
+function renderAdmin(){
+  const box=document.getElementById("adminList");
+  box.innerHTML=products.map(p=>`<p>${p.title} <button class="btn secondary" onclick="deleteProduct(${p.id})">Delete</button></p>`).join("");
+}
+function addProduct(){
+  const t=document.getElementById("aTitle").value;
+  const pr=parseInt(document.getElementById("aPrice").value);
+  const old=parseInt(document.getElementById("aOld").value);
+  const c=document.getElementById("aCat").value;
+  const img=document.getElementById("aImg").value;
+  if(!t||!pr||!c||!img) return alert("Fill all fields");
+  products.push({id:Date.now(),title:t,cat:c,price:pr,old:old||pr+500,imgs:[img,img]});
+  saveAll(); renderAdmin(); renderProducts();
+}
+function deleteProduct(id){
+  products=products.filter(p=>p.id!==id);
+  saveAll(); renderAdmin(); renderProducts();
 }
 
 renderProducts(); updateCartCount();
