@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PowerFlex Fitness Club</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
+:root{
+  --dark:#0b0f14;
+  --gray:#111827;
+  --accent:#ef4444;
+  --light:#f3f4f6;
+  --text:#111827;
+}
+body{background:#fff;color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* LOADER */
+#loader{
+  position:fixed;inset:0;background:#0b0f14;color:#ef4444;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:9999;transition:opacity .6s ease;
+}
+.loader-bar{width:220px;height:6px;background:#1f2937;border-radius:999px;overflow:hidden;margin-top:16px}
+.loader-bar span{display:block;height:100%;width:0%;background:#ef4444;animation:load 1.6s infinite}
+@keyframes load{0%{width:0%}50%{width:80%}100%{width:0%}}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:1000;background:#0b0f14;color:#fff}
+.nav{max-width:1200px;margin:auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:.5px}
+.brand span{color:var(--accent)}
+.nav a{margin-left:16px;color:#e5e7eb;font-weight:500}
+.nav a:hover{color:#fff}
+
+/* HERO */
+.hero{
+  background:
+    linear-gradient(135deg,rgba(11,15,20,.85),rgba(17,24,39,.85)),
+    url("https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+  color:#fff;
+}
+.hero-inner{
+  max-width:1200px;margin:auto;padding:110px 16px;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+}
+.hero h1{font-size:52px;line-height:1.05;margin-bottom:18px}
+.hero p{color:#e5e7eb;max-width:600px;font-size:17px}
+.stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.stat{background:rgba(0,0,0,.35);padding:14px 18px;border-radius:12px}
+.stat strong{font-size:22px;color:var(--accent)}
+.cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:12px 20px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.hero-card{background:#0b0f14;border-radius:18px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.hero-card img{border-radius:14px}
+
+/* SECTIONS */
+section{padding:70px 16px}
+.container{max-width:1200px;margin:auto}
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{font-size:36px}
+.section-title p{color:#6b7280;max-width:720px;margin:auto}
+
+/* PROGRAMS */
+.programs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.card img{height:180px;object-fit:cover;width:100%}
+.card .p{padding:18px}
+
+/* TRAINERS */
+.trainers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+
+/* PRICING */
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.price-card{background:#111827;color:#fff;border-radius:16px;padding:24px;text-align:center}
+.price-card h3{margin-bottom:10px}
+.price{font-size:36px;color:var(--accent);margin:10px 0}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.contact-box{background:#fff;border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.contact-box input,.contact-box textarea{width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #e5e7eb}
+
+/* FOOTER */
+footer{background:#0b0f14;color:#cbd5e1}
+.footer-inner{max-width:1200px;margin:auto;padding:50px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
+footer h4{color:#fff;margin-bottom:10px}
+footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <h1>POWERFLEX</h1>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<header>
+  <div class="nav">
+    <div class="brand">Power<span>Flex</span> Gym</div>
+    <div>
+      <a href="#programs">Programs</a>
+      <a href="#trainers">Trainers</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Build Your Body.<br>Transform Your <span style="color:#ef4444">Life.</span></h1>
+      <p>
+        PowerFlex Fitness Club is a premium gym offering strength training, cardio, crossfit and personal
+        training programs designed to help you achieve your fitness goals faster and smarter.
+      </p>
+      <div class="stats">
+        <div class="stat"><strong>2000+</strong><br>Members</div>
+        <div class="stat"><strong>15+</strong><br>Trainers</div>
+        <div class="stat"><strong>10+</strong><br>Years</div>
+      </div>
+      <div class="cta">
+        <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Join Now</button>
+        <button class="btn secondary" onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'})">View Programs</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80" alt="Gym Training">
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Programs</h2>
+      <p>Choose the perfect workout plan for your fitness journey</p>
+    </div>
+    <div class="programs">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80">
+        <div class="p"><strong>Strength Training</strong><p>Build muscle and increase strength with guided workouts.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1200&q=80">
+        <div class="p"><strong>Cardio Fitness</strong><p>Improve endurance and burn fat with high-energy sessions.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=1200&q=80">
+        <div class="p"><strong>CrossFit</strong><p>High-intensity functional training for full-body fitness.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1579758629938-03608ccdbaba?auto=format&fit=crop&w=1200&q=80">
+        <div class="p"><strong>Personal Training</strong><p>One-on-one coaching to reach your goals faster.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINERS -->
+<section id="trainers" style="background:#f8fafc">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Trainers</h2>
+      <p>Certified professionals to guide and motivate you</p>
+    </div>
+    <div class="trainers">
+      <div class="card"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07b?auto=format&fit=crop&w=1200&q=80"><div class="p"><strong>Rahul Sharma</strong><p>Strength Coach</p></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1594736797933-d0d6c35f08b1?auto=format&fit=crop&w=1200&q=80"><div class="p"><strong>Neha Patel</strong><p>Fitness Trainer</p></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1571019613578-2b193a06c4a2?auto=format&fit=crop&w=1200&q=80"><div class="p"><strong>Arjun Mehta</strong><p>CrossFit Coach</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-title">
+      <h2>Membership Plans</h2>
+      <p>Flexible plans for every fitness goal</p>
+    </div>
+    <div class="pricing">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <div class="price">₹999/mo</div>
+        <p>Gym Access</p><p>Cardio Zone</p><p>Locker Facility</p>
+      </div>
+      <div class="price-card">
+        <h3>Pro</h3>
+        <div class="price">₹1999/mo</div>
+        <p>All Basic Features</p><p>Group Classes</p><p>Diet Guidance</p>
+      </div>
+      <div class="price-card">
+        <h3>Elite</h3>
+        <div class="price">₹3499/mo</div>
+        <p>All Pro Features</p><p>Personal Trainer</p><p>Custom Workout Plan</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-title">
+      <h2>Join PowerFlex Today</h2>
+      <p>Start your fitness journey with us</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-box">
+        <input placeholder="Your Name">
+        <input placeholder="Phone Number">
+        <input placeholder="Email">
+        <textarea rows="4" placeholder="Your Fitness Goal"></textarea>
+        <button class="btn primary" onclick="alert('Thank you! Our team will contact you soon.')">Submit</button>
+      </div>
+      <div class="contact-box">
+        <p><strong>Address:</strong> Fitness Street, Mumbai, India</p>
+        <p><strong>Phone:</strong> +91 90000 00000</p>
+        <p><strong>Email:</strong> info@powerflexgym.com</p>
+        <iframe src="https://www.google.com/maps?q=Mumbai,India&output=embed" width="100%" height="260" style="border:0;border-radius:12px;"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>PowerFlex Gym</h4>
+      <p>Train hard. Stay fit. Live strong.</p>
+    </div>
+    <div>
+      <h4>Programs</h4>
+      <a>Strength Training</a>
+      <a>Cardio</a>
+      <a>CrossFit</a>
+      <a>Personal Training</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a>About Us</a>
+      <a>Trainers</a>
+      <a>Pricing</a>
+      <a>Contact</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Mumbai, India</p>
+      <p>+91 90000 00000</p>
+      <p>info@powerflexgym.com</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener("load",()=>{
+  const loader=document.getElementById("loader");
+  loader.style.opacity="0";
+  setTimeout(()=>loader.style.display="none",600);
+});
+</script>
+
+</body>
+</html>
