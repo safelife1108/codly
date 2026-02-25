@@ -5,6 +5,7 @@
 <title>SteelCraft Engineering & Fabrication</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
 :root{
@@ -38,31 +39,38 @@ header{position:sticky;top:0;z-index:1000;background:#0f1720;color:#fff}
 
 /* HERO */
 .hero{
-  background:linear-gradient(135deg,rgba(15,23,32,.85),rgba(31,42,54,.85)),
-  url("https://source.unsplash.com/1600x900/?industrial,fabrication,steel") center/cover no-repeat;
+  background:
+    linear-gradient(135deg,rgba(15,23,32,.9),rgba(31,42,54,.85)),
+    url("https://images.unsplash.com/photo-1581092919534-1b8a0c1c9f77?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
   color:#fff;
 }
 .hero-inner{
-  max-width:1200px;margin:auto;padding:100px 16px;
-  display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;
+  max-width:1200px;margin:auto;padding:110px 16px;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
 }
-.hero h1{font-size:48px;line-height:1.1;margin-bottom:16px}
-.hero p{color:#e5e7eb;max-width:560px}
-.badges{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
-.badge{background:rgba(255,255,255,.1);padding:8px 14px;border-radius:999px;font-size:14px}
-.cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+.hero h1{font-size:52px;line-height:1.05;margin-bottom:18px}
+.hero p{color:#e5e7eb;max-width:600px;font-size:17px}
+.badges{display:flex;gap:16px;margin-top:22px;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);padding:8px 14px;border-radius:999px;font-size:14px}
+.stats{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap}
+.stat{background:rgba(0,0,0,.35);padding:14px 18px;border-radius:12px}
+.stat strong{font-size:22px;color:var(--accent)}
+.cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:12px 20px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
 .btn.primary{background:var(--accent);color:#000}
 .btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
-.hero-card{background:#0b1220;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.hero-card img{border-radius:12px}
+.hero-card{
+  background:#0b1220;border-radius:18px;padding:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.hero-card img{border-radius:14px}
 
 /* SECTIONS */
 section{padding:70px 16px}
 .container{max-width:1200px;margin:auto}
 .section-title{text-align:center;margin-bottom:40px}
 .section-title h2{font-size:36px}
-.section-title p{color:#6b7280;max-width:700px;margin:auto}
+.section-title p{color:#6b7280;max-width:720px;margin:auto}
 
 /* ABOUT */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
@@ -107,7 +115,7 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   .hero-inner{grid-template-columns:1fr}
   .about{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
-  .hero h1{font-size:38px}
+  .hero h1{font-size:40px}
 }
 </style>
 </head>
@@ -135,16 +143,20 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <h1>Industrial Fabrication<br>Built with <span style="color:#f59e0b">Precision & Strength</span></h1>
+      <h1>Industrial Fabrication<br>Built with <span style="color:#f59e0b">Strength & Precision</span></h1>
       <p>
-        SteelCraft Engineering & Fabrication is a trusted industrial solutions provider delivering
-        high-quality structural steel, precision welding, CNC cutting and turnkey fabrication services
-        for factories, warehouses, infrastructure and commercial projects across India.
+        SteelCraft Engineering & Fabrication delivers high-performance structural steel, precision welding,
+        CNC cutting and turnkey industrial fabrication solutions for factories, warehouses and infrastructure projects.
       </p>
       <div class="badges">
         <div class="badge">🏭 15+ Years Experience</div>
         <div class="badge">⚙️ ISO Quality Process</div>
-        <div class="badge">🛡️ Safety First Policy</div>
+        <div class="badge">🛡️ Safety First</div>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>500+</strong><br>Projects Done</div>
+        <div class="stat"><strong>120+</strong><br>Clients</div>
+        <div class="stat"><strong>15+</strong><br>Years</div>
       </div>
       <div class="cta">
         <button class="btn primary" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Request a Quote</button>
@@ -152,7 +164,7 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
       </div>
     </div>
     <div class="hero-card">
-      <img src="https://source.unsplash.com/800x600/?welding,fabrication">
+      <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80" alt="Industrial Welding">
     </div>
   </div>
 </div>
@@ -162,24 +174,18 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   <div class="container">
     <div class="section-title">
       <h2>About SteelCraft Engineering</h2>
-      <p>Delivering reliable, strong and precise fabrication solutions for modern industries</p>
+      <p>Reliable, precise and strong fabrication solutions for modern industries</p>
     </div>
     <div class="about">
       <div>
         <p>
-          SteelCraft Engineering is a professionally managed fabrication company specializing in
-          industrial steel structures, custom metal fabrication, heavy equipment installation and
-          maintenance services. With a strong focus on quality, safety and timely delivery, we have
-          successfully executed projects for manufacturing plants, logistics warehouses, commercial
-          buildings and infrastructure developments.
-        </p>
-        <p>
-          Our workshop is equipped with modern machinery and handled by experienced engineers and
-          technicians to ensure every project meets strict quality standards and client expectations.
+          SteelCraft Engineering is a professionally managed fabrication company specializing in industrial steel structures,
+          custom metal fabrication, heavy equipment installation and maintenance services. We focus on quality, safety and
+          timely delivery for every project.
         </p>
       </div>
       <div>
-        <img src="https://source.unsplash.com/800x600/?workshop,steel">
+        <img src="https://images.unsplash.com/photo-1581092334511-8b1b6f4c7b62?auto=format&fit=crop&w=1200&q=80">
       </div>
     </div>
   </div>
@@ -193,12 +199,12 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
       <p>End-to-end fabrication and industrial engineering services</p>
     </div>
     <div class="services">
-      <div class="service-card"><strong>Structural Steel Fabrication</strong><p>Design, fabrication and erection of steel structures for industrial and commercial use.</p></div>
-      <div class="service-card"><strong>Welding & Cutting</strong><p>High-precision MIG, TIG welding and industrial-grade cutting solutions.</p></div>
-      <div class="service-card"><strong>CNC & Laser Cutting</strong><p>Advanced CNC and laser cutting for accurate and repeatable results.</p></div>
-      <div class="service-card"><strong>Industrial Installation</strong><p>On-site installation, alignment and commissioning of fabricated structures.</p></div>
-      <div class="service-card"><strong>Maintenance & Repair</strong><p>Structural repairs, reinforcement and preventive maintenance services.</p></div>
-      <div class="service-card"><strong>Custom Metal Works</strong><p>Tailor-made metal components as per drawings and project requirements.</p></div>
+      <div class="service-card"><strong>Structural Steel Fabrication</strong><p>Design, fabrication and erection of steel structures.</p></div>
+      <div class="service-card"><strong>Welding & Cutting</strong><p>High-precision MIG, TIG welding and industrial cutting.</p></div>
+      <div class="service-card"><strong>CNC & Laser Cutting</strong><p>Advanced CNC and laser cutting for accurate results.</p></div>
+      <div class="service-card"><strong>Industrial Installation</strong><p>On-site installation and commissioning services.</p></div>
+      <div class="service-card"><strong>Maintenance & Repair</strong><p>Structural repairs and preventive maintenance.</p></div>
+      <div class="service-card"><strong>Custom Metal Works</strong><p>Tailor-made metal components as per drawings.</p></div>
     </div>
   </div>
 </section>
@@ -208,13 +214,13 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   <div class="container">
     <div class="section-title">
       <h2>Our Projects</h2>
-      <p>A glimpse of our recent industrial and fabrication works</p>
+      <p>Some of our recent industrial and fabrication works</p>
     </div>
     <div class="projects">
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?factory,steel"><span>Factory Structure Fabrication</span></div>
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?machinery,industrial"><span>Heavy Machinery Installation</span></div>
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?welding,industrial"><span>Precision Welding Works</span></div>
-      <div class="project-card"><img src="https://source.unsplash.com/800x600/?construction,steel"><span>Industrial Steel Framework</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1581092160613-bf3b8c1e1c2f?auto=format&fit=crop&w=1200&q=80"><span>Factory Structure Fabrication</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1581091215367-59ab6c5d1b66?auto=format&fit=crop&w=1200&q=80"><span>Heavy Machinery Installation</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80"><span>Precision Welding Works</span></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"><span>Industrial Steel Framework</span></div>
     </div>
   </div>
 </section>
@@ -224,13 +230,13 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   <div class="container">
     <div class="section-title">
       <h2>Why Choose SteelCraft</h2>
-      <p>What makes us a reliable partner for your industrial projects</p>
+      <p>What makes us a reliable industrial partner</p>
     </div>
     <div class="why">
-      <div class="why-card"><strong>Experienced Team</strong><p>Qualified engineers and skilled technicians with years of industry experience.</p></div>
-      <div class="why-card"><strong>Quality Assurance</strong><p>Strict quality checks and adherence to engineering standards.</p></div>
-      <div class="why-card"><strong>On-Time Delivery</strong><p>Well-planned execution ensuring timely project completion.</p></div>
-      <div class="why-card"><strong>Modern Infrastructure</strong><p>Advanced tools, machines and fabrication facilities.</p></div>
+      <div class="why-card"><strong>Experienced Team</strong><p>Skilled engineers and technicians with years of experience.</p></div>
+      <div class="why-card"><strong>Quality Assurance</strong><p>Strict quality checks and engineering standards.</p></div>
+      <div class="why-card"><strong>On-Time Delivery</strong><p>Planned execution and reliable timelines.</p></div>
+      <div class="why-card"><strong>Modern Equipment</strong><p>Advanced machinery and fabrication facilities.</p></div>
     </div>
   </div>
 </section>
@@ -240,7 +246,7 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   <div class="container">
     <div class="section-title">
       <h2>Our Clients</h2>
-      <p>Trusted by leading industrial and infrastructure companies</p>
+      <p>Trusted by leading industrial companies</p>
     </div>
     <div class="clients">
       <div class="client">ABC Industries</div>
@@ -258,7 +264,7 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   <div class="container">
     <div class="section-title">
       <h2>Request a Quote</h2>
-      <p>Share your project details and our team will get back to you</p>
+      <p>Share your project details and our team will contact you</p>
     </div>
     <div class="quote-form">
       <input placeholder="Your Name">
@@ -297,7 +303,7 @@ footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
   <div class="footer-inner">
     <div>
       <h4>SteelCraft Engineering</h4>
-      <p>Precision fabrication and industrial engineering solutions for reliable and long-lasting structures.</p>
+      <p>Precision fabrication and industrial engineering solutions for strong and reliable structures.</p>
     </div>
     <div>
       <h4>Services</h4>
