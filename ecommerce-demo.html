@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Codly Market — Marketplace Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Codly Market — Premium Marketplace Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
-body{background:#f3f4f6;color:#111;line-height:1.5}
+body{background:#faf7f4;color:#2b2b2b;line-height:1.5}
+
+/* ===== COLORS ===== */
+:root{
+  --dark:#2f1f17;
+  --brown:#3b2419;
+  --accent:#a56a43;
+  --light:#f4ece6;
+  --text:#2b2b2b;
+}
 
 /* ===== LOADER ===== */
 #loader{
-  position:fixed;inset:0;background:#111;
+  position:fixed;inset:0;background:var(--dark);
   display:flex;align-items:center;justify-content:center;flex-direction:column;
-  z-index:9999;color:#fff
+  z-index:9999;color:#f3e7de
 }
 #loader h1{letter-spacing:3px;margin-bottom:16px}
-.spinner{width:48px;height:48px;border:4px solid #444;border-top:4px solid #ff9900;border-radius:50%;animation:spin 1s linear infinite}
+.spinner{width:48px;height:48px;border:4px solid #5a3b2e;border-top:4px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ===== HEADER ===== */
 header{
   position:sticky;top:0;z-index:1000;
-  background:#131921;color:#fff;
+  background:var(--dark);color:#f3e7de;
 }
 .topbar{
   max-width:1200px;margin:auto;padding:10px 16px;
   display:flex;gap:12px;align-items:center
 }
-.logo{font-weight:800;letter-spacing:1px;color:#ff9900}
+.logo{font-weight:800;letter-spacing:1px;color:#d4a373}
 .search{flex:1;display:flex}
 .search input{
-  flex:1;padding:10px 12px;border:none;border-radius:4px 0 0 4px;outline:none
+  flex:1;padding:10px 12px;border:none;border-radius:6px 0 0 6px;outline:none
 }
 .search button{
-  padding:10px 14px;border:none;background:#ff9900;color:#111;font-weight:700;border-radius:0 4px 4px 0;cursor:pointer
+  padding:10px 14px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:0 6px 6px 0;cursor:pointer
 }
-.actions{display:flex;gap:12px;align-items:center}
 .actions button{
-  background:#232f3e;border:1px solid #2f3b4a;color:#fff;padding:8px 12px;border-radius:4px;cursor:pointer
+  background:#3b2419;border:1px solid #5a3b2e;color:#f3e7de;padding:8px 12px;border-radius:6px;cursor:pointer
 }
 
 /* ===== CATEGORY BAR ===== */
 .catbar{
-  background:#232f3e;color:#ddd
+  background:#3b2419;color:#e6d5c7
 }
 .catbar .inner{
   max-width:1200px;margin:auto;display:flex;gap:16px;padding:8px 16px;overflow:auto
 }
-.catbar a{color:#ddd;text-decoration:none;font-size:14px;white-space:nowrap}
-.catbar a:hover{color:#fff}
+.catbar a{color:#e6d5c7;text-decoration:none;font-size:14px;white-space:nowrap}
+.catbar a:hover{color:#d4a373}
 
 /* ===== LAYOUT ===== */
 .container{max-width:1200px;margin:20px auto;padding:0 16px}
@@ -59,37 +67,39 @@ header{
 
 /* ===== SIDEBAR FILTER ===== */
 aside{
-  background:#fff;border-radius:8px;padding:12px
+  background:#fff;border-radius:12px;padding:12px;box-shadow:0 6px 20px rgba(0,0,0,.08)
 }
-aside h3{margin-bottom:10px}
+aside h3{margin-bottom:10px;color:var(--brown)}
 .filter button{
-  display:block;width:100%;text-align:left;margin-bottom:8px;padding:8px 10px;border-radius:6px;border:1px solid #ddd;background:#fff;cursor:pointer
+  display:block;width:100%;text-align:left;margin-bottom:8px;padding:8px 10px;border-radius:8px;border:1px solid #e6ded8;background:#fff;cursor:pointer
 }
-.filter button.active{background:#ff9900;color:#111;border-color:#ff9900}
+.filter button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 /* ===== HERO ===== */
 .hero{
-  background:#fff;border-radius:8px;padding:16px;margin-bottom:16px;
+  background:linear-gradient(180deg,var(--light),#fff);
+  border-radius:16px;padding:20px;margin-bottom:16px;
   display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:center
 }
-.hero h1{font-size:32px}
-.hero p{color:#555;margin:8px 0}
-.hero img{width:100%;border-radius:8px}
+.hero h1{font-size:32px;color:var(--brown)}
+.hero p{color:#6b4a3a;margin:8px 0}
+.hero img{width:100%;border-radius:12px}
 
 /* ===== PRODUCTS ===== */
 .products{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px
 }
 .card{
-  background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb;display:flex;flex-direction:column
+  background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e6ded8;display:flex;flex-direction:column;
+  box-shadow:0 6px 20px rgba(0,0,0,.06)
 }
 .card img{width:100%;height:160px;object-fit:cover}
 .card .body{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
-.badge{display:inline-block;background:#ef4444;color:#fff;font-size:11px;padding:2px 6px;border-radius:999px}
-.price{font-weight:800;color:#111}
+.badge{display:inline-block;background:#b91c1c;color:#fff;font-size:11px;padding:2px 6px;border-radius:999px;width:max-content}
+.price{font-weight:800;color:var(--accent)}
 .old{color:#999;text-decoration:line-through;font-size:12px;margin-left:6px}
 .card button{
-  margin-top:auto;padding:8px;border:none;background:#ff9900;font-weight:700;border-radius:6px;cursor:pointer
+  margin-top:auto;padding:8px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer
 }
 
 /* ===== CART DRAWER ===== */
@@ -102,18 +112,18 @@ aside h3{margin-bottom:10px}
 .cart-item{display:flex;gap:8px;margin-bottom:10px}
 .cart-item img{width:60px;height:60px;object-fit:cover;border-radius:6px}
 .cart-footer{padding:12px;border-top:1px solid #eee}
-.cart-footer button{width:100%;padding:10px;background:#ff9900;border:none;font-weight:800;border-radius:6px}
+.cart-footer button{width:100%;padding:10px;background:var(--accent);border:none;font-weight:800;border-radius:8px;color:#fff}
 
 /* ===== FOOTER ===== */
 footer{
-  background:#131921;color:#ddd;margin-top:40px
+  background:var(--dark);color:#d8c6b8;margin-top:40px
 }
 .footer-inner{
   max-width:1200px;margin:auto;padding:40px 16px;
   display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px
 }
-footer h4{color:#fff;margin-bottom:10px}
-footer a, footer p{color:#ddd;font-size:14px;text-decoration:none;display:block;margin-bottom:6px}
+footer h4{color:#f3e7de;margin-bottom:10px}
+footer a, footer p{color:#d8c6b8;font-size:14px;text-decoration:none;display:block;margin-bottom:6px}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
@@ -171,8 +181,8 @@ footer a, footer p{color:#ddd;font-size:14px;text-decoration:none;display:block;
     <main>
       <div class="hero">
         <div>
-          <h1>Big Deals, Bigger Savings</h1>
-          <p>Marketplace-style demo inspired by Amazon, Flipkart, Myntra & Ajio. Perfect for showcasing to clients.</p>
+          <h1>Big Deals, Premium Style</h1>
+          <p>Marketplace demo inspired by Amazon, Flipkart, Myntra & Ajio — with Codly’s premium brand colors.</p>
           <span class="badge">SALE</span>
         </div>
         <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" />
@@ -200,7 +210,7 @@ footer a, footer p{color:#ddd;font-size:14px;text-decoration:none;display:block;
   <div class="footer-inner">
     <div>
       <h4>Codly Market</h4>
-      <p>Marketplace demo for portfolio & client demos.</p>
+      <p>Premium marketplace demo for portfolio & client demos.</p>
     </div>
     <div>
       <h4>Shop</h4>
