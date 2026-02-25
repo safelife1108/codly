@@ -23,50 +23,26 @@ img{max-width:100%;display:block}
   position:fixed;inset:0;
   background:#0f1720;
   color:#f59e0b;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:opacity .6s ease;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:9999;transition:opacity .6s ease;
 }
 #loader h1{letter-spacing:2px}
-.loader-bar{
-  width:220px;height:6px;background:#1f2a36;
-  border-radius:999px;overflow:hidden;margin-top:16px;
-}
-.loader-bar span{
-  display:block;height:100%;width:0%;
-  background:#f59e0b;
-  animation:load 1.6s infinite;
-}
-@keyframes load{
-  0%{width:0%}
-  50%{width:80%}
-  100%{width:0%}
-}
+.loader-bar{width:220px;height:6px;background:#1f2a36;border-radius:999px;overflow:hidden;margin-top:16px}
+.loader-bar span{display:block;height:100%;width:0%;background:#f59e0b;animation:load 1.6s infinite}
+@keyframes load{0%{width:0%}50%{width:80%}100%{width:0%}}
 
-/* Header */
-header{
-  position:sticky;top:0;z-index:1000;
-  background:rgba(15,23,32,.95);
-  color:#fff;
-  backdrop-filter:blur(6px);
-}
-.nav{
-  max-width:1200px;margin:auto;padding:14px 16px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-}
+/* HEADER */
+header{position:sticky;top:0;z-index:1000;background:rgba(15,23,32,.95);color:#fff;backdrop-filter:blur(6px)}
+.nav{max-width:1200px;margin:auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .brand{font-weight:800;letter-spacing:.5px}
 .brand span{color:var(--accent)}
 .nav a{margin-left:16px;color:#e5e7eb;font-weight:500}
 .nav a:hover{color:#fff}
 
-/* Hero */
+/* HERO */
 .hero{
-  background:
-    linear-gradient(135deg,rgba(15,23,32,.85),rgba(31,42,54,.85)),
-    url("https://images.unsplash.com/photo-1581091215367-59ab6c5d1b66?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+  background:linear-gradient(135deg,rgba(15,23,32,.85),rgba(31,42,54,.85)),
+  url("https://source.unsplash.com/1600x900/?factory,industry,steel") center/cover no-repeat;
   color:#fff;
 }
 .hero-inner{
@@ -75,72 +51,65 @@ header{
 }
 .hero h1{font-size:48px;line-height:1.1;margin-bottom:16px}
 .hero p{color:#e5e7eb;max-width:520px}
-.hero .badges{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
+.badges{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
 .badge{background:rgba(255,255,255,.1);padding:8px 14px;border-radius:999px;font-size:14px}
-.hero .cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:700;
-}
+.cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
 .btn.primary{background:var(--accent);color:#000}
 .btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
-.hero-card{
-  background:#0b1220;border-radius:16px;padding:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
-}
+.hero-card{background:#0b1220;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .hero-card img{border-radius:12px}
 
-/* Sections */
+/* SECTIONS */
 section{padding:70px 16px}
 .container{max-width:1200px;margin:auto}
 .section-title{text-align:center;margin-bottom:40px}
 .section-title h2{font-size:36px}
 .section-title p{color:#6b7280}
 
-/* About */
-.about{
-  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
-}
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .about img{border-radius:16px}
 
-/* Services */
-.services{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;
-}
-.service-card{
-  background:#fff;border-radius:14px;padding:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.service-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
 
-/* Projects */
-.projects{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;
-}
-.project-card{
-  position:relative;overflow:hidden;border-radius:14px;
-}
+/* PROJECTS */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.project-card{position:relative;overflow:hidden;border-radius:14px}
 .project-card img{transition:.4s}
 .project-card:hover img{transform:scale(1.05)}
-.project-card span{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(180deg,transparent,rgba(0,0,0,.8));
-  color:#fff;padding:14px;font-weight:600;
-}
+.project-card span{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.8));color:#fff;padding:14px;font-weight:600}
 
-/* Footer */
-footer{
-  background:#0f1720;color:#cbd5e1;
-}
-.footer-inner{
-  max-width:1200px;margin:auto;padding:50px 16px;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;
-}
+/* WHY US */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.why-card{background:var(--light);border-radius:14px;padding:20px}
+
+/* CLIENTS */
+.clients{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px}
+.client{background:#fff;border-radius:12px;padding:20px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.06);font-weight:700}
+
+/* QUOTE */
+.quote{background:linear-gradient(135deg,var(--steel),var(--dark));color:#fff}
+.quote-form{max-width:700px;margin:auto;background:#0b1220;padding:30px;border-radius:16px}
+.quote-form input,.quote-form textarea{width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:none}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.contact-box{background:#fff;border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+
+/* FOOTER */
+footer{background:#0f1720;color:#cbd5e1}
+.footer-inner{max-width:1200px;margin:auto;padding:50px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
 footer h4{color:#fff;margin-bottom:10px}
-footer a,footer p{display:block;margin-bottom:6px;font-size:14px}
+footer p,footer a{display:block;margin-bottom:6px;font-size:14px}
 
-/* Responsive */
+/* RESPONSIVE */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr}
   .about{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
   .hero h1{font-size:38px}
 }
 </style>
@@ -170,22 +139,19 @@ footer a,footer p{display:block;margin-bottom:6px;font-size:14px}
   <div class="hero-inner">
     <div>
       <h1>Industrial Fabrication<br>Built with <span style="color:#f59e0b">Precision & Strength</span></h1>
-      <p>
-        SteelCraft Engineering & Fabrication delivers high-quality structural steel, welding,
-        CNC cutting and industrial fabrication solutions for factories and infrastructure projects.
-      </p>
+      <p>High-quality structural steel, welding, CNC cutting and industrial fabrication solutions.</p>
       <div class="badges">
         <div class="badge">🏭 15+ Years Experience</div>
         <div class="badge">⚙️ Modern Machinery</div>
         <div class="badge">🛡️ Quality & Safety</div>
       </div>
       <div class="cta">
-        <button class="btn primary">Get a Quote</button>
-        <button class="btn secondary">View Projects</button>
+        <button class="btn primary" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Get a Quote</button>
+        <button class="btn secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
       </div>
     </div>
     <div class="hero-card">
-      <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80" alt="Welding work">
+      <img src="https://source.unsplash.com/800x600/?welding,industry">
     </div>
   </div>
 </div>
@@ -193,17 +159,29 @@ footer a,footer p{display:block;margin-bottom:6px;font-size:14px}
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
-    <div class="section-title">
-      <h2>About SteelCraft</h2>
-      <p>Your trusted partner in industrial fabrication</p>
-    </div>
+    <div class="section-title"><h2>About SteelCraft</h2><p>Your trusted fabrication partner</p></div>
     <div class="about">
       <div>
-        <p>SteelCraft Engineering is a leading fabrication company specializing in structural steel, custom metal works, industrial installation and maintenance.</p>
+        <p>SteelCraft Engineering is a leading fabrication company serving industrial and infrastructure projects.</p>
       </div>
       <div>
-        <img src="https://images.unsplash.com/photo-1581092334511-8b1b6f4c7b62?auto=format&fit=crop&w=1200&q=80" alt="Workshop">
+        <img src="https://source.unsplash.com/800x600/?workshop,steel">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:#f8fafc">
+  <div class="container">
+    <div class="section-title"><h2>Our Services</h2></div>
+    <div class="services">
+      <div class="service-card">Structural Steel Fabrication</div>
+      <div class="service-card">Welding & Cutting</div>
+      <div class="service-card">CNC & Laser Cutting</div>
+      <div class="service-card">Industrial Installation</div>
+      <div class="service-card">Maintenance & Repair</div>
+      <div class="service-card">Custom Metal Works</div>
     </div>
   </div>
 </section>
@@ -211,43 +189,80 @@ footer a,footer p{display:block;margin-bottom:6px;font-size:14px}
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <div class="section-title">
-      <h2>Our Projects</h2>
-    </div>
+    <div class="section-title"><h2>Our Projects</h2></div>
     <div class="projects">
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1581092160613-bf3b8c1e1c2f?auto=format&fit=crop&w=1200&q=80">
-        <span>Factory Structure</span>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?factory,steel"><span>Factory Structure</span></div>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?machinery,industry"><span>Machinery Installation</span></div>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?welding,workshop"><span>Welding Works</span></div>
+      <div class="project-card"><img src="https://source.unsplash.com/800x600/?industrial,construction"><span>Steel Structures</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section style="background:#f8fafc">
+  <div class="container">
+    <div class="section-title"><h2>Why Choose Us</h2></div>
+    <div class="why">
+      <div class="why-card">Experienced Team</div>
+      <div class="why-card">Quality Assurance</div>
+      <div class="why-card">On-Time Delivery</div>
+      <div class="why-card">Modern Equipment</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section>
+  <div class="container">
+    <div class="section-title"><h2>Our Clients</h2></div>
+    <div class="clients">
+      <div class="client">ABC Industries</div>
+      <div class="client">Prime Constructions</div>
+      <div class="client">Metro Infra</div>
+      <div class="client">SteelWorks Ltd.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote" class="quote">
+  <div class="container">
+    <div class="section-title"><h2>Request a Quote</h2></div>
+    <div class="quote-form">
+      <input placeholder="Your Name">
+      <input placeholder="Phone">
+      <input placeholder="Email">
+      <textarea rows="4" placeholder="Project Details"></textarea>
+      <button class="btn primary" onclick="alert('Thank you! We will contact you soon.')">Submit</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-title"><h2>Contact Us</h2></div>
+    <div class="contact-grid">
+      <div class="contact-box">
+        <p>Mumbai, India</p>
+        <p>+91 90000 00000</p>
+        <p>info@steelcraftengineering.com</p>
       </div>
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1581092919534-1b8a0c1c9f77?auto=format&fit=crop&w=1200&q=80">
-        <span>Machinery Installation</span>
-      </div>
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80">
-        <span>Welding Works</span>
-      </div>
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80">
-        <span>Steel Structures</span>
+      <div class="contact-box">
+        <iframe src="https://www.google.com/maps?q=Mumbai,India&output=embed" width="100%" height="300" style="border:0;border-radius:12px;"></iframe>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer id="contact">
+<footer>
   <div class="footer-inner">
-    <div>
-      <h4>SteelCraft Engineering</h4>
-      <p>Precision fabrication and industrial engineering solutions.</p>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <p>Mumbai, India</p>
-      <p>+91 90000 00000</p>
-      <p>info@steelcraftengineering.com</p>
-    </div>
+    <div><h4>SteelCraft Engineering</h4><p>Industrial fabrication solutions.</p></div>
+    <div><h4>Services</h4><a>Fabrication</a><a>Welding</a><a>CNC</a><a>Installation</a></div>
+    <div><h4>Company</h4><a>About</a><a>Projects</a><a>Contact</a></div>
+    <div><h4>Contact</h4><p>Mumbai, India</p><p>+91 90000 00000</p></div>
   </div>
 </footer>
 
