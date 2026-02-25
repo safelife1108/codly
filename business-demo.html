@@ -4,97 +4,285 @@
 <meta charset="UTF-8">
 <title>Business Website Demo - Codly</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Arial,Segoe UI,sans-serif;background:#f6f7fb;color:#222}
-header{background:#0b0f1a;color:#fff;padding:80px 20px;text-align:center}
-header h1{font-size:48px;margin-bottom:10px}
-header p{font-size:18px;color:#ccc}
-.btn{display:inline-block;margin-top:20px;padding:12px 22px;background:#00e5ff;color:#000;text-decoration:none;border-radius:6px;font-weight:bold}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
+body{background:#050505;color:#fff;line-height:1.6}
 
-section{padding:60px 20px;max-width:1100px;margin:auto}
-.section-title{text-align:center;font-size:36px;margin-bottom:40px}
+/* General */
+.container{max-width:1200px;margin:auto;padding:0 20px}
+a{text-decoration:none;color:inherit}
+.btn{
+  display:inline-block;
+  padding:14px 26px;
+  border-radius:10px;
+  background:#00e5ff;
+  color:#000;
+  font-weight:700;
+  transition:.3s;
+}
+.btn.secondary{
+  background:transparent;
+  color:#fff;
+  border:1px solid #333;
+}
+.btn:hover{transform:translateY(-2px);opacity:.9}
 
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.service-box{background:#fff;padding:25px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
-.service-box h3{margin-bottom:10px}
+/* Header / Hero */
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(800px 300px at 20% -10%, #1a1a1a, #050505),
+    linear-gradient(#050505,#050505);
+}
+.hero{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.hero h1{
+  font-size:64px;
+  line-height:1.05;
+  letter-spacing:-1px;
+}
+.hero p{
+  margin-top:20px;
+  font-size:18px;
+  color:#bbb;
+  max-width:520px;
+}
+.hero-actions{margin-top:30px}
+.hero-actions a{margin-right:14px}
 
-.about{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.about img{width:100%;border-radius:10px}
+/* Hero Image Card */
+.hero-card{
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+.hero-card img{
+  width:100%;
+  display:block;
+}
 
-.contact-box{background:#fff;padding:30px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.1);max-width:600px;margin:auto}
-.contact-box input,.contact-box textarea{width:100%;padding:12px;margin-bottom:12px;border:1px solid #ccc;border-radius:6px}
-.contact-box button{width:100%;padding:12px;border:none;background:#0b0f1a;color:#fff;border-radius:6px;font-size:16px;cursor:pointer}
+/* Sections */
+section{padding:100px 0}
+.section-title{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:60px;
+}
 
-footer{background:#0b0f1a;color:#aaa;text-align:center;padding:30px;margin-top:60px}
+/* Services */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+}
+.service{
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:16px;
+  padding:28px;
+  transition:.3s;
+}
+.service:hover{
+  transform:translateY(-6px);
+  border-color:#333;
+}
+.service h3{margin-bottom:10px}
+.service p{color:#aaa;font-size:14px}
 
-@media(max-width:800px){
+/* About */
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.about img{
+  width:100%;
+  border-radius:16px;
+  border:1px solid #1f1f1f;
+}
+
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:24px;
+  text-align:center;
+}
+.stat{
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:16px;
+  padding:30px;
+}
+.stat h2{font-size:42px;margin-bottom:6px;color:#00e5ff}
+.stat p{color:#aaa}
+
+/* Contact */
+.contact-box{
+  max-width:600px;
+  margin:auto;
+  background:#0e0e0e;
+  border:1px solid #1f1f1f;
+  border-radius:20px;
+  padding:40px;
+}
+.contact-box input,
+.contact-box textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#0b0b0b;
+  color:#fff;
+}
+.contact-box button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#00e5ff;
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* Footer */
+footer{
+  background:#040404;
+  border-top:1px solid #1f1f1f;
+  padding:60px 0;
+  text-align:center;
+  color:#777;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero h1{font-size:44px}
   .about{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
+<!-- HERO -->
 <header>
-  <h1>Your Business Name</h1>
-  <p>We help customers with our professional services</p>
-  <a href="#contact" class="btn">Contact Us</a>
+  <div class="container hero">
+    <div>
+      <h1>We build modern<br>business websites.</h1>
+      <p>
+        This is a premium demo business website template by Codly.
+        Clean, fast, and professional design to help businesses look trustworthy online.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn">Start Your Project</a>
+        <a href="#services" class="btn secondary">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" alt="Demo">
+    </div>
+  </div>
 </header>
 
-<section>
-  <h2 class="section-title">Our Services</h2>
-  <div class="services">
-    <div class="service-box">
-      <h3>Service One</h3>
-      <p>Short description of your service.</p>
-    </div>
-    <div class="service-box">
-      <h3>Service Two</h3>
-      <p>Short description of your service.</p>
-    </div>
-    <div class="service-box">
-      <h3>Service Three</h3>
-      <p>Short description of your service.</p>
-    </div>
-    <div class="service-box">
-      <h3>Service Four</h3>
-      <p>Short description of your service.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2 class="section-title">About Us</h2>
-  <div class="about">
-    <div>
-      <p>
-        This is a demo business website template built by Codly.
-        You can write here about your business, your experience, your mission and your values.
-        This section helps build trust with customers.
-      </p>
-      <p>
-        You can explain why customers should choose you and what makes your business special.
-      </p>
-    </div>
-    <div>
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop" alt="Business">
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Website Development</h3>
+        <p>Professional business websites that look clean and modern.</p>
+      </div>
+      <div class="service">
+        <h3>App Development</h3>
+        <p>Simple and powerful mobile or web applications.</p>
+      </div>
+      <div class="service">
+        <h3>UI / UX Design</h3>
+        <p>Designs focused on clarity, trust and conversions.</p>
+      </div>
+      <div class="service">
+        <h3>Support & Maintenance</h3>
+        <p>We keep your website updated and running smoothly.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ABOUT -->
+<section>
+  <div class="container about">
+    <div>
+      <h2>About This Business</h2>
+      <p style="color:#aaa;margin-top:16px">
+        This is a demo business website template created by Codly.
+        It is designed to show how a professional business website can look.
+        You can replace this text with your company story, mission, and values.
+      </p>
+      <p style="color:#aaa;margin-top:10px">
+        A good website builds trust and helps customers contact you easily.
+      </p>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="About">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section>
+  <div class="container">
+    <div class="stats">
+      <div class="stat">
+        <h2>10+</h2>
+        <p>Projects Delivered</p>
+      </div>
+      <div class="stat">
+        <h2>100%</h2>
+        <p>Client Satisfaction</p>
+      </div>
+      <div class="stat">
+        <h2>24/7</h2>
+        <p>Support Available</p>
+      </div>
+      <div class="stat">
+        <h2>Fast</h2>
+        <p>Delivery Time</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
-  <h2 class="section-title">Contact Us</h2>
-  <div class="contact-box">
-    <form onsubmit="event.preventDefault(); alert('Message sent (demo)');">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-box">
+      <form onsubmit="event.preventDefault(); alert('Message sent (demo)');">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 Your Business Name. Built by Codly.</p>
+  <p>© 2026 Your Business Name. Demo template by Codly.</p>
 </footer>
 
 </body>
