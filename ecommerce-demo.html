@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Codly Market — Single-File Marketplace Demo</title>
+<title>Codly Market — Realistic Marketplace Demo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -33,7 +33,6 @@ header{position:sticky;top:0;z-index:1000;background:var(--dark);color:#f3e7de}
 
 /* Layout */
 .container{max-width:1200px;margin:20px auto;padding:0 16px}
-.hidden{display:none}
 .page{display:none}
 .page.active{display:block}
 
@@ -49,10 +48,15 @@ header{position:sticky;top:0;z-index:1000;background:var(--dark);color:#f3e7de}
 
 /* Buttons & forms */
 .btn{padding:10px 14px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:8px;cursor:pointer}
-input,textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ddd}
+.btn.secondary{background:#3b2419}
+input,textarea,select{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ddd}
 
-/* Lists */
-.list{background:#fff;border-radius:12px;border:1px solid #e6ded8;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:12px}
+/* Lists / boxes */
+.box{background:#fff;border-radius:12px;border:1px solid #e6ded8;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:12px}
+
+/* Stars */
+.star{color:#ccc}
+.star.filled{color:#f59e0b}
 
 /* Footer */
 footer{background:var(--dark);color:#d8c6b8;margin-top:40px}
@@ -73,7 +77,7 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
       <button onclick="renderProducts()">Search</button>
     </div>
     <div class="actions">
-      <button onclick="showPage('login')">Login</button>
+      <button onclick="showPage('profile')">Profile</button>
       <button onclick="showPage('wishlist')">Wishlist</button>
       <button onclick="showPage('cart')">Cart (<span id="cartCount">0</span>)</button>
       <button onclick="showPage('orders')">Orders</button>
@@ -95,21 +99,36 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
 <!-- HOME -->
 <div id="home" class="page active">
   <h2>Big Deals, Premium Style</h2>
-  <p>Single-file marketplace demo with real flows (home → product → cart → checkout → orders).</p>
+  <p>Realistic single-file marketplace demo (home → product → cart → checkout → orders).</p>
   <br>
   <div class="products" id="productGrid"></div>
 </div>
 
 <!-- PRODUCT -->
 <div id="productPage" class="page">
-  <button class="btn" onclick="goHome()">← Back</button>
-  <div id="productDetail" class="list" style="margin-top:12px"></div>
+  <button class="btn secondary" onclick="goHome()">← Back</button>
+  <div id="productDetail" class="box" style="margin-top:12px"></div>
+  <br>
+  <div class="box">
+    <h3>Reviews</h3>
+    <div id="reviewList"></div>
+    <hr style="margin:10px 0">
+    <select id="reviewRating">
+      <option value="5">★★★★★ (5)</option>
+      <option value="4">★★★★☆ (4)</option>
+      <option value="3">★★★☆☆ (3)</option>
+      <option value="2">★★☆☆☆ (2)</option>
+      <option value="1">★☆☆☆☆ (1)</option>
+    </select>
+    <textarea id="reviewText" placeholder="Write a review..."></textarea>
+    <button class="btn" onclick="addReview()">Submit Review</button>
+  </div>
 </div>
 
 <!-- CART -->
 <div id="cart" class="page">
   <h2>Your Cart</h2>
-  <div id="cartItems" class="list"></div>
+  <div id="cartItems" class="box"></div>
   <br>
   <button class="btn" onclick="showPage('checkout')">Proceed to Checkout</button>
 </div>
@@ -122,31 +141,34 @@ footer a, footer p{color:#d8c6b8;font-size:14px;display:block;margin-bottom:6px}
   <button class="btn" onclick="placeOrder()">Place Order</button>
 </div>
 
-<!-- LOGIN -->
-<div id="login" class="page">
-  <h2>Login (Demo)</h2>
-  <input placeholder="Email">
-  <input type="password" placeholder="Password">
-  <button class="btn" onclick="goHome()">Login</button>
+<!-- PROFILE -->
+<div id="profile" class="page">
+  <h2>Your Profile</h2>
+  <div class="box">
+    <input id="pname" placeholder="Full Name">
+    <input id="pemail" placeholder="Email">
+    <textarea id="paddress" placeholder="Address"></textarea>
+    <button class="btn" onclick="saveProfile()">Save Profile</button>
+  </div>
 </div>
 
 <!-- WISHLIST -->
 <div id="wishlist" class="page">
   <h2>Wishlist</h2>
-  <div id="wishItems" class="list"></div>
+  <div id="wishItems" class="box"></div>
 </div>
 
 <!-- ORDERS -->
 <div id="orders" class="page">
   <h2>Your Orders</h2>
-  <div id="orderItems" class="list"></div>
+  <div id="orderItems" class="box"></div>
 </div>
 
 </div>
 
 <footer>
   <div class="footer-inner">
-    <div><h4>Codly Market</h4><p>Single-file marketplace demo for portfolio.</p></div>
+    <div><h4>Codly Market</h4><p>Realistic marketplace demo for portfolio.</p></div>
     <div><h4>Shop</h4><a>Fashion</a><a>Electronics</a><a>Footwear</a><a>Accessories</a></div>
     <div><h4>Support</h4><a>Help Center</a><a>Returns</a><a>Shipping</a><a>Contact</a></div>
     <div><h4>Contact</h4><p>Mumbai, India</p><p>support@codlymarket.in</p></div>
@@ -168,8 +190,17 @@ let currentCategory="all";
 let cart=JSON.parse(localStorage.getItem("cart")||"[]");
 let wishlist=JSON.parse(localStorage.getItem("wishlist")||"[]");
 let orders=JSON.parse(localStorage.getItem("orders")||"[]");
+let profile=JSON.parse(localStorage.getItem("profile")||"{}");
+let reviews=JSON.parse(localStorage.getItem("reviews")||"{}");
+let currentProduct=null;
 
-function save(){ localStorage.setItem("cart",JSON.stringify(cart)); localStorage.setItem("wishlist",JSON.stringify(wishlist)); localStorage.setItem("orders",JSON.stringify(orders)); }
+function save(){ 
+  localStorage.setItem("cart",JSON.stringify(cart));
+  localStorage.setItem("wishlist",JSON.stringify(wishlist));
+  localStorage.setItem("orders",JSON.stringify(orders));
+  localStorage.setItem("profile",JSON.stringify(profile));
+  localStorage.setItem("reviews",JSON.stringify(reviews));
+}
 
 function showPage(id){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
@@ -177,6 +208,7 @@ function showPage(id){
   if(id==="cart") renderCart();
   if(id==="wishlist") renderWishlist();
   if(id==="orders") renderOrders();
+  if(id==="profile") loadProfile();
 }
 
 function goHome(){ showPage("home"); }
@@ -189,12 +221,14 @@ function renderProducts(){
   products.filter(p=>{
     return (currentCategory==="all"||p.cat===currentCategory) && p.title.toLowerCase().includes(q);
   }).forEach(p=>{
+    const avg = getAvgRating(p.id);
     const card=document.createElement("div"); card.className="card";
     card.innerHTML=`
       <img src="${p.img}" onclick="openProduct(${p.id})">
       <div class="body">
         <span class="badge">Deal</span>
         <strong>${p.title}</strong>
+        <div>${renderStars(avg)}</div>
         <div><span class="price">₹${p.price}</span> <span class="old">₹${p.old}</span></div>
         <button onclick="addToCart(${p.id})">Add to Cart</button>
         <button onclick="addToWishlist(${p.id})">♡ Wishlist</button>
@@ -205,16 +239,48 @@ function renderProducts(){
 
 function openProduct(id){
   const p=products.find(x=>x.id===id);
+  currentProduct=id;
   const box=document.getElementById("productDetail");
+  const avg=getAvgRating(id);
   box.innerHTML=`
     <h2>${p.title}</h2>
     <img src="${p.img}" style="max-width:300px;width:100%;border-radius:12px">
     <p><b>Price:</b> ₹${p.price}</p>
+    <div>${renderStars(avg)}</div>
     <p>High quality product. Fast delivery. Secure checkout.</p>
     <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
-    <button class="btn" onclick="addToWishlist(${p.id})">Add to Wishlist</button>
+    <button class="btn secondary" onclick="addToWishlist(${p.id})">Add to Wishlist</button>
   `;
+  renderReviews();
   showPage("productPage");
+}
+
+function renderStars(n){
+  let s="";
+  for(let i=1;i<=5;i++) s+=`<span class="star ${i<=n?"filled":""}">★</span>`;
+  return s;
+}
+
+function getAvgRating(pid){
+  const arr=reviews[pid]||[];
+  if(arr.length===0) return 0;
+  return Math.round(arr.reduce((a,b)=>a+b.rating,0)/arr.length);
+}
+
+function renderReviews(){
+  const list=document.getElementById("reviewList");
+  const arr=reviews[currentProduct]||[];
+  list.innerHTML=arr.length?arr.map(r=>`<p>${renderStars(r.rating)} - ${r.text}</p>`).join(""):"<p>No reviews yet.</p>";
+}
+
+function addReview(){
+  const rating=parseInt(document.getElementById("reviewRating").value);
+  const text=document.getElementById("reviewText").value.trim();
+  if(!text) return alert("Write something");
+  if(!reviews[currentProduct]) reviews[currentProduct]=[];
+  reviews[currentProduct].push({rating,text});
+  document.getElementById("reviewText").value="";
+  save(); renderReviews(); renderProducts();
 }
 
 function addToCart(id){
@@ -237,12 +303,17 @@ function renderCart(){
     total+=item.price*item.qty;
     const div=document.createElement("div");
     div.innerHTML=`
-      <p><b>${item.title}</b> - ₹${item.price} x ${item.qty}</p>
-      <button class="btn" onclick="removeFromCart(${item.id})">Remove</button>
-      <hr>`;
+      <p><b>${item.title}</b> - ₹${item.price} x 
+      <input type="number" min="1" value="${item.qty}" onchange="updateQty(${item.id},this.value)" style="width:60px"> 
+      <button class="btn secondary" onclick="removeFromCart(${item.id})">Remove</button></p><hr>`;
     box.appendChild(div);
   });
   const t=document.createElement("p"); t.innerHTML=`<b>Total: ₹${total}</b>`; box.appendChild(t);
+}
+
+function updateQty(id,val){
+  const it=cart.find(i=>i.id===id);
+  if(it){ it.qty=parseInt(val)||1; save(); renderCart(); updateCartCount(); }
 }
 
 function addToWishlist(id){
@@ -279,6 +350,18 @@ function renderOrders(){
 }
 
 function updateCartCount(){ document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0); }
+
+function loadProfile(){
+  document.getElementById("pname").value=profile.name||"";
+  document.getElementById("pemail").value=profile.email||"";
+  document.getElementById("paddress").value=profile.address||"";
+}
+function saveProfile(){
+  profile.name=document.getElementById("pname").value;
+  profile.email=document.getElementById("pemail").value;
+  profile.address=document.getElementById("paddress").value;
+  save(); alert("Profile saved");
+}
 
 renderProducts(); updateCartCount();
 </script>
