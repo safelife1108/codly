@@ -3,288 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PowerFlex — Elite Fitness Experience</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>PowerFlex Engine — Phase 1</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:'Inter',sans-serif;
   background:#000;
-  color:#fff;
-  overflow-x:hidden;
-}
-
-/* ================= LOADER ================= */
-#loader{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  z-index:9999;
-}
-.logo-intro{
-  font-family:'Orbitron',sans-serif;
-  font-size:80px;
-  letter-spacing:8px;
-  color:#e50914;
-  text-shadow:0 0 30px rgba(229,9,20,.7);
-  animation:logoReveal 2.5s ease forwards;
-}
-@keyframes logoReveal{
-  0%{opacity:0;transform:scale(0.6)}
-  100%{opacity:1;transform:scale(1)}
-}
-.loader-bar{
-  width:0;
-  height:4px;
-  background:#e50914;
-  margin-top:20px;
-  animation:barLoad 2.5s ease forwards;
-}
-@keyframes barLoad{
-  to{width:220px}
-}
-
-/* ================= HERO ================= */
-.hero{
-  height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
   overflow:hidden;
 }
-.hero video{
-  position:absolute;
+#webgl{
+  position:fixed;
   inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.4);
-}
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.6),#000);
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:900px;
-}
-.hero h1{
-  font-family:'Orbitron',sans-serif;
-  font-size:clamp(48px,6vw,90px);
-  color:#e50914;
-  text-shadow:0 0 40px rgba(229,9,20,.7);
-}
-.hero p{
-  margin-top:20px;
-  font-size:18px;
-  opacity:.9;
-}
-.hero-buttons{
-  margin-top:30px;
-}
-.btn{
-  display:inline-block;
-  padding:14px 30px;
-  margin:10px;
-  border-radius:6px;
-  font-weight:600;
-  transition:.3s;
-}
-.btn-primary{
-  background:#e50914;
-  color:#000;
-}
-.btn-primary:hover{
-  background:#ff1f2e;
-}
-.btn-outline{
-  border:1px solid #e50914;
-  color:#e50914;
-}
-.btn-outline:hover{
-  background:#e50914;
-  color:#000;
-}
-
-/* ================= SECTIONS ================= */
-section{
-  padding:120px 10%;
-}
-.section-title{
-  font-size:42px;
-  margin-bottom:20px;
-  color:#e50914;
-  font-weight:800;
-}
-.section-text{
-  max-width:800px;
-  line-height:1.7;
-  opacity:.9;
-}
-.grid{
-  display:grid;
-  gap:30px;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  margin-top:50px;
-}
-.card{
-  background:#111;
-  padding:30px;
-  border-radius:10px;
-  border:1px solid rgba(229,9,20,.3);
-  transition:.4s;
-}
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 30px rgba(229,9,20,.4);
-}
-.card h3{
-  color:#e50914;
-  margin-bottom:10px;
-}
-
-/* ================= TRAINERS ================= */
-.trainer img{
-  width:100%;
-  border-radius:10px;
-  margin-bottom:10px;
-}
-
-/* ================= PRICING ================= */
-.price{
-  font-size:26px;
-  font-weight:800;
-  margin:10px 0;
-  color:#e50914;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  padding:80px 10%;
-  background:#050505;
-  text-align:center;
-  opacity:.7;
 }
 </style>
 </head>
-
 <body>
 
-<!-- Loader -->
-<div id="loader">
-  <div class="logo-intro">POWERFLEX</div>
-  <div class="loader-bar"></div>
-</div>
+<canvas id="webgl"></canvas>
 
-<!-- Hero -->
-<div class="hero">
-  <video autoplay muted loop playsinline>
-    <source src="https://cdn.coverr.co/videos/coverr-man-doing-push-ups-1560/1080p.mp4" type="video/mp4">
-  </video>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Build Strength.<br>Transform Your Body.</h1>
-    <p>
-      PowerFlex is a next-generation performance arena designed for serious transformation.
-      Elite coaching. Science-driven training. Real measurable results.
-    </p>
-    <div class="hero-buttons">
-      <a href="#programs" class="btn btn-primary">Explore Programs</a>
-      <a href="#contact" class="btn btn-outline">Join Today</a>
-    </div>
-  </div>
-</div>
-
-<!-- Why -->
-<section>
-  <h2 class="section-title">Why PowerFlex?</h2>
-  <p class="section-text">
-    We combine biomechanics, structured progression systems, and high-performance training methods to help members build strength,
-    burn fat, and unlock peak physical performance.
-  </p>
-</section>
-
-<!-- Programs -->
-<section id="programs">
-  <h2 class="section-title">Training Programs</h2>
-  <div class="grid">
-    <div class="card"><h3>Strength Training</h3>Progressive overload muscle development system.</div>
-    <div class="card"><h3>HIIT Fat Loss</h3>High intensity fat-burning workouts.</div>
-    <div class="card"><h3>CrossFit</h3>Functional performance conditioning.</div>
-    <div class="card"><h3>Mobility</h3>Recovery & flexibility enhancement.</div>
-    <div class="card"><h3>Endurance</h3>Cardio & stamina improvement.</div>
-    <div class="card"><h3>Personal Coaching</h3>One-on-one elite transformation program.</div>
-  </div>
-</section>
-
-<!-- Trainers -->
-<section>
-  <h2 class="section-title">Elite Trainers</h2>
-  <div class="grid">
-    <div class="card trainer">
-      <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=800">
-      <h3>Rajesh Kumar</h3>Strength & Conditioning Specialist
-    </div>
-    <div class="card trainer">
-      <img src="https://images.unsplash.com/photo-1546484959-f6e7c6f6e8b9?q=80&w=800">
-      <h3>Priya Sharma</h3>Mobility & Recovery Expert
-    </div>
-  </div>
-</section>
-
-<!-- Pricing -->
-<section>
-  <h2 class="section-title">Membership Plans</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Basic</h3>
-      <div class="price">₹2,999</div>
-      Full gym access
-    </div>
-    <div class="card">
-      <h3>Pro</h3>
-      <div class="price">₹4,999</div>
-      Coaching + tracking
-    </div>
-    <div class="card">
-      <h3>Elite</h3>
-      <div class="price">₹7,999</div>
-      Personalized program
-    </div>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact">
-  <h2 class="section-title">Contact Us</h2>
-  <p class="section-text">
-    📍 Mumbai, India<br>
-    📞 +91 90000 00000<br>
-    ✉ info@powerflexgym.com
-  </p>
-</section>
-
-<footer>
-© 2026 PowerFlex — Built for Greatness
-</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 
 <script>
-setTimeout(()=>{
-  document.getElementById("loader").style.opacity="0";
-  setTimeout(()=>{
-    document.getElementById("loader").style.display="none";
-  },1000);
-},2500);
+/* ================================
+   BASIC WEBGL ENGINE SETUP
+================================ */
+
+const canvas = document.getElementById("webgl");
+
+/* Scene */
+const scene = new THREE.Scene();
+
+/* Camera */
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  2000
+);
+camera.position.z = 400;
+
+/* Renderer */
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas,
+  antialias: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+/* ================================
+   PARTICLE BASE FIELD
+================================ */
+
+const particleCount = 2000;
+
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particleCount * 3);
+
+for (let i = 0; i < particleCount; i++) {
+  positions[i * 3]     = (Math.random() - 0.5) * 1000;
+  positions[i * 3 + 1] = (Math.random() - 0.5) * 1000;
+  positions[i * 3 + 2] = (Math.random() - 0.5) * 1000;
+}
+
+geometry.setAttribute(
+  "position",
+  new THREE.BufferAttribute(positions, 3)
+);
+
+const material = new THREE.PointsMaterial({
+  color: 0xe50914,
+  size: 3
+});
+
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+/* ================================
+   ANIMATION LOOP
+================================ */
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  particles.rotation.y += 0.0015;
+  particles.rotation.x += 0.0007;
+
+  renderer.render(scene, camera);
+}
+
+animate();
+
+/* ================================
+   RESIZE HANDLING
+================================ */
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 </script>
 
 </body>
