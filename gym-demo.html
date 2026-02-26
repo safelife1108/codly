@@ -2,24 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PowerFlex — Immersive Fitness Experience</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerFlex — Next Gen Fitness Experience</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{
-  height:100%;
-  font-family:'Montserrat',sans-serif;
+body{
   background:#000;
+  font-family:'Inter',sans-serif;
   color:#fff;
   overflow-x:hidden;
 }
 
-/* ===============================
-   CINEMATIC 3D LOADER
-================================ */
+/* ================= LOADER ================= */
 
 #loader{
   position:fixed;
@@ -28,50 +25,48 @@ html,body{
   display:flex;
   align-items:center;
   justify-content:center;
-  perspective:1400px;
+  flex-direction:column;
   z-index:9999;
+  perspective:1200px;
 }
 
-.logo-wrapper{
-  transform-style:preserve-3d;
-  animation:introZoom 3s cubic-bezier(.16,.84,.44,1) forwards;
-  opacity:0;
-}
-
-.logo{
-  font-size:clamp(60px,9vw,140px);
-  font-weight:900;
-  letter-spacing:.35em;
+.logo3d{
+  font-family:'Orbitron',sans-serif;
+  font-size:80px;
+  font-weight:800;
   color:#e50914;
   text-shadow:
-    0 0 20px rgba(229,9,20,.6),
-    0 0 60px rgba(229,9,20,.4),
-    0 0 120px rgba(229,9,20,.3);
+    0 0 20px rgba(229,9,20,.8),
+    0 0 60px rgba(229,9,20,.6),
+    0 0 120px rgba(229,9,20,.4);
+  transform:rotateX(90deg);
+  animation:intro 3s ease forwards;
 }
 
-@keyframes introZoom{
-  0%{
-    transform:translateZ(-800px) rotateX(50deg);
-    opacity:0;
-  }
-  60%{
-    opacity:1;
-    transform:translateZ(100px) rotateX(0deg);
-  }
-  100%{
-    transform:translateZ(0);
-  }
+@keyframes intro{
+  0%{transform:rotateX(90deg) scale(0.5);opacity:0}
+  40%{opacity:1}
+  100%{transform:rotateX(0deg) scale(1);opacity:1}
 }
 
-/* ===============================
-   IMMERSIVE HERO
-================================ */
+.loader-line{
+  width:0;
+  height:3px;
+  background:#e50914;
+  margin-top:20px;
+  animation:lineGrow 2.5s ease forwards;
+}
+
+@keyframes lineGrow{
+  to{width:200px}
+}
+
+/* ================= HERO 3D SCENE ================= */
 
 .hero{
+  height:200vh;
   position:relative;
-  height:200vh; /* scroll depth */
   perspective:1200px;
-  overflow:hidden;
 }
 
 .hero-scene{
@@ -82,42 +77,44 @@ html,body{
   overflow:hidden;
 }
 
-/* Video Layer */
+.hero-layer{
+  position:absolute;
+  inset:0;
+  background:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000') center/cover;
+  transform:translateZ(-200px) scale(1.3);
+}
+
 .hero-video{
   position:absolute;
   inset:0;
-  transform:translateZ(-200px) scale(1.2);
+  transform:translateZ(-100px) scale(1.2);
 }
 
 .hero-video video{
   width:100%;
   height:100%;
   object-fit:cover;
+  filter:brightness(.4);
 }
 
-/* Dark overlay */
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.85));
-  transform:translateZ(-100px);
+  background:linear-gradient(to bottom,rgba(0,0,0,.6),#000);
 }
 
-/* Foreground content */
 .hero-content{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) translateZ(200px);
-  text-align:center;
-  max-width:900px;
-  padding:0 20px;
+  position:relative;
+  z-index:5;
+  padding:0 10%;
+  top:40%;
+  transform:translateY(-40%);
 }
 
 .hero h1{
-  font-size:clamp(42px,6vw,100px);
-  font-weight:900;
-  line-height:1.1;
+  font-size:clamp(50px,6vw,100px);
+  font-weight:800;
+  color:#fff;
 }
 
 .hero h1 span{
@@ -125,100 +122,196 @@ html,body{
 }
 
 .hero p{
-  margin-top:24px;
+  margin-top:20px;
+  max-width:600px;
   font-size:18px;
-  line-height:1.8;
   opacity:.9;
 }
 
-/* ===============================
-   CONTENT SECTION
-================================ */
-
-.section{
-  padding:140px 10%;
-  background:#0a0a0a;
+.hero-buttons{
+  margin-top:30px;
+  display:flex;
+  gap:20px;
 }
 
-.section h2{
-  font-size:42px;
-  margin-bottom:20px;
+.btn{
+  padding:14px 28px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:#e50914;
+  color:#000;
+}
+
+.btn-primary:hover{
+  background:#ff1c26;
+}
+
+.btn-outline{
+  border:1px solid #e50914;
   color:#e50914;
 }
 
-.section p{
+.btn-outline:hover{
+  background:#e50914;
+  color:#000;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+  padding:120px 10%;
+  background:#000;
+}
+
+.section-title{
+  font-size:48px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.section-title span{
+  color:#e50914;
+}
+
+.section-text{
   max-width:800px;
-  line-height:1.8;
-  opacity:.85;
+  line-height:1.7;
+  opacity:.9;
 }
 
-/* Smooth fade */
-.fade{
-  opacity:0;
-  transform:translateY(60px);
-  transition:1s ease;
-}
-.fade.show{
-  opacity:1;
-  transform:none;
+.grid{
+  margin-top:60px;
+  display:grid;
+  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 }
 
+.card{
+  background:#111;
+  padding:30px;
+  border-radius:10px;
+  border:1px solid #222;
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  border-color:#e50914;
+  box-shadow:0 0 30px rgba(229,9,20,.3);
+}
+
+.card h3{
+  margin-bottom:10px;
+  color:#e50914;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  padding:80px 10%;
+  background:#050505;
+  text-align:center;
+  opacity:.7;
+}
 </style>
 </head>
+
 <body>
 
-<!-- 3D CINEMATIC LOADER -->
+<!-- LOADER -->
 <div id="loader">
-  <div class="logo-wrapper">
-    <div class="logo">POWERFLEX</div>
-  </div>
+  <div class="logo3d">POWERFLEX</div>
+  <div class="loader-line"></div>
 </div>
 
-<!-- IMMERSIVE HERO -->
-<section class="hero">
-  <div class="hero-scene">
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-scene" id="scene">
+
+    <div class="hero-layer"></div>
 
     <div class="hero-video">
-      <video autoplay muted loop playsinline>
-        <source src="https://cdn.coverr.co/videos/coverr-man-lifting-weights-1574/1080p.mp4" type="video/mp4">
+      <video autoplay muted loop>
+        <source src="https://cdn.coverr.co/videos/coverr-man-doing-push-ups-1560/1080p.mp4" type="video/mp4">
       </video>
     </div>
 
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <h1>Build Your Body.<br><span>Transform Your Life.</span></h1>
+      <h1>Build Strength.<br><span>Command Presence.</span></h1>
       <p>
-        PowerFlex is a next-generation immersive fitness experience.
-        Combining elite coaching, cinematic training environments,
-        and performance-driven systems, we engineer real transformation.
+        PowerFlex is not just a gym. It is a next-generation performance arena engineered for serious transformation.
+        Elite trainers. Advanced recovery systems. Data-driven coaching. Pure results.
       </p>
+      <div class="hero-buttons">
+        <div class="btn btn-primary">Start Transformation</div>
+        <div class="btn btn-outline">Explore Programs</div>
+      </div>
     </div>
 
   </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <h2 class="section-title">Why <span>PowerFlex</span>?</h2>
+  <p class="section-text">
+    We combine biomechanics, strength science, high-performance training protocols,
+    and personalized data tracking to help individuals break physical and mental barriers.
+    Every detail inside PowerFlex is engineered for peak human output.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Elite Coaching</h3>
+      <p>Certified professionals with performance-first mindset and real-world athlete training experience.</p>
+    </div>
+
+    <div class="card">
+      <h3>Advanced Equipment</h3>
+      <p>Premium resistance machines, Olympic lifting platforms, and high-intensity conditioning zones.</p>
+    </div>
+
+    <div class="card">
+      <h3>Recovery Lab</h3>
+      <p>Mobility therapy, guided stretching, and recovery systems built for sustainable growth.</p>
+    </div>
+  </div>
 </section>
 
-<!-- PROGRAM CONTENT -->
-<section class="section fade">
-  <h2>Elite Training Programs</h2>
-  <p>
-    From strength development to high-intensity fat-loss systems,
-    our programs are built on sports science principles and
-    personalized progression tracking.
-  </p>
+<!-- MEMBERSHIP -->
+<section>
+  <h2 class="section-title">Membership <span>Plans</span></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Basic</h3>
+      <p>₹2,999 / month<br>Full gym access + group classes</p>
+    </div>
+
+    <div class="card">
+      <h3>Pro</h3>
+      <p>₹4,999 / month<br>Coaching support + performance tracking</p>
+    </div>
+
+    <div class="card">
+      <h3>Elite</h3>
+      <p>₹7,999 / month<br>Personalized transformation program</p>
+    </div>
+  </div>
 </section>
 
-<section class="section fade">
-  <h2>Performance-Driven Coaching</h2>
-  <p>
-    Our certified coaches specialize in muscle growth, athletic
-    conditioning, mobility correction, and sustainable lifestyle
-    transformation.
-  </p>
-</section>
+<footer>
+  © 2026 PowerFlex — Engineered for Greatness
+</footer>
 
 <script>
-
 /* Loader exit */
 setTimeout(()=>{
   document.getElementById("loader").style.opacity="0";
@@ -228,23 +321,20 @@ setTimeout(()=>{
 },3500);
 
 /* Scroll-driven camera */
-const heroScene=document.querySelector(".hero-scene");
+const scene = document.getElementById("scene");
+
 window.addEventListener("scroll",()=>{
-  const scroll=window.scrollY;
-  heroScene.style.transform=`rotateX(${scroll*0.02}deg) translateZ(${scroll*0.2}px)`;
+  const scroll = window.scrollY;
+  scene.style.transform =
+    `rotateX(${scroll*0.05}deg) translateZ(${scroll*-0.5}px)`;
 });
 
-/* Reveal sections */
-const fades=document.querySelectorAll(".fade");
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("show");
-    }
-  });
-},{threshold:0.3});
-fades.forEach(f=>observer.observe(f));
-
+/* Mouse depth */
+document.addEventListener("mousemove",(e)=>{
+  const x = (e.clientX/window.innerWidth - 0.5)*10;
+  const y = (e.clientY/window.innerHeight - 0.5)*10;
+  scene.style.transform += ` rotateY(${x}deg) rotateX(${y}deg)`;
+});
 </script>
 
 </body>
