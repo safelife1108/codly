@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PowerFlex — Next Gen Fitness Experience</title>
+<title>PowerFlex — Next Generation Performance</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -16,325 +16,274 @@ body{
   overflow-x:hidden;
 }
 
-/* ================= LOADER ================= */
-
-#loader{
+/* ================= WEBGL INTRO ================= */
+#webgl{
   position:fixed;
   inset:0;
+  z-index:9999;
   background:#000;
+  transition:opacity 2s ease;
+}
+
+/* ================= MAIN CONTENT ================= */
+#mainContent{
+  opacity:0;
+  transition:opacity 2s ease;
+}
+
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
-  z-index:9999;
-  perspective:1200px;
+  text-align:center;
+  background:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000') center/cover no-repeat;
 }
-
-.logo3d{
-  font-family:'Orbitron',sans-serif;
-  font-size:80px;
-  font-weight:800;
-  color:#e50914;
-  text-shadow:
-    0 0 20px rgba(229,9,20,.8),
-    0 0 60px rgba(229,9,20,.6),
-    0 0 120px rgba(229,9,20,.4);
-  transform:rotateX(90deg);
-  animation:intro 3s ease forwards;
-}
-
-@keyframes intro{
-  0%{transform:rotateX(90deg) scale(0.5);opacity:0}
-  40%{opacity:1}
-  100%{transform:rotateX(0deg) scale(1);opacity:1}
-}
-
-.loader-line{
-  width:0;
-  height:3px;
-  background:#e50914;
-  margin-top:20px;
-  animation:lineGrow 2.5s ease forwards;
-}
-
-@keyframes lineGrow{
-  to{width:200px}
-}
-
-/* ================= HERO 3D SCENE ================= */
-
-.hero{
-  height:200vh;
-  position:relative;
-  perspective:1200px;
-}
-
-.hero-scene{
-  position:sticky;
-  top:0;
-  height:100vh;
-  transform-style:preserve-3d;
-  overflow:hidden;
-}
-
-.hero-layer{
+.hero::after{
+  content:"";
   position:absolute;
   inset:0;
-  background:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000') center/cover;
-  transform:translateZ(-200px) scale(1.3);
+  background:linear-gradient(to bottom,rgba(0,0,0,.5),#000);
 }
-
-.hero-video{
-  position:absolute;
-  inset:0;
-  transform:translateZ(-100px) scale(1.2);
-}
-
-.hero-video video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.4);
-}
-
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.6),#000);
-}
-
 .hero-content{
   position:relative;
-  z-index:5;
-  padding:0 10%;
-  top:40%;
-  transform:translateY(-40%);
+  z-index:2;
+  max-width:900px;
 }
-
 .hero h1{
+  font-family:'Orbitron',sans-serif;
   font-size:clamp(50px,6vw,100px);
-  font-weight:800;
-  color:#fff;
-}
-
-.hero h1 span{
   color:#e50914;
+  text-shadow:0 0 30px rgba(229,9,20,.6);
 }
-
 .hero p{
   margin-top:20px;
-  max-width:600px;
   font-size:18px;
   opacity:.9;
 }
 
-.hero-buttons{
-  margin-top:30px;
-  display:flex;
-  gap:20px;
-}
-
-.btn{
-  padding:14px 28px;
-  border-radius:8px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.btn-primary{
-  background:#e50914;
-  color:#000;
-}
-
-.btn-primary:hover{
-  background:#ff1c26;
-}
-
-.btn-outline{
-  border:1px solid #e50914;
-  color:#e50914;
-}
-
-.btn-outline:hover{
-  background:#e50914;
-  color:#000;
-}
-
-/* ================= SECTIONS ================= */
-
+/* ================= SECTION ================= */
 section{
   padding:120px 10%;
   background:#000;
 }
-
 .section-title{
-  font-size:48px;
-  font-weight:800;
+  font-size:42px;
   margin-bottom:20px;
-}
-
-.section-title span{
   color:#e50914;
+  font-weight:800;
 }
-
 .section-text{
   max-width:800px;
   line-height:1.7;
   opacity:.9;
 }
 
+/* ================= GRID ================= */
 .grid{
-  margin-top:60px;
   display:grid;
   gap:30px;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  margin-top:60px;
 }
-
 .card{
   background:#111;
   padding:30px;
-  border-radius:10px;
-  border:1px solid #222;
+  border-radius:12px;
+  border:1px solid rgba(229,9,20,.3);
   transition:.4s;
 }
-
 .card:hover{
   transform:translateY(-10px);
-  border-color:#e50914;
-  box-shadow:0 0 30px rgba(229,9,20,.3);
+  box-shadow:0 0 40px rgba(229,9,20,.4);
+}
+.card h3{
+  color:#e50914;
+  margin-bottom:10px;
 }
 
-.card h3{
+/* ================= TRAINERS ================= */
+.trainer img{
+  width:100%;
+  border-radius:10px;
   margin-bottom:10px;
+}
+
+/* ================= PRICING ================= */
+.price{
+  font-size:28px;
+  font-weight:800;
+  margin:10px 0;
   color:#e50914;
 }
 
 /* ================= FOOTER ================= */
-
 footer{
-  padding:80px 10%;
+  padding:100px 10%;
   background:#050505;
   text-align:center;
   opacity:.7;
 }
 </style>
 </head>
-
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="logo3d">POWERFLEX</div>
-  <div class="loader-line"></div>
-</div>
+<canvas id="webgl"></canvas>
 
-<!-- HERO -->
+<div id="mainContent">
+
 <div class="hero">
-  <div class="hero-scene" id="scene">
-
-    <div class="hero-layer"></div>
-
-    <div class="hero-video">
-      <video autoplay muted loop>
-        <source src="https://cdn.coverr.co/videos/coverr-man-doing-push-ups-1560/1080p.mp4" type="video/mp4">
-      </video>
-    </div>
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <h1>Build Strength.<br><span>Command Presence.</span></h1>
-      <p>
-        PowerFlex is not just a gym. It is a next-generation performance arena engineered for serious transformation.
-        Elite trainers. Advanced recovery systems. Data-driven coaching. Pure results.
-      </p>
-      <div class="hero-buttons">
-        <div class="btn btn-primary">Start Transformation</div>
-        <div class="btn btn-outline">Explore Programs</div>
-      </div>
-    </div>
-
+  <div class="hero-content">
+    <h1>POWERFLEX</h1>
+    <p>Engineered for Strength. Designed for Dominance. Built for Transformation.</p>
   </div>
 </div>
 
-<!-- ABOUT -->
 <section>
-  <h2 class="section-title">Why <span>PowerFlex</span>?</h2>
+  <h2 class="section-title">Why PowerFlex?</h2>
   <p class="section-text">
-    We combine biomechanics, strength science, high-performance training protocols,
-    and personalized data tracking to help individuals break physical and mental barriers.
-    Every detail inside PowerFlex is engineered for peak human output.
+    PowerFlex is a next-generation performance arena designed for serious transformation.
+    We combine elite coaching, sports science principles, structured programming,
+    and recovery systems to build strength, discipline, and long-term results.
   </p>
+</section>
 
+<section>
+  <h2 class="section-title">Training Programs</h2>
   <div class="grid">
     <div class="card">
-      <h3>Elite Coaching</h3>
-      <p>Certified professionals with performance-first mindset and real-world athlete training experience.</p>
+      <h3>Strength Training</h3>
+      Progressive overload systems for muscle growth and functional power.
     </div>
-
     <div class="card">
-      <h3>Advanced Equipment</h3>
-      <p>Premium resistance machines, Olympic lifting platforms, and high-intensity conditioning zones.</p>
+      <h3>HIIT Fat Loss</h3>
+      High-intensity metabolic sessions for rapid fat reduction.
     </div>
-
     <div class="card">
-      <h3>Recovery Lab</h3>
-      <p>Mobility therapy, guided stretching, and recovery systems built for sustainable growth.</p>
+      <h3>CrossFit Performance</h3>
+      Functional athletic training for total-body conditioning.
+    </div>
+    <div class="card">
+      <h3>Mobility & Recovery</h3>
+      Structured flexibility and recovery science programs.
     </div>
   </div>
 </section>
 
-<!-- MEMBERSHIP -->
 <section>
-  <h2 class="section-title">Membership <span>Plans</span></h2>
+  <h2 class="section-title">Meet Our Trainers</h2>
+  <div class="grid">
+    <div class="card trainer">
+      <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=800">
+      <h3>Rajesh Kumar</h3>
+      10+ years experience in strength & conditioning coaching.
+    </div>
+    <div class="card trainer">
+      <img src="https://images.unsplash.com/photo-1546484959-f6e7c6f6e8b9?q=80&w=800">
+      <h3>Priya Sharma</h3>
+      Certified mobility and yoga transformation expert.
+    </div>
+  </div>
+</section>
 
+<section>
+  <h2 class="section-title">Membership Plans</h2>
   <div class="grid">
     <div class="card">
       <h3>Basic</h3>
-      <p>₹2,999 / month<br>Full gym access + group classes</p>
+      <div class="price">₹2,999</div>
+      Full gym access + group classes.
     </div>
-
     <div class="card">
       <h3>Pro</h3>
-      <p>₹4,999 / month<br>Coaching support + performance tracking</p>
+      <div class="price">₹4,999</div>
+      Coaching support + progress tracking.
     </div>
-
     <div class="card">
       <h3>Elite</h3>
-      <p>₹7,999 / month<br>Personalized transformation program</p>
+      <div class="price">₹7,999</div>
+      Personalized transformation program.
     </div>
   </div>
 </section>
 
+<section>
+  <h2 class="section-title">Testimonials</h2>
+  <div class="grid">
+    <div class="card">“PowerFlex completely transformed my body and mindset.”</div>
+    <div class="card">“The trainers are elite and the environment is unmatched.”</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Contact Us</h2>
+  <p class="section-text">
+    📍 Mumbai, India<br>
+    📞 +91 90000 00000<br>
+    ✉ info@powerflexgym.com
+  </p>
+</section>
+
 <footer>
-  © 2026 PowerFlex — Engineered for Greatness
+© 2026 PowerFlex — Built for Greatness
 </footer>
 
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+
 <script>
-/* Loader exit */
-setTimeout(()=>{
-  document.getElementById("loader").style.opacity="0";
-  setTimeout(()=>{
-    document.getElementById("loader").style.display="none";
-  },1000);
-},3500);
+const canvas = document.getElementById("webgl");
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas, alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+camera.position.z = 200;
 
-/* Scroll-driven camera */
-const scene = document.getElementById("scene");
+const particlesCount = 2500;
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particlesCount * 3);
 
-window.addEventListener("scroll",()=>{
-  const scroll = window.scrollY;
-  scene.style.transform =
-    `rotateX(${scroll*0.05}deg) translateZ(${scroll*-0.5}px)`;
+for(let i=0;i<particlesCount;i++){
+  positions[i*3]=(Math.random()-0.5)*600;
+  positions[i*3+1]=(Math.random()-0.5)*600;
+  positions[i*3+2]=(Math.random()-0.5)*600;
+}
+
+geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
+
+const material = new THREE.PointsMaterial({
+  color:0xe50914,
+  size:2
 });
 
-/* Mouse depth */
-document.addEventListener("mousemove",(e)=>{
-  const x = (e.clientX/window.innerWidth - 0.5)*10;
-  const y = (e.clientY/window.innerHeight - 0.5)*10;
-  scene.style.transform += ` rotateY(${x}deg) rotateX(${y}deg)`;
-});
+const particles = new THREE.Points(geometry,material);
+scene.add(particles);
+
+let stage=0;
+let time=0;
+
+function animate(){
+  requestAnimationFrame(animate);
+  time+=0.01;
+
+  particles.rotation.y+=0.002;
+
+  if(time>4 && stage===0){
+    stage=1;
+    document.getElementById("webgl").style.opacity="0";
+    setTimeout(()=>{
+      canvas.style.display="none";
+      document.getElementById("mainContent").style.opacity="1";
+    },2000);
+  }
+
+  renderer.render(scene,camera);
+}
+
+animate();
 </script>
 
 </body>
