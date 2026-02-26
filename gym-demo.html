@@ -2,161 +2,128 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>PowerFlex Gym — Next Gen Fitness Experience</title>
+<title>PowerFlex — Next Gen Fitness Experience</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#07080b;
-  --card:rgba(255,255,255,0.06);
-  --glass:rgba(255,255,255,0.08);
-  --accent:#ff2f2f;
-  --text:#e8e9ef;
-  --muted:#9aa0aa;
-  --border:rgba(255,255,255,0.12);
-  --blur: blur(14px);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* ========== RESET ========== */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;scroll-behavior:smooth}
 body{
-  font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;
-  background:
-    radial-gradient(1200px 600px at 10% 10%, #121427, #07080b),
-    radial-gradient(900px 500px at 90% 90%, #1a0f14, #07080b);
-  color:var(--text);
+  font-family:Inter,system-ui,Arial,sans-serif;
+  background:#050507;
+  color:#eaeaf0;
   overflow-x:hidden;
 }
 
-/* ================= LOADER (CINEMATIC INTRO) ================= */
+/* ========== CINEMATIC LOADER ========== */
 #loader{
-  position:fixed; inset:0; background:#040507; z-index:9999;
+  position:fixed; inset:0; z-index:9999;
+  background:#020203;
   display:flex; align-items:center; justify-content:center; flex-direction:column;
 }
-.loader-logo{
-  font-weight:900; letter-spacing:4px; font-size:72px;
-  color:#fff;
-  text-shadow:0 0 10px rgba(255,47,47,.6), 0 0 40px rgba(255,47,47,.35);
-  transform:perspective(800px) rotateX(25deg);
-  animation:logoFloat 1.8s ease-in-out infinite alternate;
+#loader .logo-wrap{perspective:900px}
+#loader h1{
+  font-weight:900; letter-spacing:6px; font-size:64px; color:#fff;
+  transform:rotateX(40deg) scale(0.6); opacity:0;
+  text-shadow:0 0 20px rgba(255,50,50,0.6),0 0 60px rgba(255,50,50,0.4);
+  animation:logoReveal 1.6s ease forwards;
 }
-@keyframes logoFloat{
-  from{transform:perspective(800px) rotateX(25deg) translateY(0)}
-  to{transform:perspective(800px) rotateX(25deg) translateY(-22px)}
+@keyframes logoReveal{
+  0%{opacity:0;transform:rotateX(40deg) scale(0.6)}
+  60%{opacity:1;transform:rotateX(0deg) scale(1.05)}
+  100%{opacity:1;transform:rotateX(0deg) scale(1)}
 }
-.loader-bar{
-  width:260px; height:4px; background:#1b1d26; margin-top:26px; border-radius:6px; overflow:hidden;
+#loader .bar{
+  width:280px;height:4px;background:#222;margin-top:28px;border-radius:6px;overflow:hidden
 }
-.loader-bar span{
-  display:block; height:100%; width:0%;
-  background:linear-gradient(90deg, var(--accent), #ff7a7a);
-  animation:loadBar 2.6s ease forwards;
+#loader .bar span{
+  display:block;height:100%;width:0%;
+  background:linear-gradient(90deg,#ff2f2f,#ff7a7a);
+  animation:loadBar 3s ease forwards;
 }
 @keyframes loadBar{to{width:100%}}
+#loader .subtitle{margin-top:14px;font-size:12px;letter-spacing:2px;color:#aaa}
 
-/* ================= NAV ================= */
+/* ========== NAV ========== */
 header{
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  backdrop-filter:blur(10px);
-  background:rgba(7,8,11,.6);
-  border-bottom:1px solid var(--border);
+  position:fixed; top:0; left:0; right:0; z-index:10;
+  background:rgba(5,5,7,0.6); backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 .nav{
-  max-width:1200px; margin:auto; padding:16px 24px;
+  max-width:1200px; margin:auto; padding:14px 22px;
   display:flex; align-items:center; justify-content:space-between;
 }
-.brand{font-weight:900; letter-spacing:2px; color:var(--accent)}
-.nav a{color:var(--muted); text-decoration:none; margin:0 10px; font-size:14px}
+.brand{font-weight:900; letter-spacing:2px; color:#ff2f2f}
+.nav a{color:#aaa; text-decoration:none; margin:0 10px; font-size:14px}
 .nav a:hover{color:#fff}
-.btn{
-  background:var(--accent); color:#fff; padding:10px 18px; border-radius:10px; text-decoration:none; font-weight:700;
-}
-.btn-outline{
-  border:1px solid var(--border); color:#fff; padding:10px 18px; border-radius:10px; text-decoration:none; background:transparent;
-}
 
-/* ================= HERO (ANTI-GRAVITY FEEL) ================= */
-.hero{
-  min-height:100vh; display:grid; place-items:center; position:relative; overflow:hidden; padding-top:80px;
+/* ========== HERO ========== */
+.hero{height:100vh; position:relative; overflow:hidden}
+#three-canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+.hero-overlay{
+  position:relative; z-index:2; height:100%;
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;
+  pointer-events:none;
 }
-.hero::before{
-  content:""; position:absolute; inset:0;
-  background:
-    radial-gradient(700px 300px at 70% 20%, rgba(255,47,47,.18), transparent 60%),
-    radial-gradient(600px 300px at 20% 80%, rgba(0,150,255,.12), transparent 60%);
+.hero h2{
+  font-size:clamp(36px,6vw,86px); font-weight:900; line-height:1.05;
 }
-.hero-inner{
-  position:relative; z-index:1; text-align:center; max-width:980px; padding:24px;
-}
-.hero h1{
-  font-size:clamp(40px,7vw,88px); font-weight:900; line-height:1.02; letter-spacing:-1px;
-}
-.hero h1 span{color:var(--accent); display:block}
+.hero h2 span{display:block;color:#ff2f2f}
 .hero p{
-  margin-top:18px; color:var(--muted); font-size:18px; max-width:760px; margin-left:auto; margin-right:auto;
-}
-.hero-actions{margin-top:34px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap}
-
-/* Floating glass panels (fake 3D) */
-.floating{
-  position:absolute; width:280px; height:170px; background:var(--glass); backdrop-filter:var(--blur);
-  border-radius:18px; border:1px solid var(--border);
-  box-shadow:0 30px 80px rgba(0,0,0,.6);
-  animation:floatCard 7s ease-in-out infinite alternate;
-}
-.f1{top:22%; left:8%; transform:rotateY(25deg) rotateX(10deg); animation-delay:0s}
-.f2{top:60%; right:10%; transform:rotateY(-25deg) rotateX(10deg); animation-delay:1.2s}
-.f3{bottom:12%; left:38%; transform:rotateY(15deg) rotateX(-10deg); animation-delay:2.4s}
-@keyframes floatCard{
-  from{transform:translateY(0) scale(1) rotateY(15deg)}
-  to{transform:translateY(-34px) scale(1.04) rotateY(-15deg)}
+  margin-top:20px; max-width:760px; margin-left:auto; margin-right:auto;
+  color:#aaa; font-size:18px;
 }
 
-/* ================= SECTIONS ================= */
-section{padding:110px 24px; max-width:1200px; margin:auto}
-.section-title{font-size:38px; font-weight:800; margin-bottom:10px}
-.section-sub{color:var(--muted); margin-bottom:44px}
+/* ========== SECTIONS ========== */
+section{padding:120px 24px; max-width:1200px; margin:auto}
+.section-title{font-size:38px;font-weight:800;margin-bottom:10px}
+.section-sub{color:#aaa;margin-bottom:44px}
 
-/* Cards */
 .grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:26px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px;
 }
 .card{
-  background:var(--card); border:1px solid var(--border); border-radius:20px; padding:26px;
-  backdrop-filter:var(--blur);
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:18px; padding:24px; backdrop-filter:blur(12px);
   transition:transform .35s ease, box-shadow .35s ease;
 }
 .card:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
 }
-.card h3{margin-bottom:10px}
-.card p{color:var(--muted); font-size:14px}
+.card h4{margin-bottom:10px}
+.card p{color:#b9bcc6;font-size:14px;line-height:1.6}
 
-/* Gallery grid */
-.gallery{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px;
-}
-.gallery div{
-  height:160px; border-radius:16px; background:
-    linear-gradient(135deg, #1a1d2e, #0b0e18);
-  border:1px solid var(--border);
+/* ========== FEATURE LIST ========== */
+.list{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px}
+.list .item{
+  padding:18px 20px; border-radius:14px;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
 }
 
-/* Footer */
+/* ========== TESTIMONIALS ========== */
+.quote{font-style:italic;color:#cfd3dd}
+
+/* ========== FOOTER ========== */
 footer{
-  padding:70px 24px; border-top:1px solid var(--border); background:#040507;
+  padding:70px 24px; border-top:1px solid rgba(255,255,255,0.1);
+  background:#020203;
 }
 .footer-inner{
-  max-width:1200px; margin:auto; display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  max-width:1200px; margin:auto; display:grid; gap:24px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 }
 .footer-inner h4{margin-bottom:10px}
-.footer-inner p,.footer-inner a{color:var(--muted); font-size:14px; text-decoration:none}
-.copyright{text-align:center; margin-top:36px; color:var(--muted); font-size:13px}
+.footer-inner p,.footer-inner a{color:#9aa0aa;font-size:14px;text-decoration:none}
+.copyright{text-align:center;margin-top:36px;color:#8a8f9a;font-size:13px}
 
-/* Reveal on scroll */
-.reveal{opacity:0; transform:translateY(50px); transition:all .9s ease}
+/* ========== REVEAL ANIMATIONS ========== */
+.reveal{opacity:0; transform:translateY(40px); transition:all .9s ease}
 .reveal.active{opacity:1; transform:translateY(0)}
 </style>
 </head>
@@ -164,8 +131,9 @@ footer{
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-logo">POWERFLEX</div>
-  <div class="loader-bar"><span></span></div>
+  <div class="logo-wrap"><h1>POWERFLEX</h1></div>
+  <div class="bar"><span></span></div>
+  <div class="subtitle">INITIALIZING EXPERIENCE</div>
 </div>
 
 <!-- NAV -->
@@ -175,132 +143,146 @@ footer{
     <div>
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
+      <a href="#facilities">Facilities</a>
       <a href="#trainers">Trainers</a>
       <a href="#plans">Plans</a>
       <a href="#contact">Contact</a>
-      <a class="btn" href="#plans">Join Now</a>
     </div>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="floating f1"></div>
-  <div class="floating f2"></div>
-  <div class="floating f3"></div>
-
-  <div class="hero-inner">
-    <h1>BUILD YOUR BODY.<span>TRANSFORM YOUR LIFE.</span></h1>
-    <p>
-      Welcome to PowerFlex — a next-generation fitness experience with elite trainers, cinematic spaces,
-      and technology-driven workouts designed for real transformation.
-    </p>
-    <div class="hero-actions">
-      <a href="#plans" class="btn">Start Your Journey</a>
-      <a href="#programs" class="btn-outline">Explore Programs</a>
+<div class="hero">
+  <canvas id="three-canvas"></canvas>
+  <div class="hero-overlay">
+    <div>
+      <h2>BUILD YOUR BODY.<span>NEXT-GEN EXPERIENCE.</span></h2>
+      <p>
+        Welcome to PowerFlex — a premium, technology-driven fitness club where cinematic environments,
+        elite coaching, and data-backed programs come together to deliver real transformation.
+      </p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
-  <h2 class="section-title reveal">About PowerFlex</h2>
+  <h3 class="section-title reveal">About PowerFlex</h3>
   <p class="section-sub reveal">
-    PowerFlex Fitness Club helps people build strength, confidence and a healthier lifestyle using modern equipment,
-    expert coaching and a motivating environment.
+    PowerFlex is a modern fitness brand focused on performance, safety, and long-term results.
+    Our mission is to make world-class training accessible through expert coaching, intelligent programs,
+    and an environment that motivates you every single day.
   </p>
   <div class="grid">
-    <div class="card reveal"><h3>Modern Equipment</h3><p>World-class machines and clean, spacious workout zones.</p></div>
-    <div class="card reveal"><h3>Expert Coaches</h3><p>Certified trainers with 8–15+ years of experience.</p></div>
-    <div class="card reveal"><h3>Personalized Plans</h3><p>Programs designed for your body, goals and lifestyle.</p></div>
-    <div class="card reveal"><h3>Proven Results</h3><p>Thousands of members transformed successfully.</p></div>
+    <div class="card reveal">
+      <h4>Modern Equipment</h4>
+      <p>We use industry-leading machines, free weights, and functional training tools maintained to the highest standards of safety and performance.</p>
+    </div>
+    <div class="card reveal">
+      <h4>Expert Coaches</h4>
+      <p>Our certified trainers bring 8–15+ years of experience in strength training, conditioning, rehabilitation, and lifestyle coaching.</p>
+    </div>
+    <div class="card reveal">
+      <h4>Personalized Plans</h4>
+      <p>Every member gets a goal-oriented plan covering workouts, recovery, and basic nutrition guidance for sustainable results.</p>
+    </div>
+    <div class="card reveal">
+      <h4>Proven Results</h4>
+      <p>Thousands of members have improved strength, reduced fat, and built healthier habits with our structured programs.</p>
+    </div>
   </div>
 </section>
 
 <!-- PROGRAMS -->
 <section id="programs">
-  <h2 class="section-title reveal">Programs</h2>
-  <p class="section-sub reveal">Science-backed training programs for every goal.</p>
+  <h3 class="section-title reveal">Training Programs</h3>
+  <p class="section-sub reveal">
+    Whether your goal is fat loss, muscle building, athletic performance, or general fitness, we have a program designed for you.
+  </p>
   <div class="grid">
-    <div class="card reveal"><h3>Strength Training</h3><p>Build muscle and power with structured routines.</p></div>
-    <div class="card reveal"><h3>Cardio & HIIT</h3><p>Burn fat, boost stamina and improve heart health.</p></div>
-    <div class="card reveal"><h3>CrossFit</h3><p>Functional training focused on performance.</p></div>
-    <div class="card reveal"><h3>Yoga & Mobility</h3><p>Improve flexibility, balance and recovery.</p></div>
-    <div class="card reveal"><h3>Personal Training</h3><p>One-on-one coaching with custom plans.</p></div>
-    <div class="card reveal"><h3>Weight Loss</h3><p>Goal-based programs with nutrition guidance.</p></div>
+    <div class="card reveal"><h4>Strength & Hypertrophy</h4><p>Structured resistance training focused on progressive overload, technique, and balanced muscle development.</p></div>
+    <div class="card reveal"><h4>HIIT & Cardio Conditioning</h4><p>High-intensity interval training and cardio circuits to improve endurance, burn calories, and boost heart health.</p></div>
+    <div class="card reveal"><h4>Cross-Functional Training</h4><p>Functional movements that improve power, agility, coordination, and real-world strength.</p></div>
+    <div class="card reveal"><h4>Yoga & Mobility</h4><p>Flexibility, breathing, and recovery sessions designed to reduce injury risk and improve movement quality.</p></div>
+    <div class="card reveal"><h4>Personal Coaching</h4><p>One-on-one sessions with dedicated trainers who track progress and adjust plans based on performance.</p></div>
+    <div class="card reveal"><h4>Weight Management</h4><p>Goal-based programs combining training structure, lifestyle habits, and accountability systems.</p></div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities">
+  <h3 class="section-title reveal">Facilities & Environment</h3>
+  <p class="section-sub reveal">
+    Our clubs are designed to feel premium, spacious, and motivating — with zones for every style of training.
+  </p>
+  <div class="list">
+    <div class="item reveal">Dedicated strength training zone with free weights and power racks</div>
+    <div class="item reveal">Cardio theatre with treadmills, bikes, and rowers</div>
+    <div class="item reveal">Functional training & HIIT turf area</div>
+    <div class="item reveal">Group class studio for yoga, mobility, and conditioning</div>
+    <div class="item reveal">Locker rooms with showers and hygiene-focused maintenance</div>
+    <div class="item reveal">Member lounge and consultation area</div>
   </div>
 </section>
 
 <!-- TRAINERS -->
 <section id="trainers">
-  <h2 class="section-title reveal">Expert Trainers</h2>
-  <p class="section-sub reveal">Certified professionals guiding your transformation.</p>
+  <h3 class="section-title reveal">Meet Our Trainers</h3>
+  <p class="section-sub reveal">
+    Our coaching team combines experience, education, and passion for helping people transform safely and effectively.
+  </p>
   <div class="grid">
-    <div class="card reveal"><h3>Rahul Sharma</h3><p>Head Strength Coach · 12+ years</p></div>
-    <div class="card reveal"><h3>Neha Patel</h3><p>Fitness & Weight Loss Coach · 9+ years</p></div>
-    <div class="card reveal"><h3>Amit Verma</h3><p>CrossFit Specialist · 10+ years</p></div>
-    <div class="card reveal"><h3>Priya Singh</h3><p>Yoga & Mobility Coach · 8+ years</p></div>
-  </div>
-</section>
-
-<!-- BRANCHES -->
-<section>
-  <h2 class="section-title reveal">Our Branches</h2>
-  <p class="section-sub reveal">Train with us across multiple locations.</p>
-  <div class="grid">
-    <div class="card reveal"><h3>Andheri</h3><p>Andheri East, Mumbai</p></div>
-    <div class="card reveal"><h3>Thane</h3><p>Thane West, Mumbai</p></div>
-    <div class="card reveal"><h3>Navi Mumbai</h3><p>Vashi, Navi Mumbai</p></div>
+    <div class="card reveal"><h4>Rahul Sharma</h4><p>Head Strength Coach · 12+ years · Specializes in strength, body recomposition, and injury-safe training.</p></div>
+    <div class="card reveal"><h4>Neha Patel</h4><p>Fitness & Weight Management Coach · 9+ years · Focus on fat loss, conditioning, and lifestyle habits.</p></div>
+    <div class="card reveal"><h4>Amit Verma</h4><p>Cross-Functional Specialist · 10+ years · Performance, agility, and athletic development.</p></div>
+    <div class="card reveal"><h4>Priya Singh</h4><p>Yoga & Mobility Coach · 8+ years · Recovery, flexibility, and movement quality.</p></div>
   </div>
 </section>
 
 <!-- PLANS -->
 <section id="plans">
-  <h2 class="section-title reveal">Membership Plans</h2>
-  <p class="section-sub reveal">Choose a plan that fits your goals.</p>
+  <h3 class="section-title reveal">Membership Plans</h3>
+  <p class="section-sub reveal">
+    Simple, transparent plans designed to match different goals and levels of support.
+  </p>
   <div class="grid">
-    <div class="card reveal"><h3>Basic</h3><p>₹2,999 / month · Gym access + equipment</p></div>
-    <div class="card reveal"><h3>Pro</h3><p>₹4,999 / month · Classes + trainer support</p></div>
-    <div class="card reveal"><h3>Elite</h3><p>₹7,999 / month · Personal training + recovery</p></div>
-    <div class="card reveal"><h3>VIP</h3><p>₹12,999 / month · 24/7 access + private coach</p></div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section>
-  <h2 class="section-title reveal">Gallery</h2>
-  <p class="section-sub reveal">A glimpse into our cinematic workout environment.</p>
-  <div class="gallery">
-    <div class="reveal"></div><div class="reveal"></div><div class="reveal"></div>
-    <div class="reveal"></div><div class="reveal"></div><div class="reveal"></div>
+    <div class="card reveal"><h4>Basic</h4><p>₹2,999 / month · Gym access, equipment usage, general guidance.</p></div>
+    <div class="card reveal"><h4>Pro</h4><p>₹4,999 / month · Classes, progress tracking, trainer support.</p></div>
+    <div class="card reveal"><h4>Elite</h4><p>₹7,999 / month · Personal coaching, recovery sessions, priority scheduling.</p></div>
+    <div class="card reveal"><h4>VIP</h4><p>₹12,999 / month · 24/7 access, dedicated coach, custom programs, lifestyle support.</p></div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section>
-  <h2 class="section-title reveal">Success Stories</h2>
-  <p class="section-sub reveal">What our members say.</p>
+  <h3 class="section-title reveal">Member Stories</h3>
+  <p class="section-sub reveal">
+    Real experiences from people who committed to their goals and changed their lives with PowerFlex.
+  </p>
   <div class="grid">
-    <div class="card reveal"><h3>Rohit K.</h3><p>“Lost 12 kg in 4 months. Best decision ever!”</p></div>
-    <div class="card reveal"><h3>Sneha P.</h3><p>“Amazing trainers and premium environment.”</p></div>
-    <div class="card reveal"><h3>Aman S.</h3><p>“Feels like a next-gen fitness experience.”</p></div>
+    <div class="card reveal"><p class="quote">“I lost 12 kg in 4 months and gained confidence I never had before.”</p><p>— Rohit K.</p></div>
+    <div class="card reveal"><p class="quote">“The trainers actually care about form, safety, and long-term results.”</p><p>— Sneha P.</p></div>
+    <div class="card reveal"><p class="quote">“Feels like a premium, next-generation gym experience, not just a normal gym.”</p><p>— Aman S.</p></div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2 class="section-title reveal">Get In Touch</h2>
-  <p class="section-sub reveal">Start your fitness journey with us today.</p>
+  <h3 class="section-title reveal">Get In Touch</h3>
+  <p class="section-sub reveal">
+    Visit us, talk to our team, and start your transformation journey today.
+  </p>
   <div class="grid">
     <div class="card reveal">
-      <h3>Head Office</h3>
-      <p>Mumbai, Maharashtra</p>
-      <p>+91 98765 43210</p>
-      <p>info@powerflexgym.com</p>
+      <h4>Head Office</h4>
+      <p>Mumbai, Maharashtra, India</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Email: info@powerflexgym.com</p>
+      <p>Hours: 5:00 AM – 11:00 PM</p>
     </div>
     <div class="card reveal">
-      <h3>Why PowerFlex?</h3>
-      <p>Modern equipment, elite trainers, cinematic environment and proven results.</p>
+      <h4>Why Choose PowerFlex?</h4>
+      <p>Modern equipment, experienced trainers, structured programs, premium environment, and a results-driven culture.</p>
     </div>
   </div>
 </section>
@@ -309,17 +291,23 @@ footer{
 <footer>
   <div class="footer-inner">
     <div>
-      <h4>PowerFlex Gym</h4>
-      <p>Next-generation fitness experience.</p>
+      <h4>PowerFlex</h4>
+      <p>Next-generation fitness experience focused on performance, safety, and long-term results.</p>
     </div>
     <div>
       <h4>Services</h4>
-      <p>Training · Nutrition · Coaching · Recovery</p>
+      <p>Strength Training · Conditioning · Personal Coaching · Yoga & Mobility · Weight Management</p>
     </div>
     <div>
       <h4>Contact</h4>
       <p>Mumbai, India</p>
       <p>+91 98765 43210</p>
+      <p>info@powerflexgym.com</p>
+    </div>
+    <div>
+      <h4>About This Demo</h4>
+      <p>Designed as a premium showcase website.</p>
+      <p>Built by Codly — Web, Apps & AI Automation.</p>
     </div>
   </div>
   <div class="copyright">
@@ -327,23 +315,108 @@ footer{
   </div>
 </footer>
 
+<!-- THREE.JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
 <script>
-// Loader
-window.addEventListener("load", ()=>{
-  setTimeout(()=>{ document.getElementById("loader").style.display="none"; }, 2600);
+// ========== LOADER ==========
+window.addEventListener("load",()=>{
+  setTimeout(()=>{ document.getElementById("loader").style.display="none"; }, 3000);
 });
 
-// Reveal on scroll
-const reveals = document.querySelectorAll(".reveal");
-function onScrollReveal(){
-  const h = window.innerHeight;
+// ========== REVEAL ON SCROLL ==========
+const reveals=document.querySelectorAll(".reveal");
+function revealOnScroll(){
+  const h=window.innerHeight;
   reveals.forEach(el=>{
-    const top = el.getBoundingClientRect().top;
-    if(top < h - 80) el.classList.add("active");
+    const top=el.getBoundingClientRect().top;
+    if(top<h-80) el.classList.add("active");
   });
 }
-window.addEventListener("scroll", onScrollReveal);
-onScrollReveal();
+window.addEventListener("scroll",revealOnScroll);
+revealOnScroll();
+
+// ========== THREE.JS SCENE ==========
+const canvas=document.getElementById("three-canvas");
+const scene=new THREE.Scene();
+scene.fog=new THREE.Fog(0x050507,5,28);
+
+const camera=new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,0.1,100);
+camera.position.set(0,0,9);
+
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff,0.45));
+const key=new THREE.PointLight(0xff2f2f,2,60); key.position.set(4,4,6); scene.add(key);
+const fill=new THREE.PointLight(0x3366ff,1,60); fill.position.set(-4,-2,6); scene.add(fill);
+
+// Floating group
+const floatGroup=new THREE.Group(); scene.add(floatGroup);
+
+// Geometries
+const geometries=[
+  new THREE.IcosahedronGeometry(0.6,1),
+  new THREE.OctahedronGeometry(0.6),
+  new THREE.TorusKnotGeometry(0.4,0.15,100,16),
+  new THREE.DodecahedronGeometry(0.6)
+];
+
+// Create objects
+const objects=[];
+for(let i=0;i<16;i++){
+  const geo=geometries[i%geometries.length];
+  const mat=new THREE.MeshStandardMaterial({
+    color:0xff2f2f, metalness:0.8, roughness:0.25,
+    emissive:new THREE.Color(0x220000), emissiveIntensity:0.6
+  });
+  const mesh=new THREE.Mesh(geo,mat);
+  mesh.position.set((Math.random()-0.5)*10,(Math.random()-0.5)*6,(Math.random()-0.5)*9);
+  floatGroup.add(mesh); objects.push(mesh);
+}
+
+// Resize
+window.addEventListener("resize",()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+});
+
+// Scroll-driven camera
+let scrollY=0;
+window.addEventListener("scroll",()=>{scrollY=window.scrollY||window.pageYOffset;});
+
+// Mouse parallax (desktop)
+let mouseX=0,mouseY=0;
+window.addEventListener("mousemove",(e)=>{
+  mouseX=(e.clientX/window.innerWidth-0.5)*2;
+  mouseY=(e.clientY/window.innerHeight-0.5)*2;
+});
+
+// Animate
+function animate(){
+  requestAnimationFrame(animate);
+
+  const targetZ=9+scrollY*0.003;
+  camera.position.z+=(targetZ-camera.position.z)*0.06;
+  camera.position.x+=(mouseX*0.6-camera.position.x)*0.02;
+  camera.position.y+=(-mouseY*0.6-camera.position.y)*0.02;
+
+  const time=Date.now()*0.001;
+  objects.forEach((o,i)=>{
+    o.rotation.x+=0.003+i*0.0002;
+    o.rotation.y+=0.002+i*0.0002;
+    o.position.y+=Math.sin(time+i)*0.0008;
+  });
+  floatGroup.rotation.y+=0.0008;
+  floatGroup.rotation.x+=0.0004;
+
+  renderer.render(scene,camera);
+}
+animate();
 </script>
 
 </body>
