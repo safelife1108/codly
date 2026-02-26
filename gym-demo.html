@@ -106,3 +106,183 @@ window.addEventListener("resize", () => {
 
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+
+<script>
+
+/* ================================
+   BASIC ENGINE SETUP
+================================ */
+
+const canvas = document.getElementById("webgl");
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  3000
+);
+camera.position.z = 800;
+
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas,
+  antialias: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+/* ================================
+   PARTICLE SYSTEM
+================================ */
+
+const PARTICLE_COUNT = 4000;
+
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(PARTICLE_COUNT * 3);
+const targetPositions = new Float32Array(PARTICLE_COUNT * 3);
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  positions[i * 3] = (Math.random() - 0.5) * 1500;
+  positions[i * 3 + 1] = (Math.random() - 0.5) * 1500;
+  positions[i * 3 + 2] = (Math.random() - 0.5) * 1500;
+}
+
+geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+const material = new THREE.PointsMaterial({
+  color: 0xe50914,
+  size: 3
+});
+
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+/* ================================
+   TEXT TO PARTICLE FUNCTION
+================================ */
+
+function createTextShape(text, size = 200) {
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = 1000;
+  canvas.height = 400;
+
+  ctx.fillStyle = "white";
+  ctx.font = `bold ${size}px Arial`;
+  ctx.textAlign = "center";
+  ctx.fillText(text, canvas.width / 2, canvas.height / 2 + size / 3);
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+
+  const points = [];
+
+  for (let y = 0; y < canvas.height; y += 6) {
+    for (let x = 0; x < canvas.width; x += 6) {
+      const index = (y * canvas.width + x) * 4;
+      if (data[index] > 128) {
+        points.push({
+          x: x - canvas.width / 2,
+          y: canvas.height / 2 - y
+        });
+      }
+    }
+  }
+
+  return points;
+}
+
+/* ================================
+   STAGES
+================================ */
+
+let stage = 0;
+let stageTime = 0;
+
+const pfPoints = createTextShape("PF", 260);
+const fullPoints = createTextShape("POWERFLEX", 120);
+
+function setTargets(pointArray) {
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    if (i < pointArray.length) {
+      targetPositions[i * 3] = pointArray[i].x * 2;
+      targetPositions[i * 3 + 1] = pointArray[i].y * 2;
+      targetPositions[i * 3 + 2] = 0;
+    } else {
+      targetPositions[i * 3] = (Math.random() - 0.5) * 2000;
+      targetPositions[i * 3 + 1] = (Math.random() - 0.5) * 2000;
+      targetPositions[i * 3 + 2] = (Math.random() - 0.5) * 2000;
+    }
+  }
+}
+
+setTargets(pfPoints);
+
+/* ================================
+   ANIMATION LOOP
+================================ */
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  stageTime += 0.01;
+
+  const pos = geometry.attributes.position.array;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+
+    pos[i * 3] += (targetPositions[i * 3] - pos[i * 3]) * 0.08;
+    pos[i * 3 + 1] += (targetPositions[i * 3 + 1] - pos[i * 3 + 1]) * 0.08;
+    pos[i * 3 + 2] += (targetPositions[i * 3 + 2] - pos[i * 3 + 2]) * 0.08;
+  }
+
+  geometry.attributes.position.needsUpdate = true;
+
+  /* ===== Stage Transitions ===== */
+
+  if (stage === 0 && stageTime > 3) {
+    stage = 1;
+    stageTime = 0;
+  }
+
+  if (stage === 1 && stageTime > 2) {
+    // explode
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      targetPositions[i * 3] = (Math.random() - 0.5) * 2000;
+      targetPositions[i * 3 + 1] = (Math.random() - 0.5) * 2000;
+      targetPositions[i * 3 + 2] = (Math.random() - 0.5) * 2000;
+    }
+    stage = 2;
+    stageTime = 0;
+  }
+
+  if (stage === 2 && stageTime > 2) {
+    setTargets(fullPoints);
+    stage = 3;
+    stageTime = 0;
+  }
+
+  if (stage === 3 && stageTime > 4) {
+    camera.position.z -= 2;
+  }
+
+  renderer.render(scene, camera);
+}
+
+animate();
+
+/* ================================
+   RESIZE
+================================ */
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+</script>
