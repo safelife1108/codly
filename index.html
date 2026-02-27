@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Codly – Cinematic Master</title>
+<title>Codly – Next Level Master</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
@@ -13,7 +13,7 @@
 
 <style>
 :root{
---bg:#05070c;
+--bg:#04060b;
 --text:#ffffff;
 --muted:#9aa3b2;
 --border:rgba(255,255,255,0.08);
@@ -21,16 +21,8 @@
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 body{background:var(--bg);color:var(--text);overflow-x:hidden;}
-html{scroll-behavior:smooth;}
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:0;
-}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;}
+section{min-height:100vh;padding:140px 8%;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;}
 
 header{
 position:fixed;
@@ -39,47 +31,39 @@ width:100%;
 padding:20px 8%;
 display:flex;
 justify-content:space-between;
-z-index:1000;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,0.5);
 backdrop-filter:blur(20px);
+z-index:1000;
 border-bottom:1px solid var(--border);
 }
 
-header a{
-color:var(--muted);
-text-decoration:none;
-margin-left:30px;
-transition:0.3s;
-}
+header a{color:var(--muted);text-decoration:none;margin-left:30px;}
 header a:hover{color:#fff;}
 
-section{
-min-height:100vh;
-padding:140px 8%;
-position:relative;
-z-index:2;
+.loader{
+position:fixed;
+inset:0;
+background:#000;
 display:flex;
-flex-direction:column;
+align-items:center;
 justify-content:center;
+z-index:2000;
+}
+.loader h1{
+font-family:'Playfair Display',serif;
+font-size:70px;
+letter-spacing:6px;
 }
 
 .hero h1{
-font-size:clamp(80px,10vw,150px);
 font-family:'Playfair Display',serif;
+font-size:clamp(80px,10vw,150px);
 line-height:1;
 }
 
-.hero p{
-margin-top:20px;
-color:var(--muted);
-max-width:600px;
-}
+.hero p{margin-top:20px;color:var(--muted);max-width:600px;}
 
-.story{
-position:relative;
-height:300vh;
-}
-
+.story{height:300vh;position:relative;}
 .story-inner{
 position:sticky;
 top:0;
@@ -90,10 +74,9 @@ justify-content:center;
 flex-direction:column;
 text-align:center;
 }
-
 .story h2{
-font-size:clamp(40px,6vw,80px);
 font-family:'Playfair Display',serif;
+font-size:clamp(40px,6vw,80px);
 opacity:0;
 }
 
@@ -109,13 +92,22 @@ background:rgba(255,255,255,0.05);
 border:1px solid var(--border);
 border-radius:20px;
 padding:40px;
-transition:0.5s;
+transition:0.6s;
 transform-style:preserve-3d;
+overflow:hidden;
+position:relative;
 }
 
-.card:hover{
-transform:translateY(-15px);
+.card::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(120deg,rgba(255,255,255,0.1),transparent);
+opacity:0;
+transition:0.5s;
 }
+.card:hover::after{opacity:1;}
+.card:hover{transform:translateY(-15px) scale(1.03);}
 
 footer{
 padding:60px 8%;
@@ -127,6 +119,8 @@ color:var(--muted);
 </head>
 
 <body>
+
+<div class="loader"><h1>CODLY</h1></div>
 
 <canvas id="bg"></canvas>
 
@@ -182,12 +176,17 @@ color:var(--muted);
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* Loader Animation */
+window.addEventListener("load",()=>{
+gsap.to(".loader",{opacity:0,duration:1.5,delay:1,onComplete:()=>document.querySelector(".loader").style.display="none"});
+});
+
 /* Scroll Storytelling */
 gsap.to(".line1",{opacity:1,scrollTrigger:{trigger:".story",start:"top center",end:"+=500",scrub:true}});
 gsap.to(".line2",{opacity:1,scrollTrigger:{trigger:".story",start:"+=400",end:"+=900",scrub:true}});
 gsap.to(".line3",{opacity:1,scrollTrigger:{trigger:".story",start:"+=800",end:"+=1400",scrub:true}});
 
-/* WebGL Particle Field */
+/* WebGL Nebula */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
@@ -195,31 +194,46 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 
 camera.position.z=5;
 
-const particles=10000;
+const particles=15000;
 const geometry=new THREE.BufferGeometry();
 const positions=new Float32Array(particles*3);
 
 for(let i=0;i<particles*3;i++){
-positions[i]=(Math.random()-0.5)*20;
+positions[i]=(Math.random()-0.5)*30;
 }
-
 geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const material=new THREE.PointsMaterial({
-color:0xffffff,
-size:0.02
-});
-
+const material=new THREE.PointsMaterial({color:0xffffff,size:0.015});
 const points=new THREE.Points(geometry,material);
 scene.add(points);
 
+/* Mouse Interaction */
+let mouseX=0, mouseY=0;
+document.addEventListener("mousemove",(e)=>{
+mouseX=(e.clientX/window.innerWidth-0.5)*2;
+mouseY=(e.clientY/window.innerHeight-0.5)*2;
+});
+
 function animate(){
 requestAnimationFrame(animate);
-points.rotation.y+=0.0005;
-points.rotation.x+=0.0003;
+points.rotation.y+=0.0007;
+points.rotation.x+=0.0004;
+camera.position.x+= (mouseX*0.5 - camera.position.x)*0.02;
+camera.position.y+= (-mouseY*0.5 - camera.position.y)*0.02;
 renderer.render(scene,camera);
 }
 animate();
+
+/* Scroll Camera Zoom */
+ScrollTrigger.create({
+trigger:".story",
+start:"top top",
+end:"bottom bottom",
+scrub:true,
+onUpdate:self=>{
+camera.position.z=5 - self.progress*2;
+}
+});
 
 window.addEventListener("resize",()=>{
 camera.aspect=window.innerWidth/window.innerHeight;
