@@ -7,9 +7,111 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* =========================
+   LOADER FADE
+========================= */
+window.addEventListener("load",()=>{
+gsap.to(".loader",{opacity:0,duration:1.2,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
+});
+
+/* =========================
+   TEXT REVEAL
+========================= */
+document.querySelectorAll(".reveal-text").forEach((text,i)=>{
+gsap.to(text.querySelectorAll("span"),{
+opacity:1,
+y:0,
+stagger:0.12,
+ease:"power3.out",
+scrollTrigger:{
+trigger:".story",
+start:"top+=" + (i*500) + " top",
+end:"top+=" + (i*500+300) + " top",
+scrub:true
+}
+});
+});
+
+/* =========================
+   REAL SPACE + HYPERSPACE
+========================= */
+
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+camera.position.z=5;
+
+const starCount=30000;
+const geometry=new THREE.BufferGeometry();
+const positions=new Float32Array(starCount*3);
+const speeds=new Float32Array(starCount);
+
+for(let i=0;i<starCount;i++){
+positions[i*3]=(Math.random()-0.5)*200;
+positions[i*3+1]=(Math.random()-0.5)*200;
+positions[i*3+2]=(Math.random()-0.5)*200;
+speeds[i]=Math.random()*0.02+0.01;
+}
+
+geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
+
+const material=new THREE.PointsMaterial({
+color:0xffffff,
+size:0.02,
+transparent:true,
+opacity:0.9
+});
+
+const stars=new THREE.Points(geometry,material);
+scene.add(stars);
+
+/* Warp Strength Variable */
+let warpSpeed=0;
+
+/* Scroll Controlled Warp */
+ScrollTrigger.create({
+trigger:".story",
+start:"top top",
+end:"bottom bottom",
+scrub:true,
+onUpdate:self=>{
+warpSpeed = self.progress * 4; // increase intensity
+camera.position.z = 5 - self.progress * 2;
+}
+});
+
+/* Animate */
+function animate(){
+requestAnimationFrame(animate);
+
+const pos=geometry.attributes.position.array;
+
+for(let i=0;i<starCount;i++){
+pos[i*3+2]+=speeds[i] + warpSpeed;
+
+if(pos[i*3+2]>100){
+pos[i*3+2]=-100;
+}
+}
+
+geometry.attributes.position.needsUpdate=true;
+stars.rotation.y+=0.0005;
+
+renderer.render(scene,camera);
+}
+animate();
+
+/* Resize */
+window.addEventListener("resize",()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
+</script>
 
 <style>
 :root{
