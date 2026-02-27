@@ -3,130 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Futuristic Studio</title>
+<title>CODLY – Interstellar Mode</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-/* =========================
-   LOADER FADE
-========================= */
-window.addEventListener("load",()=>{
-gsap.to(".loader",{opacity:0,duration:1.2,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
-});
-
-/* =========================
-   TEXT REVEAL
-========================= */
-document.querySelectorAll(".reveal-text").forEach((text,i)=>{
-gsap.to(text.querySelectorAll("span"),{
-opacity:1,
-y:0,
-stagger:0.12,
-ease:"power3.out",
-scrollTrigger:{
-trigger:".story",
-start:"top+=" + (i*500) + " top",
-end:"top+=" + (i*500+300) + " top",
-scrub:true
-}
-});
-});
-
-/* =========================
-   REAL SPACE + HYPERSPACE
-========================= */
-
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.z=5;
-
-const starCount=30000;
-const geometry=new THREE.BufferGeometry();
-const positions=new Float32Array(starCount*3);
-const speeds=new Float32Array(starCount);
-
-for(let i=0;i<starCount;i++){
-positions[i*3]=(Math.random()-0.5)*200;
-positions[i*3+1]=(Math.random()-0.5)*200;
-positions[i*3+2]=(Math.random()-0.5)*200;
-speeds[i]=Math.random()*0.02+0.01;
-}
-
-geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
-
-const material=new THREE.PointsMaterial({
-color:0xffffff,
-size:0.02,
-transparent:true,
-opacity:0.9
-});
-
-const stars=new THREE.Points(geometry,material);
-scene.add(stars);
-
-/* Warp Strength Variable */
-let warpSpeed=0;
-
-/* Scroll Controlled Warp */
-ScrollTrigger.create({
-trigger:".story",
-start:"top top",
-end:"bottom bottom",
-scrub:true,
-onUpdate:self=>{
-warpSpeed = self.progress * 4; // increase intensity
-camera.position.z = 5 - self.progress * 2;
-}
-});
-
-/* Animate */
-function animate(){
-requestAnimationFrame(animate);
-
-const pos=geometry.attributes.position.array;
-
-for(let i=0;i<starCount;i++){
-pos[i*3+2]+=speeds[i] + warpSpeed;
-
-if(pos[i*3+2]>100){
-pos[i*3+2]=-100;
-}
-}
-
-geometry.attributes.position.needsUpdate=true;
-stars.rotation.y+=0.0005;
-
-renderer.render(scene,camera);
-}
-animate();
-
-/* Resize */
-window.addEventListener("resize",()=>{
-camera.aspect=window.innerWidth/window.innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(window.innerWidth,window.innerHeight);
-});
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
 :root{
 --bg:#000814;
 --text:#ffffff;
---muted:#7a869f;
+--muted:#8ea0c5;
 --border:rgba(255,255,255,0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 body{
-background:radial-gradient(circle at 20% 20%, #001233, #000814 60%);
+background:radial-gradient(circle at 30% 20%, #001233, #000814 60%);
 color:var(--text);
 overflow-x:hidden;
 }
+
 canvas{
 position:fixed;
 top:0;
@@ -136,7 +35,7 @@ height:100%;
 z-index:0;
 }
 
-/* GLITCH LOADER */
+/* LOADER */
 .loader{
 position:fixed;
 inset:0;
@@ -144,7 +43,7 @@ background:#000;
 display:flex;
 align-items:center;
 justify-content:center;
-z-index:3000;
+z-index:5000;
 overflow:hidden;
 }
 
@@ -163,14 +62,12 @@ position:absolute;
 left:0;
 top:0;
 width:100%;
-overflow:hidden;
 }
 
 .glitch::before{
 color:#00ffff;
 animation:glitch1 1.5s infinite linear alternate-reverse;
 }
-
 .glitch::after{
 color:#ff00ff;
 animation:glitch2 1.5s infinite linear alternate-reverse;
@@ -181,7 +78,6 @@ animation:glitch2 1.5s infinite linear alternate-reverse;
 50%{clip-path:inset(20% 0 40% 0);}
 100%{clip-path:inset(60% 0 0 0);}
 }
-
 @keyframes glitch2{
 0%{clip-path:inset(60% 0 0 0);}
 50%{clip-path:inset(10% 0 60% 0);}
@@ -196,10 +92,10 @@ width:100%;
 padding:20px 8%;
 display:flex;
 justify-content:space-between;
-background:rgba(0,0,0,0.3);
-backdrop-filter:blur(12px);
-z-index:1000;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(15px);
 border-bottom:1px solid var(--border);
+z-index:1000;
 }
 
 .logo{
@@ -213,8 +109,8 @@ header a{
 color:var(--muted);
 text-decoration:none;
 margin-left:30px;
-transition:0.3s;
 font-size:14px;
+transition:0.3s;
 }
 header a:hover{color:#fff;}
 
@@ -232,34 +128,12 @@ justify-content:center;
 .hero h1{
 font-family:'Orbitron',sans-serif;
 font-size:clamp(70px,9vw,120px);
-position:relative;
 letter-spacing:4px;
 }
-
-.hero h1.glitch-hero::before,
-.hero h1.glitch-hero::after{
-content:"CODLY";
-position:absolute;
-left:0;
-top:0;
-width:100%;
-}
-
-.hero h1.glitch-hero::before{
-color:#00ffff;
-animation:glitch1 2s infinite linear alternate-reverse;
-}
-
-.hero h1.glitch-hero::after{
-color:#ff00ff;
-animation:glitch2 2s infinite linear alternate-reverse;
-}
-
 .hero p{
 margin-top:20px;
 max-width:600px;
 color:var(--muted);
-font-size:16px;
 }
 
 /* STORY */
@@ -280,7 +154,6 @@ text-align:center;
 .reveal-text{
 font-size:clamp(28px,4vw,50px);
 font-weight:600;
-letter-spacing:-1px;
 }
 .reveal-text span{
 display:inline-block;
@@ -288,21 +161,7 @@ opacity:0;
 transform:translateY(30px);
 }
 
-/* ABOUT */
-.about{
-max-width:800px;
-}
-.about h2{
-font-size:clamp(30px,4vw,50px);
-margin-bottom:20px;
-}
-.about p{
-color:var(--muted);
-line-height:1.8;
-margin-bottom:15px;
-}
-
-/* PROJECTS */
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -310,32 +169,25 @@ gap:30px;
 margin-top:50px;
 }
 .card{
-background:rgba(255,255,255,0.03);
+background:rgba(255,255,255,0.04);
 border:1px solid var(--border);
 border-radius:14px;
 padding:30px;
+text-align:center;
 transition:0.4s;
 text-decoration:none;
 color:#fff;
 font-weight:600;
-display:flex;
-align-items:center;
-justify-content:center;
 }
 .card:hover{
-transform:translateY(-10px);
-background:rgba(255,255,255,0.06);
+transform:translateY(-8px);
+background:rgba(255,255,255,0.08);
 }
 
 /* CONTACT */
 .contact-details{
 margin-top:30px;
 line-height:2;
-font-size:15px;
-}
-.contact-details a{
-color:#fff;
-text-decoration:none;
 }
 
 /* FOOTER */
@@ -344,7 +196,6 @@ padding:60px 8%;
 border-top:1px solid var(--border);
 text-align:center;
 color:var(--muted);
-font-size:14px;
 }
 </style>
 </head>
@@ -370,8 +221,8 @@ font-size:14px;
 </header>
 
 <section class="hero">
-<h1 class="glitch-hero">CODLY</h1>
-<p>Building futuristic digital systems with precision and creative engineering.</p>
+<h1>CODLY</h1>
+<p>Entering hyperspace digital engineering.</p>
 </section>
 
 <section class="story">
@@ -383,11 +234,8 @@ font-size:14px;
 </section>
 
 <section id="about">
-<div class="about">
 <h2>About Codly</h2>
-<p>Codly is a futuristic creative digital studio founded by Rohit Kumar. Focused on crafting immersive web experiences, scalable business platforms, and visually refined interfaces.</p>
-<p>From gym brands to fabrication industries and AI-powered concepts, Codly merges design aesthetics with high-performance engineering.</p>
-</div>
+<p>Codly is a futuristic digital studio led by Rohit Kumar, building immersive web experiences and scalable digital ecosystems.</p>
 </section>
 
 <section id="projects">
@@ -403,11 +251,11 @@ font-size:14px;
 </section>
 
 <section id="contact">
-<h2>Let’s Work Together</h2>
+<h2>Contact</h2>
 <div class="contact-details">
 <p>Email: Codly.rk@gmail.com</p>
 <p>Phone: +91 9324452580</p>
-<p><a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">@codly.ai</a></p>
+<p>Instagram: @codly.ai</p>
 </div>
 </section>
 
@@ -420,16 +268,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* Loader fade */
 window.addEventListener("load",()=>{
-gsap.to(".loader",{opacity:0,duration:1.2,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
+gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-/* Scroll text animation */
+/* Text animation */
 document.querySelectorAll(".reveal-text").forEach((text,i)=>{
 gsap.to(text.querySelectorAll("span"),{
 opacity:1,
 y:0,
 stagger:0.12,
-ease:"power3.out",
 scrollTrigger:{
 trigger:".story",
 start:"top+=" + (i*500) + " top",
@@ -439,34 +286,59 @@ scrub:true
 });
 });
 
-/* REAL SPACE BACKGROUND */
+/* INTERSTELLAR STAR STREAKS */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.z=6;
+camera.position.z=5;
 
-const starGeometry=new THREE.BufferGeometry();
-const starCount=20000;
-const starPositions=new Float32Array(starCount*3);
+const starCount=40000;
+const geometry=new THREE.BufferGeometry();
+const positions=new Float32Array(starCount*3);
 
-for(let i=0;i<starCount*3;i++){
-starPositions[i]=(Math.random()-0.5)*100;
+for(let i=0;i<starCount;i++){
+positions[i*3]=(Math.random()-0.5)*200;
+positions[i*3+1]=(Math.random()-0.5)*200;
+positions[i*3+2]=(Math.random()-0.5)*200;
 }
 
-starGeometry.setAttribute("position",new THREE.BufferAttribute(starPositions,3));
+geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const starMaterial=new THREE.PointsMaterial({
+const material=new THREE.PointsMaterial({
 color:0xffffff,
-size:0.02
+size:0.015
 });
 
-const stars=new THREE.Points(starGeometry,starMaterial);
+const stars=new THREE.Points(geometry,material);
 scene.add(stars);
+
+let warp=0;
+
+/* Warp Scroll */
+ScrollTrigger.create({
+trigger:".story",
+start:"top top",
+end:"bottom bottom",
+scrub:true,
+onUpdate:self=>{
+warp=self.progress*6;
+camera.position.z=5-self.progress*3;
+}
+});
 
 function animate(){
 requestAnimationFrame(animate);
-stars.rotation.y+=0.0003;
+const pos=geometry.attributes.position.array;
+
+for(let i=0;i<starCount;i++){
+pos[i*3+2]+=0.2+warp;
+if(pos[i*3+2]>100){
+pos[i*3+2]=-200;
+}
+}
+
+geometry.attributes.position.needsUpdate=true;
 renderer.render(scene,camera);
 }
 animate();
