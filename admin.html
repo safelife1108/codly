@@ -2,257 +2,359 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Codly Admin Panel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>CODLY Admin Panel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,sans-serif}
-body{background:#0f1115;color:#fff}
-a{text-decoration:none;color:inherit}
-.hidden{display:none}
-
-/* LOGIN */
-#login{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
 }
+
+body{
+background:#0f172a;
+color:#fff;
+}
+
+/* ================= LOGIN ================= */
+
+.login-container{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#0f172a;
+}
+
 .login-box{
-  background:#171c26;padding:30px;border-radius:14px;width:320px;
+background:#1e293b;
+padding:40px;
+border-radius:12px;
+width:350px;
+box-shadow:0 0 30px rgba(0,0,0,0.5);
 }
-.login-box h2{text-align:center;margin-bottom:20px;color:#ff4d4d}
-.login-box input{width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #333;background:#0f1115;color:#fff}
-.login-box button{width:100%;padding:12px;border:none;border-radius:8px;background:#ff4d4d;color:#000;font-weight:700}
 
-/* LAYOUT */
-#app{display:flex;min-height:100vh}
+.login-box h2{
+margin-bottom:20px;
+text-align:center;
+}
+
+.login-box input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:none;
+border-radius:6px;
+background:#334155;
+color:#fff;
+}
+
+.login-box button{
+width:100%;
+padding:12px;
+background:#2563eb;
+border:none;
+border-radius:6px;
+color:#fff;
+cursor:pointer;
+font-weight:600;
+}
+
+/* ================= ADMIN LAYOUT ================= */
+
+.admin{
+display:none;
+}
+
 .sidebar{
-  width:240px;background:#0b0d12;padding:20px;border-right:1px solid #222
+width:240px;
+height:100vh;
+background:#1e293b;
+position:fixed;
+padding:20px;
 }
-.sidebar h3{color:#ff4d4d;margin-bottom:20px}
-.sidebar a{display:block;padding:10px;border-radius:8px;color:#ccc;margin-bottom:6px}
-.sidebar a:hover,.sidebar a.active{background:#171c26;color:#fff}
 
-.main{flex:1;padding:20px}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.card{background:#171c26;padding:20px;border-radius:14px;margin-bottom:20px}
+.sidebar h2{
+margin-bottom:30px;
+}
 
-/* TABLE */
-table{width:100%;border-collapse:collapse}
-th,td{padding:10px;border-bottom:1px solid #222;text-align:left}
-th{color:#ff4d4d}
+.sidebar ul{
+list-style:none;
+}
 
-/* BUTTONS */
-.btn{padding:8px 12px;border-radius:6px;border:none;cursor:pointer;font-weight:600}
-.btn.add{background:#22c55e;color:#000}
-.btn.del{background:#ef4444;color:#000}
-.btn.gray{background:#374151;color:#fff}
+.sidebar ul li{
+padding:12px;
+margin-bottom:10px;
+background:#334155;
+border-radius:6px;
+cursor:pointer;
+}
 
-/* SELECT */
-select{padding:8px;border-radius:6px;background:#0f1115;color:#fff;border:1px solid #333}
+.sidebar ul li:hover{
+background:#2563eb;
+}
+
+.topbar{
+margin-left:240px;
+padding:20px;
+background:#1e293b;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.content{
+margin-left:240px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:8px;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+button.small{
+padding:6px 12px;
+background:#2563eb;
+border:none;
+border-radius:4px;
+color:#fff;
+cursor:pointer;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+table th, table td{
+padding:10px;
+border-bottom:1px solid #334155;
+text-align:left;
+}
+
+input.form-input{
+padding:8px;
+background:#334155;
+border:none;
+border-radius:4px;
+color:#fff;
+margin-right:10px;
+}
+
+.logout{
+cursor:pointer;
+color:#f87171;
+}
 </style>
 </head>
+
 <body>
 
 <!-- LOGIN -->
-<div id="login">
-  <div class="login-box">
-    <h2>Codly Admin</h2>
-    <input id="user" placeholder="Username" value="admin">
-    <input id="pass" type="password" placeholder="Password" value="admin">
-    <button onclick="login()">Login</button>
-    <p style="margin-top:10px;font-size:12px;color:#aaa;text-align:center">
-      Demo login: admin / admin
-    </p>
-  </div>
+<div class="login-container" id="loginPage">
+<div class="login-box">
+<h2>Admin Login</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
 </div>
 
-<!-- APP -->
-<div id="app" class="hidden">
-  <div class="sidebar">
-    <h3>Codly Admin</h3>
-    <a href="#" class="active" onclick="showSection('dashboard')">Dashboard</a>
-    <a href="#" onclick="showSection('pages')">Pages</a>
-    <a href="#" onclick="showSection('programs')">Programs / Services</a>
-    <a href="#" onclick="showSection('trainers')">Trainers / Staff</a>
-    <a href="#" onclick="showSection('products')">Products</a>
-    <a href="#" onclick="showSection('branches')">Branches</a>
-    <a href="#" onclick="showSection('orders')">Orders</a>
-    <a href="#" onclick="showSection('messages')">Leads / Messages</a>
-    <a href="#" onclick="logout()">Logout</a>
-  </div>
+<!-- ADMIN PANEL -->
+<div class="admin" id="adminPanel">
 
-  <div class="main">
-    <div class="topbar">
-      <h2 id="title">Dashboard</h2>
-      <div>
-        <select id="siteSelect" onchange="changeSite()">
-          <option>PowerFlex Gym</option>
-          <option>Fabrication Demo</option>
-          <option>Codly Market</option>
-          <option>Safe Life</option>
-        </select>
-      </div>
-    </div>
+<div class="sidebar">
+<h2>CODLY Admin</h2>
+<ul>
+<li onclick="showSection('dashboard')">Dashboard</li>
+<li onclick="showSection('users')">Users</li>
+<li onclick="showSection('content')">Content</li>
+<li onclick="showSection('settings')">Settings</li>
+</ul>
+</div>
 
-    <!-- DASHBOARD -->
-    <div id="dashboard" class="section">
-      <div class="card">
-        <h3>Welcome to Codly Admin</h3>
-        <p style="color:#aaa;margin-top:8px">
-          Manage all your demo websites from one panel. Switch site from top right.
-        </p>
-      </div>
-      <div class="card">
-        <p>📊 Total Pages: 12</p>
-        <p>📦 Products: 48</p>
-        <p>👥 Trainers/Staff: 9</p>
-        <p>📩 Leads: 23</p>
-        <p>🛒 Orders: 15</p>
-      </div>
-    </div>
+<div class="topbar">
+<h3 id="sectionTitle">Dashboard</h3>
+<div class="logout" onclick="logout()">Logout</div>
+</div>
 
-    <!-- PAGES -->
-    <div id="pages" class="section hidden">
-      <div class="card">
-        <h3>Pages</h3>
-        <button class="btn add" onclick="addRow('pagesTable')">+ Add Page</button>
-      </div>
-      <div class="card">
-        <table id="pagesTable">
-          <tr><th>Page Name</th><th>Status</th><th>Action</th></tr>
-          <tr><td>Home</td><td>Published</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-          <tr><td>About</td><td>Published</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-        </table>
-      </div>
-    </div>
+<div class="content">
 
-    <!-- PROGRAMS -->
-    <div id="programs" class="section hidden">
-      <div class="card">
-        <h3>Programs / Services</h3>
-        <button class="btn add" onclick="addRow('progTable')">+ Add</button>
-      </div>
-      <div class="card">
-        <table id="progTable">
-          <tr><th>Name</th><th>Type</th><th>Action</th></tr>
-          <tr><td>Strength Training</td><td>Program</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-          <tr><td>Cardio Fitness</td><td>Program</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-        </table>
-      </div>
-    </div>
+<!-- DASHBOARD -->
+<div id="dashboard" class="section">
+<div class="grid">
+<div class="card">
+<h4>Total Users</h4>
+<p id="totalUsers">0</p>
+</div>
+<div class="card">
+<h4>Total Posts</h4>
+<p id="totalPosts">0</p>
+</div>
+<div class="card">
+<h4>Active Sessions</h4>
+<p>1</p>
+</div>
+</div>
+</div>
 
-    <!-- TRAINERS -->
-    <div id="trainers" class="section hidden">
-      <div class="card">
-        <h3>Trainers / Staff</h3>
-        <button class="btn add" onclick="addRow('trainerTable')">+ Add</button>
-      </div>
-      <div class="card">
-        <table id="trainerTable">
-          <tr><th>Name</th><th>Role</th><th>Action</th></tr>
-          <tr><td>Rajesh Kumar</td><td>Head Coach</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-          <tr><td>Priya Sharma</td><td>Trainer</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-        </table>
-      </div>
-    </div>
+<!-- USERS -->
+<div id="users" class="section" style="display:none;">
+<div class="card">
+<h4>Add User</h4>
+<input class="form-input" id="newUser" placeholder="Username">
+<button class="small" onclick="addUser()">Add</button>
 
-    <!-- PRODUCTS -->
-    <div id="products" class="section hidden">
-      <div class="card">
-        <h3>Products</h3>
-        <button class="btn add" onclick="addRow('prodTable')">+ Add Product</button>
-      </div>
-      <div class="card">
-        <table id="prodTable">
-          <tr><th>Product</th><th>Price</th><th>Stock</th><th>Action</th></tr>
-          <tr><td>Shoes</td><td>₹1999</td><td>20</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-          <tr><td>T-Shirt</td><td>₹999</td><td>50</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-        </table>
-      </div>
-    </div>
+<table>
+<thead>
+<tr>
+<th>Username</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="userTable"></tbody>
+</table>
+</div>
+</div>
 
-    <!-- BRANCHES -->
-    <div id="branches" class="section hidden">
-      <div class="card">
-        <h3>Branches</h3>
-        <button class="btn add" onclick="addRow('branchTable')">+ Add Branch</button>
-      </div>
-      <div class="card">
-        <table id="branchTable">
-          <tr><th>Branch</th><th>City</th><th>Action</th></tr>
-          <tr><td>Andheri</td><td>Mumbai</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-          <tr><td>Thane</td><td>Mumbai</td><td><button class="btn del" onclick="delRow(this)">Delete</button></td></tr>
-        </table>
-      </div>
-    </div>
+<!-- CONTENT -->
+<div id="content" class="section" style="display:none;">
+<div class="card">
+<h4>Add Post</h4>
+<input class="form-input" id="newPost" placeholder="Post Title">
+<button class="small" onclick="addPost()">Add</button>
 
-    <!-- ORDERS -->
-    <div id="orders" class="section hidden">
-      <div class="card">
-        <h3>Orders</h3>
-      </div>
-      <div class="card">
-        <table>
-          <tr><th>Order ID</th><th>Customer</th><th>Status</th></tr>
-          <tr><td>#1001</td><td>Rohit</td><td>Pending</td></tr>
-          <tr><td>#1002</td><td>Amit</td><td>Completed</td></tr>
-        </table>
-      </div>
-    </div>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="postTable"></tbody>
+</table>
+</div>
+</div>
 
-    <!-- MESSAGES -->
-    <div id="messages" class="section hidden">
-      <div class="card">
-        <h3>Leads / Messages</h3>
-      </div>
-      <div class="card">
-        <table>
-          <tr><th>Name</th><th>Email</th><th>Message</th></tr>
-          <tr><td>Rahul</td><td>rahul@mail.com</td><td>Need gym membership</td></tr>
-          <tr><td>Neha</td><td>neha@mail.com</td><td>Need website</td></tr>
-        </table>
-      </div>
-    </div>
+<!-- SETTINGS -->
+<div id="settings" class="section" style="display:none;">
+<div class="card">
+<h4>General Settings</h4>
+<p>Admin Name: Rohit Kumar</p>
+<p>Email: codly.rk@gmail.com</p>
+<p>Phone: 9324452580</p>
+</div>
+</div>
 
-  </div>
+</div>
 </div>
 
 <script>
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+// LOGIN
 function login(){
-  const u=document.getElementById("user").value;
-  const p=document.getElementById("pass").value;
-  if(u==="admin" && p==="admin"){
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("app").classList.remove("hidden");
-  }else{
-    alert("Wrong login");
-  }
+const username = document.getElementById("username").value;
+const password = document.getElementById("password").value;
+
+if(username === "admin" && password === "admin123"){
+document.getElementById("loginPage").style.display = "none";
+document.getElementById("adminPanel").style.display = "block";
+loadData();
+}else{
+alert("Invalid credentials");
 }
+}
+
 function logout(){
-  location.reload();
+location.reload();
 }
+
+// NAVIGATION
 function showSection(id){
-  document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-  document.getElementById("title").innerText = id.charAt(0).toUpperCase()+id.slice(1);
+document.querySelectorAll(".section").forEach(sec=>{
+sec.style.display="none";
+});
+document.getElementById(id).style.display="block";
+document.getElementById("sectionTitle").innerText = id.charAt(0).toUpperCase()+id.slice(1);
 }
-function addRow(tableId){
-  const t=document.getElementById(tableId);
-  const cols=t.rows[0].cells.length;
-  const r=t.insertRow();
-  for(let i=0;i<cols-1;i++){
-    const c=r.insertCell();
-    c.innerText="New";
-  }
-  const c=r.insertCell();
-  c.innerHTML='<button class="btn del" onclick="delRow(this)">Delete</button>';
+
+// USERS
+function addUser(){
+const username = document.getElementById("newUser").value;
+if(username){
+users.push(username);
+localStorage.setItem("users", JSON.stringify(users));
+document.getElementById("newUser").value="";
+renderUsers();
 }
-function delRow(btn){
-  btn.parentElement.parentElement.remove();
 }
-function changeSite(){
-  const site=document.getElementById("siteSelect").value;
-  alert("Switched to: "+site+" (Demo only)");
+
+function deleteUser(index){
+users.splice(index,1);
+localStorage.setItem("users", JSON.stringify(users));
+renderUsers();
+}
+
+function renderUsers(){
+const table = document.getElementById("userTable");
+table.innerHTML="";
+users.forEach((user,index)=>{
+table.innerHTML += `<tr>
+<td>${user}</td>
+<td><button class="small" onclick="deleteUser(${index})">Delete</button></td>
+</tr>`;
+});
+document.getElementById("totalUsers").innerText = users.length;
+}
+
+// POSTS
+function addPost(){
+const title = document.getElementById("newPost").value;
+if(title){
+posts.push(title);
+localStorage.setItem("posts", JSON.stringify(posts));
+document.getElementById("newPost").value="";
+renderPosts();
+}
+}
+
+function deletePost(index){
+posts.splice(index,1);
+localStorage.setItem("posts", JSON.stringify(posts));
+renderPosts();
+}
+
+function renderPosts(){
+const table = document.getElementById("postTable");
+table.innerHTML="";
+posts.forEach((post,index)=>{
+table.innerHTML += `<tr>
+<td>${post}</td>
+<td><button class="small" onclick="deletePost(${index})">Delete</button></td>
+</tr>`;
+});
+document.getElementById("totalPosts").innerText = posts.length;
+}
+
+function loadData(){
+renderUsers();
+renderPosts();
 }
 </script>
 
