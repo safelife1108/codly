@@ -3,539 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elite Power Gym</title>
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+<title>PowerFlex Gym</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/7a4b62b0a4.js" crossorigin="anonymous"></script>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:#000;color:#fff;overflow-x:hidden}
+img{width:100%;display:block}
+a{text-decoration:none;color:#fff}
+section{padding:100px 8%}
+h1,h2,h3,h4{font-weight:800;letter-spacing:1px}
+.container{max-width:1400px;margin:auto}
 
-body{
-    background:#000;
-    color:#fff;
-    overflow-x:hidden;
-}
+/* Loader */
+#loader{position:fixed;width:100%;height:100vh;background:#000;display:flex;align-items:center;justify-content:center;z-index:9999}
+.loader-content{position:relative;width:120px;height:120px}
+.loader-ring{position:absolute;width:100%;height:100%;border:4px solid transparent;border-top:4px solid #ff0000;border-radius:50%;animation:spin 1s linear infinite}
+.loader-ring:nth-child(2){border-top:4px solid #fff;animation-delay:.3s}
+.loader-ring:nth-child(3){border-top:4px solid #ff0000;animation-delay:.6s}
+@keyframes spin{100%{transform:rotate(360deg)}}
 
-html{
-    scroll-behavior:smooth;
-}
+/* Navbar */
+header{position:fixed;width:100%;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);z-index:1000;padding:20px 8%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:900;color:#ff0000}
+nav ul{display:flex;gap:30px;list-style:none}
+nav ul li a{font-weight:600;transition:.3s}
+nav ul li a:hover{color:#ff0000}
 
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    padding:80px 0;
-}
+/* Hero */
+.hero{height:100vh;background:url('https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;position:relative;text-align:center}
+.hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.75)}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:70px;color:#fff}
+.hero p{margin:20px 0;font-size:20px}
+.btn{display:inline-block;padding:14px 40px;background:#ff0000;font-weight:700;border-radius:4px;transition:.3s}
+.btn:hover{background:#fff;color:#000}
 
-/* ================= NAVBAR ================= */
-nav{
-    background:#000;
-    padding:20px 0;
-    position:fixed;
-    width:100%;
-    z-index:1000;
-    border-bottom:1px solid #111;
-}
+/* Counters */
+.counters{background:#111;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
+.counter-box{padding:40px;background:#1a1a1a;border-radius:10px;transition:.3s}
+.counter-box:hover{transform:translateY(-10px);background:#ff0000}
+.counter{font-size:50px;font-weight:900}
 
-nav .container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0;
-}
+/* Programs */
+.programs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.card{background:#111;border-radius:10px;overflow:hidden;transition:.3s}
+.card:hover{transform:scale(1.05)}
+.card-content{padding:20px}
 
-nav h1{
-    color:#ff0000;
-    font-weight:800;
-    font-size:28px;
-}
+/* Trainers */
+.trainers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.trainer-card{background:#111;border-radius:10px;overflow:hidden;text-align:center;transition:.3s}
+.trainer-card:hover{transform:translateY(-10px);background:#ff0000}
 
-nav ul{
-    display:flex;
-    list-style:none;
-}
+/* Branches */
+.branch{margin-bottom:60px;background:#111;padding:30px;border-radius:10px}
+iframe{width:100%;height:300px;border:0;margin-top:20px}
 
-nav ul li{
-    margin-left:30px;
-}
+/* Plans */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.plan{background:#111;padding:40px;border-radius:10px;transition:.3s}
+.plan.highlight{background:#ff0000}
+.plan:hover{transform:scale(1.05)}
 
-nav ul li a{
-    text-decoration:none;
-    color:#fff;
-    font-weight:600;
-    transition:0.3s;
-}
+/* Gallery */
+.gallery{column-count:3;column-gap:20px}
+.gallery img{margin-bottom:20px;border-radius:10px}
 
-nav ul li a:hover{
-    color:#ff0000;
-}
+/* Testimonials */
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.testimonial{background:#111;padding:30px;border-radius:10px}
+.stars{color:#ff0000;margin-bottom:10px}
 
-/* ================= HERO ================= */
-.hero{
-    height:100vh;
-    background:url('https://images.unsplash.com/photo-1554284126-5c49b5c6d6b0?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding-top:80px;
-}
+/* FAQ */
+.faq-item{background:#111;margin-bottom:15px;border-radius:8px;overflow:hidden}
+.faq-question{padding:20px;cursor:pointer;font-weight:600;background:#1a1a1a}
+.faq-answer{max-height:0;overflow:hidden;transition:.4s;padding:0 20px}
+.faq-item.active .faq-answer{max-height:200px;padding:20px}
 
-.hero h2{
-    font-size:60px;
-    font-weight:800;
-    text-transform:uppercase;
-}
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+form input,form textarea{width:100%;padding:15px;margin-bottom:15px;border:none;border-radius:5px}
+form button{width:100%;padding:15px;background:#ff0000;border:none;font-weight:700;color:#fff;cursor:pointer}
 
-.hero span{
-    color:#ff0000;
-}
+/* Footer */
+footer{background:#111;padding:60px 8%}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+footer h4{color:#ff0000;margin-bottom:20px}
+footer ul{list-style:none}
+footer ul li{margin-bottom:10px}
+footer ul li a:hover{color:#ff0000}
+.copyright{text-align:center;margin-top:40px;border-top:1px solid #222;padding-top:20px}
 
-.hero p{
-    margin-top:20px;
-    font-size:18px;
-}
-
-.hero button{
-    margin-top:30px;
-    padding:15px 40px;
-    border:none;
-    background:#ff0000;
-    color:#fff;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.hero button:hover{
-    background:#cc0000;
-}
-
-/* ================= ABOUT ================= */
-.about{
-    background:#111;
-}
-
-.about h2{
-    font-size:40px;
-    font-weight:800;
-    text-align:center;
-    margin-bottom:40px;
-}
-
-.about p{
-    text-align:center;
-    max-width:800px;
-    margin:auto;
-    line-height:1.8;
-}
-
-/* ================= SERVICES ================= */
-.services{
-    background:#000;
-}
-
-.services h2{
-    text-align:center;
-    font-size:40px;
-    font-weight:800;
-    margin-bottom:60px;
-}
-
-.service-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
-
-.service-box{
-    background:#111;
-    padding:30px;
-    text-align:center;
-    border:1px solid #222;
-    transition:0.3s;
-}
-
-.service-box:hover{
-    border:1px solid #ff0000;
-    transform:translateY(-5px);
-}
-
-.service-box h3{
-    margin-bottom:15px;
-    color:#ff0000;
-}
-
-/* ================= STATS ================= */
-.stats{
-    background:#111;
-    text-align:center;
-}
-
-.stats h2{
-    font-size:40px;
-    font-weight:800;
-    margin-bottom:60px;
-}
-
-.stat-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:40px;
-}
-
-.stat-box h3{
-    font-size:50px;
-    color:#ff0000;
-}
-
-.stat-box p{
-    font-weight:600;
-    margin-top:10px;
-}
-
-/* ================= FAQ ================= */
-.faq{
-    background:#000;
-}
-
-.faq h2{
-    text-align:center;
-    font-size:40px;
-    font-weight:800;
-    margin-bottom:60px;
-}
-
-.faq-item{
-    border-bottom:1px solid #222;
-    padding:20px 0;
-    cursor:pointer;
-}
-
-.faq-item h3{
-    font-size:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.faq-content{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height 0.4s ease;
-    color:#ccc;
-    line-height:1.6;
-    margin-top:10px;
-}
-
-/* ================= FOOTER ================= */
-footer{
-    background:#111;
-    padding:60px 0 20px;
-}
-
-.footer-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:40px;
-}
-
-footer h3{
-    color:#ff0000;
-    margin-bottom:20px;
-}
-
-footer ul{
-    list-style:none;
-}
-
-footer ul li{
-    margin-bottom:10px;
-}
-
-footer ul li a{
-    text-decoration:none;
-    color:#ccc;
-    font-size:14px;
-}
-
-footer ul li a:hover{
-    color:#ff0000;
-}
-
-.footer-bottom{
-    text-align:center;
-    border-top:1px solid #222;
-    margin-top:40px;
-    padding-top:20px;
-    font-size:14px;
-    color:#777;
-}
-
-/* ================= LOADER ================= */
-#loader{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:#000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:2000;
-}
-
-.loader-content{
-    text-align:center;
-}
-
-.loader-bar{
-    width:250px;
-    height:4px;
-    background:#222;
-    margin-top:20px;
-    overflow:hidden;
-}
-
-.loader-progress{
-    width:0%;
-    height:100%;
-    background:#ff0000;
-    animation:loading 2s linear forwards;
-}
-
-@keyframes loading{
-    100%{width:100%;}
-}
-
-.fade-out{
-    opacity:0;
-    visibility:hidden;
-    transition:0.5s ease;
+@media(max-width:1000px){
+.programs-grid,.plans{grid-template-columns:repeat(2,1fr)}
+.trainers-grid,.testimonials{grid-template-columns:1fr}
+.counters{grid-template-columns:repeat(2,1fr)}
+.gallery{column-count:2}
+.contact-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
 
-<!-- LOADING SCREEN -->
 <div id="loader">
-    <div class="loader-content">
-        <h1 style="color:#ff0000;font-weight:800;font-size:30px;">ELITE POWER GYM</h1>
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
-        </div>
-    </div>
+<div class="loader-content">
+<div class="loader-ring"></div>
+<div class="loader-ring"></div>
+<div class="loader-ring"></div>
+</div>
 </div>
 
-<!-- NAVIGATION -->
+<header>
+<div class="logo">PowerFlex</div>
 <nav>
-    <div class="container">
-        <h1>EPG</h1>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#programs">Programs</a></li>
+<li><a href="#trainers">Trainers</a></li>
+<li><a href="#branches">Branches</a></li>
+<li><a href="#plans">Plans</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 </nav>
+</header>
 
-<!-- HERO -->
-<section class="hero">
-    <div>
-        <h2>Train <span>Hard</span> Stay Strong</h2>
-        <p>Premium Fitness Experience for Elite Results</p>
-        <button>Join Now</button>
-    </div>
+<section class="hero" id="home">
+<div class="hero-content">
+<h1>UNLEASH YOUR POWER</h1>
+<p>Luxury Fitness Experience Designed For Champions</p>
+<a href="#plans" class="btn">Join Now</a>
+</div>
 </section>
 
-<!-- ABOUT -->
-<section class="about">
-    <div class="container">
-        <h2>About Us</h2>
-        <p>Elite Power Gym delivers world-class training, expert coaching, and high-end equipment in a bold, performance-driven environment. We focus on strength, endurance, transformation, and discipline.</p>
-    </div>
+<section class="counters">
+<div class="counter-box"><div class="counter" data-target="2000">0</div><p>Active Members</p></div>
+<div class="counter-box"><div class="counter" data-target="15">0</div><p>Expert Trainers</p></div>
+<div class="counter-box"><div class="counter" data-target="10">0</div><p>Years Experience</p></div>
+<div class="counter-box"><div class="counter" data-target="5">0</div><p>Branches</p></div>
 </section>
 
-<!-- SERVICES -->
-<section class="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <div class="service-grid">
-            <div class="service-box">
-                <h3>Personal Training</h3>
-                <p>1-on-1 professional coaching for maximum results.</p>
-            </div>
-            <div class="service-box">
-                <h3>Strength Training</h3>
-                <p>High-performance equipment & programs.</p>
-            </div>
-            <div class="service-box">
-                <h3>Cardio Fitness</h3>
-                <p>Modern cardio zone for endurance building.</p>
-            </div>
-            <div class="service-box">
-                <h3>Nutrition Plans</h3>
-                <p>Customized meal plans for peak performance.</p>
-            </div>
-        </div>
-    </div>
+<section id="programs">
+<h2>Our Programs</h2><br>
+<div class="programs-grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>Strength Training</h3></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>Cardio Blast</h3></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1518611012118-fef6d0c4d5c9?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>CrossFit</h3></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1571019613914-85f342c1d4b3?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>Personal Training</h3></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1554298174-4d5c8f1b8a6f?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>Yoga</h3></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1594737625785-c79e3a1b9e2b?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>Boxing</h3></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>Bodybuilding</h3></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80"><div class="card-content"><h3>HIIT</h3></div></div>
+</div>
 </section>
 
-<!-- STATS -->
-<section class="stats">
-    <div class="container">
-        <h2>Our Achievements</h2>
-        <div class="stat-grid">
-            <div class="stat-box">
-                <h3 class="counter" data-target="2500">0</h3>
-                <p>Active Members</p>
-            </div>
-            <div class="stat-box">
-                <h3 class="counter" data-target="35">0</h3>
-                <p>Expert Trainers</p>
-            </div>
-            <div class="stat-box">
-                <h3 class="counter" data-target="15">0</h3>
-                <p>Years Experience</p>
-            </div>
-            <div class="stat-box">
-                <h3 class="counter" data-target="5">0</h3>
-                <p>Branches</p>
-            </div>
-        </div>
-    </div>
+<section id="trainers">
+<h2>Expert Trainers</h2><br>
+<div class="trainers-grid">
+<div class="trainer-card"><img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=800&q=80"><h3>John Carter</h3></div>
+<div class="trainer-card"><img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?auto=format&fit=crop&w=800&q=80"><h3>David Smith</h3></div>
+<div class="trainer-card"><img src="https://images.unsplash.com/photo-1594737625785-c79e3a1b9e2b?auto=format&fit=crop&w=800&q=80"><h3>Michael Lee</h3></div>
+<div class="trainer-card"><img src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?auto=format&fit=crop&w=800&q=80"><h3>Chris Evans</h3></div>
+<div class="trainer-card"><img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=80"><h3>Robert King</h3></div>
+<div class="trainer-card"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80"><h3>Daniel Ross</h3></div>
+</div>
 </section>
 
-<!-- FAQ -->
-<section class="faq">
-    <div class="container">
-        <h2>Frequently Asked Questions</h2>
-
-        <div class="faq-item">
-            <h3>What are your membership plans?<span>+</span></h3>
-            <div class="faq-content">
-                <p>We offer monthly, quarterly, and annual premium memberships tailored to your fitness goals.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <h3>Do you provide personal trainers?<span>+</span></h3>
-            <div class="faq-content">
-                <p>Yes, certified expert trainers are available for personal coaching sessions.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <h3>Are there separate sections for cardio & weights?<span>+</span></h3>
-            <div class="faq-content">
-                <p>Absolutely. We have dedicated high-performance zones for strength and cardio training.</p>
-            </div>
-        </div>
-
-    </div>
+<section id="branches">
+<h2>Our Branches</h2><br>
+<div class="branch"><h3>Mumbai Central</h3><p>123 Fitness Street, Mumbai</p><p>+91 90000 00001</p><iframe src="https://maps.google.com/maps?q=mumbai&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div>
+<div class="branch"><h3>Delhi Prime</h3><p>45 Power Road, Delhi</p><p>+91 90000 00002</p><iframe src="https://maps.google.com/maps?q=delhi&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div>
+<div class="branch"><h3>Bangalore Elite</h3><p>78 Muscle Ave, Bangalore</p><p>+91 90000 00003</p><iframe src="https://maps.google.com/maps?q=bangalore&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div>
+<div class="branch"><h3>Hyderabad Pro</h3><p>21 Iron Street, Hyderabad</p><p>+91 90000 00004</p><iframe src="https://maps.google.com/maps?q=hyderabad&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div>
+<div class="branch"><h3>Pune Strength</h3><p>99 Champion Lane, Pune</p><p>+91 90000 00005</p><iframe src="https://maps.google.com/maps?q=pune&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div>
 </section>
 
-<!-- FOOTER -->
+<section id="plans">
+<h2>Membership Plans</h2><br>
+<div class="plans">
+<div class="plan"><h3>Basic</h3><p>₹1999/month</p><p>Gym Access</p></div>
+<div class="plan highlight"><h3>Pro</h3><p>₹3999/month</p><p>Gym + Classes</p></div>
+<div class="plan"><h3>Elite</h3><p>₹5999/month</p><p>All Access</p></div>
+<div class="plan"><h3>VIP</h3><p>₹9999/month</p><p>Personal Trainer</p></div>
+</div>
+</section>
+
+<section id="gallery">
+<h2>Gallery</h2><br>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1594737625785-c79e3a1b9e2b?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80">
+</div>
+</section>
+
+<section>
+<h2>Success Stories</h2><br>
+<div class="testimonials">
+<div class="testimonial"><div class="stars">★★★★★</div><p>PowerFlex transformed my body and confidence.</p><h4>- Rahul</h4></div>
+<div class="testimonial"><div class="stars">★★★★★</div><p>Best trainers and world class equipment.</p><h4>- Aman</h4></div>
+<div class="testimonial"><div class="stars">★★★★★</div><p>Premium atmosphere and serious results.</p><h4>- Vikram</h4></div>
+</div>
+</section>
+
+<section>
+<h2>FAQ</h2><br>
+<div class="faq-item"><div class="faq-question">Do you offer personal training?</div><div class="faq-answer">Yes, certified trainers available.</div></div>
+<div class="faq-item"><div class="faq-question">Is there parking available?</div><div class="faq-answer">Yes, secure parking at all branches.</div></div>
+<div class="faq-item"><div class="faq-question">Do you provide diet plans?</div><div class="faq-answer">Yes, customized nutrition guidance included.</div></div>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2><br>
+<div class="contact-grid">
+<form>
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="5" placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+<div>
+<h3>Head Office</h3>
+<p>PowerFlex HQ, Mumbai, India</p>
+<p>+91 90000 00000</p>
+<p>Email: info@powerflex.com</p>
+<p>Mon - Sat: 6AM - 11PM</p>
+</div>
+</div>
+</section>
+
 <footer>
-    <div class="container footer-grid">
-        <div>
-            <h3>About Elite Power Gym</h3>
-            <p style="color:#ccc;font-size:14px;line-height:1.6;">Premium gym delivering strength, transformation, and elite performance training with modern equipment and expert guidance.</p>
-        </div>
-
-        <div>
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Programs</a></li>
-                <li><a href="#">Membership</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Our Branches</h3>
-            <ul>
-                <li>Mumbai</li>
-                <li>Pune</li>
-                <li>Delhi</li>
-                <li>Bangalore</li>
-                <li>Hyderabad</li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Contact Info</h3>
-            <ul>
-                <li>Email: info@elitepowergym.com</li>
-                <li>Phone: +91 98765 43210</li>
-                <li>Hours: Mon - Sat (6AM - 11PM)</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        © 2026 Elite Power Gym. All Rights Reserved.
-    </div>
+<div class="footer-grid">
+<div><h4>About</h4><p>PowerFlex is India’s premium luxury fitness brand delivering world-class training.</p></div>
+<div><h4>Quick Links</h4><ul><li><a href="#">Home</a></li><li><a href="#">Programs</a></li><li><a href="#">Plans</a></li></ul></div>
+<div><h4>Branches</h4><ul><li>Mumbai</li><li>Delhi</li><li>Bangalore</li><li>Hyderabad</li><li>Pune</li></ul></div>
+<div><h4>Contact</h4><p>+91 90000 00000</p><p>info@powerflex.com</p><p>Mon-Sat 6AM-11PM</p></div>
+</div>
+<div class="copyright">© 2026 PowerFlex. All Rights Reserved.</div>
 </footer>
 
 <script>
-window.addEventListener("load",function(){
-    setTimeout(function(){
-        document.getElementById("loader").classList.add("fade-out");
-    },2000);
-});
+window.addEventListener("load",()=>{document.getElementById("loader").style.display="none"});
 
-/* COUNTER */
 const counters=document.querySelectorAll('.counter');
-const speed=200;
-
-const startCounters=()=>{
 counters.forEach(counter=>{
-const updateCount=()=>{
+counter.innerText='0';
+const update=()=>{
 const target=+counter.getAttribute('data-target');
-const count=+counter.innerText;
-const inc=target/speed;
-
-if(count<target){
-counter.innerText=Math.ceil(count+inc);
-setTimeout(updateCount,10);
-}else{
-counter.innerText=target;
+const c=+counter.innerText;
+const inc=target/200;
+if(c<target){counter.innerText=Math.ceil(c+inc);setTimeout(update,20)}
+else{counter.innerText=target+'+'}
 }
-};
-updateCount();
+update();
 });
-};
 
-let statsSection=document.querySelector('.stats');
-let observer=new IntersectionObserver(entries=>{
-if(entries[0].isIntersecting){
-startCounters();
-observer.disconnect();
-}
-});
-observer.observe(statsSection);
-
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(item=>{
-item.addEventListener("click",()=>{
-const content=item.querySelector(".faq-content");
-if(content.style.maxHeight){
-content.style.maxHeight=null;
-}else{
-document.querySelectorAll(".faq-content").forEach(c=>c.style.maxHeight=null);
-content.style.maxHeight=content.scrollHeight+"px";
-}
-});
+document.querySelectorAll('.faq-question').forEach(q=>{
+q.addEventListener('click',()=>{
+q.parentElement.classList.toggle('active')
+})
 });
 </script>
 
