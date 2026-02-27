@@ -1,222 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PowerFlex Gym</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 <style>
 :root{
-  --bg:#0a0c10;
-  --bg2:#11151c;
-  --card:#151922;
-  --text:#ffffff;
-  --muted:#b9c0cc;
-  --accent:#ff1f1f;
+--bg:#0a0c10;
+--card:#141821;
+--accent:#ff1f1f;
+--muted:#aeb4c0;
+--text:#ffffff;
 }
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);overflow-x:hidden}
+html{scroll-behavior:smooth}
 
-/* ================= CINEMATIC LOADER ================= */
+.container{width:90%;max-width:1200px;margin:auto}
+section{padding:100px 0}
+
+/* ================= LOADER ================= */
+
 #loader{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  z-index:9999;
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:9999;
 }
+
 .loader-text{
-  font-size:70px;
-  font-weight:900;
-  letter-spacing:15px;
-  color:var(--accent);
-  opacity:0;
-  animation:reveal 2s ease forwards;
+font-size:70px;
+font-weight:900;
+letter-spacing:20px;
+color:var(--accent);
+opacity:0;
 }
+
 .loader-bar{
-  width:0;
-  height:4px;
-  background:var(--accent);
-  margin-top:20px;
-  animation:bar 2.5s ease forwards;
-}
-@keyframes reveal{
-  0%{opacity:0;letter-spacing:40px}
-  100%{opacity:1;letter-spacing:15px}
-}
-@keyframes bar{
-  0%{width:0}
-  100%{width:260px}
+width:0;
+height:4px;
+background:var(--accent);
+margin-top:20px;
 }
 
-/* ================= GLOBAL ================= */
-.container{width:90%;max-width:1200px;margin:auto;}
-section{padding:100px 0;}
-.section-title{text-align:center;margin-bottom:60px;}
-.section-title h2{font-size:38px;font-weight:800;}
-.section-title h2 span{color:var(--accent);}
-.section-title p{color:var(--muted);margin-top:10px;}
-.reveal{opacity:0;transform:translateY(40px);transition:1s ease;}
-.reveal.active{opacity:1;transform:none}
+/* ================= NAV ================= */
 
-/* ================= HEADER ================= */
 header{
-  position:fixed;
-  top:0;left:0;width:100%;
-  background:rgba(10,12,16,0.95);
-  border-bottom:1px solid #1c1f27;
-  backdrop-filter:blur(8px);
-  z-index:1000;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:rgba(10,12,16,0.95);
+backdrop-filter:blur(10px);
+border-bottom:1px solid #1f2430;
+z-index:1000;
 }
-.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
-.logo{font-weight:900;color:var(--accent);font-size:20px;letter-spacing:2px;}
-nav ul{display:flex;gap:24px;list-style:none;}
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
+}
+
+.logo{
+font-weight:900;
+font-size:20px;
+color:var(--accent);
+letter-spacing:2px;
+}
+
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
 nav ul li a{
-  color:#ddd;
-  text-decoration:none;
-  font-size:14px;
-  position:relative;
+color:#ddd;
+text-decoration:none;
+font-size:14px;
+position:relative;
 }
+
 nav ul li a::after{
-  content:"";
-  position:absolute;
-  bottom:-6px;
-  left:0;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:.3s;
+content:"";
+position:absolute;
+bottom:-6px;
+left:0;
+width:0;
+height:2px;
+background:var(--accent);
+transition:.3s;
 }
-nav ul li a:hover::after{width:100%}
+
+nav ul li a:hover::after{
+width:100%;
+}
+
 .btn{
-  background:var(--accent);
-  color:#000;
-  padding:10px 20px;
-  border-radius:8px;
-  font-weight:700;
-  text-decoration:none;
-  transition:.3s;
+background:var(--accent);
+color:#000;
+padding:10px 20px;
+border-radius:8px;
+font-weight:700;
+text-decoration:none;
 }
-.btn:hover{box-shadow:0 0 20px var(--accent)}
 
 /* ================= HERO ================= */
-.hero{
-  min-height:100vh;
-  background:url("https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
-  position:relative;
-  display:flex;
-  align-items:center;
-  margin-top:70px;
-  background-attachment:fixed;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to right,rgba(0,0,0,.9),rgba(0,0,0,.6));
-}
-.hero-content{position:relative;z-index:2;max-width:700px;}
-.hero h1{font-size:60px;font-weight:900;}
-.hero h1 span{color:var(--accent);}
-.hero p{margin:20px 0;color:#ddd;}
-.actions{display:flex;gap:15px;margin-top:20px;}
-.stats{display:flex;gap:30px;margin-top:40px;flex-wrap:wrap;}
-.stat h3{color:var(--accent);font-size:32px;font-weight:800;}
-.stat p{font-size:13px;color:#ccc;}
 
-/* ================= CARDS ================= */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+background:url("https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+position:relative;
+margin-top:70px;
+background-attachment:fixed;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to right,rgba(0,0,0,.9),rgba(0,0,0,.6));
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:700px;
+}
+
+.hero h1{
+font-size:60px;
+font-weight:900;
+}
+
+.hero h1 span{
+color:var(--accent);
+}
+
+.hero p{
+margin:20px 0;
+color:#ddd;
+}
+
+.stats{
+display:flex;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.stat h3{
+font-size:32px;
+color:var(--accent);
+}
+
+.stat p{
+font-size:13px;
+color:#ccc;
+}
+
+/* ================= SECTIONS ================= */
+
+.section-title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-size:38px;
+font-weight:800;
+}
+
+.section-title h2 span{
+color:var(--accent);
+}
+
+.section-title p{
+color:var(--muted);
+margin-top:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
 .card{
-  background:var(--card);
-  border-radius:16px;
-  overflow:hidden;
-  transition:.4s;
-  border:1px solid #1f2430;
+background:var(--card);
+border-radius:16px;
+overflow:hidden;
+border:1px solid #1f2430;
+transition:.4s;
 }
+
 .card:hover{
-  transform:translateY(-8px);
-  border-color:var(--accent);
-  box-shadow:0 0 25px rgba(255,0,0,.2);
+transform:translateY(-8px);
+border-color:var(--accent);
+box-shadow:0 0 20px rgba(255,0,0,.2);
 }
-.card img{width:100%;height:200px;object-fit:cover;}
-.card .content{padding:20px;}
-.card h4{margin-bottom:8px;font-weight:700;}
-.card p{font-size:13px;color:var(--muted);}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card .content{
+padding:20px;
+}
+
+.card h4{
+margin-bottom:8px;
+}
+
+.card p{
+font-size:13px;
+color:var(--muted);
+}
 
 /* ================= PRICING ================= */
+
+.pricing{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
 .price-card{
-  background:var(--card);
-  padding:30px;
-  border-radius:18px;
-  text-align:center;
-  border:1px solid #1f2430;
-  transition:.4s;
+background:var(--card);
+padding:30px;
+border-radius:18px;
+text-align:center;
+border:1px solid #1f2430;
+transition:.4s;
 }
+
 .price-card.popular{
-  background:linear-gradient(180deg,#ff1f1f,#b30000);
-  color:#000;
-  transform:scale(1.07);
+background:linear-gradient(180deg,#ff1f1f,#a30000);
+color:#000;
+transform:scale(1.07);
 }
-.price-card ul{list-style:none;margin:15px 0;}
-.price-card ul li{margin:8px 0;font-size:13px;}
-.price-card:hover{transform:translateY(-10px);}
+
+.price-card ul{
+list-style:none;
+margin:15px 0;
+}
+
+.price-card ul li{
+margin:8px 0;
+font-size:13px;
+}
+
+.price-card:hover{
+transform:translateY(-10px);
+}
 
 /* ================= FOOTER ================= */
+
 footer{
-  background:#080a0e;
-  padding:70px 0 20px;
+background:#080a0e;
+padding:70px 0 20px;
 }
+
 .footer-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
 }
-footer p{color:#aaa;font-size:13px;}
+
+footer p{
+color:#aaa;
+font-size:13px;
+}
+
 .footer-bottom{
-  text-align:center;
-  margin-top:30px;
-  color:#777;
-  border-top:1px solid #1c1f27;
-  padding-top:15px;
+text-align:center;
+margin-top:30px;
+border-top:1px solid #1f2430;
+padding-top:15px;
+color:#777;
 }
+
 @media(max-width:800px){
-  .hero h1{font-size:40px;}
-  nav ul{display:none;}
+.hero h1{font-size:40px}
+nav ul{display:none}
 }
 </style>
 </head>
 <body>
 
 <div id="loader">
-  <div class="loader-text">POWERFLEX</div>
-  <div class="loader-bar"></div>
+<div class="loader-text">POWERFLEX</div>
+<div class="loader-bar"></div>
 </div>
 
-<!-- YOUR ORIGINAL HTML STRUCTURE CONTINUES EXACTLY SAME BELOW -->
-<!-- (All your sections remain unchanged — only enhanced visually) -->
+<header>
+<div class="container nav">
+<div class="logo">POWERFLEX</div>
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#programs">Programs</a></li>
+<li><a href="#trainers">Trainers</a></li>
+<li><a href="#pricing">Membership</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<a href="#contact" class="btn">Join Now</a>
+</div>
+</header>
+
+<section class="hero" id="home">
+<div class="container hero-content">
+<h1>BUILD YOUR BODY.<br><span>TRANSFORM YOUR LIFE.</span></h1>
+<p>India’s premier high-performance gym delivering elite strength systems and transformation coaching.</p>
+
+<div class="stats">
+<div class="stat"><h3 class="counter" data-target="2000">0</h3><p>Active Members</p></div>
+<div class="stat"><h3 class="counter" data-target="15">0</h3><p>Expert Trainers</p></div>
+<div class="stat"><h3 class="counter" data-target="10">0</h3><p>Years Experience</p></div>
+<div class="stat"><h3 class="counter" data-target="5">0</h3><p>Branches</p></div>
+</div>
+</div>
+</section>
+
+<section id="programs">
+<div class="container">
+<div class="section-title">
+<h2>Our <span>Programs</span></h2>
+<p>Comprehensive fitness systems designed for transformation.</p>
+</div>
+
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80"><div class="content"><h4>Strength Training</h4><p>Progressive overload muscle systems.</p></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80"><div class="content"><h4>Cardio Conditioning</h4><p>High endurance heart-focused programs.</p></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07b?auto=format&fit=crop&w=1200&q=80"><div class="content"><h4>HIIT Training</h4><p>High intensity fat burning systems.</p></div></div>
+</div>
+</div>
+</section>
+
+<section id="pricing">
+<div class="container">
+<div class="section-title">
+<h2>Membership <span>Plans</span></h2>
+<p>Choose the perfect plan for your fitness journey.</p>
+</div>
+
+<div class="pricing">
+<div class="price-card">
+<h3>Basic</h3>
+<h2>₹2,999</h2>
+<ul>
+<li>Gym Access</li>
+<li>Locker Facility</li>
+<li>Basic Support</li>
+</ul>
+</div>
+
+<div class="price-card popular">
+<h3>Pro</h3>
+<h2>₹4,999</h2>
+<ul>
+<li>All Access</li>
+<li>Group Classes</li>
+<li>Nutrition Plan</li>
+</ul>
+</div>
+
+<div class="price-card">
+<h3>Elite</h3>
+<h2>₹7,999</h2>
+<ul>
+<li>Personal Trainer</li>
+<li>Priority Support</li>
+<li>Advanced Programs</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<div class="section-title">
+<h2>Get in <span>Touch</span></h2>
+<p>Start your transformation journey today.</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<div class="content">
+<input placeholder="Name" style="width:100%;padding:12px;margin-bottom:10px;background:#0a0c10;border:1px solid #222;color:#fff">
+<input placeholder="Email" style="width:100%;padding:12px;margin-bottom:10px;background:#0a0c10;border:1px solid #222;color:#fff">
+<textarea placeholder="Your fitness goals" style="width:100%;padding:12px;background:#0a0c10;border:1px solid #222;color:#fff"></textarea>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Head Office</h4>
+<p>Mumbai, Maharashtra</p>
+<p>+91 98765 43210</p>
+<p>info@powerflexgym.com</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container footer-grid">
+<div>
+<h4>PowerFlex Gym</h4>
+<p>India’s elite performance fitness chain.</p>
+</div>
+<div>
+<h4>Quick Links</h4>
+<p>Programs<br>Membership<br>Contact</p>
+</div>
+<div>
+<h4>Contact</h4>
+<p>+91 98765 43210<br>info@powerflexgym.com</p>
+</div>
+</div>
+<div class="footer-bottom">
+© 2026 PowerFlex | Built by Codly
+</div>
+</footer>
 
 <script>
-window.addEventListener("load",()=>{
-  setTimeout(()=>{
-    document.getElementById("loader").style.opacity="0";
-    setTimeout(()=>{document.getElementById("loader").style.display="none"},600);
-  },2200);
+
+/* LOADER ANIMATION */
+gsap.to(".loader-text",{opacity:1,letterSpacing:5,duration:1.5});
+gsap.to(".loader-bar",{width:260,duration:2,delay:.5});
+setTimeout(()=>{
+gsap.to("#loader",{opacity:0,duration:1,onComplete:()=>{document.getElementById("loader").style.display="none";}});
+},2500);
+
+/* COUNTERS */
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll(".counter").forEach(counter=>{
+let target=+counter.dataset.target;
+gsap.to(counter,{
+innerText:target,
+duration:2,
+scrollTrigger:{
+trigger:counter,
+start:"top 80%"
+},
+snap:{innerText:1},
+onUpdate:function(){
+counter.innerText=Math.floor(counter.innerText)+"+";
+}
+});
 });
 
-/* Scroll Reveal */
-const reveals=document.querySelectorAll(".reveal");
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){entry.target.classList.add("active");}
+/* FADE REVEAL */
+gsap.utils.toArray("section").forEach(sec=>{
+gsap.from(sec,{
+opacity:0,
+y:50,
+duration:1,
+scrollTrigger:{
+trigger:sec,
+start:"top 85%"
+}
 });
-},{threshold:0.15});
-reveals.forEach(r=>observer.observe(r));
+});
 </script>
 
 </body>
