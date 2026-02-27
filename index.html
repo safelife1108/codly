@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Cosmic Overdrive</title>
+<title>CODLY – Final Evolution</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
@@ -15,14 +15,14 @@
 :root{
 --bg:#000814;
 --text:#ffffff;
---muted:#94a3c4;
+--muted:#8ea0c5;
 --accent:#00f0ff;
 --border:rgba(255,255,255,0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 body{
-background:radial-gradient(circle at 30% 20%, #001233, #000814 60%);
+background:radial-gradient(circle at 40% 20%, #001233, #000814 60%);
 color:var(--text);
 overflow-x:hidden;
 }
@@ -44,28 +44,17 @@ display:flex;
 align-items:center;
 justify-content:center;
 z-index:5000;
-overflow:hidden;
 }
-.glitch{
+.loader h1{
 font-family:'Orbitron',sans-serif;
-font-size:70px;
+font-size:60px;
 letter-spacing:8px;
-position:relative;
+animation:flicker 1.5s infinite alternate;
 }
-.glitch::before,.glitch::after{
-content:"CODLY";
-position:absolute;
-left:0;top:0;width:100%;
-}
-.glitch::before{color:#00ffff;animation:gl1 1.2s infinite alternate;}
-.glitch::after{color:#ff00ff;animation:gl2 1.2s infinite alternate;}
-@keyframes gl1{
-0%{clip-path:inset(0 0 80% 0);}
-100%{clip-path:inset(60% 0 0 0);}
-}
-@keyframes gl2{
-0%{clip-path:inset(60% 0 0 0);}
-100%{clip-path:inset(0 0 80% 0);}
+@keyframes flicker{
+0%{opacity:1;}
+50%{opacity:0.4;}
+100%{opacity:1;}
 }
 
 /* ================= HEADER ================= */
@@ -101,22 +90,21 @@ flex-direction:column;
 justify-content:center;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero h1{
 font-family:'Orbitron',sans-serif;
 font-size:clamp(80px,9vw,130px);
 letter-spacing:6px;
 }
 .hero p{
-margin-top:25px;
+margin-top:20px;
 max-width:700px;
-font-size:18px;
 color:var(--muted);
 }
 
-/* ================= STORY ================= */
+/* STORY */
 .story{
-height:350vh;
+height:300vh;
 }
 .story-inner{
 position:sticky;
@@ -126,11 +114,11 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-gap:80px;
+gap:70px;
 text-align:center;
 }
 .reveal-text{
-font-size:clamp(32px,4vw,60px);
+font-size:clamp(32px,4vw,55px);
 font-weight:700;
 }
 .reveal-text span{
@@ -139,20 +127,22 @@ opacity:0;
 transform:translateY(40px);
 }
 
-/* ================= ABOUT ================= */
-.about h2{
-font-size:clamp(32px,4vw,50px);
+/* BLACK HOLE SECTION */
+.blackhole{
+text-align:center;
+}
+.blackhole h2{
+font-size:clamp(40px,5vw,70px);
 margin-bottom:30px;
 }
-.about p{
+.blackhole p{
 color:var(--muted);
-line-height:1.9;
-margin-bottom:20px;
-max-width:900px;
-font-size:17px;
+max-width:800px;
+margin:auto;
+line-height:1.8;
 }
 
-/* ================= PROJECT GRID ================= */
+/* PROJECT GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -175,10 +165,10 @@ transform:translateY(-10px);
 background:rgba(255,255,255,0.1);
 }
 
-/* ================= BIG FOOTER ================= */
+/* FOOTER */
 .footer{
 background:#000;
-padding:100px 8%;
+padding:120px 8%;
 border-top:1px solid var(--border);
 }
 .footer-grid{
@@ -211,7 +201,7 @@ font-size:13px;
 <body>
 
 <div class="loader">
-<h1 class="glitch">CODLY</h1>
+<h1>CODLY</h1>
 </div>
 
 <canvas id="bg"></canvas>
@@ -229,8 +219,8 @@ font-size:13px;
 </header>
 
 <section class="hero">
-<h1>CODLY</h1>
-<p>Entering Cosmic Overdrive. Engineering immersive digital ecosystems that merge design, performance, and emotion into one seamless experience.</p>
+<h1>FINAL EVOLUTION</h1>
+<p>Beyond websites. Beyond interfaces. Engineering immersive digital universes.</p>
 </section>
 
 <section class="story">
@@ -241,11 +231,9 @@ font-size:13px;
 </div>
 </section>
 
-<section id="about" class="about">
-<h2>About Codly</h2>
-<p>Codly is a futuristic creative studio founded by Rohit Kumar, built on the belief that digital presence should feel powerful, immersive, and intentional. Every project crafted under Codly is engineered to create a long-lasting brand impression.</p>
-<p>From gym platforms and fabrication companies to ecommerce systems and AI-powered concepts, Codly blends design psychology with performance engineering. Each interface is structured for clarity, optimized for speed, and designed for emotional engagement.</p>
-<p>The mission is simple: transform ordinary digital spaces into high-impact digital experiences that elevate businesses to premium perception.</p>
+<section class="blackhole">
+<h2>Codly Philosophy</h2>
+<p>Every brand deserves presence. Every interface deserves emotion. Codly engineers digital systems that convert attention into authority and transform simple websites into immersive brand ecosystems.</p>
 </section>
 
 <section id="projects">
@@ -269,36 +257,30 @@ font-size:13px;
 
 <div class="footer">
 <div class="footer-grid">
-
 <div>
-<h3>About Studio</h3>
-<p>Codly builds cinematic digital systems with futuristic aesthetics and scalable architecture.</p>
+<h3>Studio</h3>
+<p>Codly builds immersive, performance-driven digital platforms engineered for premium perception and scalable growth.</p>
 </div>
-
 <div>
 <h3>Services</h3>
-<p>Web Development</p>
+<p>Web Engineering</p>
 <p>Brand Systems</p>
 <p>UI/UX Design</p>
 <p>App Development</p>
 </div>
-
 <div>
-<h3>Contact</h3>
-<p>Email: Codly.rk@gmail.com</p>
-<p>Phone: 9324452580</p>
+<h3>Location</h3>
 <p>Mumbai, India</p>
+<p>Serving clients globally.</p>
 </div>
-
 <div>
-<h3>Social</h3>
+<h3>Connect</h3>
 <a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">Instagram</a>
 </div>
-
 </div>
 
 <div class="footer-bottom">
-© 2026 CODLY – Rohit Kumar | Cosmic Overdrive Mode
+© 2026 CODLY – Rohit Kumar | Final Evolution Mode
 </div>
 </div>
 
@@ -306,7 +288,7 @@ font-size:13px;
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener("load",()=>{
-gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
+gsap.to(".loader",{opacity:0,duration:1.5,delay:1.5,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
 document.querySelectorAll(".reveal-text").forEach((text,i)=>{
