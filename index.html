@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Final Evolution</title>
+<title>CODLY – OMEGA MODE</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
@@ -16,13 +16,12 @@
 --bg:#000814;
 --text:#ffffff;
 --muted:#8ea0c5;
---accent:#00f0ff;
 --border:rgba(255,255,255,0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 body{
-background:radial-gradient(circle at 40% 20%, #001233, #000814 60%);
+background:radial-gradient(circle at 50% 20%, #001233, #000814 60%);
 color:var(--text);
 overflow-x:hidden;
 }
@@ -35,7 +34,7 @@ height:100%;
 z-index:0;
 }
 
-/* ================= LOADER ================= */
+/* LOADER */
 .loader{
 position:fixed;
 inset:0;
@@ -47,17 +46,16 @@ z-index:5000;
 }
 .loader h1{
 font-family:'Orbitron',sans-serif;
-font-size:60px;
-letter-spacing:8px;
-animation:flicker 1.5s infinite alternate;
+font-size:70px;
+letter-spacing:10px;
+animation:pulse 2s infinite alternate;
 }
-@keyframes flicker{
-0%{opacity:1;}
-50%{opacity:0.4;}
-100%{opacity:1;}
+@keyframes pulse{
+0%{opacity:1;transform:scale(1);}
+100%{opacity:.5;transform:scale(1.1);}
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
 position:fixed;
 top:0;width:100%;
@@ -70,7 +68,7 @@ border-bottom:1px solid var(--border);
 z-index:1000;
 }
 .logo{display:flex;align-items:center;gap:10px;}
-.logo img{height:34px;}
+.logo img{height:32px;}
 header a{
 color:var(--muted);
 text-decoration:none;
@@ -93,18 +91,19 @@ justify-content:center;
 /* HERO */
 .hero h1{
 font-family:'Orbitron',sans-serif;
-font-size:clamp(80px,9vw,130px);
+font-size:clamp(70px,9vw,120px);
 letter-spacing:6px;
 }
 .hero p{
 margin-top:20px;
 max-width:700px;
 color:var(--muted);
+font-size:18px;
 }
 
 /* STORY */
 .story{
-height:300vh;
+height:280vh;
 }
 .story-inner{
 position:sticky;
@@ -114,32 +113,25 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-gap:70px;
+gap:60px;
 text-align:center;
 }
-.reveal-text{
-font-size:clamp(32px,4vw,55px);
+.reveal{
+font-size:clamp(30px,4vw,55px);
 font-weight:700;
 }
-.reveal-text span{
+.reveal span{
 display:inline-block;
 opacity:0;
 transform:translateY(40px);
 }
 
-/* BLACK HOLE SECTION */
-.blackhole{
-text-align:center;
-}
-.blackhole h2{
-font-size:clamp(40px,5vw,70px);
-margin-bottom:30px;
-}
-.blackhole p{
+/* ABOUT */
+.about p{
+max-width:900px;
+line-height:1.9;
 color:var(--muted);
-max-width:800px;
-margin:auto;
-line-height:1.8;
+margin-bottom:20px;
 }
 
 /* PROJECT GRID */
@@ -176,11 +168,8 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:60px;
 }
-.footer h3{
-margin-bottom:20px;
-font-size:18px;
-}
-.footer p, .footer a{
+.footer h3{margin-bottom:20px;font-size:18px;}
+.footer p,.footer a{
 color:var(--muted);
 font-size:14px;
 line-height:1.8;
@@ -200,10 +189,7 @@ font-size:13px;
 
 <body>
 
-<div class="loader">
-<h1>CODLY</h1>
-</div>
-
+<div class="loader"><h1>CODLY</h1></div>
 <canvas id="bg"></canvas>
 
 <header>
@@ -219,21 +205,23 @@ font-size:13px;
 </header>
 
 <section class="hero">
-<h1>FINAL EVOLUTION</h1>
-<p>Beyond websites. Beyond interfaces. Engineering immersive digital universes.</p>
+<h1>OMEGA MODE</h1>
+<p>Digital engineering beyond dimensions. Crafting immersive systems that command attention and convert presence into power.</p>
 </section>
 
 <section class="story">
 <div class="story-inner">
-<h2 class="reveal-text"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
-<h2 class="reveal-text"><span>I</span> <span>Build</span> <span>Digital</span> <span>Presence.</span></h2>
-<h2 class="reveal-text"><span>I</span> <span>Create</span> <span>Impact.</span></h2>
+<h2 class="reveal"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
+<h2 class="reveal"><span>I</span> <span>Engineer</span> <span>Presence.</span></h2>
+<h2 class="reveal"><span>I</span> <span>Create</span> <span>Impact.</span></h2>
 </div>
 </section>
 
-<section class="blackhole">
-<h2>Codly Philosophy</h2>
-<p>Every brand deserves presence. Every interface deserves emotion. Codly engineers digital systems that convert attention into authority and transform simple websites into immersive brand ecosystems.</p>
+<section id="about" class="about">
+<h2>About Codly</h2>
+<p>Codly is a futuristic digital studio led by Rohit Kumar. Focused on immersive visual engineering, scalable brand architecture, and high-performance web systems.</p>
+<p>From gym platforms to fabrication systems and AI concepts, each build is structured with psychological design principles, cinematic interaction, and performance optimization.</p>
+<p>The mission is clear: elevate businesses into premium digital authority.</p>
 </section>
 
 <section id="projects">
@@ -259,19 +247,19 @@ font-size:13px;
 <div class="footer-grid">
 <div>
 <h3>Studio</h3>
-<p>Codly builds immersive, performance-driven digital platforms engineered for premium perception and scalable growth.</p>
+<p>Engineering immersive digital ecosystems with cinematic presence and scalable architecture.</p>
 </div>
 <div>
 <h3>Services</h3>
-<p>Web Engineering</p>
-<p>Brand Systems</p>
-<p>UI/UX Design</p>
+<p>Web Systems</p>
+<p>UI/UX Engineering</p>
+<p>Brand Platforms</p>
 <p>App Development</p>
 </div>
 <div>
 <h3>Location</h3>
 <p>Mumbai, India</p>
-<p>Serving clients globally.</p>
+<p>Global Clients</p>
 </div>
 <div>
 <h3>Connect</h3>
@@ -280,46 +268,48 @@ font-size:13px;
 </div>
 
 <div class="footer-bottom">
-© 2026 CODLY – Rohit Kumar | Final Evolution Mode
+© 2026 CODLY – Rohit Kumar | OMEGA MODE
 </div>
 </div>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
+/* Loader */
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:1.5,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-document.querySelectorAll(".reveal-text").forEach((text,i)=>{
-gsap.to(text.querySelectorAll("span"),{
+/* Text Reveal */
+document.querySelectorAll(".reveal").forEach((el,i)=>{
+gsap.to(el.querySelectorAll("span"),{
 opacity:1,
 y:0,
 stagger:0.15,
 scrollTrigger:{
 trigger:".story",
-start:"top+=" + (i*600) + " top",
-end:"top+=" + (i*600+400) + " top",
+start:"top+=" + (i*600),
+end:"top+=" + (i*600+400),
 scrub:true
 }
 });
 });
 
-/* INTERSTELLAR BACKGROUND */
+/* THREE.JS OMEGA GALAXY */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
 camera.position.z=5;
 
-const starCount=50000;
+const starCount=60000;
 const geometry=new THREE.BufferGeometry();
 const positions=new Float32Array(starCount*3);
 
 for(let i=0;i<starCount;i++){
-positions[i*3]=(Math.random()-0.5)*200;
-positions[i*3+1]=(Math.random()-0.5)*200;
-positions[i*3+2]=(Math.random()-0.5)*200;
+positions[i*3]=(Math.random()-0.5)*300;
+positions[i*3+1]=(Math.random()-0.5)*300;
+positions[i*3+2]=(Math.random()-0.5)*300;
 }
 geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
@@ -328,6 +318,12 @@ const stars=new THREE.Points(geometry,material);
 scene.add(stars);
 
 let warp=0;
+let mouseX=0,mouseY=0;
+
+document.addEventListener("mousemove",(e)=>{
+mouseX=(e.clientX/window.innerWidth-0.5)*2;
+mouseY=(e.clientY/window.innerHeight-0.5)*2;
+});
 
 ScrollTrigger.create({
 trigger:".story",
@@ -335,7 +331,7 @@ start:"top top",
 end:"bottom bottom",
 scrub:true,
 onUpdate:self=>{
-warp=self.progress*8;
+warp=self.progress*10;
 camera.position.z=5-self.progress*3;
 }
 });
@@ -344,9 +340,11 @@ function animate(){
 requestAnimationFrame(animate);
 const pos=geometry.attributes.position.array;
 for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.3+warp;
-if(pos[i*3+2]>100){pos[i*3+2]=-200;}
+pos[i*3+2]+=0.5+warp;
+if(pos[i*3+2]>150) pos[i*3+2]=-300;
 }
+camera.position.x+=(mouseX-camera.position.x)*0.05;
+camera.position.y+=(-mouseY-camera.position.y)*0.05;
 geometry.attributes.position.needsUpdate=true;
 renderer.render(scene,camera);
 }
