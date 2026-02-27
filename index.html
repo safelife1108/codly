@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Elite Tech Studio</title>
+<title>CODLY – Astrophysics Tier</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -13,18 +13,18 @@
 
 <style>
 :root{
---bg:#01030a;
---glass:rgba(255,255,255,0.05);
+--bg:#000000;
+--glass:rgba(255,255,255,0.06);
 --border:rgba(255,255,255,0.08);
 --text:#ffffff;
---muted:#8ea0c5;
+--muted:#9bb3ff;
 --accent:#00f0ff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;scroll-behavior:smooth;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
 body{
-background:radial-gradient(circle at center,#020615,#000 70%);
+background:#000;
 color:var(--text);
 overflow-x:hidden;
 }
@@ -35,7 +35,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-3;
+z-index:-5;
 }
 
 /* LOADER */
@@ -50,14 +50,14 @@ z-index:9999;
 }
 .loader h1{
 font-family:Orbitron;
-font-size:70px;
-letter-spacing:10px;
+font-size:80px;
+letter-spacing:12px;
 animation:glitch 1s infinite;
 }
 @keyframes glitch{
-0%{text-shadow:2px 0 red,-2px 0 blue;}
-50%{text-shadow:-2px 0 red,2px 0 blue;}
-100%{text-shadow:2px 0 red,-2px 0 blue;}
+0%{text-shadow:3px 0 red,-3px 0 cyan;}
+50%{text-shadow:-3px 0 red,3px 0 cyan;}
+100%{text-shadow:3px 0 red,-3px 0 cyan;}
 }
 
 /* HEADER */
@@ -69,25 +69,18 @@ padding:20px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.4);
 backdrop-filter:blur(20px);
 border-bottom:1px solid var(--border);
 z-index:1000;
 }
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-family:Orbitron;
-}
+.logo{display:flex;align-items:center;gap:10px;font-family:Orbitron;}
 .logo img{height:32px;}
-
 nav a{
 margin-left:25px;
 color:var(--muted);
 text-decoration:none;
 font-size:14px;
-transition:.3s;
 }
 nav a:hover{color:#fff;}
 
@@ -99,27 +92,21 @@ flex-direction:column;
 justify-content:center;
 }
 
-h2{
-font-family:Orbitron;
-font-size:36px;
-margin-bottom:25px;
-}
+h2{font-family:Orbitron;font-size:36px;margin-bottom:25px;}
 
-/* HERO */
 .hero h1{
 font-family:Orbitron;
 font-size:clamp(60px,9vw,120px);
 letter-spacing:6px;
 }
+
 .hero p{
 margin-top:20px;
 max-width:750px;
 color:var(--muted);
 line-height:1.8;
-font-size:18px;
 }
 
-/* GLASS */
 .glass{
 background:var(--glass);
 backdrop-filter:blur(30px);
@@ -128,13 +115,13 @@ border-radius:20px;
 padding:40px;
 }
 
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
 margin-top:40px;
 }
+
 .card{
 background:var(--glass);
 border:1px solid var(--border);
@@ -144,18 +131,9 @@ transition:.4s;
 text-decoration:none;
 color:#fff;
 }
-.card:hover{
-transform:translateY(-10px);
-background:rgba(255,255,255,0.1);
-}
+.card:hover{transform:translateY(-8px);background:rgba(255,255,255,0.1);}
 
-/* CTA */
-.cta{
-text-align:center;
-background:linear-gradient(135deg,#001f3f,#000814);
-border-top:1px solid var(--border);
-border-bottom:1px solid var(--border);
-}
+.cta{text-align:center;}
 .cta a{
 margin-top:30px;
 display:inline-block;
@@ -167,19 +145,13 @@ border-radius:40px;
 text-decoration:none;
 }
 
-/* FOOTER */
 .footer{
 background:#000;
 padding:120px 8%;
 border-top:1px solid var(--border);
-}
-.footer-bottom{
-margin-top:60px;
-padding-top:30px;
-border-top:1px solid var(--border);
 text-align:center;
-font-size:13px;
 color:var(--muted);
+font-size:13px;
 }
 </style>
 </head>
@@ -196,7 +168,6 @@ color:var(--muted);
 </div>
 <nav>
 <a href="#about">About</a>
-<a href="#services">Services</a>
 <a href="#portfolio">Portfolio</a>
 <a href="#contact">Contact</a>
 </nav>
@@ -204,25 +175,13 @@ color:var(--muted);
 
 <section class="hero">
 <h1>CODLY</h1>
-<p>Elite Premium Tech Studio engineering AI automation systems, scalable digital architecture, and growth-focused platforms.</p>
+<p>Astrophysics-grade digital engineering. AI systems. Scalable platforms. Elite architecture.</p>
 </section>
 
 <section id="about">
 <div class="glass">
 <h2>About Codly</h2>
-<p>Codly builds future-ready AI and digital systems engineered for performance, automation, and scale.</p>
-</div>
-</section>
-
-<section id="services">
-<h2>Core Capabilities</h2>
-<div class="grid">
-<div class="card">AI Automation</div>
-<div class="card">Web Engineering</div>
-<div class="card">App Development</div>
-<div class="card">Performance Ads</div>
-<div class="card">Chatbots</div>
-<div class="card">Infrastructure Setup</div>
+<p>Premium Tech Studio engineering AI automation, high-performance web platforms, and growth infrastructure for modern businesses.</p>
 </div>
 </section>
 
@@ -239,7 +198,7 @@ color:var(--muted);
 </section>
 
 <section class="cta">
-<h2>Engineer Your Digital Authority</h2>
+<h2>Enter the Future</h2>
 <a href="mailto:Codly.rk@gmail.com">Start Project</a>
 </section>
 
@@ -250,66 +209,65 @@ color:var(--muted);
 </section>
 
 <div class="footer">
-<div class="footer-bottom">
-© 2026 CODLY. All Rights Reserved. Premium Tech Studio.
-</div>
+© 2026 CODLY. All Rights Reserved. Astrophysics Tier.
 </div>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-/* Loader */
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-/* ELITE SPACE SYSTEM */
+/* SCENE */
 const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,2000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("space"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.z=6;
+camera.position.z=10;
 
-/* Stars */
-const starGeometry=new THREE.BufferGeometry();
-const starCount=20000;
-const starPositions=new Float32Array(starCount*3);
-for(let i=0;i<starCount;i++){
-starPositions[i*3]=(Math.random()-0.5)*600;
-starPositions[i*3+1]=(Math.random()-0.5)*600;
-starPositions[i*3+2]=(Math.random()-0.5)*600;
+/* STAR LAYERS */
+function createStarLayer(count,depth,size){
+const geo=new THREE.BufferGeometry();
+const positions=new Float32Array(count*3);
+for(let i=0;i<count;i++){
+positions[i*3]=(Math.random()-0.5)*800;
+positions[i*3+1]=(Math.random()-0.5)*800;
+positions[i*3+2]=(Math.random()-0.5)*depth;
 }
-starGeometry.setAttribute("position",new THREE.BufferAttribute(starPositions,3));
-const starMaterial=new THREE.PointsMaterial({color:0xffffff,size:0.7});
-const stars=new THREE.Points(starGeometry,starMaterial);
+geo.setAttribute("position",new THREE.BufferAttribute(positions,3));
+const mat=new THREE.PointsMaterial({color:0xffffff,size:size});
+const stars=new THREE.Points(geo,mat);
 scene.add(stars);
+return stars;
+}
 
-/* Milky Way Band */
-const galaxyGeometry=new THREE.RingGeometry(120,160,64);
-const galaxyMaterial=new THREE.MeshBasicMaterial({
-color:0x1e3a8a,
-side:THREE.DoubleSide,
-transparent:true,
-opacity:0.3
-});
-const galaxy=new THREE.Mesh(galaxyGeometry,galaxyMaterial);
-galaxy.rotation.x=Math.PI/2;
-scene.add(galaxy);
+const stars1=createStarLayer(15000,800,0.7);
+const stars2=createStarLayer(8000,400,1.2);
 
-/* Warp Scroll */
+/* BLACK HOLE */
+const blackHoleGeo=new THREE.CircleGeometry(20,64);
+const blackHoleMat=new THREE.MeshBasicMaterial({color:0x000000});
+const blackHole=new THREE.Mesh(blackHoleGeo,blackHoleMat);
+blackHole.position.z=-50;
+scene.add(blackHole);
+
+/* SCROLL WARP */
 ScrollTrigger.create({
 start:0,
 end:"max",
 scrub:true,
 onUpdate:self=>{
-camera.position.z=6-self.progress*4;
-stars.rotation.y+=0.0008+self.progress*0.02;
+camera.position.z=10-self.progress*6;
+stars1.rotation.y+=0.002+self.progress*0.01;
+stars2.rotation.y+=0.004+self.progress*0.02;
 }
 });
 
 function animate(){
 requestAnimationFrame(animate);
-stars.rotation.y+=0.0003;
+stars1.rotation.y+=0.0003;
+stars2.rotation.y+=0.0005;
 renderer.render(scene,camera);
 }
 animate();
