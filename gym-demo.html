@@ -1,36 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PowerFlex Gym | Premium Fitness</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PowerFlex Gym</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
---bg:#0b0d12;
---card:#141821;
---text:#ffffff;
---muted:#aab2c0;
---accent:#ff1f1f;
---accent-dark:#a30000;
+  --bg:#0b0d12;
+  --card:#141821;
+  --text:#ffffff;
+  --muted:#b9c0cc;
+  --accent:#ff1f1f;
+  --accent-dark:#990000;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);}
 
+/* PREMIUM LOADER */
+#loader{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+.loader-text{
+color:var(--accent);
+font-weight:900;
+font-size:34px;
+letter-spacing:4px;
+margin-bottom:20px;
+}
+.loader-bar{
+width:200px;
+height:4px;
+background:#222;
+overflow:hidden;
+}
+.loader-bar span{
+display:block;
+height:100%;
+background:var(--accent);
+animation:loadbar 2s ease forwards;
+}
+@keyframes loadbar{
+from{transform:translateX(-100%);}
+to{transform:translateX(0);}
+}
+
+/* CONTAINER */
 .container{width:90%;max-width:1200px;margin:auto;}
-section{padding:100px 0;}
-h1,h2,h3,h4{line-height:1.2}
-h2 span{color:var(--accent);}
-p{color:var(--muted);}
+section{padding:90px 0;}
+.section-title{text-align:center;margin-bottom:50px;}
+.section-title h2{font-size:36px;font-weight:800;}
+.section-title h2 span{color:var(--accent);}
+.section-title p{color:var(--muted);margin-top:10px;}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:#000;
+border-bottom:2px solid var(--accent);
+z-index:1000;
+}
+.nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 0;
+}
+.logo{
+font-weight:900;
+color:var(--accent);
+letter-spacing:2px;
+}
+nav ul{
+display:flex;
+gap:22px;
+list-style:none;
+}
+nav ul li a{
+color:#ddd;
+text-decoration:none;
+font-weight:600;
+}
+nav ul li a:hover{color:var(--accent);}
 
 .btn{
 background:var(--accent);
 color:#000;
-padding:12px 22px;
+padding:10px 18px;
 border-radius:6px;
 font-weight:700;
 text-decoration:none;
@@ -39,169 +105,132 @@ transition:.3s;
 }
 .btn:hover{background:var(--accent-dark);}
 
-/* LOADER */
-#loader{
-position:fixed;
-inset:0;
-background:#000;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
-.spinner{
-width:60px;
-height:60px;
-border:6px solid #222;
-border-top:6px solid var(--accent);
-border-radius:50%;
-animation:spin 1s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* HEADER */
-header{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(11,13,18,0.95);
-border-bottom:1px solid #1f1f1f;
-z-index:1000;
-}
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
-}
-.logo{
-font-weight:900;
-font-size:20px;
-color:var(--accent);
-}
-nav ul{
-display:flex;
-gap:25px;
-list-style:none;
-}
-nav ul li a{
-color:#ddd;
-text-decoration:none;
-font-size:14px;
-}
-nav ul li a:hover{color:var(--accent);}
-
 /* HERO */
 .hero{
 min-height:100vh;
 background:url("https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
+position:relative;
 display:flex;
 align-items:center;
 margin-top:70px;
-position:relative;
 }
 .hero::after{
 content:"";
 position:absolute;
 inset:0;
-background:rgba(0,0,0,.75);
+background:rgba(0,0,0,0.8);
 }
 .hero-content{
 position:relative;
 z-index:2;
-max-width:700px;
+max-width:720px;
 }
 .hero h1{
-font-size:58px;
+font-size:60px;
 font-weight:900;
 }
 .hero h1 span{color:var(--accent);}
+.hero p{color:#ddd;margin:20px 0;}
 .stats{
 display:flex;
-gap:40px;
+gap:30px;
 margin-top:40px;
 flex-wrap:wrap;
 }
 .stat h3{
 color:var(--accent);
-font-size:32px;
+font-size:36px;
+font-weight:900;
+}
+.stat p{
+font-size:13px;
+color:#ccc;
 }
 
 /* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+gap:22px;
 }
 .card{
 background:var(--card);
-padding:25px;
 border-radius:12px;
+padding:20px;
 border:1px solid #1f1f1f;
-transition:.3s;
 }
-.card:hover{
-border-color:var(--accent);
-transform:translateY(-5px);
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:8px;
 }
+.card h4{margin:10px 0;color:var(--accent);}
 
 /* FAQ */
 .faq-item{
 background:var(--card);
-margin-bottom:15px;
 padding:20px;
-border-radius:8px;
+margin-bottom:15px;
+border-left:4px solid var(--accent);
 cursor:pointer;
 }
-.faq-item h4{
+.faq-question{
+font-weight:700;
 color:var(--accent);
-margin-bottom:8px;
 }
-.faq-answer{display:none;color:var(--muted);}
+.faq-answer{
+display:none;
+margin-top:10px;
+color:var(--muted);
+}
 
 /* FOOTER */
 footer{
-background:#07090d;
-padding:70px 0 30px;
+background:#000;
+padding:60px 0 20px;
 }
 .footer-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:30px;
 }
-.footer-bottom{
-text-align:center;
-margin-top:30px;
-border-top:1px solid #1f1f1f;
-padding-top:15px;
-color:#777;
-font-size:13px;
-}
 footer h4{
 color:var(--accent);
 margin-bottom:10px;
 }
 footer p{
+color:#aaa;
 font-size:13px;
-color:#888;
 margin-bottom:6px;
+}
+.footer-bottom{
+text-align:center;
+margin-top:30px;
+border-top:1px solid #222;
+padding-top:15px;
+color:#666;
 }
 
 @media(max-width:800px){
-.hero h1{font-size:36px;}
+.hero h1{font-size:40px;}
 nav ul{display:none;}
 }
 </style>
 </head>
 <body>
 
-<div id="loader"><div class="spinner"></div></div>
+<div id="loader">
+<div class="loader-text">POWERFLEX</div>
+<div class="loader-bar"><span></span></div>
+</div>
 
 <header>
 <div class="container nav">
 <div class="logo">POWERFLEX</div>
 <nav>
 <ul>
+<li><a href="#home">Home</a></li>
 <li><a href="#programs">Programs</a></li>
 <li><a href="#trainers">Trainers</a></li>
 <li><a href="#pricing">Membership</a></li>
@@ -213,74 +242,51 @@ nav ul{display:none;}
 </div>
 </header>
 
-<section class="hero">
+<section class="hero" id="home">
 <div class="container hero-content">
 <h1>BUILD YOUR BODY.<br><span>TRANSFORM YOUR LIFE.</span></h1>
-<p>India’s elite strength & conditioning center delivering measurable transformation programs.</p>
+<p>India’s premier fitness destination delivering elite transformation programs.</p>
 
 <div class="stats">
-<div class="stat"><h3 class="counter" data-target="2500">0</h3><p>Members</p></div>
-<div class="stat"><h3 class="counter" data-target="18">0</h3><p>Expert Trainers</p></div>
-<div class="stat"><h3 class="counter" data-target="12">0</h3><p>Years Experience</p></div>
+<div class="stat"><h3 class="counter" data-target="2000">0</h3><p>Active Members</p></div>
+<div class="stat"><h3 class="counter" data-target="15">0</h3><p>Expert Trainers</p></div>
+<div class="stat"><h3 class="counter" data-target="10">0</h3><p>Years Experience</p></div>
+<div class="stat"><h3 class="counter" data-target="5">0</h3><p>Branches</p></div>
 </div>
-
-<br><a href="#pricing" class="btn">View Plans</a>
-</div>
-</section>
-
-<section id="programs">
-<div class="container">
-<h2>Our <span>Programs</span></h2><br>
-<div class="grid">
-<div class="card"><h3>Strength Training</h3><p>Structured hypertrophy and progressive overload systems.</p></div>
-<div class="card"><h3>CrossFit Performance</h3><p>High intensity functional training modules.</p></div>
-<div class="card"><h3>Fat Loss System</h3><p>Scientific metabolic conditioning for rapid fat reduction.</p></div>
-<div class="card"><h3>Personal Coaching</h3><p>One-on-one transformation supervision.</p></div>
-<div class="card"><h3>Yoga & Mobility</h3><p>Recovery and flexibility enhancement programs.</p></div>
-<div class="card"><h3>HIIT Conditioning</h3><p>Explosive cardiovascular performance routines.</p></div>
-</div>
+<br>
+<a href="#pricing" class="btn">View Plans</a>
 </div>
 </section>
 
-<section id="pricing">
-<div class="container">
-<h2>Membership <span>Plans</span></h2><br>
-<div class="grid">
-<div class="card"><h3>Basic</h3><p>Gym Access<br>Locker<br>Assessment</p><br><a class="btn" href="#contact">Join</a></div>
-<div class="card"><h3>Pro</h3><p>All Access<br>Classes<br>Nutrition Plan</p><br><a class="btn" href="#contact">Join</a></div>
-<div class="card"><h3>Elite</h3><p>Personal Trainer<br>Body Tracking<br>Priority Support</p><br><a class="btn" href="#contact">Join</a></div>
-</div>
-</div>
-</section>
+<!-- KEEP ALL YOUR EXISTING SECTIONS HERE (PROGRAMS, TRAINERS, BRANCHES, PRICING, GALLERY, TESTIMONIALS, CONTACT) -->
 
 <section id="faq">
 <div class="container">
-<h2>Frequently <span>Asked Questions</span></h2><br>
-
-<div class="faq-item">
-<h4>Do you offer trial sessions?</h4>
-<div class="faq-answer">Yes, one complimentary assessment session is available.</div>
+<div class="section-title">
+<h2>Frequently <span>Asked Questions</span></h2>
+<p>Everything you need to know before joining PowerFlex</p>
 </div>
 
 <div class="faq-item">
-<h4>Are trainers certified?</h4>
-<div class="faq-answer">All trainers are internationally certified professionals.</div>
+<div class="faq-question">Do you offer trial sessions?</div>
+<div class="faq-answer">Yes. One complimentary trial session including fitness assessment is available.</div>
 </div>
 
 <div class="faq-item">
-<h4>Do you provide diet plans?</h4>
-<div class="faq-answer">Yes, nutrition plans are included in Pro and above memberships.</div>
+<div class="faq-question">Are trainers certified?</div>
+<div class="faq-answer">All trainers are internationally certified professionals with extensive experience.</div>
 </div>
 
+<div class="faq-item">
+<div class="faq-question">Do you provide diet plans?</div>
+<div class="faq-answer">Personalized nutrition guidance is included in Pro, Elite and VIP plans.</div>
 </div>
-</section>
 
-<section id="contact">
-<div class="container">
-<h2>Contact <span>PowerFlex</span></h2><br>
-<p><strong>Email:</strong> info@powerflexgym.com</p>
-<p><strong>Phone:</strong> +91 98765 43210</p>
-<p><strong>Head Office:</strong> Mumbai, Maharashtra, India</p>
+<div class="faq-item">
+<div class="faq-question">Is parking available?</div>
+<div class="faq-answer">Yes. Secure parking is available at all branches.</div>
+</div>
+
 </div>
 </section>
 
@@ -288,19 +294,19 @@ nav ul{display:none;}
 <div class="container footer-grid">
 <div>
 <h4>PowerFlex Gym</h4>
-<p>Elite transformation center focused on strength, discipline and measurable performance.</p>
+<p>Elite transformation center focused on strength and discipline.</p>
 </div>
 <div>
-<h4>Branches</h4>
-<p>Mumbai</p>
-<p>Pune</p>
-<p>Bangalore</p>
+<h4>Quick Links</h4>
+<p>Programs</p>
+<p>Trainers</p>
+<p>Membership</p>
+<p>Contact</p>
 </div>
 <div>
-<h4>Support</h4>
-<p>FAQ</p>
-<p>Privacy Policy</p>
-<p>Terms & Conditions</p>
+<h4>Contact</h4>
+<p>+91 98765 43210</p>
+<p>info@powerflexgym.com</p>
 </div>
 </div>
 <div class="footer-bottom">
@@ -310,28 +316,30 @@ nav ul{display:none;}
 
 <script>
 window.addEventListener("load",()=>{
+setTimeout(()=>{
 document.getElementById("loader").style.display="none";
+},2000);
 });
 
 document.querySelectorAll(".counter").forEach(counter=>{
-let target=+counter.dataset.target;
-let count=0;
-let increment=target/100;
-let interval=setInterval(()=>{
-count+=increment;
-if(count>=target){
-counter.innerText=target+"+";
-clearInterval(interval);
+const update=()=>{
+const target=+counter.dataset.target;
+const count=+counter.innerText;
+const inc=target/100;
+if(count<target){
+counter.innerText=Math.ceil(count+inc);
+setTimeout(update,20);
 }else{
-counter.innerText=Math.floor(count)+"+";
+counter.innerText=target+"+";
 }
-},20);
+};
+update();
 });
 
 document.querySelectorAll(".faq-item").forEach(item=>{
 item.addEventListener("click",()=>{
-let answer=item.querySelector(".faq-answer");
-answer.style.display=answer.style.display==="block"?"none":"block";
+const ans=item.querySelector(".faq-answer");
+ans.style.display=ans.style.display==="block"?"none":"block";
 });
 });
 </script>
