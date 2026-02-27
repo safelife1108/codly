@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PowerFlex Gym - Elite Edition</title>
+<title>PowerFlex Gym - Premium Elite</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
@@ -36,12 +37,17 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-html{scroll-behavior:smooth}
-.container{width:90%;max-width:1400px;margin:auto}
-section{padding:110px 0}
-h1,h2,h3,h4{line-height:1.3}
+html{scroll-behavior:smooth;}
+.container{width:90%;max-width:1400px;margin:auto;}
+section{padding:120px 0;position:relative;}
 
-/* ================= NAV ================= */
+h1,h2,h3,h4{line-height:1.3;}
+.section-title{text-align:center;margin-bottom:70px;}
+.section-title h2{font-size:44px;font-weight:900;}
+.section-title h2 span{color:var(--accent);}
+.section-title p{color:var(--muted);margin-top:10px;max-width:800px;margin-inline:auto;}
+
+/* ================= NAVBAR ================= */
 
 header{
 position:fixed;
@@ -70,6 +76,7 @@ padding:20px 0;
 font-weight:900;
 font-size:24px;
 color:var(--accent);
+letter-spacing:2px;
 }
 
 nav ul{
@@ -96,7 +103,7 @@ background:var(--accent);
 transition:.3s;
 }
 
-nav ul li a:hover::after{width:100%}
+nav ul li a:hover::after{width:100%;}
 
 .btn{
 background:var(--accent);
@@ -120,7 +127,7 @@ transform:translateY(-3px);
 min-height:100vh;
 display:flex;
 align-items:center;
-margin-top:80px;
+margin-top:90px;
 position:relative;
 }
 
@@ -128,34 +135,35 @@ position:relative;
 content:"";
 position:absolute;
 inset:0;
-background:url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2200&q=80") center/cover no-repeat;
+background:url("https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=2400&q=80") center/cover no-repeat;
 }
 
 .hero::after{
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(to right,rgba(0,0,0,.9),rgba(0,0,0,.6));
+background:linear-gradient(to right,rgba(0,0,0,.95),rgba(0,0,0,.6));
 }
 
 .hero-content{
 position:relative;
 z-index:2;
-max-width:800px;
+max-width:850px;
 }
 
 .hero h1{
-font-size:68px;
+font-size:70px;
 font-weight:900;
 text-transform:uppercase;
 }
 
-.hero h1 span{color:var(--accent)}
+.hero h1 span{color:var(--accent);}
 
 .hero p{
-margin:25px 0;
+margin:30px 0;
 font-size:18px;
 color:#ddd;
+line-height:1.7;
 }
 
 .stats{
@@ -165,9 +173,9 @@ margin-top:60px;
 flex-wrap:wrap;
 }
 
-.stat{text-align:center}
-.stat h3{font-size:42px;color:var(--accent);font-weight:900}
-.stat p{font-size:14px;color:#ccc;text-transform:uppercase}
+.stat{text-align:center;}
+.stat h3{font-size:46px;color:var(--accent);font-weight:900;}
+.stat p{font-size:13px;color:#ccc;text-transform:uppercase;letter-spacing:1px;}
 
 /* ================= GRID ================= */
 
@@ -186,97 +194,37 @@ transition:.4s;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-12px);
 border-color:var(--accent);
-box-shadow:0 0 30px rgba(255,0,0,.25);
+box-shadow:0 0 35px rgba(255,0,0,.25);
 }
 
 .card img{
 width:100%;
-height:220px;
+height:230px;
 object-fit:cover;
 }
 
 .card .content{
-padding:25px;
+padding:28px;
+}
+
+.card h4{
+font-size:20px;
+margin-bottom:10px;
 }
 
 .card p{
 color:var(--muted);
-margin-top:10px;
 font-size:14px;
-line-height:1.7;
+line-height:1.8;
 }
 
-/* ================= FAQ ================= */
-
-.faq-item{
-border:1px solid var(--border);
-border-radius:12px;
-margin-bottom:15px;
-overflow:hidden;
-}
-
-.faq-question{
-padding:18px;
-background:var(--card);
-cursor:pointer;
-font-weight:600;
-display:flex;
-justify-content:space-between;
-}
-
-.faq-answer{
-max-height:0;
-overflow:hidden;
-transition:max-height .4s ease;
-background:#10141c;
-padding:0 18px;
-color:var(--muted);
-}
-
-.faq-item.active .faq-answer{
-max-height:200px;
-padding:18px;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-background:#080a0e;
-padding:90px 0 40px;
-border-top:1px solid var(--border);
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:40px;
-}
-
-.footer-grid h4{
-margin-bottom:18px;
-}
-
-.footer-grid p{
-color:var(--muted);
-font-size:14px;
-margin-bottom:8px;
-line-height:1.6;
-}
-
-.footer-bottom{
-text-align:center;
-margin-top:50px;
-border-top:1px solid var(--border);
-padding-top:20px;
-color:#777;
-font-size:14px;
-}
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:1000px){
-.hero h1{font-size:40px}
-nav ul{display:none}
+.hero h1{font-size:42px;}
+nav ul{display:none;}
 }
 
 </style>
@@ -291,8 +239,6 @@ nav ul{display:none}
 <ul>
 <li><a href="#programs">Programs</a></li>
 <li><a href="#trainers">Trainers</a></li>
-<li><a href="#branches">Branches</a></li>
-<li><a href="#faq">FAQ</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
@@ -300,47 +246,93 @@ nav ul{display:none}
 </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
 <div class="container hero-content">
 <h1>Build Your Body.<br><span>Transform Your Life.</span></h1>
-<p>Elite strength systems. Science-backed training. Measurable transformation results.</p>
+<p>Elite strength systems. Science-backed programming. Professional transformation strategies designed for serious athletes and individuals committed to excellence.</p>
 
 <div class="stats">
-<div class="stat"><h3 class="counter" data-target="2500">0</h3><p>Active Members</p></div>
-<div class="stat"><h3 class="counter" data-target="18">0</h3><p>Expert Trainers</p></div>
-<div class="stat"><h3 class="counter" data-target="12">0</h3><p>Years Experience</p></div>
+<div class="stat"><h3 class="counter" data-target="3200">0</h3><p>Active Members</p></div>
+<div class="stat"><h3 class="counter" data-target="22">0</h3><p>Expert Trainers</p></div>
+<div class="stat"><h3 class="counter" data-target="14">0</h3><p>Years Experience</p></div>
 <div class="stat"><h3 class="counter" data-target="5">0</h3><p>Branches</p></div>
 </div>
+
 </div>
 </section>
 
 <!-- PROGRAMS -->
 <section id="programs">
 <div class="container">
-<h2 style="text-align:center;margin-bottom:60px;font-size:42px;">Our Programs</h2>
+<div class="section-title">
+<h2>Our <span>Programs</span></h2>
+<p>Comprehensive performance systems engineered for measurable transformation.</p>
+</div>
+
 <div class="grid">
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80">
 <div class="content">
 <h4>Strength Training</h4>
-<p>Progressive overload muscle building with compound lifts.</p>
+<p>Progressive overload systems focused on compound lifts, hypertrophy cycles, and structured resistance protocols designed for long-term muscle development and raw power increase.</p>
 </div>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1200&q=80">
 <div class="content">
-<h4>CrossFit</h4>
-<p>High-intensity functional workouts.</p>
+<h4>CrossFit Performance</h4>
+<p>High-intensity functional training blending Olympic lifting, metabolic conditioning, and athletic endurance programming.</p>
 </div>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1579758629938-03608ccdbaba?auto=format&fit=crop&w=1200&q=80">
 <div class="content">
-<h4>Fat Loss</h4>
-<p>Structured calorie deficit transformation plan.</p>
+<h4>Fat Loss Transformation</h4>
+<p>Structured fat reduction programs integrating calorie periodization, metabolic conditioning, and lifestyle coaching.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1571019613578-2b193a06c4a2?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Muscle Building Elite</h4>
+<p>Hypertrophy-focused training cycles combining volume manipulation, recovery optimization, and advanced split routines.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517960413843-0aee8e2d471c?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Yoga & Mobility</h4>
+<p>Flexibility enhancement, joint mobility restoration, and injury prevention systems tailored for performance athletes.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>HIIT Conditioning</h4>
+<p>High-intensity interval circuits engineered for cardiovascular performance and accelerated fat oxidation.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1599058917212-d750089bc07b?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Personal Training</h4>
+<p>One-on-one customized training protocols with body composition tracking and progressive goal evaluation.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546484959-f9a1c7cbe3c2?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Athletic Performance</h4>
+<p>Sport-specific strength and conditioning programs designed for competitive athletes.</p>
 </div>
 </div>
 
@@ -348,67 +340,339 @@ nav ul{display:none}
 </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq">
+<!-- TRAINERS -->
+<section id="trainers">
 <div class="container">
-<h2 style="text-align:center;margin-bottom:50px;font-size:42px;">Frequently Asked Questions</h2>
-
-<div class="faq-item">
-<div class="faq-question">Do you offer trial sessions?<span>+</span></div>
-<div class="faq-answer">Yes, we provide one complimentary trial session.</div>
+<div class="section-title">
+<h2>Expert <span>Trainers</span></h2>
+<p>Certified professionals dedicated to delivering measurable results.</p>
 </div>
 
-<div class="faq-item">
-<div class="faq-question">Are trainers certified?<span>+</span></div>
-<div class="faq-answer">All trainers are internationally certified.</div>
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Rajesh Kumar</h4>
+<p>Head Strength Coach with 14+ years of experience in progressive overload systems, hypertrophy programming, and competitive bodybuilding preparation. NASM certified and transformation specialist.</p>
+</div>
 </div>
 
-<div class="faq-item">
-<div class="faq-question">Do you provide diet plans?<span>+</span></div>
-<div class="faq-answer">Yes, personalized diet plans are included in Pro and Elite plans.</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Priya Sharma</h4>
+<p>Mobility & Yoga expert focusing on flexibility restoration, posture correction, and injury prevention. Over 9 years of functional movement training expertise.</p>
 </div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Arjun Patel</h4>
+<p>CrossFit and athletic conditioning coach specializing in metabolic performance, Olympic lifting, and competitive preparation systems.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Vikram Singh</h4>
+<p>HIIT and endurance specialist focused on cardiovascular optimization and structured fat loss protocols.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546484959-f9a1c7cbe3c2?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Ananya Desai</h4>
+<p>Personal transformation coach integrating nutrition planning, resistance training, and lifestyle coaching for long-term sustainability.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1594737625785-cfbb9d3c8b1f?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Neha Reddy</h4>
+<p>Certified nutrition and strength consultant specializing in metabolic correction and structured diet periodization for elite results.</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- OUR JOURNEY -->
+<section id="journey">
+<div class="container">
+<div class="section-title">
+<h2>Our <span>Journey</span></h2>
+<p>From a single strength studio to a multi-city elite transformation brand.</p>
+</div>
+
+<p style="max-width:900px;margin:auto;color:var(--muted);line-height:1.9;font-size:15px;">
+Founded in 2011, PowerFlex began as a focused strength-training facility committed to building disciplined athletes.
+Over the years, we expanded our philosophy into a complete performance ecosystem combining strength, conditioning,
+mobility, and recovery science. Through structured systems and measurable programming, we have transformed
+thousands of individuals across multiple cities. Our mission remains unchanged: build stronger bodies, stronger
+discipline, and stronger lifestyles through elite training methodologies.
+</p>
 
 </div>
 </section>
 
-<footer>
-<div class="container footer-grid">
-
-<div>
-<h4>PowerFlex Gym</h4>
-<p>Elite transformation center dedicated to measurable results.</p>
+<!-- MEMBERSHIP -->
+<section id="membership">
+<div class="container">
+<div class="section-title">
+<h2>Membership <span>Plans</span></h2>
+<p>Flexible tiers designed for every commitment level.</p>
 </div>
 
-<div>
-<h4>Branches</h4>
-<p>Mumbai – Andheri</p>
-<p>Thane</p>
-<p>Navi Mumbai</p>
-<p>Pune</p>
-<p>Bangalore</p>
+<div class="grid">
+
+<div class="card">
+<div class="content">
+<h4>Basic Plan</h4>
+<p>• Full gym access<br>
+• Locker access<br>
+• Basic assessment<br>
+• Standard support</p>
+</div>
 </div>
 
-<div>
-<h4>Contact</h4>
-<p>Email: info@powerflexgym.com</p>
-<p>Phone: +91 98765 43210</p>
-<p>Mon–Sat: 5 AM – 11 PM</p>
+<div class="card">
+<div class="content">
+<h4>Pro Plan</h4>
+<p>• All Basic features<br>
+• Group classes<br>
+• Nutrition guidance<br>
+• Monthly progress tracking</p>
+</div>
 </div>
 
-<div>
-<h4>Legal</h4>
-<p>Privacy Policy</p>
-<p>Terms & Conditions</p>
+<div class="card">
+<div class="content">
+<h4>Elite Plan</h4>
+<p>• Personal trainer sessions<br>
+• Customized workout plans<br>
+• Body composition tracking<br>
+• Priority booking</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>VIP Performance</h4>
+<p>• 24/7 access<br>
+• Dedicated transformation coach<br>
+• Full diet planning<br>
+• Advanced performance analytics</p>
+</div>
 </div>
 
 </div>
-
-<div class="footer-bottom">
-© 2026 PowerFlex Gym. All rights reserved.
 </div>
-</footer>
+</section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+<div class="container">
+<div class="section-title">
+<h2>Client <span>Testimonials</span></h2>
+<p>Real results from real members.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="content">
+<h4>Rohit Mehta</h4>
+<p>“Lost 22kg in 8 months through structured programming. The coaching discipline completely changed my lifestyle.”</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Sneha Iyer</h4>
+<p>“From beginner to marathon finisher within a year. Incredible support system.”</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Karthik Nair</h4>
+<p>“Competitive CrossFit preparation was structured and measurable. Highly professional environment.”</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Ankit Sharma</h4>
+<p>“Best strength training facility in Mumbai. Elite-level equipment and coaching.”</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Meera Kapoor</h4>
+<p>“The nutrition guidance and personal attention made a massive difference in my transformation.”</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Rahul Verma</h4>
+<p>“Structured fat loss system delivered consistent measurable progress.”</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+<div class="container">
+<div class="section-title">
+<h2>Our <span>Gallery</span></h2>
+<p>Inside our elite performance facilities.</p>
+</div>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1594737625785-cfbb9d3c8b1f?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1518611012118-f6c5c4c4b8b9?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1546484959-f9a1c7cbe3c2?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1579758629938-03608ccdbaba?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1400&q=80">
+
+</div>
+</div>
+</section>
+
+<!-- MEMBER STORIES -->
+<section id="stories">
+<div class="container">
+<div class="section-title">
+<h2>Transformation <span>Stories</span></h2>
+<p>Structured systems. Measurable results. Real success.</p>
+</div>
+
+<div class="grid">
+
+<div class="card"><div class="content">
+<h4>Rohit Mehta</h4>
+<p>Reduced body fat from 32% to 14% within 8 months through structured hypertrophy cycles and metabolic conditioning.</p>
+</div></div>
+
+<div class="card"><div class="content">
+<h4>Sneha Iyer</h4>
+<p>Completed first full marathon after 11 months of endurance programming and mobility training.</p>
+</div></div>
+
+<div class="card"><div class="content">
+<h4>Karthik Nair</h4>
+<p>Improved Olympic lifting PR by 45% within one competitive season.</p>
+</div></div>
+
+<div class="card"><div class="content">
+<h4>Meera Kapoor</h4>
+<p>Post-pregnancy transformation through guided strength rebuilding and mobility protocols.</p>
+</div></div>
+
+<div class="card"><div class="content">
+<h4>Rahul Verma</h4>
+<p>Gained 12kg lean muscle mass in 14 months under progressive overload supervision.</p>
+</div></div>
+
+<div class="card"><div class="content">
+<h4>Ankit Sharma</h4>
+<p>Improved cardiovascular endurance and completed triathlon after structured HIIT progression.</p>
+</div></div>
+
+</div>
+</div>
+</section>
+
+<!-- BRANCHES -->
+<section id="branches">
+<div class="container">
+<div class="section-title">
+<h2>Our <span>Branches</span></h2>
+<p>Premium facilities across major cities.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="content">
+<h4>Mumbai – Andheri</h4>
+<p><strong>Address:</strong> Plot 45, Andheri West, Mumbai 400053</p>
+<p><strong>Phone:</strong> +91 98765 43210</p>
+<p><strong>Email:</strong> andheri@powerflexgym.com</p>
+<p><strong>Timings:</strong> 5:00 AM – 11:00 PM</p>
+<iframe src="https://www.google.com/maps?q=Andheri%20West%20Mumbai&output=embed" style="width:100%;height:220px;border-radius:12px;margin-top:15px;border:0;"></iframe>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Mumbai – Thane</h4>
+<p><strong>Address:</strong> Ghodbunder Road, Thane 400601</p>
+<p><strong>Phone:</strong> +91 98765 43211</p>
+<p><strong>Email:</strong> thane@powerflexgym.com</p>
+<p><strong>Timings:</strong> 5:00 AM – 11:00 PM</p>
+<iframe src="https://www.google.com/maps?q=Thane%20West&output=embed" style="width:100%;height:220px;border-radius:12px;margin-top:15px;border:0;"></iframe>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Navi Mumbai – Vashi</h4>
+<p><strong>Address:</strong> Sector 15, Vashi, Navi Mumbai</p>
+<p><strong>Phone:</strong> +91 98765 43212</p>
+<p><strong>Email:</strong> vashi@powerflexgym.com</p>
+<p><strong>Timings:</strong> 5:00 AM – 11:00 PM</p>
+<iframe src="https://www.google.com/maps?q=Vashi%20Navi%20Mumbai&output=embed" style="width:100%;height:220px;border-radius:12px;margin-top:15px;border:0;"></iframe>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Pune – Baner</h4>
+<p><strong>Address:</strong> Baner Road, Pune 411045</p>
+<p><strong>Phone:</strong> +91 98765 43213</p>
+<p><strong>Email:</strong> pune@powerflexgym.com</p>
+<p><strong>Timings:</strong> 5:00 AM – 11:00 PM</p>
+<iframe src="https://www.google.com/maps?q=Baner%20Pune&output=embed" style="width:100%;height:220px;border-radius:12px;margin-top:15px;border:0;"></iframe>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Bangalore – Koramangala</h4>
+<p><strong>Address:</strong> Koramangala, Bangalore 560034</p>
+<p><strong>Phone:</strong> +91 98765 43214</p>
+<p><strong>Email:</strong> bangalore@powerflexgym.com</p>
+<p><strong>Timings:</strong> 5:00 AM – 11:00 PM</p>
+<iframe src="https://www.google.com/maps?q=Koramangala%20Bangalore&output=embed" style="width:100%;height:220px;border-radius:12px;margin-top:15px;border:0;"></iframe>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+  
 <script>
+
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener("scroll",()=>{
@@ -421,18 +685,166 @@ gsap.to(counter,{
 innerText:target,
 duration:2,
 snap:{innerText:1},
+scrollTrigger:{trigger:counter,start:"top 80%"},
 onUpdate:function(){
 counter.innerText=Math.floor(counter.innerText)+"+";
 }
 });
 });
 
-document.querySelectorAll(".faq-question").forEach(q=>{
-q.addEventListener("click",()=>{
-q.parentElement.classList.toggle("active");
-});
-});
+<!-- FAQ -->
+<section id="faq">
+<div class="container">
+<div class="section-title">
+<h2>Frequently <span>Asked Questions</span></h2>
+<p>Everything you need to know before joining PowerFlex.</p>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do you offer trial sessions?</div>
+<div class="faq-answer">Yes. We provide one complimentary trial session including assessment and consultation.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are trainers certified?</div>
+<div class="faq-answer">All trainers are internationally certified with minimum 5+ years of professional experience.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do you provide diet plans?</div>
+<div class="faq-answer">Personalized nutrition plans are included in Pro, Elite and VIP memberships.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Is there parking available?</div>
+<div class="faq-answer">Yes. All branches provide secure parking facilities.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are there separate areas for women?</div>
+<div class="faq-answer">Yes. Dedicated zones and trainers are available at all branches.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Can beginners join?</div>
+<div class="faq-answer">Absolutely. Programs are customized based on fitness level.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">What are the membership durations?</div>
+<div class="faq-answer">We offer monthly, quarterly, half-yearly and annual packages.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do you provide personal training?</div>
+<div class="faq-answer">Yes. One-on-one transformation coaching is available.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are group classes included?</div>
+<div class="faq-answer">Group classes are included in Pro and above plans.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do you offer corporate packages?</div>
+<div class="faq-answer">Yes. We provide structured corporate wellness programs.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">What safety measures are followed?</div>
+<div class="faq-answer">All equipment is sanitized daily and trainers supervise every session.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">How do I get started?</div>
+<div class="faq-answer">Book a consultation through our contact form or visit nearest branch.</div>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+<div class="section-title">
+<h2>Get In <span>Touch</span></h2>
+<p>Start your transformation today.</p>
+</div>
+
+<div class="contact">
+<div>
+<input placeholder="Full Name">
+<input placeholder="Phone Number">
+<input placeholder="Email Address">
+<textarea rows="5" placeholder="Tell us about your fitness goals"></textarea>
+<a href="#" class="btn">Send Message</a>
+</div>
+
+<div class="info-box">
+<h4>Corporate Office</h4>
+<p>Mumbai, Maharashtra, India</p>
+<p>Phone: +91 98765 43210</p>
+<p>Email: info@powerflexgym.com</p>
+<p>Support: support@powerflexgym.com</p>
+<p>Mon–Sat: 5:00 AM – 11:00 PM</p>
+<p>Sunday: 6:00 AM – 10:00 PM</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-grid">
+
+<div>
+<h4>PowerFlex Gym</h4>
+<p>Elite transformation center dedicated to strength, discipline and measurable performance results.</p>
+</div>
+
+<div>
+<h4>Programs</h4>
+<p>Strength Training</p>
+<p>CrossFit</p>
+<p>Fat Loss</p>
+<p>HIIT Conditioning</p>
+<p>Personal Training</p>
+</div>
+
+<div>
+<h4>Branches</h4>
+<p>Mumbai – Andheri</p>
+<p>Mumbai – Thane</p>
+<p>Navi Mumbai</p>
+<p>Pune</p>
+<p>Bangalore</p>
+</div>
+
+<div>
+<h4>Support</h4>
+<p>FAQ</p>
+<p>Privacy Policy</p>
+<p>Terms & Conditions</p>
+<p>Membership Policies</p>
+</div>
+
+<div>
+<h4>Contact</h4>
+<p>+91 98765 43210</p>
+<p>info@powerflexgym.com</p>
+<p>support@powerflexgym.com</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 PowerFlex Gym | Built by Codly
+</div>
+</footer>
+  
 </script>
 
 </body>
 </html>
+
