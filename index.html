@@ -2,47 +2,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CODLY – Realistic Galaxy</title>
+<title>CODLY – Astrophysics Level</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;
-overflow-x:hidden;
+overflow:hidden;
 background:black;
-color:white;
-font-family:Poppins;
 }
 canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-}
-section{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-text-align:center;
-padding:100px 20px;
-}
-h1{
-font-family:Orbitron;
-font-size:clamp(60px,8vw,120px);
-letter-spacing:5px;
-}
-p{
-max-width:700px;
-opacity:.8;
+display:block;
 }
 </style>
 </head>
@@ -50,166 +22,184 @@ opacity:.8;
 
 <canvas id="bg"></canvas>
 
-<section>
-<h1>CODLY</h1>
-<p>Immersive galaxy environment. Cinematic depth. Realistic spiral structure.</p>
-</section>
-
-<section>
-<h1>OMEGA SPACE</h1>
-<p>Engineered with procedural spiral galaxy distribution and nebula depth layering.</p>
-</section>
-
 <script>
 
-gsap.registerPlugin(ScrollTrigger);
-
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-75,
-window.innerWidth / window.innerHeight,
-0.1,
-1000
-);
-
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({
-canvas: document.getElementById("bg"),
-alpha:true
+canvas:document.getElementById("bg"),
+antialias:true
 });
-
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-camera.position.z = 35;
+camera.position.z = 40;
 
-/* =========================
-   REALISTIC SPIRAL GALAXY
-========================= */
+/* =============================
+   STAR SHADER (REAL GLOW)
+============================= */
 
-const starCount = 120000;
-const arms = 4;
-const radius = 80;
-const spin = 3;
-
+const starCount = 100000;
 const geometry = new THREE.BufferGeometry();
+
 const positions = new Float32Array(starCount * 3);
-const colors = new Float32Array(starCount * 3);
+const sizes = new Float32Array(starCount);
+const temps = new Float32Array(starCount);
 
-for(let i = 0; i < starCount; i++){
+for(let i=0;i<starCount;i++){
 
-const i3 = i * 3;
+const r = Math.random()*120;
+const theta = Math.random()*Math.PI*2;
+const phi = Math.acos((Math.random()*2)-1);
 
-// radius distribution (denser core)
-const r = Math.random() * radius;
-const branchAngle = (i % arms) / arms * Math.PI * 2;
-const spinAngle = r * spin;
+positions[i*3] = r * Math.sin(phi)*Math.cos(theta);
+positions[i*3+1] = r * Math.sin(phi)*Math.sin(theta);
+positions[i*3+2] = r * Math.cos(phi);
 
-const randomX = (Math.random() - 0.5) * 2;
-const randomY = (Math.random() - 0.5) * 2;
-const randomZ = (Math.random() - 0.5) * 2;
-
-positions[i3] =
-Math.cos(branchAngle + spinAngle) * r + randomX;
-
-positions[i3 + 1] =
-randomY * 0.6;
-
-positions[i3 + 2] =
-Math.sin(branchAngle + spinAngle) * r + randomZ;
-
-// color gradient (core blue → outer warm)
-const color = new THREE.Color();
-const mix = r / radius;
-color.setHSL(0.6 - mix * 0.6, 1, 0.7);
-
-colors[i3] = color.r;
-colors[i3 + 1] = color.g;
-colors[i3 + 2] = color.b;
+sizes[i] = Math.random()*3+1;
+temps[i] = Math.random(); // temperature factor
 }
 
 geometry.setAttribute("position", new THREE.BufferAttribute(positions,3));
-geometry.setAttribute("color", new THREE.BufferAttribute(colors,3));
+geometry.setAttribute("aSize", new THREE.BufferAttribute(sizes,1));
+geometry.setAttribute("aTemp", new THREE.BufferAttribute(temps,1));
 
-const material = new THREE.PointsMaterial({
-size:0.15,
-vertexColors:true,
+const material = new THREE.ShaderMaterial({
 transparent:true,
-opacity:0.9,
-blending:THREE.AdditiveBlending
+depthWrite:false,
+blending:THREE.AdditiveBlending,
+uniforms:{
+uTime:{value:0}
+},
+vertexShader:`
+attribute float aSize;
+attribute float aTemp;
+varying float vTemp;
+varying float vTwinkle;
+
+uniform float uTime;
+
+void main(){
+vTemp = aTemp;
+vTwinkle = sin(uTime*2.0 + aTemp*10.0)*0.5+0.5;
+
+vec4 mvPosition = modelViewMatrix * vec4(position,1.0);
+gl_PointSize = aSize * (300.0 / -mvPosition.z);
+gl_Position = projectionMatrix * mvPosition;
+}
+`,
+fragmentShader:`
+precision highp float;
+varying float vTemp;
+varying float vTwinkle;
+
+vec3 kelvinColor(float t){
+float temp = 1000.0 + t*9000.0;
+float r,g,b;
+
+if(temp <= 6600.0){
+r = 1.0;
+g = clamp(temp/6600.0,0.0,1.0);
+b = 0.2 + temp/12000.0;
+}else{
+r = clamp(1.0 - (temp-6600.0)/9000.0,0.0,1.0);
+g = 1.0;
+b = 1.0;
+}
+return vec3(r,g,b);
+}
+
+void main(){
+
+float dist = length(gl_PointCoord - vec2(0.5));
+float glow = smoothstep(0.5,0.0,dist);
+
+vec3 color = kelvinColor(vTemp);
+gl_FragColor = vec4(color * glow * vTwinkle, glow);
+}
+`
 });
 
-const galaxy = new THREE.Points(geometry, material);
-scene.add(galaxy);
+const stars = new THREE.Points(geometry, material);
+scene.add(stars);
 
-/* =========================
-   NEBULA CLOUD
-========================= */
+/* =============================
+   NEBULA VOLUMETRIC SHADER
+============================= */
 
-const nebulaGeometry = new THREE.SphereGeometry(40,64,64);
-const nebulaMaterial = new THREE.MeshBasicMaterial({
-color:0x2233ff,
+const nebulaGeo = new THREE.SphereGeometry(100,64,64);
+
+const nebulaMat = new THREE.ShaderMaterial({
 transparent:true,
-opacity:0.05
+side:THREE.BackSide,
+uniforms:{
+uTime:{value:0}
+},
+vertexShader:`
+varying vec3 vPos;
+void main(){
+vPos = position;
+gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+}
+`,
+fragmentShader:`
+precision highp float;
+varying vec3 vPos;
+uniform float uTime;
+
+float noise(vec3 p){
+return fract(sin(dot(p,vec3(12.9898,78.233,45.164))) * 43758.5453);
+}
+
+void main(){
+float n = noise(vPos*0.05 + uTime*0.05);
+vec3 color = mix(vec3(0.1,0.0,0.3), vec3(0.0,0.2,0.6), n);
+gl_FragColor = vec4(color, 0.05);
+}
+`
 });
-const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+
+const nebula = new THREE.Mesh(nebulaGeo, nebulaMat);
 scene.add(nebula);
 
-/* =========================
-   MOUSE PARALLAX
-========================= */
+/* =============================
+   GRAVITATIONAL LENS DISTORTION
+============================= */
 
-let mouseX = 0;
-let mouseY = 0;
+let mouse = new THREE.Vector2(0,0);
 
 document.addEventListener("mousemove", e=>{
-mouseX = (e.clientX / window.innerWidth - 0.5) * 10;
-mouseY = (e.clientY / window.innerHeight - 0.5) * 10;
+mouse.x = (e.clientX/window.innerWidth - 0.5)*10;
+mouse.y = (e.clientY/window.innerHeight - 0.5)*10;
 });
 
-/* =========================
-   SCROLL WARP
-========================= */
-
-let warp = 0;
-
-ScrollTrigger.create({
-trigger:"body",
-start:"top top",
-end:"bottom bottom",
-scrub:true,
-onUpdate:self=>{
-warp = self.progress * 2;
-}
-});
-
-/* =========================
+/* =============================
    ANIMATION LOOP
-========================= */
+============================= */
 
-function animate(){
+function animate(time){
+
 requestAnimationFrame(animate);
 
-// slow rotation
-galaxy.rotation.y += 0.0005;
-nebula.rotation.y += 0.0002;
+material.uniforms.uTime.value = time*0.001;
+nebulaMat.uniforms.uTime.value = time*0.001;
 
-// camera drift
-camera.position.x += (mouseX - camera.position.x) * 0.02;
-camera.position.y += (-mouseY - camera.position.y) * 0.02;
+stars.rotation.y += 0.0003;
+nebula.rotation.y += 0.0001;
 
-// warp zoom
-camera.position.z = 35 - warp * 15;
+camera.position.x += (mouse.x - camera.position.x)*0.02;
+camera.position.y += (-mouse.y - camera.position.y)*0.02;
 
-renderer.render(scene, camera);
+renderer.render(scene,camera);
 }
 
 animate();
 
-/* =========================
+/* =============================
    RESIZE
-========================= */
+============================= */
 
 window.addEventListener("resize",()=>{
-camera.aspect = window.innerWidth / window.innerHeight;
+camera.aspect = window.innerWidth/window.innerHeight;
 camera.updateProjectionMatrix();
 renderer.setSize(window.innerWidth, window.innerHeight);
 });
