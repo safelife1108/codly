@@ -14,30 +14,80 @@ body{
   background:#000;
   color:#fff;
   scroll-behavior:smooth;
+  overflow-x:hidden;
 }
-section{padding:100px 8%}
-h2{font-size:42px;font-weight:900;margin-bottom:20px;color:#ff1a1a}
-p{line-height:1.7;opacity:0.9}
-.grid{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.card{
-  background:#111;
-  padding:30px;
-  border-radius:12px;
-  transition:0.4s;
-}
-.card:hover{transform:translateY(-8px);background:#1a1a1a}
 
-/* NAV */
+/* ===== LOADING SCREEN ===== */
+
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+}
+
+#loader h1{
+  font-size:70px;
+  font-weight:900;
+  letter-spacing:6px;
+  color:#ff1a1a;
+  animation:pulse 2s ease-in-out infinite alternate;
+  text-shadow:0 0 20px #ff0000;
+}
+
+@keyframes pulse{
+  from{letter-spacing:4px;opacity:0.8}
+  to{letter-spacing:10px;opacity:1}
+}
+
+.fadeOut{
+  animation:fadeOut 1s forwards;
+}
+
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden}
+}
+
+/* ===== NAVBAR ===== */
+
 nav{
-  position:fixed;top:0;width:100%;padding:20px 8%;
-  display:flex;justify-content:space-between;align-items:center;
-  background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #111;
+  z-index:1000;
 }
-nav h1{color:#ff1a1a;font-weight:900}
-nav a{margin-left:25px;text-decoration:none;color:#fff;font-weight:600}
-nav a:hover{color:#ff1a1a}
 
-/* HERO */
+nav h2{
+  color:#ff1a1a;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:600;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#ff1a1a;
+}
+
+/* ===== HERO ===== */
+
 .hero{
   height:100vh;
   display:flex;
@@ -46,33 +96,122 @@ nav a:hover{color:#ff1a1a}
   background:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
   position:relative;
 }
-.hero::after{
-  content:"";position:absolute;inset:0;background:rgba(0,0,0,0.7);
-}
-.hero-content{position:relative;z-index:2;max-width:700px}
-.hero h1{font-size:60px;font-weight:900;line-height:1.1}
-.hero span{color:#ff1a1a}
-.btn{
-  display:inline-block;margin-top:30px;
-  padding:14px 28px;background:#ff1a1a;
-  color:#000;font-weight:700;text-decoration:none;border-radius:8px;
-}
-.btn:hover{background:#fff}
 
-/* FOOTER */
-footer{
-  background:#080808;padding:60px 8%;text-align:center;color:#aaa
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.7);
 }
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:700px;
+}
+
+.hero h1{
+  font-size:60px;
+  font-weight:900;
+  line-height:1.1;
+}
+
+.hero span{
+  color:#ff1a1a;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:14px 28px;
+  background:#ff1a1a;
+  color:#000;
+  font-weight:700;
+  border-radius:8px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#fff;
+}
+
+/* ===== SECTIONS ===== */
+
+section{
+  padding:100px 8%;
+}
+
+h2{
+  font-size:40px;
+  font-weight:900;
+  margin-bottom:30px;
+  color:#ff1a1a;
+}
+
+.grid{
+  display:grid;
+  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+}
+
+.card{
+  background:#111;
+  padding:30px;
+  border-radius:12px;
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  background:#1a1a1a;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+  background:#080808;
+  padding:60px 8%;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:40px;
+}
+
+footer h4{
+  margin-bottom:15px;
+  color:#ff1a1a;
+}
+
+footer p{
+  opacity:0.7;
+  margin-bottom:10px;
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  border-top:1px solid #111;
+  padding-top:20px;
+  opacity:0.6;
+}
+
 </style>
 </head>
 <body>
 
+<div id="loader">
+  <h1>PF</h1>
+</div>
+
 <nav>
-  <h1>POWERFLEX</h1>
+  <h2>POWERFLEX</h2>
   <div>
-    <a href="#about">About</a>
     <a href="#programs">Programs</a>
     <a href="#trainers">Trainers</a>
+    <a href="#branches">Branches</a>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
   </div>
@@ -80,118 +219,54 @@ footer{
 
 <section class="hero">
   <div class="hero-content">
-    <h1>Transform Your Body.<br><span>Unleash Your Power.</span></h1>
+    <h1>Build Strength.<br><span>Dominate Limits.</span></h1>
     <p>
-      PowerFlex is an elite performance-driven fitness club designed for individuals who are serious about transformation. 
-      With professional trainers, modern equipment, structured programs, and a motivating environment, 
-      we help you push beyond limits and achieve measurable results.
+      PowerFlex is an elite performance-driven fitness club built for serious transformation.
+      Experience structured programs, expert trainers, and world-class equipment.
     </p>
-    <a href="#pricing" class="btn">Start Your Journey</a>
+    <a href="#pricing" class="btn">Join Now</a>
   </div>
 </section>
 
-<section id="about">
-  <h2>About PowerFlex</h2>
-  <p>
-    Established with a vision to redefine modern fitness culture, PowerFlex provides a high-performance training ecosystem 
-    where discipline meets innovation. Our gym integrates strength training, functional fitness, endurance conditioning, 
-    and personalized coaching under one roof.
-  </p>
-  <p style="margin-top:20px">
-    We focus not only on physical transformation but also on mental resilience and long-term health sustainability. 
-    Whether you're a beginner or an athlete, our structured approach ensures safe progression and consistent growth.
-  </p>
-</section>
-
 <section id="programs">
-  <h2>Our Training Programs</h2>
+  <h2>Training Programs</h2>
   <div class="grid">
-    <div class="card">
-      <h3>Strength & Muscle Building</h3>
-      <p>
-        Progressive overload training plans designed to increase muscle mass, improve lifting performance, 
-        and build long-term strength foundations.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Fat Loss & Conditioning</h3>
-      <p>
-        Structured cardio and HIIT programs focused on accelerating fat burn, boosting metabolism, 
-        and improving cardiovascular health.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Personal Training</h3>
-      <p>
-        One-on-one coaching sessions tailored to your body type, fitness level, and specific goals 
-        with continuous performance monitoring.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Functional Training</h3>
-      <p>
-        Improve mobility, coordination, and full-body stability through functional movement patterns 
-        used in sports and daily life.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Nutrition Planning</h3>
-      <p>
-        Customized meal strategies based on caloric needs, body composition goals, and sustainable lifestyle habits.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Transformation Program</h3>
-      <p>
-        A complete 12-week structured program combining workouts, nutrition tracking, and weekly assessments.
-      </p>
-    </div>
+    <div class="card"><h3>Strength Training</h3><p>Advanced muscle-building systems and progressive overload techniques.</p></div>
+    <div class="card"><h3>Fat Loss</h3><p>Structured HIIT and metabolic conditioning plans.</p></div>
+    <div class="card"><h3>Personal Coaching</h3><p>One-on-one customized transformation strategies.</p></div>
+    <div class="card"><h3>Functional Training</h3><p>Improve mobility and overall athletic performance.</p></div>
+    <div class="card"><h3>Nutrition Planning</h3><p>Personalized meal strategies and macro tracking.</p></div>
+    <div class="card"><h3>12 Week Transformation</h3><p>Complete guided transformation program.</p></div>
   </div>
 </section>
 
 <section id="trainers">
-  <h2>Meet Our Expert Trainers</h2>
+  <h2>Elite Trainers</h2>
   <div class="grid">
-    <div class="card">
-      <h3>Raj Kumar — Strength Specialist</h3>
-      <p>
-        8+ years of professional experience in bodybuilding and powerlifting coaching. 
-        Certified in advanced resistance training systems.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Neha Sharma — HIIT & Conditioning Coach</h3>
-      <p>
-        Specialist in metabolic conditioning and endurance development with multiple athlete transformation success stories.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Arjun Mehta — Transformation Coach</h3>
-      <p>
-        Expert in structured fat loss systems and lifestyle coaching for sustainable physical transformation.
-      </p>
-    </div>
+    <div class="card"><h3>Raj Kumar</h3><p>8+ years experience in strength and hypertrophy coaching.</p></div>
+    <div class="card"><h3>Neha Sharma</h3><p>Certified HIIT specialist and endurance coach.</p></div>
+    <div class="card"><h3>Arjun Mehta</h3><p>Body transformation and fat-loss expert.</p></div>
+    <div class="card"><h3>Vikram Singh</h3><p>Functional training specialist.</p></div>
+    <div class="card"><h3>Ananya Desai</h3><p>Yoga and mobility trainer.</p></div>
+    <div class="card"><h3>Rohan Patel</h3><p>Sports performance coach.</p></div>
+  </div>
+</section>
+
+<section id="branches">
+  <h2>Our Branches</h2>
+  <div class="grid">
+    <div class="card"><h3>Mumbai — Andheri</h3><p>Premium flagship center with 5000+ sq ft training space.</p></div>
+    <div class="card"><h3>Mumbai — Thane</h3><p>Modern fitness center with transformation programs.</p></div>
+    <div class="card"><h3>Navi Mumbai</h3><p>High-performance training hub with elite coaching team.</p></div>
   </div>
 </section>
 
 <section id="pricing">
   <h2>Membership Plans</h2>
   <div class="grid">
-    <div class="card">
-      <h3>Basic Plan</h3>
-      <p>₹2,999 / month</p>
-      <p>• Full gym access<br>• Equipment usage<br>• Basic guidance</p>
-    </div>
-    <div class="card">
-      <h3>Pro Plan</h3>
-      <p>₹4,999 / month</p>
-      <p>• All Basic features<br>• Group classes<br>• Monthly fitness assessment</p>
-    </div>
-    <div class="card">
-      <h3>Elite Plan</h3>
-      <p>₹7,999 / month</p>
-      <p>• All Pro features<br>• Personal trainer<br>• Customized nutrition plan</p>
-    </div>
+    <div class="card"><h3>Basic</h3><p>₹2,999 / month</p></div>
+    <div class="card"><h3>Pro</h3><p>₹4,999 / month</p></div>
+    <div class="card"><h3>Elite</h3><p>₹7,999 / month</p></div>
   </div>
 </section>
 
@@ -200,14 +275,41 @@ footer{
   <p>📍 Mumbai, India</p>
   <p>📞 +91 90000 00000</p>
   <p>✉ info@powerflexgym.com</p>
-  <p style="margin-top:20px">
-    Join PowerFlex today and take the first step toward unlocking your full physical potential.
-  </p>
 </section>
 
 <footer>
-  <p>© 2026 PowerFlex Gym. All Rights Reserved.</p>
+  <div class="footer-grid">
+    <div>
+      <h4>POWERFLEX</h4>
+      <p>Elite fitness experience engineered for performance and results.</p>
+    </div>
+    <div>
+      <h4>Programs</h4>
+      <p>Strength Training</p>
+      <p>Fat Loss</p>
+      <p>Personal Coaching</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Mumbai, India</p>
+      <p>+91 90000 00000</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 PowerFlex Gym — Built by Codly
+  </div>
 </footer>
+
+<script>
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    document.getElementById("loader").innerHTML="<h1>POWERFLEX</h1>";
+    setTimeout(()=>{
+      document.getElementById("loader").classList.add("fadeOut");
+    },1500);
+  },2000);
+});
+</script>
 
 </body>
 </html>
