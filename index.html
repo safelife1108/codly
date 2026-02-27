@@ -3,27 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Transcend Physics</title>
+<title>CODLY – Cinematic Space Experience</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/postprocessing/EffectComposer.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/postprocessing/RenderPass.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/postprocessing/UnrealBloomPass.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <style>
 :root{
---bg:#000;
---text:#fff;
+--bg:#000814;
+--glass:rgba(255,255,255,0.05);
+--border:rgba(255,255,255,0.08);
+--text:#ffffff;
 --muted:#9bb3ff;
 --accent:#00f0ff;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-body{background:#000;color:#fff;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;}
 
 canvas{
 position:fixed;
@@ -34,6 +33,7 @@ height:100%;
 z-index:-5;
 }
 
+/* LOADING SCREEN */
 .loader{
 position:fixed;
 inset:0;
@@ -45,8 +45,8 @@ z-index:9999;
 }
 .loader h1{
 font-family:Orbitron;
-font-size:80px;
-letter-spacing:12px;
+font-size:70px;
+letter-spacing:10px;
 animation:glitch 1s infinite;
 }
 @keyframes glitch{
@@ -55,6 +55,7 @@ animation:glitch 1s infinite;
 100%{text-shadow:3px 0 red,-3px 0 cyan;}
 }
 
+/* HEADER */
 header{
 position:fixed;
 top:0;
@@ -62,12 +63,26 @@ width:100%;
 padding:20px 8%;
 display:flex;
 justify-content:space-between;
+align-items:center;
 background:rgba(0,0,0,0.4);
-backdrop-filter:blur(20px);
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border);
 z-index:1000;
 }
-.logo{font-family:Orbitron;}
-nav a{margin-left:25px;color:var(--muted);text-decoration:none;}
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-family:Orbitron;
+}
+.logo img{height:32px;}
+nav a{
+margin-left:25px;
+color:var(--muted);
+text-decoration:none;
+font-size:14px;
+}
+nav a:hover{color:#fff;}
 
 section{
 min-height:100vh;
@@ -77,11 +92,96 @@ flex-direction:column;
 justify-content:center;
 }
 
+h2{
+font-family:Orbitron;
+font-size:36px;
+margin-bottom:25px;
+}
+
 .hero h1{
 font-family:Orbitron;
-font-size:clamp(60px,9vw,120px);
+font-size:clamp(70px,10vw,130px);
+letter-spacing:6px;
 }
-.hero p{margin-top:20px;color:var(--muted);}
+.hero p{
+margin-top:20px;
+max-width:750px;
+color:var(--muted);
+line-height:1.8;
+font-size:18px;
+}
+
+.glass{
+background:var(--glass);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:20px;
+padding:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+background:var(--glass);
+border:1px solid var(--border);
+border-radius:16px;
+padding:30px;
+transition:.4s;
+text-decoration:none;
+color:#fff;
+}
+.card:hover{
+transform:translateY(-10px);
+background:rgba(255,255,255,0.1);
+}
+
+.cta{
+text-align:center;
+background:linear-gradient(135deg,#001f3f,#000814);
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+}
+.cta a{
+margin-top:30px;
+display:inline-block;
+padding:14px 35px;
+background:var(--accent);
+color:#000;
+font-weight:600;
+border-radius:40px;
+text-decoration:none;
+}
+
+.footer{
+background:#000;
+padding:120px 8%;
+border-top:1px solid var(--border);
+}
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:60px;
+}
+.footer h3{margin-bottom:20px;font-family:Orbitron;}
+.footer p,.footer a{
+color:var(--muted);
+font-size:14px;
+line-height:1.8;
+text-decoration:none;
+}
+.footer-bottom{
+margin-top:60px;
+padding-top:30px;
+border-top:1px solid var(--border);
+text-align:center;
+font-size:13px;
+color:var(--muted);
+}
 </style>
 </head>
 
@@ -91,9 +191,13 @@ font-size:clamp(60px,9vw,120px);
 <canvas id="space"></canvas>
 
 <header>
-<div class="logo">CODLY</div>
+<div class="logo">
+<img src="codly logo.jpg">
+<strong>CODLY</strong>
+</div>
 <nav>
 <a href="#about">About</a>
+<a href="#services">Services</a>
 <a href="#portfolio">Portfolio</a>
 <a href="#contact">Contact</a>
 </nav>
@@ -101,23 +205,73 @@ font-size:clamp(60px,9vw,120px);
 
 <section class="hero">
 <h1>CODLY</h1>
-<p>Beyond digital. Beyond scale. Beyond limits.</p>
+<p>Engineering AI automation, scalable digital platforms, and cinematic web systems that dominate attention.</p>
 </section>
 
 <section id="about">
-<h2>About</h2>
-<p>Astrophysics-grade digital engineering powered by AI systems and scalable architecture.</p>
+<div class="glass">
+<h2>About Codly</h2>
+<p>Codly is a Mumbai-based premium tech studio led by Rohit Kumar. We architect AI systems, advanced web platforms, and growth infrastructure engineered for scale and performance.</p>
+</div>
+</section>
+
+<section id="services">
+<h2>Services</h2>
+<div class="grid">
+<div class="card">AI Agent Automation</div>
+<div class="card">AI Chatbot Systems</div>
+<div class="card">Web Development</div>
+<div class="card">App Development</div>
+<div class="card">Google & Meta Ads</div>
+<div class="card">Marketing Systems</div>
+<div class="card">Domain & Hosting</div>
+</div>
 </section>
 
 <section id="portfolio">
-<h2>Portfolio</h2>
-<p>Explore premium digital systems engineered for performance.</p>
+<h2>Portfolio Demos</h2>
+<div class="grid">
+<a href="gym-demo.html" target="_blank" class="card">Gym Demo</a>
+<a href="fabrication-demo.html" target="_blank" class="card">Fabrication Demo</a>
+<a href="business-demo.html" target="_blank" class="card">Business Demo</a>
+<a href="ecommerce-demo.html" target="_blank" class="card">Ecommerce Demo</a>
+<a href="safe-life.html" target="_blank" class="card">Safe Life App</a>
+<a href="admin.html" target="_blank" class="card">Admin Dashboard</a>
+</div>
+</section>
+
+<section class="cta">
+<h2>Build Your Digital Authority</h2>
+<a href="mailto:Codly.rk@gmail.com">Start Project</a>
 </section>
 
 <section id="contact">
 <h2>Contact</h2>
 <p>Email: Codly.rk@gmail.com</p>
+<p>Phone: +91 9324452580</p>
 </section>
+
+<div class="footer">
+<div class="footer-grid">
+<div>
+<h3>CODLY</h3>
+<p>Premium Cinematic Tech Studio.</p>
+</div>
+<div>
+<h3>Services</h3>
+<p>Automation</p>
+<p>Web Systems</p>
+<p>App Platforms</p>
+</div>
+<div>
+<h3>Location</h3>
+<p>Mumbai, India</p>
+</div>
+</div>
+<div class="footer-bottom">
+© 2026 CODLY. All Rights Reserved. Engineered by Rohit Kumar.
+</div>
+</div>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -126,67 +280,47 @@ window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-/* SCENE SETUP */
+/* SPACE BACKGROUND */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,2000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("space"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.z=15;
+camera.position.z=8;
 
-/* BLOOM */
-const composer=new THREE.EffectComposer(renderer);
-composer.addPass(new THREE.RenderPass(scene,camera));
-const bloom=new THREE.UnrealBloomPass(
-new THREE.Vector2(window.innerWidth,window.innerHeight),
-1.5,0.4,0.85
-);
-composer.addPass(bloom);
-
-/* STAR FIELD */
-const starGeo=new THREE.BufferGeometry();
-const starCount=20000;
-const positions=new Float32Array(starCount*3);
-for(let i=0;i<starCount;i++){
-positions[i*3]=(Math.random()-0.5)*1000;
-positions[i*3+1]=(Math.random()-0.5)*1000;
-positions[i*3+2]=(Math.random()-0.5)*1000;
+function createStars(count,depth,size){
+const geo=new THREE.BufferGeometry();
+const positions=new Float32Array(count*3);
+for(let i=0;i<count;i++){
+positions[i*3]=(Math.random()-0.5)*600;
+positions[i*3+1]=(Math.random()-0.5)*600;
+positions[i*3+2]=(Math.random()-0.5)*depth;
 }
-starGeo.setAttribute("position",new THREE.BufferAttribute(positions,3));
-const starMat=new THREE.PointsMaterial({color:0xffffff,size:0.8});
-const stars=new THREE.Points(starGeo,starMat);
+geo.setAttribute("position",new THREE.BufferAttribute(positions,3));
+const mat=new THREE.PointsMaterial({color:0xffffff,size:size});
+const stars=new THREE.Points(geo,mat);
 scene.add(stars);
+return stars;
+}
 
-/* BLACK HOLE */
-const holeGeo=new THREE.CircleGeometry(25,64);
-const holeMat=new THREE.MeshBasicMaterial({color:0x000000});
-const blackHole=new THREE.Mesh(holeGeo,holeMat);
-blackHole.position.z=-100;
-scene.add(blackHole);
+const stars1=createStars(12000,800,0.7);
+const stars2=createStars(6000,400,1.2);
 
-/* MOUSE GRAVITY */
-let mouseX=0,mouseY=0;
-document.addEventListener("mousemove",(e)=>{
-mouseX=(e.clientX/window.innerWidth-0.5)*2;
-mouseY=(e.clientY/window.innerHeight-0.5)*2;
-});
-
-/* SCROLL WARP */
 ScrollTrigger.create({
 start:0,
 end:"max",
 scrub:true,
 onUpdate:self=>{
-camera.position.z=15-self.progress*10;
-stars.rotation.y+=0.005+self.progress*0.05;
+camera.position.z=8-self.progress*4;
+stars1.rotation.y+=0.002;
+stars2.rotation.y+=0.004;
 }
 });
 
 function animate(){
 requestAnimationFrame(animate);
-camera.position.x+=(mouseX-camera.position.x)*0.05;
-camera.position.y+=(-mouseY-camera.position.y)*0.05;
-stars.rotation.y+=0.001;
-composer.render();
+stars1.rotation.y+=0.0003;
+stars2.rotation.y+=0.0005;
+renderer.render(scene,camera);
 }
 animate();
 
@@ -194,7 +328,6 @@ window.addEventListener("resize",()=>{
 camera.aspect=window.innerWidth/window.innerHeight;
 camera.updateProjectionMatrix();
 renderer.setSize(window.innerWidth,window.innerHeight);
-composer.setSize(window.innerWidth,window.innerHeight);
 });
 </script>
 
