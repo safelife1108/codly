@@ -50,6 +50,17 @@ backdrop-filter:blur(20px);
 z-index:1000;
 border-bottom:1px solid var(--border);
 }
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+height:40px;
+}
+
 header a{
 color:var(--muted);
 text-decoration:none;
@@ -121,6 +132,14 @@ transition:0.6s;
 transform-style:preserve-3d;
 position:relative;
 overflow:hidden;
+text-decoration:none;
+color:#ffffff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+font-weight:600;
+cursor:pointer;
 }
 
 .card:hover{
@@ -136,6 +155,22 @@ opacity:0;
 transition:0.6s;
 }
 .card:hover::before{opacity:1;}
+
+#contact p{
+color:var(--muted);
+margin-top:20px;
+}
+
+.contact-details{
+margin-top:40px;
+font-size:18px;
+line-height:2;
+}
+
+.contact-details a{
+color:#fff;
+text-decoration:none;
+}
 
 footer{
 padding:80px 8%;
@@ -153,11 +188,14 @@ color:var(--muted);
 <canvas id="bg"></canvas>
 
 <header>
-<div><strong>CODLY</strong></div>
+<div class="logo">
+<img src="codly logo.jpg" alt="Codly Logo">
+<strong>CODLY</strong>
+</div>
 <nav>
-<a href="#about">About</a>
 <a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
 </nav>
 </header>
 
@@ -168,9 +206,9 @@ color:var(--muted);
 
 <section class="story">
 <div class="story-inner">
-<h2 class="line1">I Design Systems.</h2>
-<h2 class="line2">I Build Digital Presence.</h2>
-<h2 class="line3">I Craft Experiences.</h2>
+<h2>I Design Systems.</h2>
+<h2>I Build Digital Presence.</h2>
+<h2>I Craft Experiences.</h2>
 </div>
 </section>
 
@@ -189,9 +227,32 @@ color:var(--muted);
 <section id="projects">
 <h2>Featured Work</h2>
 <div class="grid">
-<div class="card">Safe Life App</div>
-<div class="card">Gym Website</div>
-<div class="card">AI Concept Platform</div>
+
+<a href="https://safelife1108.github.io/safelife-app-demo/" target="_blank" class="card">
+Safe Life App
+</a>
+
+<a href="https://safelife1108.github.io/codly/gym-demo.html" target="_blank" class="card">
+Gym Website
+</a>
+
+<a href="https://safelife1108.github.io/ai-concept-demo/" target="_blank" class="card">
+AI Concept Platform
+</a>
+
+</div>
+</section>
+
+<section id="contact">
+<h2>Let’s Build Something Powerful.</h2>
+<p>Ready to create something premium? Let’s connect.</p>
+
+<div class="contact-details">
+<p><strong>Email:</strong> Codly.rk@gmail.com</p>
+<p><strong>Phone:</strong> +91 9324452580</p>
+<p><strong>Instagram:</strong> 
+<a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">@codly.ai</a>
+</p>
 </div>
 </section>
 
@@ -203,13 +264,11 @@ color:var(--muted);
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-/* Loader Intro */
 window.addEventListener("load",()=>{
 gsap.to(".loader h1",{scale:1.2,opacity:0,duration:1.5});
 gsap.to(".loader",{opacity:0,duration:1.5,delay:1.2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-/* Scroll Story Animation */
 gsap.utils.toArray(".story h2").forEach((el,i)=>{
 gsap.to(el,{
 opacity:1,
@@ -223,7 +282,6 @@ scrub:true
 });
 });
 
-/* WebGL God Mode Nebula */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
@@ -250,7 +308,6 @@ opacity:0.8
 const particles=new THREE.Points(geometry,material);
 scene.add(particles);
 
-/* Mouse Interaction */
 let mouseX=0, mouseY=0;
 document.addEventListener("mousemove",(e)=>{
 mouseX=(e.clientX/window.innerWidth-0.5)*4;
@@ -266,17 +323,6 @@ camera.position.y+=(-mouseY-camera.position.y)*0.02;
 renderer.render(scene,camera);
 }
 animate();
-
-/* Scroll Camera Morph */
-ScrollTrigger.create({
-trigger:".story",
-start:"top top",
-end:"bottom bottom",
-scrub:true,
-onUpdate:self=>{
-camera.position.z=8 - self.progress*3;
-}
-});
 
 window.addEventListener("resize",()=>{
 camera.aspect=window.innerWidth/window.innerHeight;
