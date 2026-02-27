@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PowerFlex Gym - Premium Elite</title>
+<title>PowerFlex Gym - Ultimate Elite Edition</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -12,9 +12,7 @@
 
 <style>
 
-/* =====================================================
-   ROOT VARIABLES
-===================================================== */
+/* ================= ROOT ================= */
 
 :root{
 --bg:#0b0e13;
@@ -25,23 +23,11 @@
 --muted:#aeb4c0;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
-
-body{
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:var(--bg);color:var(--text);overflow-x:hidden}
 html{scroll-behavior:smooth}
-.container{width:90%;max-width:1250px;margin:auto}
+.container{width:90%;max-width:1300px;margin:auto}
 section{padding:120px 0;position:relative}
-
 h1,h2,h3,h4{line-height:1.2}
 
 .section-title{text-align:center;margin-bottom:70px}
@@ -78,7 +64,7 @@ background:var(--accent);
 margin-top:25px;
 }
 
-/* ================= NAVBAR ================= */
+/* ================= NAV ================= */
 
 header{
 position:fixed;
@@ -105,7 +91,7 @@ padding:18px 0;
 
 .logo{
 font-weight:900;
-font-size:20px;
+font-size:22px;
 color:var(--accent);
 letter-spacing:2px;
 }
@@ -139,7 +125,7 @@ nav ul li a:hover::after{width:100%}
 .btn{
 background:var(--accent);
 color:#000;
-padding:10px 22px;
+padding:12px 24px;
 border-radius:8px;
 font-weight:700;
 text-decoration:none;
@@ -167,117 +153,93 @@ margin-top:70px;
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(to right,rgba(0,0,0,.95),rgba(0,0,0,.65));
+background:linear-gradient(to right,rgba(0,0,0,.95),rgba(0,0,0,.6));
 }
 
 .hero-content{
 position:relative;
 z-index:2;
-max-width:750px;
+max-width:800px;
 }
 
 .hero h1{
-font-size:64px;
+font-size:68px;
 font-weight:900;
-letter-spacing:1px;
 text-transform:uppercase;
 }
 
 .hero h1 span{color:var(--accent)}
-
-.hero p{
-margin:20px 0;
-color:#ddd;
-max-width:600px;
-}
-
-/* ==== Animated Stats ==== */
+.hero p{margin:25px 0;color:#ddd;font-size:18px}
 
 .stats{
 display:flex;
-gap:40px;
-margin-top:45px;
+gap:50px;
+margin-top:50px;
 flex-wrap:wrap;
 }
 
-.stat{
-text-align:center;
-min-width:150px;
-}
-
-.stat h3{
-font-size:40px;
-color:var(--accent);
-font-weight:800;
-}
-
-.stat p{
-font-size:14px;
-color:#ccc;
-letter-spacing:1px;
-text-transform:uppercase;
-}
+.stat{text-align:center}
+.stat h3{font-size:42px;color:var(--accent);font-weight:800}
+.stat p{font-size:14px;color:#ccc;text-transform:uppercase}
 
 /* ================= GRID ================= */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
 }
 
 .card{
 background:var(--card);
-border-radius:18px;
+border-radius:20px;
 overflow:hidden;
 border:1px solid #1f2430;
 transition:.4s;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-12px);
 border-color:var(--accent);
-box-shadow:0 0 25px rgba(255,0,0,.25);
+box-shadow:0 0 30px rgba(255,0,0,.25);
 }
 
 .card img{
 width:100%;
-height:230px;
+height:240px;
 object-fit:cover;
 }
 
-.card .content{padding:22px}
-.card p{font-size:14px;color:var(--muted)}
+.card .content{padding:28px}
+.card p{font-size:14px;color:var(--muted);margin-top:8px}
 
-/* ================= BRANCHES ================= */
+/* ================= PRICING ================= */
 
-.branch-card img{
-height:220px;
-width:100%;
-object-fit:cover;
+.pricing{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
 }
 
-.branch-details{
-margin-top:10px;
+.price-card{
+background:var(--card);
+padding:40px;
+border-radius:24px;
+text-align:center;
+border:1px solid #1f2430;
+transition:.4s;
 }
 
-.branch-details p{
-margin-bottom:6px;
-font-size:14px;
-color:var(--muted);
+.price-card.popular{
+background:linear-gradient(180deg,#ff1f1f,#900000);
+color:#000;
+transform:scale(1.08);
 }
 
-.branch-details strong{
-color:#fff;
-}
-
-.branch-card iframe{
-width:100%;
-height:220px;
-border:0;
-border-radius:12px;
-margin-top:15px;
-}
+.price-card h3{margin-bottom:10px}
+.price-card h2{font-size:38px;margin:15px 0}
+.price-card ul{list-style:none;margin-top:20px}
+.price-card ul li{margin-bottom:10px;font-size:14px}
 
 /* ================= GALLERY ================= */
 
@@ -289,7 +251,7 @@ column-gap:20px;
 .gallery img{
 width:100%;
 margin-bottom:20px;
-border-radius:16px;
+border-radius:20px;
 transition:.4s;
 filter:brightness(.9);
 }
@@ -299,64 +261,47 @@ transform:scale(1.05);
 filter:brightness(1);
 }
 
-/* ================= CONTACT ================= */
+/* ================= FAQ ================= */
 
-.contact{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-}
-
-input,textarea{
-width:100%;
-padding:12px;
-background:#0f1115;
-border:1px solid #333;
-color:#fff;
-border-radius:8px;
-margin-bottom:15px;
-}
-
-.info-box{
+.faq-item{
+margin-bottom:20px;
 background:var(--card);
 padding:25px;
-border-radius:14px;
+border-radius:16px;
+border:1px solid #1f2430;
 }
+
+.faq-item h4{margin-bottom:10px}
+.faq-item p{color:var(--muted)}
 
 /* ================= FOOTER ================= */
 
 footer{
 background:#080a0e;
-padding:80px 0 20px;
+padding:100px 0 30px;
 }
 
 .footer-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:40px;
 }
 
-.footer-grid p{
-color:var(--muted);
-font-size:14px;
-margin-bottom:8px;
-}
+.footer-grid h4{margin-bottom:15px}
+.footer-grid p{color:var(--muted);font-size:14px;margin-bottom:8px}
 
 .footer-bottom{
 text-align:center;
-margin-top:30px;
+margin-top:50px;
 border-top:1px solid #1f2430;
-padding-top:15px;
+padding-top:20px;
 color:#777;
 }
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
 .gallery{column-count:2}
 .hero h1{font-size:42px}
 nav ul{display:none}
-.contact{grid-template-columns:1fr}
 }
 
 </style>
@@ -379,8 +324,11 @@ nav ul{display:none}
 <li><a href="#trainers">Trainers</a></li>
 <li><a href="#journey">Journey</a></li>
 <li><a href="#stories">Members</a></li>
+<li><a href="#testimonials">Testimonials</a></li>
+<li><a href="#membership">Membership</a></li>
 <li><a href="#branches">Branches</a></li>
 <li><a href="#gallery">Gallery</a></li>
+<li><a href="#faq">FAQ</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
@@ -392,7 +340,7 @@ nav ul{display:none}
 <section class="hero">
 <div class="container hero-content">
 <h1>BUILD YOUR BODY.<br><span>TRANSFORM YOUR LIFE.</span></h1>
-<p>Elite strength systems. Professional coaching. Measurable results designed for serious athletes and committed individuals.</p>
+<p>Elite strength systems. Professional coaching. Measurable transformation programs designed for serious individuals.</p>
 
 <div class="stats">
 <div class="stat"><h3 class="counter" data-target="2000">0</h3><p>Active Members</p></div>
@@ -404,25 +352,247 @@ nav ul{display:none}
 </div>
 </section>
 
+<!-- JOURNEY -->
+<section id="journey">
+<div class="container">
+<div class="section-title">
+<h2>Our <span>Journey</span></h2>
+<p>From a single training studio to a national transformation brand.</p>
+</div>
+<p style="color:var(--muted);max-width:1000px;margin:auto;text-align:center;font-size:16px;line-height:1.8">
+Founded in 2015 in Mumbai, PowerFlex Gym began as a strength-focused training facility built on discipline, science, and performance. 
+Over the years, we evolved into a full-scale transformation ecosystem offering structured programming, certified coaching, sports conditioning, and lifestyle management systems.
+Our growth came from one principle: measurable results.
+Thousands of members have successfully transformed their physique, confidence, and mental resilience through our system-driven approach.
+Today we operate multiple branches across India and continue expanding with the same elite standards.
+</p>
+</div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+<div class="container">
+<div class="section-title">
+<h2>Elite <span>Programs</span></h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Strength & Hypertrophy</h4>
+<p>Compound lifts, progressive overload, structured muscle building phases.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>CrossFit Conditioning</h4>
+<p>High-intensity functional training for peak athletic performance.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1579758629938-03608ccdbaba?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Fat Loss Transformation</h4>
+<p>Nutrition + strength-based fat reduction system.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Performance Training</h4>
+<p>Speed, agility, explosiveness training modules.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1571019613578-2b193a06c4a2?auto=format&fit=crop&w=1200&q=80">
+<div class="content">
+<h4>Personal Coaching</h4>
+<p>1-on-1 customized transformation roadmap.</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+<div class="container">
+<div class="section-title">
+<h2>Client <span>Testimonials</span></h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="content">
+<h4>Rohit Mehta</h4>
+<p>"Lost 18kg in 6 months. The structured system changed my discipline and mindset completely."</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Sneha Iyer</h4>
+<p>"Professional trainers, premium environment, and real measurable results."</p>
+</div>
+</div>
+
+<div class="card">
+<div class="content">
+<h4>Karthik Nair</h4>
+<p>"Best CrossFit conditioning experience in India."</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="membership">
+<div class="container">
+<div class="section-title">
+<h2>Membership <span>Plans</span></h2>
+</div>
+
+<div class="pricing">
+
+<div class="price-card">
+<h3>Basic</h3>
+<h2>₹2,999</h2>
+<ul>
+<li>Gym Access</li>
+<li>Locker Facility</li>
+<li>Fitness Assessment</li>
+<li>Standard Equipment Access</li>
+</ul>
+<a href="#" class="btn">Select Plan</a>
+</div>
+
+<div class="price-card popular">
+<h3>Pro</h3>
+<h2>₹4,999</h2>
+<ul>
+<li>All Basic Features</li>
+<li>Group Classes</li>
+<li>Nutrition Guidance</li>
+<li>CrossFit Access</li>
+</ul>
+<a href="#" class="btn">Select Plan</a>
+</div>
+
+<div class="price-card">
+<h3>Elite</h3>
+<h2>₹7,999</h2>
+<ul>
+<li>Personal Trainer</li>
+<li>Custom Diet Plan</li>
+<li>Priority Support</li>
+<li>24/7 Gym Access</li>
+</ul>
+<a href="#" class="btn">Select Plan</a>
+</div>
+
+</div>
+</div>
+</section>
+
 <!-- GALLERY -->
 <section id="gallery">
 <div class="container">
 <div class="section-title">
-<h2>Elite <span>Gallery</span></h2>
-<p>Inside our premium strength ecosystem</p>
+<h2>PowerFlex <span>Gallery</span></h2>
 </div>
 
 <div class="gallery">
 <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1200&q=80">
-<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80">
-<img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1200&q=80">
 <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07b?auto=format&fit=crop&w=1200&q=80">
-<img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1200&q=80">
-<img src="https://images.unsplash.com/photo-1579758629938-03608ccdbaba?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1546484959-f9a1c7cbe3c2?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1571019613578-2b193a06c4a2?auto=format&fit=crop&w=1200&q=80">
 </div>
 
 </div>
 </section>
+
+<!-- FAQ -->
+<section id="faq">
+<div class="container">
+<div class="section-title">
+<h2>Frequently Asked <span>Questions</span></h2>
+</div>
+
+<div class="faq-item">
+<h4>Do you offer trial sessions?</h4>
+<p>Yes, we provide one complimentary trial session for new members.</p>
+</div>
+
+<div class="faq-item">
+<h4>Are personal trainers certified?</h4>
+<p>All our trainers hold international certifications and experience.</p>
+</div>
+
+<div class="faq-item">
+<h4>Do you provide nutrition plans?</h4>
+<p>Yes, nutrition consultation is included in Pro & Elite memberships.</p>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+<div class="section-title">
+<h2>Contact <span>Us</span></h2>
+</div>
+<p style="text-align:center;color:var(--muted)">info@powerflexgym.com | +91 98765 43210</p>
+</div>
+</section>
+
+<footer>
+<div class="container footer-grid">
+
+<div>
+<h4>PowerFlex Gym</h4>
+<p>Elite transformation center dedicated to strength and discipline.</p>
+</div>
+
+<div>
+<h4>Quick Links</h4>
+<p>Programs</p>
+<p>Membership</p>
+<p>Branches</p>
+<p>Contact</p>
+</div>
+
+<div>
+<h4>Branches</h4>
+<p>Mumbai</p>
+<p>Pune</p>
+<p>Bangalore</p>
+</div>
+
+<div>
+<h4>Legal</h4>
+<p>Privacy Policy</p>
+<p>Terms & Conditions</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 PowerFlex Gym | Built by Codly
+</div>
+</footer>
 
 <script>
 
@@ -436,7 +606,6 @@ window.addEventListener("scroll",()=>{
 document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>50);
 });
 
-// Animated Counter
 document.querySelectorAll(".counter").forEach(counter=>{
 let target = +counter.dataset.target;
 gsap.to(counter,{
