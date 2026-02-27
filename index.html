@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Codly – Rohit Kumar</title>
+<title>Codly – Cinematic Master</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
@@ -13,44 +13,17 @@
 
 <style>
 :root{
---bg:#06080f;
---card:rgba(255,255,255,0.04);
+--bg:#05070c;
 --text:#ffffff;
 --muted:#9aa3b2;
 --border:rgba(255,255,255,0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;}
 html{scroll-behavior:smooth;}
-body{background:#06080f;color:var(--text);overflow-x:hidden;}
 
-/* Loader */
-.loader{
-position:fixed;
-inset:0;
-background:#06080f;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:2000;
-}
-.loader h1{
-font-size:60px;
-font-family:'Playfair Display',serif;
-letter-spacing:4px;
-}
-
-/* Page Transition */
-.transition{
-position:fixed;
-inset:0;
-background:#000;
-transform:translateY(100%);
-z-index:1500;
-}
-
-/* WebGL Canvas */
-#bg{
+canvas{
 position:fixed;
 top:0;
 left:0;
@@ -59,115 +32,94 @@ height:100%;
 z-index:0;
 }
 
-/* Cursor */
-.cursor{
-position:fixed;
-width:300px;
-height:300px;
-border-radius:50%;
-background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 60%);
-pointer-events:none;
-transform:translate(-50%,-50%);
-mix-blend-mode:lighten;
-z-index:1;
-}
-
-/* Navigation */
 header{
 position:fixed;
 top:0;
-left:0;
 width:100%;
 padding:20px 8%;
 display:flex;
 justify-content:space-between;
-align-items:center;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(20px);
 z-index:1000;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(20px);
 border-bottom:1px solid var(--border);
 }
-.logo{font-weight:800;letter-spacing:2px;}
-nav a{
-margin-left:30px;
-text-decoration:none;
+
+header a{
 color:var(--muted);
+text-decoration:none;
+margin-left:30px;
 transition:0.3s;
 }
-nav a:hover{color:#fff;}
+header a:hover{color:#fff;}
 
-.btn{
-border:1px solid rgba(255,255,255,0.2);
-padding:12px 26px;
-border-radius:50px;
-color:#fff;
-text-decoration:none;
-transition:0.4s;
-display:inline-block;
-}
-.btn:hover{
-background:#fff;
-color:#000;
-box-shadow:0 0 35px rgba(255,255,255,0.3);
-}
-
-/* Sections */
 section{
 min-height:100vh;
 padding:140px 8%;
 position:relative;
 z-index:2;
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
-/* Hero */
 .hero h1{
-font-size:clamp(70px,9vw,130px);
-font-weight:900;
-line-height:1;
+font-size:clamp(80px,10vw,150px);
 font-family:'Playfair Display',serif;
+line-height:1;
 }
+
 .hero p{
 margin-top:20px;
-max-width:600px;
 color:var(--muted);
+max-width:600px;
 }
-.hero-buttons{margin-top:40px;display:flex;gap:20px;}
 
-/* Grid Cards */
+.story{
+position:relative;
+height:300vh;
+}
+
+.story-inner{
+position:sticky;
+top:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+}
+
+.story h2{
+font-size:clamp(40px,6vw,80px);
+font-family:'Playfair Display',serif;
+opacity:0;
+}
+
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:40px;
 margin-top:60px;
 }
+
 .card{
-background:var(--card);
-backdrop-filter:blur(30px);
+background:rgba(255,255,255,0.05);
 border:1px solid var(--border);
 border-radius:20px;
 padding:40px;
 transition:0.5s;
 transform-style:preserve-3d;
 }
-.card:hover{transform:translateY(-12px);}
 
-/* Philosophy */
-.philosophy{
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-}
-.philosophy h2{
-font-size:clamp(40px,6vw,80px);
-font-family:'Playfair Display',serif;
+.card:hover{
+transform:translateY(-15px);
 }
 
-/* Footer */
 footer{
-background:#05070c;
-border-top:1px solid var(--border);
 padding:60px 8%;
+border-top:1px solid var(--border);
 text-align:center;
 color:var(--muted);
 }
@@ -176,35 +128,28 @@ color:var(--muted);
 
 <body>
 
-<div class="loader"><h1>CODLY</h1></div>
-<div class="transition"></div>
 <canvas id="bg"></canvas>
-<div class="cursor"></div>
 
 <header>
-<div class="logo">CODLY</div>
+<div><strong>CODLY</strong></div>
 <nav>
 <a href="#about">About</a>
 <a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
 </nav>
 </header>
 
 <section class="hero">
 <h1>CODLY</h1>
 <p>Designing Digital Experiences That Feel Alive.</p>
-<div class="hero-buttons">
-<a href="#projects" class="btn">View Work</a>
-<a href="#contact" class="btn">Contact Me</a>
-</div>
 </section>
 
-<section id="about">
-<h2>About Me</h2>
-<p style="margin-top:20px;max-width:700px;color:var(--muted);">
-I’m Rohit Kumar — designer and developer blending creativity with technology to craft immersive digital experiences.
-</p>
+<section class="story">
+<div class="story-inner">
+<h2 class="line1">I Design Systems.</h2>
+<h2 class="line2">I Build Digital Presence.</h2>
+<h2 class="line3">I Craft Experiences.</h2>
+</div>
 </section>
 
 <section id="skills">
@@ -228,77 +173,50 @@ I’m Rohit Kumar — designer and developer blending creativity with technology
 </div>
 </section>
 
-<section class="philosophy">
-<h2>I don’t just build websites. I craft digital experiences.</h2>
-</section>
-
-<section id="contact">
-<h2>Contact</h2>
-<p style="margin-top:20px;">rohitkumar@example.com</p>
-</section>
-
 <footer>
-<p>CODLY – Rohit Kumar</p>
+<p>Codly – Rohit Kumar</p>
 <p>© 2026</p>
 </footer>
 
 <script>
 
-/* Loader Animation */
-window.addEventListener("load",()=>{
-gsap.to(".loader",{opacity:0,duration:1.5,delay:1,onComplete:()=>document.querySelector(".loader").style.display="none"});
-});
-
-/* Page Transition */
-document.querySelectorAll("a[href^='#']").forEach(link=>{
-link.addEventListener("click",function(e){
-e.preventDefault();
-let target=this.getAttribute("href");
-gsap.to(".transition",{y:0,duration:0.6,onComplete:()=>{
-window.location.hash=target;
-gsap.to(".transition",{y:"100%",duration:0.6});
-}});
-});
-});
-
-/* Cursor */
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-});
-
-/* GSAP Scroll */
 gsap.registerPlugin(ScrollTrigger);
-gsap.utils.toArray("section").forEach(section=>{
-gsap.from(section,{
-opacity:0,
-y:80,
-duration:1.2,
-ease:"power3.out",
-scrollTrigger:{
-trigger:section,
-start:"top 80%"
-}
-});
-});
 
-/* WebGL Background */
+/* Scroll Storytelling */
+gsap.to(".line1",{opacity:1,scrollTrigger:{trigger:".story",start:"top center",end:"+=500",scrub:true}});
+gsap.to(".line2",{opacity:1,scrollTrigger:{trigger:".story",start:"+=400",end:"+=900",scrub:true}});
+gsap.to(".line3",{opacity:1,scrollTrigger:{trigger:".story",start:"+=800",end:"+=1400",scrub:true}});
+
+/* WebGL Particle Field */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('bg'),alpha:true});
+const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
+
 camera.position.z=5;
 
-const geometry=new THREE.PlaneGeometry(20,20,32,32);
-const material=new THREE.MeshBasicMaterial({color:0x111827,wireframe:true});
-const plane=new THREE.Mesh(geometry,material);
-scene.add(plane);
+const particles=10000;
+const geometry=new THREE.BufferGeometry();
+const positions=new Float32Array(particles*3);
+
+for(let i=0;i<particles*3;i++){
+positions[i]=(Math.random()-0.5)*20;
+}
+
+geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
+
+const material=new THREE.PointsMaterial({
+color:0xffffff,
+size:0.02
+});
+
+const points=new THREE.Points(geometry,material);
+scene.add(points);
 
 function animate(){
 requestAnimationFrame(animate);
-plane.rotation.x+=0.001;
-plane.rotation.y+=0.001;
+points.rotation.y+=0.0005;
+points.rotation.x+=0.0003;
 renderer.render(scene,camera);
 }
 animate();
