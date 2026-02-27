@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – GOD MODE</title>
+<title>CODLY – Cinematic Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
@@ -23,6 +23,7 @@
 body{background:var(--bg);color:var(--text);overflow-x:hidden;}
 canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;}
 
+/* LOADER */
 .loader{
 position:fixed;
 inset:0;
@@ -38,6 +39,7 @@ font-size:80px;
 letter-spacing:8px;
 }
 
+/* HEADER */
 header{
 position:fixed;
 top:0;
@@ -56,10 +58,7 @@ display:flex;
 align-items:center;
 gap:10px;
 }
-
-.logo img{
-height:40px;
-}
+.logo img{height:40px;}
 
 header a{
 color:var(--muted);
@@ -79,13 +78,13 @@ flex-direction:column;
 justify-content:center;
 }
 
+/* HERO */
 .hero h1{
 font-family:'Playfair Display',serif;
 font-size:clamp(90px,11vw,170px);
 line-height:0.9;
 letter-spacing:-4px;
 }
-
 .hero p{
 margin-top:25px;
 max-width:600px;
@@ -93,11 +92,11 @@ color:var(--muted);
 font-size:18px;
 }
 
+/* STORY */
 .story{
-height:350vh;
+height:400vh;
 position:relative;
 }
-
 .story-inner{
 position:sticky;
 top:0;
@@ -106,30 +105,54 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+gap:120px;
 text-align:center;
 }
-
-.story h2{
+.reveal-text{
 font-family:'Playfair Display',serif;
-font-size:clamp(50px,7vw,90px);
+font-size:clamp(60px,8vw,120px);
+letter-spacing:-2px;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
+.reveal-text span{
+display:inline-block;
 opacity:0;
-transform:translateY(50px);
+transform:translateY(80px) scale(0.9);
+filter:blur(10px);
 }
 
+/* ABOUT */
+.about{
+max-width:800px;
+}
+.about h2{
+font-family:'Playfair Display',serif;
+font-size:clamp(40px,6vw,80px);
+margin-bottom:30px;
+}
+.about p{
+color:var(--muted);
+font-size:18px;
+line-height:1.8;
+margin-bottom:20px;
+}
+
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:50px;
 margin-top:80px;
 }
-
 .card{
 background:rgba(255,255,255,0.04);
 border:1px solid var(--border);
 border-radius:25px;
 padding:50px;
 transition:0.6s;
-transform-style:preserve-3d;
 position:relative;
 overflow:hidden;
 text-decoration:none;
@@ -141,37 +164,22 @@ font-size:22px;
 font-weight:600;
 cursor:pointer;
 }
-
 .card:hover{
 transform:translateY(-20px) scale(1.05);
 }
 
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-background:radial-gradient(circle at top left,rgba(255,255,255,0.12),transparent 60%);
-opacity:0;
-transition:0.6s;
-}
-.card:hover::before{opacity:1;}
-
-#contact p{
-color:var(--muted);
-margin-top:20px;
-}
-
+/* CONTACT */
 .contact-details{
 margin-top:40px;
 font-size:18px;
 line-height:2;
 }
-
 .contact-details a{
 color:#fff;
 text-decoration:none;
 }
 
+/* FOOTER */
 footer{
 padding:80px 8%;
 border-top:1px solid var(--border);
@@ -184,7 +192,6 @@ color:var(--muted);
 <body>
 
 <div class="loader"><h1>CODLY</h1></div>
-
 <canvas id="bg"></canvas>
 
 <header>
@@ -193,7 +200,7 @@ color:var(--muted);
 <strong>CODLY</strong>
 </div>
 <nav>
-<a href="#skills">Skills</a>
+<a href="#about">About</a>
 <a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
 </nav>
@@ -206,21 +213,28 @@ color:var(--muted);
 
 <section class="story">
 <div class="story-inner">
-<h2>I Design Systems.</h2>
-<h2>I Build Digital Presence.</h2>
-<h2>I Craft Experiences.</h2>
+
+<h2 class="reveal-text">
+<span>I</span><span>Design</span><span>Systems.</span>
+</h2>
+
+<h2 class="reveal-text">
+<span>I</span><span>Build</span><span>Digital</span><span>Presence.</span>
+</h2>
+
+<h2 class="reveal-text">
+<span>I</span><span>Craft</span><span>Experiences.</span>
+</h2>
+
 </div>
 </section>
 
-<section id="skills">
-<h2>Capabilities</h2>
-<div class="grid">
-<div class="card">UI/UX Design</div>
-<div class="card">Branding & Canva</div>
-<div class="card">Web Development</div>
-<div class="card">Flutter Apps</div>
-<div class="card">Motion Editing</div>
-<div class="card">AI Automation</div>
+<section id="about">
+<div class="about">
+<h2>About Codly</h2>
+<p>Codly is a creative digital studio founded by Rohit Kumar. Focused on premium web design, interactive storytelling, and performance-driven digital experiences.</p>
+<p>From healthcare applications to gym brands and AI-powered platforms, Codly builds systems that combine design precision with technical depth.</p>
+<p>The mission is simple: create digital products that feel alive — visually refined, strategically built, and engineered for impact.</p>
 </div>
 </section>
 
@@ -245,7 +259,6 @@ AI Concept Platform
 
 <section id="contact">
 <h2>Let’s Build Something Powerful.</h2>
-<p>Ready to create something premium? Let’s connect.</p>
 
 <div class="contact-details">
 <p><strong>Email:</strong> Codly.rk@gmail.com</p>
@@ -264,62 +277,55 @@ AI Concept Platform
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
+/* Loader */
 window.addEventListener("load",()=>{
 gsap.to(".loader h1",{scale:1.2,opacity:0,duration:1.5});
 gsap.to(".loader",{opacity:0,duration:1.5,delay:1.2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-gsap.utils.toArray(".story h2").forEach((el,i)=>{
-gsap.to(el,{
+/* Word Reveal Animation */
+const texts = document.querySelectorAll(".reveal-text");
+texts.forEach((text, index) => {
+const spans = text.querySelectorAll("span");
+gsap.to(spans, {
 opacity:1,
 y:0,
+scale:1,
+filter:"blur(0px)",
+stagger:0.15,
+ease:"power4.out",
 scrollTrigger:{
 trigger:".story",
-start:"top top+=" + (i*400),
-end:"top top+=" + (i*600),
+start:"top+=" + (index*800) + " top",
+end:"top+=" + (index*800+600) + " top",
 scrub:true
 }
 });
 });
 
+/* WebGL Background */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
 camera.position.z=8;
 
-const particleCount=25000;
+const particleCount=20000;
 const geometry=new THREE.BufferGeometry();
 const positions=new Float32Array(particleCount*3);
-
 for(let i=0;i<particleCount*3;i++){
 positions[i]=(Math.random()-0.5)*60;
 }
-
 geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const material=new THREE.PointsMaterial({
-color:0xffffff,
-size:0.02,
-transparent:true,
-opacity:0.8
-});
-
+const material=new THREE.PointsMaterial({color:0xffffff,size:0.02,transparent:true,opacity:0.8});
 const particles=new THREE.Points(geometry,material);
 scene.add(particles);
-
-let mouseX=0, mouseY=0;
-document.addEventListener("mousemove",(e)=>{
-mouseX=(e.clientX/window.innerWidth-0.5)*4;
-mouseY=(e.clientY/window.innerHeight-0.5)*4;
-});
 
 function animate(){
 requestAnimationFrame(animate);
 particles.rotation.y+=0.0008;
 particles.rotation.x+=0.0005;
-camera.position.x+=(mouseX-camera.position.x)*0.02;
-camera.position.y+=(-mouseY-camera.position.y)*0.02;
 renderer.render(scene,camera);
 }
 animate();
