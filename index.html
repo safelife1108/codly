@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Robotic Navy Master</title>
+<title>CODLY – Cinematic Galaxy Engine</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -22,10 +22,22 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
 body{
-background:
-radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 40%, #000000 80%);
+background:linear-gradient(to bottom,#000814,#000000);
 color:var(--text);
-overflow-x:hidden;
+overflow:hidden;
+}
+
+/* Smooth Scroll Container */
+#smooth-wrapper{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+#smooth-content{
+position:absolute;
+width:100%;
 }
 
 canvas{
@@ -37,8 +49,16 @@ height:100%;
 z-index:0;
 }
 
-/* ================= LOADER ================= */
+section{
+min-height:100vh;
+padding:160px 8%;
+position:relative;
+z-index:2;
+opacity:0;
+transform:translateY(80px);
+}
 
+/* Loader */
 .loader{
 position:fixed;
 inset:0;
@@ -49,16 +69,15 @@ justify-content:center;
 z-index:5000;
 }
 
-.loader-text{
-font-family:'Orbitron',sans-serif;
+.loader h1{
+font-family:'Orbitron';
 font-size:90px;
 letter-spacing:10px;
 position:relative;
-text-transform:uppercase;
 }
 
-.loader-text::before,
-.loader-text::after{
+.loader h1::before,
+.loader h1::after{
 content:"CODLY";
 position:absolute;
 left:0;
@@ -66,260 +85,79 @@ top:0;
 opacity:0.6;
 }
 
-.loader-text::before{
+.loader h1::before{
 color:#00ffff;
 animation:shift1 2s infinite linear;
 }
 
-.loader-text::after{
+.loader h1::after{
 color:#ff00ff;
 animation:shift2 2s infinite linear;
 }
 
 @keyframes shift1{
 0%{transform:translate(0);}
-25%{transform:translate(-2px,1px);}
-50%{transform:translate(2px,-1px);}
-75%{transform:translate(-1px,2px);}
+25%{transform:translate(-3px,2px);}
+50%{transform:translate(3px,-2px);}
+75%{transform:translate(-2px,3px);}
 100%{transform:translate(0);}
 }
 
 @keyframes shift2{
 0%{transform:translate(0);}
-25%{transform:translate(2px,-1px);}
-50%{transform:translate(-2px,1px);}
-75%{transform:translate(1px,-2px);}
+25%{transform:translate(3px,-2px);}
+50%{transform:translate(-3px,2px);}
+75%{transform:translate(2px,-3px);}
 100%{transform:translate(0);}
 }
 
-/* ================= HEADER ================= */
-
-header{
-position:fixed;
-top:0;
-width:100%;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(12px);
-border-bottom:1px solid var(--border);
-z-index:1000;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-family:'Orbitron';
-}
-
-.logo img{height:30px;}
-
-header nav a{
-color:var(--muted);
-text-decoration:none;
-margin-left:25px;
-font-size:14px;
-transition:.3s;
-}
-
-header nav a:hover{color:#fff;}
-
-section{
-min-height:100vh;
-padding:160px 8%;
-position:relative;
-z-index:2;
-display:flex;
-flex-direction:column;
-justify-content:center;
-}
-
-/* ================= HERO ================= */
-
+/* Hero */
 .hero h1{
 font-family:'Orbitron';
-font-size:clamp(100px,12vw,170px);
-letter-spacing:10px;
-text-transform:uppercase;
-position:relative;
-}
-
-.hero h1::before,
-.hero h1::after{
-content:"CODLY";
-position:absolute;
-left:0;
-top:0;
-opacity:0.5;
-}
-
-.hero h1::before{
-color:#00ffff;
-animation:shift1 3s infinite linear;
-}
-
-.hero h1::after{
-color:#ff00ff;
-animation:shift2 3s infinite linear;
+font-size:clamp(120px,15vw,200px);
+letter-spacing:12px;
 }
 
 .hero p{
 margin-top:30px;
 font-size:20px;
-max-width:850px;
-line-height:1.8;
-color:#c9d4ff;
+max-width:800px;
+color:var(--muted);
 }
 
-/* ================= STORY ================= */
-
-.story{height:300vh;}
-
-.story-inner{
-position:sticky;
-top:0;
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-gap:80px;
-text-align:center;
-}
-
-.reveal-text{
-font-family:'Orbitron';
-font-size:clamp(32px,4vw,60px);
-}
-
-.reveal-text span{
-display:inline-block;
-opacity:0;
-transform:translateY(40px);
-}
-
-/* ================= SECTION TITLE ================= */
-
+/* Titles */
 .section-title{
 font-family:'Orbitron';
 font-size:42px;
 margin-bottom:40px;
-letter-spacing:3px;
-position:relative;
-display:inline-block;
 }
 
-.section-title::after{
-content:"";
-position:absolute;
-bottom:-10px;
-left:0;
-width:60px;
-height:3px;
-background:#00eaff;
-}
-
-/* ================= GRID ================= */
-
+/* Grid */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:35px;
-margin-top:40px;
 }
-
-/* ================= CARDS ================= */
 
 .card{
 background:rgba(255,255,255,0.08);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.2);
 border-radius:18px;
 padding:35px;
-transition:.4s ease;
-box-shadow:0 0 30px rgba(0,0,0,0.5);
-color:#fff;
-text-decoration:none;
+transition:.4s;
 }
 
 .card:hover{
 transform:translateY(-10px);
 box-shadow:0 0 40px rgba(0,255,255,0.4);
-border-color:#00eaff;
 }
-
-/* ================= TESTIMONIALS ================= */
-
-.testimonial{
-font-style:italic;
-}
-
-/* ================= CTA ================= */
-
-.cta{
-padding:140px 8%;
-text-align:center;
-background:linear-gradient(180deg,rgba(0,30,90,0.6),rgba(0,0,0,0.9));
-}
-
-.cta h2{
-font-family:'Orbitron';
-font-size:48px;
-margin-bottom:40px;
-}
-
-.cta button{
-padding:18px 50px;
-background:linear-gradient(90deg,#00eaff,#0077ff);
-border:none;
-border-radius:50px;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-color:#000;
-transition:.3s;
-}
-
-.cta button:hover{
-transform:scale(1.08);
-box-shadow:0 0 30px #00eaff;
-}
-
-/* ================= FOOTER ================= */
 
 .footer{
-background:#000814;
-padding:120px 8%;
-border-top:1px solid var(--border);
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:70px;
-}
-
-.footer h3{
-font-family:'Orbitron';
-margin-bottom:20px;
-}
-
-.footer p,.footer a{
-color:#b6c4ff;
-font-size:15px;
-line-height:1.9;
-text-decoration:none;
-}
-
-.footer-bottom{
-margin-top:60px;
-padding-top:30px;
-border-top:1px solid var(--border);
+background:#000;
+padding:100px 8%;
 text-align:center;
-color:#8ea0c5;
-font-size:14px;
+color:#a0aed0;
 }
 </style>
 </head>
@@ -327,180 +165,149 @@ font-size:14px;
 <body>
 
 <div class="loader">
-<h1 class="loader-text">CODLY</h1>
+<h1>CODLY</h1>
 </div>
 
-<canvas id="bg"></canvas>
+<canvas id="galaxy"></canvas>
 
-<header>
-<div class="logo">
-<img src="codly logo.jpg">
-<strong>CODLY</strong>
-</div>
-<nav>
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#projects">Portfolio</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+<div id="smooth-wrapper">
+<div id="smooth-content">
 
 <section class="hero">
 <h1>CODLY</h1>
-<p>Engineering intelligent digital systems powered by AI automation, scalable web architecture, high-performance applications, and precision marketing strategies.</p>
+<p>Engineering intelligent digital systems powered by AI automation, scalable architecture and precision marketing strategies.</p>
 </section>
 
-<section class="story">
-<div class="story-inner">
-<h2 class="reveal-text"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
-<h2 class="reveal-text"><span>I</span> <span>Build</span> <span>Digital</span> <span>Authority.</span></h2>
-<h2 class="reveal-text"><span>I</span> <span>Engineer</span> <span>Impact.</span></h2>
-</div>
+<section>
+<h2 class="section-title">About</h2>
+<p>Premium Mumbai-based digital engineering studio building AI systems, scalable web platforms and immersive digital authority structures.</p>
 </section>
 
-<section id="about">
-<h2 class="section-title">About Codly</h2>
-<p>Codly is a Mumbai-based premium digital engineering studio founded by Rohit Kumar. We specialize in AI automation systems, scalable web platforms, and performance-driven digital ecosystems.</p>
-<p>From gym businesses and fabrication companies to ecommerce platforms and AI-powered solutions, Codly builds structured, futuristic digital experiences designed to convert attention into authority.</p>
-</section>
-
-<section id="services">
+<section>
 <h2 class="section-title">Services</h2>
 <div class="grid">
 <div class="card">AI Agent Automation</div>
-<div class="card">AI Chatbot Development</div>
+<div class="card">AI Chatbot Systems</div>
 <div class="card">Web Development</div>
 <div class="card">App Development</div>
 <div class="card">Google & Meta Ads</div>
-<div class="card">Marketing Strategy</div>
-<div class="card">Domain & Hosting Setup</div>
-</div>
-</section>
-
-<section id="projects">
-<h2 class="section-title">Portfolio Demos</h2>
-<div class="grid">
-<a href="gym-demo.html" target="_blank" class="card">Gym Demo</a>
-<a href="fabrication-demo.html" target="_blank" class="card">Fabrication Demo</a>
-<a href="business-demo.html" target="_blank" class="card">Business Demo</a>
-<a href="ecommerce-demo.html" target="_blank" class="card">Ecommerce Demo</a>
-<a href="safe-life.html" target="_blank" class="card">Safe Life App</a>
-<a href="admin.html" target="_blank" class="card">Admin Dashboard</a>
+<div class="card">Domain & Hosting</div>
 </div>
 </section>
 
 <section>
-<h2 class="section-title">Testimonials</h2>
+<h2 class="section-title">Portfolio</h2>
 <div class="grid">
-<div class="card testimonial">“Codly transformed our digital presence into a premium authority platform.”</div>
-<div class="card testimonial">“Futuristic design, high performance and strategic execution.”</div>
-<div class="card testimonial">“Professional AI automation systems with strong visual impact.”</div>
+<div class="card">Gym Demo</div>
+<div class="card">Fabrication Demo</div>
+<div class="card">Business Demo</div>
+<div class="card">Ecommerce Demo</div>
+<div class="card">Safe Life App</div>
+<div class="card">Admin Dashboard</div>
 </div>
 </section>
 
-<section class="cta">
-<h2>Ready to Build Your Digital Authority?</h2>
-<button onclick="location.href='#contact'">Contact Now</button>
-</section>
-
-<section id="contact">
+<section>
 <h2 class="section-title">Contact</h2>
 <p>Email: Codly.rk@gmail.com</p>
 <p>Phone: 9324452580</p>
-<p>Instagram: @codly.ai</p>
 </section>
 
 <div class="footer">
-<div class="footer-grid">
-<div>
-<h3>Codly Studio</h3>
-<p>Premium AI automation and digital engineering systems.</p>
+© 2026 CODLY – Cinematic Galaxy Engine
 </div>
-<div>
-<h3>Location</h3>
-<p>Mumbai, India</p>
-</div>
-<div>
-<h3>Connect</h3>
-<a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">Instagram</a>
-</div>
-</div>
-<div class="footer-bottom">
-© 2026 CODLY – All Rights Reserved.
+
 </div>
 </div>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
+/* Loader Fade */
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-document.querySelectorAll(".reveal-text").forEach((text,i)=>{
-gsap.to(text.querySelectorAll("span"),{
+/* Cinematic Section Fade */
+gsap.utils.toArray("section").forEach(sec=>{
+gsap.to(sec,{
 opacity:1,
 y:0,
-stagger:0.15,
+duration:1.2,
 scrollTrigger:{
-trigger:".story",
-start:"top+=" + (i*600) + " top",
-end:"top+=" + (i*600+400) + " top",
-scrub:true
+trigger:sec,
+start:"top 80%",
 }
 });
 });
 
-/* SOFT STARFIELD */
+/* Apple-style Smooth Scroll */
+let scrollY = 0;
+let targetY = 0;
+const content = document.getElementById("smooth-content");
 
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
+document.addEventListener("wheel", e=>{
+targetY += e.deltaY;
+targetY = Math.max(0, Math.min(targetY, content.offsetHeight - window.innerHeight));
+});
+
+function smoothScroll(){
+scrollY += (targetY - scrollY) * 0.08;
+content.style.transform = `translateY(-${scrollY}px)`;
+requestAnimationFrame(smoothScroll);
+}
+smoothScroll();
+
+/* 3D Spiral Galaxy */
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+const renderer = new THREE.WebGLRenderer({canvas:document.getElementById("galaxy"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.z=5;
+camera.position.z = 60;
 
-const starCount=30000;
-const geometry=new THREE.BufferGeometry();
-const positions=new Float32Array(starCount*3);
+const starCount = 80000;
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(starCount*3);
 
 for(let i=0;i<starCount;i++){
-positions[i*3]=(Math.random()-0.5)*200;
-positions[i*3+1]=(Math.random()-0.5)*200;
-positions[i*3+2]=(Math.random()-0.5)*200;
+const radius = Math.random()*40;
+const angle = radius*0.5;
+const branch = i%4;
+const spinAngle = angle + branch*(Math.PI/2);
+
+positions[i*3] = Math.cos(spinAngle)*radius;
+positions[i*3+1] = (Math.random()-0.5)*3;
+positions[i*3+2] = Math.sin(spinAngle)*radius;
 }
+
 geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const material=new THREE.PointsMaterial({
+const material = new THREE.PointsMaterial({
 color:0xffffff,
-size:0.015,
-opacity:0.6,
-transparent:true
+size:0.12,
+transparent:true,
+opacity:0.8
 });
 
-const stars=new THREE.Points(geometry,material);
-scene.add(stars);
+const galaxy = new THREE.Points(geometry,material);
+scene.add(galaxy);
 
-let warp=0;
+let mouseX=0,mouseY=0;
 
-ScrollTrigger.create({
-trigger:".story",
-start:"top top",
-end:"bottom bottom",
-scrub:true,
-onUpdate:self=>{
-warp=self.progress*10;
-camera.position.z=5-self.progress*3;
-}
+document.addEventListener("mousemove",e=>{
+mouseX=(e.clientX/window.innerWidth-0.5)*2;
+mouseY=(e.clientY/window.innerHeight-0.5)*2;
 });
 
 function animate(){
 requestAnimationFrame(animate);
-const pos=geometry.attributes.position.array;
-for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.3+warp*1.2;
-if(pos[i*3+2]>120){pos[i*3+2]=-200;}
-}
-geometry.attributes.position.needsUpdate=true;
+
+galaxy.rotation.y += 0.001;
+galaxy.rotation.x += 0.0005;
+
+camera.position.x += (mouseX*10 - camera.position.x)*0.02;
+camera.position.y += (-mouseY*10 - camera.position.y)*0.02;
+
 renderer.render(scene,camera);
 }
 animate();
