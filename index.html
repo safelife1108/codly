@@ -35,7 +35,6 @@ height:100%;
 z-index:0;
 }
 
-/* ===== GLITCH ===== */
 .glitch{
 font-family:'Orbitron',sans-serif;
 position:relative;
@@ -57,7 +56,6 @@ left:0;top:0;width:100%;
 100%{clip-path:inset(0 0 80% 0);}
 }
 
-/* ===== LOADER ===== */
 .loader{
 position:fixed;
 inset:0;
@@ -68,7 +66,6 @@ justify-content:center;
 z-index:5000;
 }
 
-/* ===== NAVBAR ===== */
 header{
 position:fixed;
 top:0;
@@ -103,7 +100,6 @@ flex-direction:column;
 justify-content:center;
 }
 
-/* ===== HERO ===== */
 .hero h1{
 font-size:clamp(90px,10vw,140px);
 letter-spacing:6px;
@@ -115,7 +111,6 @@ color:var(--muted);
 font-size:18px;
 }
 
-/* ===== STORY ===== */
 .story{height:350vh;position:relative;}
 .story::before{
 content:"";
@@ -151,7 +146,6 @@ color:#cbd5ff;
 font-size:17px;
 }
 
-/* ===== GRID ===== */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -173,7 +167,6 @@ transform:translateY(-8px);
 background:rgba(255,255,255,0.1);
 }
 
-/* ===== CTA ===== */
 .cta{
 text-align:center;
 padding:160px 8%;
@@ -204,7 +197,7 @@ transform:scale(1.08);
 box-shadow:0 0 25px #00eaff;
 }
 
-/* ===== FOOTER ===== */
+/* ===== PROFESSIONAL FOOTER ===== */
 .footer{
 background:#000;
 padding:120px 8%;
@@ -212,10 +205,15 @@ border-top:1px solid var(--border);
 }
 .footer-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:60px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:70px;
 }
-.footer h3{margin-bottom:20px;}
+.footer h3{
+font-weight:700;
+font-size:18px;
+letter-spacing:1px;
+margin-bottom:20px;
+}
 .footer p,.footer a{
 color:var(--muted);
 font-size:14px;
@@ -230,6 +228,8 @@ border-top:1px solid var(--border);
 text-align:center;
 color:var(--muted);
 font-size:13px;
+line-height:1.8;
+opacity:0.8;
 }
 </style>
 </head>
@@ -265,160 +265,67 @@ Strategic Growth from Concept to Conversion.
 </p>
 </section>
 
-<section class="story">
-<div class="story-inner">
-<div>
-<h2 class="reveal-text"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
-<p class="story-sub">Structured architecture built for clarity and scale.</p>
-</div>
-<div>
-<h2 class="reveal-text"><span>I</span> <span>Build</span> <span>Digital</span> <span>Authority.</span></h2>
-<p class="story-sub">Presence engineered for long-term positioning.</p>
-</div>
-<div>
-<h2 class="reveal-text"><span>I</span> <span>Engineer</span> <span>Impact.</span></h2>
-<p class="story-sub">From concept to conversion architecture.</p>
-</div>
-</div>
-</section>
-
-<section id="about">
-<h2>About Codly</h2>
-<p>Codly is a Mumbai-based digital engineering studio founded by Rohit Kumar. The studio specializes in building authority-driven digital systems powered by AI automation and scalable architecture.</p>
-<p>Every project is structured for clarity, performance, long-term positioning, and measurable conversion growth.</p>
-</section>
-
-<section id="services">
-<h2>Services</h2>
-<div class="grid">
-<div class="card"><strong>AI Agent Automation</strong><p>Custom automation systems to reduce manual work and increase operational scale.</p></div>
-<div class="card"><strong>Web Development</strong><p>Scalable, high-performance websites structured for authority positioning.</p></div>
-<div class="card"><strong>App Development</strong><p>Flutter-powered cross-platform applications built for growth.</p></div>
-<div class="card"><strong>Google & Meta Ads</strong><p>Precision marketing systems engineered for ROI-focused campaigns.</p></div>
-<div class="card"><strong>AI Chatbot Systems</strong><p>Conversational AI designed to convert visitors into leads automatically.</p></div>
-<div class="card"><strong>Domain & Hosting Setup</strong><p>Complete deployment architecture with security and scalability.</p></div>
-</div>
-</section>
-
-<section id="projects">
-<h2>Portfolio Demos</h2>
-<div class="grid">
-<a href="gym-demo.html" target="_blank" class="card"><strong>Gym Demo</strong><p>High-performance fitness website with premium branding.</p></a>
-<a href="fabrication-demo.html" target="_blank" class="card"><strong>Fabrication Demo</strong><p>Industrial authority website structured for B2B positioning.</p></a>
-<a href="business-demo.html" target="_blank" class="card"><strong>Business Demo</strong><p>Corporate structured platform for professional presence.</p></a>
-<a href="ecommerce-demo.html" target="_blank" class="card"><strong>Ecommerce Demo</strong><p>Conversion-focused online store architecture.</p></a>
-<a href="safe-life.html" target="_blank" class="card"><strong>Safe Life App</strong><p>Mental wellness AI-powered application system.</p></a>
-<a href="admin.html" target="_blank" class="card"><strong>Admin Dashboard</strong><p>Data-driven backend management interface.</p></a>
-</div>
-</section>
-
-<section id="faq">
-<h2>FAQ</h2>
-<p><strong>What makes Codly different?</strong><br>Systems engineered for authority, not just visuals.</p>
-<p><strong>Do you provide complete deployment?</strong><br>Yes. From concept to live production architecture.</p>
-</section>
-
-<section class="cta">
-<h2>Ready to Engineer Your Digital Authority?</h2>
-<p>Let’s build AI-powered systems, scalable architecture, and performance-driven growth frameworks for your business.</p>
-<button onclick="location.href='#contact'">Start Your Project</button>
-</section>
-
-<section id="contact">
-<h2>Contact</h2>
-<p>Email: Codly.rk@gmail.com</p>
-<p>Phone: +91 9324452580</p>
-<p>Instagram: @codly.ai</p>
-</section>
+<!-- KEEP ALL YOUR EXISTING CONTENT ABOVE FOOTER -->
 
 <div class="footer">
+
 <div class="footer-grid">
+
 <div>
 <h3>Codly Studio</h3>
-<p>Premium AI automation and digital engineering systems built for authority and scale.</p>
+<p>
+Codly is a premium digital engineering studio focused on authority-driven systems,
+AI automation architecture, scalable web infrastructure, and performance-led growth.
+</p>
+<p>
+We build structured digital ecosystems designed for clarity, conversion, and long-term positioning.
+</p>
 </div>
+
 <div>
-<h3>Location</h3>
+<h3>Core Expertise</h3>
+<p>• Digital System Engineering</p>
+<p>• AI Agent & Automation Architecture</p>
+<p>• Authority Website Development</p>
+<p>• Scalable App Infrastructure</p>
+<p>• Performance Marketing Systems</p>
+<p>• Conversion Optimization Frameworks</p>
+</div>
+
+<div>
+<h3>Portfolio Access</h3>
+<p><a href="gym-demo.html" target="_blank">Gym Demo</a></p>
+<p><a href="fabrication-demo.html" target="_blank">Fabrication Demo</a></p>
+<p><a href="business-demo.html" target="_blank">Business Demo</a></p>
+<p><a href="ecommerce-demo.html" target="_blank">Ecommerce Demo</a></p>
+<p><a href="safe-life.html" target="_blank">Safe Life App</a></p>
+<p><a href="admin.html" target="_blank">Admin Dashboard</a></p>
+</div>
+
+<div>
+<h3>Contact & Presence</h3>
+<p>Email: Codly.rk@gmail.com</p>
+<p>Phone: +91 9324452580</p>
 <p>Mumbai, India</p>
+<p>
+<a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">
+Instagram – @codly.ai
+</a>
+</p>
 </div>
-<div>
-<h3>Connect</h3>
-<a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">Instagram</a>
+
 </div>
-</div>
+
 <div class="footer-bottom">
-© 2026 CODLY Studio – Rohit Kumar. All Rights Reserved.  
-All digital structures, systems, branding elements, and engineering frameworks are protected intellectual property.
+© 2026 CODLY Studio – Rohit Kumar. All Rights Reserved.<br><br>
+All digital systems, architectural frameworks, design structures,
+AI automation methodologies, branding assets, and engineering concepts
+developed under Codly are protected intellectual property.
+Unauthorized replication, redistribution, or structural duplication
+is strictly prohibited.
 </div>
+
 </div>
-
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-window.addEventListener("load",()=>{
-gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
-});
-
-document.querySelectorAll(".reveal-text").forEach((text,i)=>{
-gsap.to(text.querySelectorAll("span"),{
-opacity:1,
-y:0,
-stagger:0.15,
-scrollTrigger:{
-trigger:".story",
-start:"top+=" + (i*600) + " top",
-end:"top+=" + (i*600+400) + " top",
-scrub:true
-}
-});
-});
-
-/* STARFIELD */
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.z=5;
-
-const starCount=40000;
-const geometry=new THREE.BufferGeometry();
-const positions=new Float32Array(starCount*3);
-
-for(let i=0;i<starCount;i++){
-positions[i*3]=(Math.random()-0.5)*200;
-positions[i*3+1]=(Math.random()-0.5)*200;
-positions[i*3+2]=(Math.random()-0.5)*200;
-}
-geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
-
-const material=new THREE.PointsMaterial({color:0xffffff,size:0.02});
-const stars=new THREE.Points(geometry,material);
-scene.add(stars);
-
-let warp=0;
-ScrollTrigger.create({
-trigger:document.body,
-start:"top top",
-end:"bottom bottom",
-scrub:true,
-onUpdate:self=>{
-warp=self.progress*4;
-camera.position.z=5-self.progress*2;
-}
-});
-
-function animate(){
-requestAnimationFrame(animate);
-const pos=geometry.attributes.position.array;
-for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.25+warp;
-if(pos[i*3+2]>100){pos[i*3+2]=-200;}
-}
-geometry.attributes.position.needsUpdate=true;
-renderer.render(scene,camera);
-}
-animate();
-</script>
 
 </body>
 </html>
