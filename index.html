@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Robotic Navy Edition</title>
+<title>CODLY – Robotic Navy Master</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -16,14 +16,14 @@
 --text:#ffffff;
 --muted:#a0aed0;
 --accent:#00eaff;
---border:rgba(255,255,255,0.08);
+--border:rgba(255,255,255,0.1);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
 body{
 background:
-radial-gradient(circle at 30% 20%, #00214f 0%, #000c24 40%, #000000 75%);
+radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 40%, #000000 80%);
 color:var(--text);
 overflow-x:hidden;
 }
@@ -49,36 +49,34 @@ justify-content:center;
 z-index:5000;
 }
 
-.robotic{
+.loader-text{
 font-family:'Orbitron',sans-serif;
 font-size:90px;
-letter-spacing:8px;
+letter-spacing:10px;
 position:relative;
-color:#ffffff;
 text-transform:uppercase;
 }
 
-.robotic::before,
-.robotic::after{
+.loader-text::before,
+.loader-text::after{
 content:"CODLY";
 position:absolute;
 left:0;
 top:0;
-width:100%;
 opacity:0.6;
 }
 
-.robotic::before{
+.loader-text::before{
 color:#00ffff;
-animation:rgbShift1 2s infinite linear;
+animation:shift1 2s infinite linear;
 }
 
-.robotic::after{
+.loader-text::after{
 color:#ff00ff;
-animation:rgbShift2 2s infinite linear;
+animation:shift2 2s infinite linear;
 }
 
-@keyframes rgbShift1{
+@keyframes shift1{
 0%{transform:translate(0);}
 25%{transform:translate(-2px,1px);}
 50%{transform:translate(2px,-1px);}
@@ -86,7 +84,7 @@ animation:rgbShift2 2s infinite linear;
 100%{transform:translate(0);}
 }
 
-@keyframes rgbShift2{
+@keyframes shift2{
 0%{transform:translate(0);}
 25%{transform:translate(2px,-1px);}
 50%{transform:translate(-2px,1px);}
@@ -118,7 +116,7 @@ font-family:'Orbitron';
 
 .logo img{height:30px;}
 
-header a{
+header nav a{
 color:var(--muted);
 text-decoration:none;
 margin-left:25px;
@@ -126,11 +124,11 @@ font-size:14px;
 transition:.3s;
 }
 
-header a:hover{color:#fff;}
+header nav a:hover{color:#fff;}
 
 section{
 min-height:100vh;
-padding:150px 8%;
+padding:160px 8%;
 position:relative;
 z-index:2;
 display:flex;
@@ -142,8 +140,8 @@ justify-content:center;
 
 .hero h1{
 font-family:'Orbitron';
-font-size:clamp(90px,10vw,160px);
-letter-spacing:8px;
+font-size:clamp(100px,12vw,170px);
+letter-spacing:10px;
 text-transform:uppercase;
 position:relative;
 }
@@ -154,26 +152,25 @@ content:"CODLY";
 position:absolute;
 left:0;
 top:0;
-width:100%;
 opacity:0.5;
 }
 
 .hero h1::before{
 color:#00ffff;
-animation:rgbShift1 3s infinite linear;
+animation:shift1 3s infinite linear;
 }
 
 .hero h1::after{
 color:#ff00ff;
-animation:rgbShift2 3s infinite linear;
+animation:shift2 3s infinite linear;
 }
 
 .hero p{
-margin-top:25px;
-max-width:750px;
-font-size:18px;
-color:var(--muted);
-line-height:1.6;
+margin-top:30px;
+font-size:20px;
+max-width:850px;
+line-height:1.8;
+color:#c9d4ff;
 }
 
 /* ================= STORY ================= */
@@ -194,7 +191,7 @@ text-align:center;
 
 .reveal-text{
 font-family:'Orbitron';
-font-size:clamp(30px,4vw,55px);
+font-size:clamp(32px,4vw,60px);
 }
 
 .reveal-text span{
@@ -203,90 +200,126 @@ opacity:0;
 transform:translateY(40px);
 }
 
-/* ================= CONTENT SECTIONS ================= */
+/* ================= SECTION TITLE ================= */
 
 .section-title{
-font-size:36px;
-margin-bottom:25px;
 font-family:'Orbitron';
+font-size:42px;
+margin-bottom:40px;
+letter-spacing:3px;
+position:relative;
+display:inline-block;
 }
 
-.about p{
-max-width:900px;
-color:var(--muted);
-line-height:1.8;
-margin-bottom:15px;
+.section-title::after{
+content:"";
+position:absolute;
+bottom:-10px;
+left:0;
+width:60px;
+height:3px;
+background:#00eaff;
 }
+
+/* ================= GRID ================= */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
 margin-top:40px;
 }
 
+/* ================= CARDS ================= */
+
 .card{
-background:rgba(255,255,255,0.05);
-border:1px solid var(--border);
-border-radius:16px;
-padding:30px;
-transition:.4s;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.15);
+border-radius:18px;
+padding:35px;
+transition:.4s ease;
+box-shadow:0 0 30px rgba(0,0,0,0.5);
+color:#fff;
+text-decoration:none;
 }
 
 .card:hover{
-transform:translateY(-8px);
-background:rgba(255,255,255,0.1);
+transform:translateY(-10px);
+box-shadow:0 0 40px rgba(0,255,255,0.4);
+border-color:#00eaff;
+}
+
+/* ================= TESTIMONIALS ================= */
+
+.testimonial{
+font-style:italic;
 }
 
 /* ================= CTA ================= */
 
 .cta{
+padding:140px 8%;
 text-align:center;
-padding:120px 8%;
-background:linear-gradient(180deg, rgba(0,40,100,0.4), rgba(0,0,0,0.8));
+background:linear-gradient(180deg,rgba(0,30,90,0.6),rgba(0,0,0,0.9));
 }
 
 .cta h2{
-font-size:40px;
-margin-bottom:20px;
 font-family:'Orbitron';
+font-size:48px;
+margin-bottom:40px;
 }
 
 .cta button{
-padding:14px 40px;
-background:#00eaff;
+padding:18px 50px;
+background:linear-gradient(90deg,#00eaff,#0077ff);
 border:none;
-border-radius:30px;
+border-radius:50px;
+font-size:16px;
 font-weight:600;
 cursor:pointer;
+color:#000;
+transition:.3s;
+}
+
+.cta button:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px #00eaff;
 }
 
 /* ================= FOOTER ================= */
 
 .footer{
-background:#000;
-padding:100px 8%;
+background:#000814;
+padding:120px 8%;
 border-top:1px solid var(--border);
 }
 
 .footer-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:50px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:70px;
+}
+
+.footer h3{
+font-family:'Orbitron';
+margin-bottom:20px;
 }
 
 .footer p,.footer a{
-color:var(--muted);
-font-size:14px;
+color:#b6c4ff;
+font-size:15px;
+line-height:1.9;
 text-decoration:none;
-line-height:1.8;
 }
 
 .footer-bottom{
-margin-top:40px;
+margin-top:60px;
+padding-top:30px;
+border-top:1px solid var(--border);
 text-align:center;
-color:var(--muted);
-font-size:13px;
+color:#8ea0c5;
+font-size:14px;
 }
 </style>
 </head>
@@ -294,7 +327,7 @@ font-size:13px;
 <body>
 
 <div class="loader">
-<h1 class="robotic">CODLY</h1>
+<h1 class="loader-text">CODLY</h1>
 </div>
 
 <canvas id="bg"></canvas>
@@ -325,18 +358,17 @@ font-size:13px;
 </div>
 </section>
 
-<section id="about" class="about">
+<section id="about">
 <h2 class="section-title">About Codly</h2>
-<p>Codly is a Mumbai-based premium digital engineering studio founded by Rohit Kumar. We specialize in building intelligent automation systems, performance-focused web platforms, and scalable digital ecosystems.</p>
-<p>From gym businesses and fabrication companies to ecommerce platforms and AI-driven solutions, Codly builds high-impact systems designed to convert attention into authority.</p>
-<p>Our approach blends futuristic design language with technical precision and growth-focused strategy.</p>
+<p>Codly is a Mumbai-based premium digital engineering studio founded by Rohit Kumar. We specialize in AI automation systems, scalable web platforms, and performance-driven digital ecosystems.</p>
+<p>From gym businesses and fabrication companies to ecommerce platforms and AI-powered solutions, Codly builds structured, futuristic digital experiences designed to convert attention into authority.</p>
 </section>
 
 <section id="services">
 <h2 class="section-title">Services</h2>
 <div class="grid">
 <div class="card">AI Agent Automation</div>
-<div class="card">AI Chatbot Systems</div>
+<div class="card">AI Chatbot Development</div>
 <div class="card">Web Development</div>
 <div class="card">App Development</div>
 <div class="card">Google & Meta Ads</div>
@@ -354,6 +386,15 @@ font-size:13px;
 <a href="ecommerce-demo.html" target="_blank" class="card">Ecommerce Demo</a>
 <a href="safe-life.html" target="_blank" class="card">Safe Life App</a>
 <a href="admin.html" target="_blank" class="card">Admin Dashboard</a>
+</div>
+</section>
+
+<section>
+<h2 class="section-title">Testimonials</h2>
+<div class="grid">
+<div class="card testimonial">“Codly transformed our digital presence into a premium authority platform.”</div>
+<div class="card testimonial">“Futuristic design, high performance and strategic execution.”</div>
+<div class="card testimonial">“Professional AI automation systems with strong visual impact.”</div>
 </div>
 </section>
 
@@ -410,14 +451,15 @@ scrub:true
 });
 });
 
-/* STARFIELD WARP */
+/* SOFT STARFIELD */
+
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
 camera.position.z=5;
 
-const starCount=35000;
+const starCount=30000;
 const geometry=new THREE.BufferGeometry();
 const positions=new Float32Array(starCount*3);
 
@@ -428,7 +470,13 @@ positions[i*3+2]=(Math.random()-0.5)*200;
 }
 geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const material=new THREE.PointsMaterial({color:0xffffff,size:0.02});
+const material=new THREE.PointsMaterial({
+color:0xffffff,
+size:0.015,
+opacity:0.6,
+transparent:true
+});
+
 const stars=new THREE.Points(geometry,material);
 scene.add(stars);
 
@@ -440,7 +488,7 @@ start:"top top",
 end:"bottom bottom",
 scrub:true,
 onUpdate:self=>{
-warp=self.progress*15;
+warp=self.progress*10;
 camera.position.z=5-self.progress*3;
 }
 });
@@ -449,7 +497,7 @@ function animate(){
 requestAnimationFrame(animate);
 const pos=geometry.attributes.position.array;
 for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.4+warp*1.5;
+pos[i*3+2]+=0.3+warp*1.2;
 if(pos[i*3+2]>120){pos[i*3+2]=-200;}
 }
 geometry.attributes.position.needsUpdate=true;
