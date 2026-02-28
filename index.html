@@ -81,7 +81,6 @@ backdrop-filter:blur(15px);
 border-bottom:1px solid var(--border);
 z-index:1000;
 }
-
 .logo{display:flex;align-items:center;gap:10px;}
 .logo img{height:34px;}
 
@@ -106,21 +105,18 @@ justify-content:center;
 
 /* ===== HERO ===== */
 .hero h1{
-font-size:clamp(80px,9vw,130px);
+font-size:clamp(90px,10vw,140px);
 letter-spacing:6px;
 }
 .hero p{
-margin-top:20px;
-max-width:850px;
+margin-top:25px;
+max-width:900px;
 color:var(--muted);
+font-size:18px;
 }
 
 /* ===== STORY ===== */
-.story{
-height:350vh;
-position:relative;
-}
-
+.story{height:350vh;position:relative;}
 .story::before{
 content:"";
 position:absolute;
@@ -129,7 +125,6 @@ background:rgba(0,0,0,0.55);
 backdrop-filter:blur(2px);
 z-index:1;
 }
-
 .story-inner{
 position:sticky;
 top:0;
@@ -138,26 +133,22 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-gap:60px;
+gap:70px;
 text-align:center;
 z-index:2;
 }
-
 .reveal-text{
 font-size:clamp(36px,5vw,64px);
 font-weight:800;
 }
-
 .reveal-text span{
 display:inline-block;
 opacity:0;
 transform:translateY(40px);
 }
-
 .story-sub{
 color:#cbd5ff;
 font-size:17px;
-font-weight:500;
 }
 
 /* ===== GRID ===== */
@@ -167,7 +158,6 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 margin-top:40px;
 }
-
 .card{
 background:rgba(255,255,255,0.04);
 border:1px solid var(--border);
@@ -189,19 +179,16 @@ text-align:center;
 padding:160px 8%;
 background:linear-gradient(180deg,rgba(0,18,50,0.8),rgba(0,0,0,0.95));
 }
-
 .cta h2{
 font-size:42px;
 margin-bottom:20px;
 font-weight:800;
 }
-
 .cta p{
 color:var(--muted);
 margin-bottom:40px;
 font-size:18px;
 }
-
 .cta button{
 padding:18px 50px;
 background:linear-gradient(90deg,#00eaff,#0077ff);
@@ -212,7 +199,6 @@ font-weight:700;
 cursor:pointer;
 transition:.3s;
 }
-
 .cta button:hover{
 transform:scale(1.08);
 box-shadow:0 0 25px #00eaff;
@@ -229,10 +215,14 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:60px;
 }
-.footer p{
+.footer h3{margin-bottom:20px;}
+.footer p,.footer a{
 color:var(--muted);
 font-size:14px;
+line-height:1.8;
+text-decoration:none;
 }
+.footer a:hover{color:#fff;}
 .footer-bottom{
 margin-top:60px;
 padding-top:30px;
@@ -261,34 +251,71 @@ font-size:13px;
 <a href="#about">About</a>
 <a href="#services">Services</a>
 <a href="#projects">Portfolio</a>
+<a href="#faq">FAQ</a>
 <a href="#contact">Contact</a>
 </nav>
 </header>
 
 <section class="hero">
 <h1 class="glitch" data-text="CODLY">CODLY</h1>
-<p>Digital Systems Engineered for Authority. AI Automation. Scalable Architecture. Strategic Growth from Concept to Conversion Structure.</p>
+<p>
+Digital System Engineer for Authority.  
+AI Automation. Scalable Architecture.  
+Strategic Growth from Concept to Conversion.
+</p>
 </section>
 
 <section class="story">
 <div class="story-inner">
-
 <div>
 <h2 class="reveal-text"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
 <p class="story-sub">Structured architecture built for clarity and scale.</p>
 </div>
-
 <div>
 <h2 class="reveal-text"><span>I</span> <span>Build</span> <span>Digital</span> <span>Authority.</span></h2>
 <p class="story-sub">Presence engineered for long-term positioning.</p>
 </div>
-
 <div>
 <h2 class="reveal-text"><span>I</span> <span>Engineer</span> <span>Impact.</span></h2>
 <p class="story-sub">From concept to conversion architecture.</p>
 </div>
-
 </div>
+</section>
+
+<section id="about">
+<h2>About Codly</h2>
+<p>Codly is a Mumbai-based digital engineering studio founded by Rohit Kumar. The studio specializes in building authority-driven digital systems powered by AI automation and scalable architecture.</p>
+<p>Every project is structured for clarity, performance, long-term positioning, and measurable conversion growth.</p>
+</section>
+
+<section id="services">
+<h2>Services</h2>
+<div class="grid">
+<div class="card"><strong>AI Agent Automation</strong><p>Custom automation systems to reduce manual work and increase operational scale.</p></div>
+<div class="card"><strong>Web Development</strong><p>Scalable, high-performance websites structured for authority positioning.</p></div>
+<div class="card"><strong>App Development</strong><p>Flutter-powered cross-platform applications built for growth.</p></div>
+<div class="card"><strong>Google & Meta Ads</strong><p>Precision marketing systems engineered for ROI-focused campaigns.</p></div>
+<div class="card"><strong>AI Chatbot Systems</strong><p>Conversational AI designed to convert visitors into leads automatically.</p></div>
+<div class="card"><strong>Domain & Hosting Setup</strong><p>Complete deployment architecture with security and scalability.</p></div>
+</div>
+</section>
+
+<section id="projects">
+<h2>Portfolio Demos</h2>
+<div class="grid">
+<a href="gym-demo.html" target="_blank" class="card"><strong>Gym Demo</strong><p>High-performance fitness website with premium branding.</p></a>
+<a href="fabrication-demo.html" target="_blank" class="card"><strong>Fabrication Demo</strong><p>Industrial authority website structured for B2B positioning.</p></a>
+<a href="business-demo.html" target="_blank" class="card"><strong>Business Demo</strong><p>Corporate structured platform for professional presence.</p></a>
+<a href="ecommerce-demo.html" target="_blank" class="card"><strong>Ecommerce Demo</strong><p>Conversion-focused online store architecture.</p></a>
+<a href="safe-life.html" target="_blank" class="card"><strong>Safe Life App</strong><p>Mental wellness AI-powered application system.</p></a>
+<a href="admin.html" target="_blank" class="card"><strong>Admin Dashboard</strong><p>Data-driven backend management interface.</p></a>
+</div>
+</section>
+
+<section id="faq">
+<h2>FAQ</h2>
+<p><strong>What makes Codly different?</strong><br>Systems engineered for authority, not just visuals.</p>
+<p><strong>Do you provide complete deployment?</strong><br>Yes. From concept to live production architecture.</p>
 </section>
 
 <section class="cta">
@@ -297,10 +324,31 @@ font-size:13px;
 <button onclick="location.href='#contact'">Start Your Project</button>
 </section>
 
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: Codly.rk@gmail.com</p>
+<p>Phone: +91 9324452580</p>
+<p>Instagram: @codly.ai</p>
+</section>
+
 <div class="footer">
+<div class="footer-grid">
+<div>
+<h3>Codly Studio</h3>
+<p>Premium AI automation and digital engineering systems built for authority and scale.</p>
+</div>
+<div>
+<h3>Location</h3>
+<p>Mumbai, India</p>
+</div>
+<div>
+<h3>Connect</h3>
+<a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">Instagram</a>
+</div>
+</div>
 <div class="footer-bottom">
-© 2026 CODLY Studio. All Rights Reserved.  
-Digital Systems Engineered for Authority & Scalable Growth.
+© 2026 CODLY Studio – Rohit Kumar. All Rights Reserved.  
+All digital structures, systems, branding elements, and engineering frameworks are protected intellectual property.
 </div>
 </div>
 
@@ -311,7 +359,21 @@ window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-/* STARFIELD + WARP FIXED */
+document.querySelectorAll(".reveal-text").forEach((text,i)=>{
+gsap.to(text.querySelectorAll("span"),{
+opacity:1,
+y:0,
+stagger:0.15,
+scrollTrigger:{
+trigger:".story",
+start:"top+=" + (i*600) + " top",
+end:"top+=" + (i*600+400) + " top",
+scrub:true
+}
+});
+});
+
+/* STARFIELD */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
@@ -334,14 +396,13 @@ const stars=new THREE.Points(geometry,material);
 scene.add(stars);
 
 let warp=0;
-
 ScrollTrigger.create({
 trigger:document.body,
 start:"top top",
 end:"bottom bottom",
 scrub:true,
 onUpdate:self=>{
-warp=self.progress*4; // balanced
+warp=self.progress*4;
 camera.position.z=5-self.progress*2;
 }
 });
@@ -357,12 +418,6 @@ geometry.attributes.position.needsUpdate=true;
 renderer.render(scene,camera);
 }
 animate();
-
-window.addEventListener("resize",()=>{
-camera.aspect=window.innerWidth/window.innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(window.innerWidth,window.innerHeight);
-});
 </script>
 
 </body>
