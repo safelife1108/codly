@@ -27,7 +27,7 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* Smooth Wrapper */
+/* Smooth Scroll */
 #smooth-wrapper{position:relative;}
 #smooth-content{position:relative;}
 
@@ -42,13 +42,14 @@ z-index:0;
 
 header{
 position:fixed;
-top:0;width:100%;
+top:0;
+width:100%;
 padding:18px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
+transition:.4s ease;
 z-index:1000;
-transition:.4s;
 }
 
 header.scrolled{
@@ -72,8 +73,8 @@ color:var(--muted);
 margin-left:28px;
 text-decoration:none;
 font-size:14px;
-transition:.3s;
 position:relative;
+transition:.3s;
 }
 
 nav a:hover{color:#fff;}
@@ -87,17 +88,15 @@ height:2px;
 background:var(--accent);
 transition:.3s;
 }
-
 nav a:hover::after{width:100%;}
 
-/* FUTURISTIC GLITCH */
+/* PREMIUM GLITCH */
 
 .glitch{
 font-family:'Orbitron';
 font-size:clamp(100px,12vw,170px);
 letter-spacing:12px;
 position:relative;
-color:#fff;
 }
 
 .glitch::before,
@@ -179,7 +178,7 @@ transform:translateY(-10px);
 box-shadow:0 0 30px rgba(0,255,255,0.25);
 }
 
-/* AUTHORITY LINES */
+/* AUTHORITY SEQUENCE */
 
 .authority-sequence{
 margin-top:60px;
@@ -260,6 +259,7 @@ font-size:14px;
 CODLY
 </div>
 <nav>
+<a href="#story">Story</a>
 <a href="#about">About</a>
 <a href="#services">Services</a>
 <a href="#projects">Portfolio</a>
@@ -278,12 +278,127 @@ CODLY
 </div>
 
 <p style="margin-top:30px;max-width:900px;color:#c9d4ff;">
-Engineering intelligent digital systems structured for performance, automation and scalable authority positioning.
+Engineering intelligent digital systems structured for automation, performance, authority positioning and scalable growth architecture.
 </p>
 </section>
 
-<!-- Other sections remain same (About, Services, Portfolio, FAQ, CTA, Contact, Footer) -->
-<!-- Keeping your full structure intact -->
+<section id="story">
+<h2 class="section-title">Our Story</h2>
+<p>
+Codly was born from a simple but powerful realization — most digital systems are built for appearance, not authority. 
+Businesses launch websites, apps and campaigns, yet lack structural logic, automation depth and growth architecture.
+</p>
+<p>
+We changed that. Codly was designed as a digital engineering studio — not just a creative agency. Every system we build 
+is rooted in strategy, psychology, automation and scalable infrastructure. We approach digital presence like engineers 
+approach architecture: with structure, precision and long-term vision.
+</p>
+<p>
+Our mission is not to “make things look good.” It is to engineer authority. To build platforms that automate intelligently, 
+convert consistently and scale sustainably.
+</p>
+</section>
+
+<section id="about">
+<h2 class="section-title">About Codly</h2>
+<p>
+Founded in Mumbai by Rohit Kumar, Codly specializes in AI automation systems, scalable web architecture, 
+app development and structured growth ecosystems.
+</p>
+<p>
+From concept planning to deployment and optimization, we build digital infrastructures that support 
+long-term business expansion.
+</p>
+</section>
+
+<section id="services">
+<h2 class="section-title">Our Services</h2>
+<div class="grid">
+<div class="card"><h3>AI Agent Automation</h3><p>Workflow automation systems engineered to reduce manual workload and improve operational efficiency.</p></div>
+<div class="card"><h3>AI Chatbot Systems</h3><p>Real-time conversational AI integrated with logic-based response architecture.</p></div>
+<div class="card"><h3>Web Development</h3><p>Scalable, high-performance digital platforms structured for authority.</p></div>
+<div class="card"><h3>App Development</h3><p>Modern mobile and web applications engineered for growth.</p></div>
+<div class="card"><h3>Google & Meta Ads</h3><p>Performance marketing campaigns aligned with structured funnels.</p></div>
+<div class="card"><h3>Domain & Hosting</h3><p>Complete DNS, hosting and infrastructure management.</p></div>
+</div>
+</section>
+
+<section id="projects">
+<h2 class="section-title">Portfolio Demos</h2>
+<div class="grid">
+<a href="https://safelife1108.github.io/codly/gym-demo.html" target="_blank" class="card">
+<h3>Gym Authority Platform</h3>
+<p>Fitness brand positioning system built for premium presence.</p>
+</a>
+<a href="https://safelife1108.github.io/codly/fabrication-demo.html" target="_blank" class="card">
+<h3>Fabrication Industry System</h3>
+<p>Industrial business digital authority structure.</p>
+</a>
+<a href="https://safelife1108.github.io/codly/business-demo.html" target="_blank" class="card">
+<h3>Corporate Framework</h3>
+<p>Structured authority-focused business platform.</p>
+</a>
+<a href="https://safelife1108.github.io/codly/ecommerce-demo.html" target="_blank" class="card">
+<h3>Ecommerce Platform</h3>
+<p>Conversion-driven product ecosystem.</p>
+</a>
+<a href="https://safelife1108.github.io/codly/safe-life.html" target="_blank" class="card">
+<h3>Safe Life Application</h3>
+<p>AI-powered wellness application system.</p>
+</a>
+<a href="https://safelife1108.github.io/codly/admin.html" target="_blank" class="card">
+<h3>Admin Dashboard</h3>
+<p>Backend analytics & structured management interface.</p>
+</a>
+</div>
+</section>
+
+<section id="faq">
+<h2 class="section-title">FAQ</h2>
+<p><strong>Project timeline?</strong> 2–6 weeks depending on complexity.</p>
+<p><strong>Support available?</strong> Yes, structured maintenance available.</p>
+<p><strong>AI integration?</strong> Fully supported and customizable.</p>
+</section>
+
+<section class="cta">
+<h2>Ready to Build Digital Authority?</h2>
+<button onclick="location.href='#contact'">Start Your Project</button>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact</h2>
+<p>Email: Codly.rk@gmail.com</p>
+<p>Phone: +91 9324452580</p>
+<p>Instagram: @codly.ai</p>
+</section>
+
+<div class="footer">
+<div class="footer-grid">
+<div>
+<h3>Codly Studio</h3>
+<p>Premium AI automation and digital engineering systems built for structured authority and scalable growth.</p>
+</div>
+<div>
+<h3>Core Services</h3>
+<p>AI Automation</p>
+<p>Web & App Development</p>
+<p>Performance Marketing</p>
+</div>
+<div>
+<h3>Location</h3>
+<p>Mumbai, India</p>
+</div>
+<div>
+<h3>Connect</h3>
+<p>Email: Codly.rk@gmail.com</p>
+<p>Phone: +91 9324452580</p>
+</div>
+</div>
+
+<div class="footer-bottom">
+© 2026 CODLY. All Rights Reserved. Unauthorized reproduction, duplication or distribution of any design, structure, code, automation logic or intellectual property is strictly prohibited under applicable copyright laws.
+</div>
+</div>
 
 </div>
 </div>
@@ -291,51 +406,39 @@ Engineering intelligent digital systems structured for performance, automation a
 <script>
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-/* Smooth Scroll */
 ScrollSmoother.create({
 wrapper:"#smooth-wrapper",
 content:"#smooth-content",
-smooth:1.2,
-effects:true
+smooth:1.2
 });
 
-/* Loader */
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-/* Navbar scroll */
 window.addEventListener("scroll",()=>{
 const nav=document.getElementById("navbar");
 if(window.scrollY>50){nav.classList.add("scrolled");}
 else{nav.classList.remove("scrolled");}
 });
 
-/* Section fade reveal */
 gsap.utils.toArray("section").forEach(sec=>{
 gsap.to(sec,{
 opacity:1,
 y:0,
 duration:1.2,
 ease:"power3.out",
-scrollTrigger:{
-trigger:sec,
-start:"top 85%"
-}
+scrollTrigger:{trigger:sec,start:"top 85%"}
 });
 });
 
-/* Authority sequence animation */
 gsap.utils.toArray(".authority-line").forEach((line,i)=>{
 gsap.to(line,{
 opacity:1,
 y:0,
 duration:1,
 delay:i*0.2,
-scrollTrigger:{
-trigger:".authority-sequence",
-start:"top 80%"
-}
+scrollTrigger:{trigger:".authority-sequence",start:"top 80%"}
 });
 });
 
