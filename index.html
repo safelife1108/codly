@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Robotic Navy Master</title>
+<title>CODLY – Digital Systems Engineer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -14,37 +14,78 @@
 <style>
 :root{
 --text:#ffffff;
---muted:#a0aed0;
---border:rgba(255,255,255,0.1);
+--muted:#aabfff;
+--border:rgba(255,255,255,0.08);
 --accent:#00eaff;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-
+html{scroll-behavior:smooth;}
 body{
 background:radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 40%, #000000 80%);
 color:var(--text);
 overflow-x:hidden;
 }
 
-canvas{
+/* ===== NAVBAR ===== */
+
+header{
 position:fixed;
 top:0;
-left:0;
 width:100%;
-height:100%;
-z-index:0;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+transition:.4s ease;
+z-index:1000;
 }
 
-/* ===== GLITCH TEXT ===== */
+header.scrolled{
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--border);
+}
+
+.logo{
+font-family:'Orbitron';
+letter-spacing:2px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{height:28px;}
+
+nav a{
+color:var(--muted);
+text-decoration:none;
+margin-left:28px;
+font-size:14px;
+transition:.3s;
+position:relative;
+}
+
+nav a:hover{color:#fff;}
+nav a::after{
+content:"";
+position:absolute;
+bottom:-6px;
+left:0;
+width:0%;
+height:2px;
+background:var(--accent);
+transition:.3s;
+}
+nav a:hover::after{width:100%;}
+
+/* ===== GLITCH ===== */
 
 .glitch{
 font-family:'Orbitron';
 font-size:clamp(100px,12vw,170px);
 letter-spacing:12px;
 position:relative;
-color:#fff;
-display:inline-block;
 }
 
 .glitch::before,
@@ -53,28 +94,27 @@ content:attr(data-text);
 position:absolute;
 left:0;
 top:0;
+opacity:.35;
 }
 
 .glitch::before{
-color:#00f0ff;
-animation:shift1 2s infinite alternate;
+color:#00eaff;
+animation:gl1 3s infinite ease-in-out;
 }
 
 .glitch::after{
 color:#ff00ff;
-animation:shift2 2s infinite alternate;
+animation:gl2 3s infinite ease-in-out;
 }
 
-@keyframes shift1{
-0%{transform:translate(0);}
-50%{transform:translate(-3px,2px);}
-100%{transform:translate(3px,-2px);}
+@keyframes gl1{
+0%,100%{transform:translate(0);}
+50%{transform:translate(-1px,1px);}
 }
 
-@keyframes shift2{
-0%{transform:translate(0);}
-50%{transform:translate(3px,-2px);}
-100%{transform:translate(-3px,2px);}
+@keyframes gl2{
+0%,100%{transform:translate(0);}
+50%{transform:translate(1px,-1px);}
 }
 
 /* ===== LOADER ===== */
@@ -89,7 +129,7 @@ justify-content:center;
 z-index:5000;
 }
 
-/* ===== SECTION ===== */
+/* ===== SECTIONS ===== */
 
 section{
 min-height:100vh;
@@ -114,10 +154,12 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:35px;
 }
 
+/* ===== CARDS ===== */
+
 .card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,0.15);
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,0.1);
 border-radius:18px;
 padding:35px;
 transition:.4s;
@@ -127,48 +169,75 @@ text-decoration:none;
 
 .card:hover{
 transform:translateY(-10px);
-box-shadow:0 0 40px rgba(0,255,255,0.4);
+box-shadow:0 0 30px rgba(0,255,255,0.25);
 }
 
-.hero-taglines{
-margin-top:40px;
-font-size:20px;
-color:#c9d4ff;
-max-width:800px;
-}
+/* ===== AUTHORITY LINE ===== */
 
-.tagline{
+.authority-line{
+margin-top:60px;
+font-weight:600;
+font-size:24px;
+line-height:1.6;
 opacity:0;
-transform:translateY(40px);
-margin-bottom:15px;
+transform:translateY(60px);
 }
+
+/* ===== CTA ===== */
 
 .cta{
 padding:140px 8%;
 text-align:center;
-background:linear-gradient(180deg,rgba(0,30,90,0.6),rgba(0,0,0,0.9));
+background:linear-gradient(180deg,rgba(0,40,120,0.6),rgba(0,0,0,0.9));
+}
+
+.cta h2{
+font-family:'Orbitron';
+font-size:48px;
+margin-bottom:40px;
 }
 
 .cta button{
-padding:18px 50px;
+padding:18px 60px;
 background:linear-gradient(90deg,#00eaff,#ff00ff,#ffee00);
 border:none;
 border-radius:50px;
 font-weight:600;
-color:#000;
+font-size:16px;
 cursor:pointer;
+color:#000;
+transition:.3s;
 }
+
+.cta button:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px #00eaff;
+}
+
+/* ===== FOOTER ===== */
 
 .footer{
 background:#000814;
-padding:120px 8%;
+padding:140px 8%;
 border-top:1px solid var(--border);
 }
 
 .footer-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:60px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:70px;
+}
+
+.footer h3{
+font-family:'Orbitron';
+margin-bottom:20px;
+}
+
+.footer p,.footer a{
+color:#b6c4ff;
+font-size:15px;
+line-height:1.9;
+text-decoration:none;
 }
 
 .footer-bottom{
@@ -178,6 +247,14 @@ border-top:1px solid var(--border);
 text-align:center;
 color:#8ea0c5;
 font-size:14px;
+}
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
 }
 </style>
 </head>
@@ -190,41 +267,47 @@ font-size:14px;
 
 <canvas id="bg"></canvas>
 
+<header id="navbar">
+<div class="logo">
+<img src="codly logo.jpg">
+CODLY
+</div>
+<nav>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#projects">Portfolio</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
 <section class="hero">
 <h1 class="glitch" data-text="CODLY">CODLY</h1>
 
-<div class="hero-taglines">
-<div class="tagline">Digital Systems Engineered for Authority.</div>
-<div class="tagline">AI Automation. Scalable Architecture. Strategic Growth.</div>
-<div class="tagline">From Concept to Conversion — Structured for Scale.</div>
-</div>
-
-<p style="margin-top:30px;max-width:850px;color:#c9d4ff;">
-Engineering AI automation systems, scalable web architecture, performance marketing engines and high-performance digital ecosystems built for authority.
+<p style="margin-top:30px;max-width:900px;color:#c9d4ff;">
+Engineering intelligent digital systems powered by AI automation, scalable architecture and structured performance ecosystems.
 </p>
-</section>
 
-<section>
-<h2 class="section-title">Our Story</h2>
-<p>Codly was created to eliminate generic digital presence and replace it with structured authority systems engineered for long-term scalability.</p>
-<p>Every project combines automation logic, performance architecture and premium design psychology to build real business impact.</p>
+<div class="authority-line">
+Digital System Engineer for Authority — AI Automation. Scalable Architecture. Strategic Growth. From Concept to Conversion. Structured for Scale.
+</div>
 </section>
 
 <section id="about">
 <h2 class="section-title">About Codly</h2>
-<p>Founded in Mumbai by Rohit Kumar, Codly is a digital engineering studio specializing in AI automation, scalable web platforms and performance marketing systems.</p>
-<p>We build intelligent digital frameworks structured for automation, authority and measurable growth.</p>
+<p>Codly is a Mumbai-based digital engineering studio founded by Rohit Kumar. Built with the vision of transforming ordinary businesses into premium digital authorities, Codly specializes in AI automation, scalable architecture and structured growth systems.</p>
+<p>Every system we build is designed with psychological precision, technical scalability and strategic clarity. We do not just design websites — we engineer digital ecosystems structured for authority.</p>
 </section>
 
 <section id="services">
 <h2 class="section-title">Our Services</h2>
 <div class="grid">
-<div class="card"><h3>AI Agent Automation</h3><p>Custom workflow automation systems.</p></div>
-<div class="card"><h3>AI Chatbot Systems</h3><p>Real-time conversational AI solutions.</p></div>
-<div class="card"><h3>Web Development</h3><p>High-performance scalable websites.</p></div>
-<div class="card"><h3>App Development</h3><p>Modern application architecture systems.</p></div>
-<div class="card"><h3>Google & Meta Ads</h3><p>Conversion-focused marketing campaigns.</p></div>
-<div class="card"><h3>Domain & Hosting</h3><p>Complete infrastructure setup.</p></div>
+<div class="card"><h3>AI Agent Automation</h3><p>Workflow automation systems that reduce manual effort and improve operational intelligence.</p></div>
+<div class="card"><h3>AI Chatbot Systems</h3><p>Conversational AI platforms integrated with real-time logic and response frameworks.</p></div>
+<div class="card"><h3>Web Development</h3><p>High-performance scalable websites structured for growth and authority positioning.</p></div>
+<div class="card"><h3>App Development</h3><p>Modern application systems engineered for speed, performance and clean UI architecture.</p></div>
+<div class="card"><h3>Google & Meta Ads</h3><p>Conversion-driven paid marketing campaigns backed by strategic funnel systems.</p></div>
+<div class="card"><h3>Domain & Hosting</h3><p>Complete domain registration, DNS management and hosting infrastructure setup.</p></div>
 </div>
 </section>
 
@@ -232,41 +315,41 @@ Engineering AI automation systems, scalable web architecture, performance market
 <h2 class="section-title">Portfolio Demos</h2>
 <div class="grid">
 <a href="https://safelife1108.github.io/codly/gym-demo.html" target="_blank" class="card">
-<h3>Gym Platform</h3>
-<p>Premium fitness authority system.</p>
+<h3>Gym Authority Platform</h3>
+<p>Premium fitness brand positioning system.</p>
 </a>
 <a href="https://safelife1108.github.io/codly/fabrication-demo.html" target="_blank" class="card">
-<h3>Fabrication System</h3>
-<p>Industrial structured platform.</p>
+<h3>Fabrication Industry System</h3>
+<p>Industrial business digital presence structure.</p>
 </a>
 <a href="https://safelife1108.github.io/codly/business-demo.html" target="_blank" class="card">
-<h3>Business Website</h3>
-<p>Corporate authority framework.</p>
+<h3>Corporate Business Framework</h3>
+<p>Clean authority-focused business website architecture.</p>
 </a>
 <a href="https://safelife1108.github.io/codly/ecommerce-demo.html" target="_blank" class="card">
-<h3>Ecommerce Platform</h3>
-<p>Conversion-driven storefront.</p>
+<h3>Ecommerce Conversion Platform</h3>
+<p>Structured product selling environment.</p>
 </a>
 <a href="https://safelife1108.github.io/codly/safe-life.html" target="_blank" class="card">
-<h3>Safe Life App</h3>
-<p>AI-powered wellness app.</p>
+<h3>Safe Life Application</h3>
+<p>AI-powered wellness and stress support platform.</p>
 </a>
 <a href="https://safelife1108.github.io/codly/admin.html" target="_blank" class="card">
-<h3>Admin Dashboard</h3>
-<p>Backend management system.</p>
+<h3>Admin Dashboard System</h3>
+<p>Backend analytics and management interface.</p>
 </a>
 </div>
 </section>
 
-<section>
-<h2 class="section-title">FAQ</h2>
-<p><strong>Project timeline?</strong><br>2–6 weeks depending on scope.</p>
-<p><strong>Support available?</strong><br>Yes, structured maintenance plans available.</p>
-<p><strong>AI integration?</strong><br>Yes, full automation layering available.</p>
+<section id="faq">
+<h2 class="section-title">Frequently Asked Questions</h2>
+<p><strong>How long does a project take?</strong><br>Most projects take between 2 to 6 weeks depending on complexity.</p>
+<p><strong>Do you provide ongoing support?</strong><br>Yes. Maintenance and system optimization plans are available.</p>
+<p><strong>Can you integrate AI into my business?</strong><br>Absolutely. We specialize in structured AI automation frameworks.</p>
 </section>
 
 <section class="cta">
-<h2 style="font-family:Orbitron;font-size:48px;margin-bottom:40px;">Ready to Build Digital Authority?</h2>
+<h2>Ready to Build Digital Authority?</h2>
 <button onclick="location.href='#contact'">Start Your Project</button>
 </section>
 
@@ -281,7 +364,7 @@ Engineering AI automation systems, scalable web architecture, performance market
 <div class="footer-grid">
 <div>
 <h3>Codly Studio</h3>
-<p>Premium AI automation and digital engineering systems.</p>
+<p>Premium AI automation and digital engineering systems built for structured authority and long-term scalability.</p>
 </div>
 <div>
 <h3>Core Services</h3>
@@ -294,33 +377,38 @@ Engineering AI automation systems, scalable web architecture, performance market
 <p>Mumbai, India</p>
 </div>
 <div>
-<h3>Contact</h3>
+<h3>Connect</h3>
 <p>Email: Codly.rk@gmail.com</p>
 <p>Phone: +91 9324452580</p>
 </div>
 </div>
 
 <div class="footer-bottom">
-© 2026 CODLY – All Rights Reserved. Unauthorized reproduction is strictly prohibited.
+© 2026 CODLY. All Rights Reserved. Unauthorized reproduction, duplication or distribution of any content, structure, design, system or intellectual property from Codly is strictly prohibited under applicable digital and copyright laws.
 </div>
 </div>
 
 <script>
+gsap.registerPlugin(ScrollTrigger);
+
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-gsap.utils.toArray(".tagline").forEach((el,i)=>{
-gsap.to(el,{
+window.addEventListener("scroll",()=>{
+const nav=document.getElementById("navbar");
+if(window.scrollY>50){nav.classList.add("scrolled");}
+else{nav.classList.remove("scrolled");}
+});
+
+gsap.to(".authority-line",{
 opacity:1,
 y:0,
-delay:i*0.2,
-duration:1,
+duration:1.2,
 scrollTrigger:{
-trigger:el,
-start:"top 85%"
+trigger:".authority-line",
+start:"top 80%"
 }
-});
 });
 
 /* Starfield */
@@ -330,7 +418,7 @@ const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alp
 renderer.setSize(window.innerWidth,window.innerHeight);
 camera.position.z=5;
 
-const starCount=30000;
+const starCount=35000;
 const geometry=new THREE.BufferGeometry();
 const positions=new Float32Array(starCount*3);
 
@@ -339,16 +427,9 @@ positions[i*3]=(Math.random()-0.5)*200;
 positions[i*3+1]=(Math.random()-0.5)*200;
 positions[i*3+2]=(Math.random()-0.5)*200;
 }
-
 geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const material=new THREE.PointsMaterial({
-color:0xffffff,
-size:0.015,
-opacity:0.7,
-transparent:true
-});
-
+const material=new THREE.PointsMaterial({color:0xffffff,size:0.015,opacity:0.7,transparent:true});
 const stars=new THREE.Points(geometry,material);
 scene.add(stars);
 
@@ -356,7 +437,7 @@ function animate(){
 requestAnimationFrame(animate);
 const pos=geometry.attributes.position.array;
 for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.3;
+pos[i*3+2]+=0.25;
 if(pos[i*3+2]>120){pos[i*3+2]=-200;}
 }
 geometry.attributes.position.needsUpdate=true;
