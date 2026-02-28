@@ -14,7 +14,7 @@
 <style>
 :root{
 --text:#ffffff;
---muted:#aabfff;
+--muted:#b7c7ff;
 --border:rgba(255,255,255,0.08);
 }
 
@@ -22,7 +22,7 @@
 html{scroll-behavior:smooth;}
 
 body{
-background:radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 40%, #000000 80%);
+background:radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 45%, #000000 85%);
 color:var(--text);
 overflow-x:hidden;
 }
@@ -55,8 +55,6 @@ align-items:center;
 gap:10px;
 }
 
-.logo img{height:28px;}
-
 nav a{
 color:var(--muted);
 margin-left:28px;
@@ -67,10 +65,10 @@ transition:.3s;
 
 nav a:hover{color:#fff;}
 
-/* BLACK & WHITE ROBOTIC GLITCH */
+/* BLACK & WHITE GLITCH */
 
 .brand-title{
-font-family:'Orbitron',sans-serif;
+font-family:'Orbitron';
 font-size:clamp(100px,12vw,170px);
 letter-spacing:18px;
 color:#ffffff;
@@ -78,7 +76,7 @@ position:relative;
 display:inline-block;
 text-transform:uppercase;
 font-weight:700;
-animation:monoGlitch 3s infinite;
+animation:glitchBase 2.5s infinite linear;
 }
 
 .brand-title::before,
@@ -87,22 +85,23 @@ content:attr(data-text);
 position:absolute;
 left:0;
 top:0;
+width:100%;
 pointer-events:none;
 }
 
 .brand-title::before{
 color:#000000;
-transform:translate(-2px,1px);
-opacity:0.7;
+transform:translate(-3px,0);
+opacity:0.8;
 }
 
 .brand-title::after{
 color:#ffffff;
-transform:translate(2px,-1px);
+transform:translate(3px,0);
 opacity:0.6;
 }
 
-@keyframes monoGlitch{
+@keyframes glitchBase{
 0%,100%{transform:translate(0);}
 20%{transform:translate(1px,-1px);}
 40%{transform:translate(-1px,1px);}
@@ -159,7 +158,7 @@ transform:translateY(-10px);
 box-shadow:0 0 30px rgba(255,255,255,0.2);
 }
 
-/* Authority (NOT bold) */
+/* AUTHORITY LINES */
 
 .authority-sequence{
 margin-top:60px;
@@ -226,8 +225,10 @@ font-size:14px;
 
 canvas{
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
+top:0;
+left:0;
+width:100%;
+height:100%;
 z-index:0;
 }
 </style>
@@ -242,10 +243,7 @@ z-index:0;
 <canvas id="bg"></canvas>
 
 <header id="navbar">
-<div class="logo">
-<img src="codly logo.jpg">
-CODLY
-</div>
+<div class="logo">CODLY</div>
 <nav>
 <a href="#story">Story</a>
 <a href="#about">About</a>
@@ -273,50 +271,50 @@ Engineering intelligent digital systems structured for automation, performance, 
 <section id="story">
 <h2 class="section-title">Our Story</h2>
 <p>
-Codly was built to engineer digital authority — not just websites. We create structured ecosystems combining automation, scalable architecture and strategic growth.
+Codly was created to engineer digital authority — not just websites. We build structured ecosystems combining automation systems, scalable architecture, and strategic growth funnels.
 </p>
 </section>
 
 <section id="about">
 <h2 class="section-title">About Codly</h2>
 <p>
-Founded in Mumbai by Rohit Kumar, Codly specializes in AI automation systems, scalable web architecture and high-performance digital platforms.
+Founded by Rohit Kumar in Mumbai, Codly specializes in AI automation, intelligent chat systems, high-performance web platforms and digital growth engineering.
 </p>
 </section>
 
 <section id="services">
 <h2 class="section-title">Services</h2>
 <div class="grid">
-<div class="card">AI Agent Automation</div>
-<div class="card">AI Chatbot Systems</div>
-<div class="card">Web Development</div>
-<div class="card">App Development</div>
-<div class="card">Google & Meta Ads</div>
-<div class="card">Domain & Hosting</div>
+<div class="card"><strong>AI Agent Automation</strong><br>Custom workflow automation systems for scalable businesses.</div>
+<div class="card"><strong>AI Chatbot Systems</strong><br>Conversion-driven conversational AI solutions.</div>
+<div class="card"><strong>Web Development</strong><br>High-performance scalable web platforms.</div>
+<div class="card"><strong>App Development</strong><br>Cross-platform mobile solutions.</div>
+<div class="card"><strong>Google & Meta Ads</strong><br>Precision marketing campaigns.</div>
+<div class="card"><strong>Domain & Hosting</strong><br>Secure infrastructure setup.</div>
 </div>
 </section>
 
 <section id="projects">
 <h2 class="section-title">Portfolio</h2>
 <div class="grid">
-<a href="gym-demo.html" class="card">Gym Demo</a>
-<a href="fabrication-demo.html" class="card">Fabrication Demo</a>
-<a href="business-demo.html" class="card">Business Demo</a>
-<a href="ecommerce-demo.html" class="card">Ecommerce Demo</a>
-<a href="safe-life.html" class="card">Safe Life App</a>
-<a href="admin.html" class="card">Admin Dashboard</a>
+<a href="gym-demo.html" class="card">Gym Demo<br><small>Modern fitness brand website</small></a>
+<a href="fabrication-demo.html" class="card">Fabrication Demo<br><small>Industrial digital platform</small></a>
+<a href="business-demo.html" class="card">Business Demo<br><small>Corporate presence system</small></a>
+<a href="ecommerce-demo.html" class="card">Ecommerce Demo<br><small>Conversion-focused online store</small></a>
+<a href="safe-life.html" class="card">Safe Life App<br><small>Mental wellness AI app</small></a>
+<a href="admin.html" class="card">Admin Dashboard<br><small>Control & analytics panel</small></a>
 </div>
 </section>
 
 <section id="faq">
 <h2 class="section-title">FAQ</h2>
-<p><strong>Timeline?</strong> 2–6 weeks.</p>
-<p><strong>Support?</strong> Yes.</p>
+<p><strong>How long does a project take?</strong><br>Typically 2–6 weeks depending on scope.</p>
+<p><strong>Do you provide maintenance?</strong><br>Yes, scalable maintenance plans available.</p>
 </section>
 
 <section class="cta">
 <h2>Ready to Build Digital Authority?</h2>
-<button>Start Now</button>
+<button onclick="location.href='#contact'">Start Your Project</button>
 </section>
 
 <section id="contact">
@@ -329,15 +327,19 @@ Founded in Mumbai by Rohit Kumar, Codly specializes in AI automation systems, sc
 <div class="footer-grid">
 <div>
 <h3>Codly Studio</h3>
-<p>Premium AI automation and digital engineering systems.</p>
+<p>Premium AI automation and digital engineering systems structured for authority and scale.</p>
 </div>
 <div>
 <h3>Location</h3>
 <p>Mumbai, India</p>
 </div>
+<div>
+<h3>Legal</h3>
+<p>This website, its design architecture, systems, brand assets, and digital frameworks are the intellectual property of Codly Studio.</p>
+</div>
 </div>
 <div class="footer-bottom">
-© 2026 CODLY. All Rights Reserved.
+© 2026 CODLY. All Rights Reserved. Unauthorized reproduction, duplication, or distribution of any content or structural system is strictly prohibited under applicable intellectual property laws.
 </div>
 </div>
 
@@ -372,7 +374,7 @@ const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alp
 renderer.setSize(window.innerWidth,window.innerHeight);
 camera.position.z=5;
 
-const starCount=15000;
+const starCount=12000;
 const geometry=new THREE.BufferGeometry();
 const positions=new Float32Array(starCount*3);
 
@@ -391,7 +393,7 @@ function animate(){
 requestAnimationFrame(animate);
 const pos=geometry.attributes.position.array;
 for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.15;
+pos[i*3+2]+=0.12;
 if(pos[i*3+2]>120){pos[i*3+2]=-200;}
 }
 geometry.attributes.position.needsUpdate=true;
