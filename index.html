@@ -37,13 +37,25 @@ height:100%;
 z-index:0;
 }
 
-/* ===== Glitch Text Upgrade ===== */
+/* ===== Loader Glitch ===== */
+
+.loader{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:5000;
+}
 
 .glitch-text{
 font-family:'Orbitron';
+font-size:90px;
+letter-spacing:10px;
 position:relative;
 text-transform:uppercase;
-letter-spacing:10px;
+color:#fff;
 }
 
 .glitch-text::before,
@@ -95,6 +107,7 @@ justify-content:center;
 font-family:'Orbitron';
 font-size:42px;
 margin-bottom:40px;
+letter-spacing:3px;
 }
 
 .grid{
@@ -110,6 +123,8 @@ border:1px solid rgba(255,255,255,0.15);
 border-radius:18px;
 padding:35px;
 transition:.4s;
+color:#fff;
+text-decoration:none;
 }
 
 .card:hover{
@@ -167,91 +182,130 @@ font-size:14px;
 
 <canvas id="bg"></canvas>
 
+<!-- HERO -->
 <section class="hero">
 <h1 class="glitch-text" data-text="CODLY">CODLY</h1>
-<p>We engineer intelligent digital ecosystems powered by AI automation, scalable web architecture, cinematic UI systems and performance marketing strategies designed to convert presence into authority.</p>
+<p>We engineer premium AI-powered digital ecosystems, scalable web architecture, automation systems, high-performance applications and marketing strategies designed to transform businesses into structured digital authorities.</p>
 </section>
 
-<section>
+<!-- STORY -->
+<section class="story">
 <h2 class="section-title">Our Story</h2>
-<p>Codly was built on the belief that businesses deserve structured, premium digital systems instead of generic websites. We combine design psychology, automation architecture, and performance strategy to build scalable authority platforms.</p>
+<p>Codly was built with one mission — to eliminate generic websites and replace them with structured, performance-driven digital ecosystems.</p>
+<p>We believe technology should be simple, scalable and strategically powerful. Every project is engineered with clarity, authority positioning, automation structure and long-term growth in mind.</p>
+<p>From fitness platforms to industrial systems and AI automation solutions, we build digital experiences that convert attention into trust and trust into measurable growth.</p>
 </section>
 
-<section>
+<!-- ABOUT -->
+<section id="about">
 <h2 class="section-title">About Codly</h2>
-<p>Founded in Mumbai by Rohit Kumar, Codly is a premium digital engineering studio delivering AI-powered systems, high-performance web applications, mobile apps, and structured marketing automation ecosystems.</p>
-<p>We focus on clarity, scalability and immersive design systems that elevate brands beyond competitors.</p>
+<p>Founded in Mumbai by Rohit Kumar, Codly is a premium digital engineering studio focused on AI automation systems, scalable web development, application architecture and performance marketing integration.</p>
+<p>We do not build websites — we build digital systems designed for authority, automation and expansion.</p>
+<p>Every project is structured with clear design hierarchy, optimized performance standards and strategic growth alignment.</p>
 </section>
 
-<section>
+<!-- SERVICES -->
+<section id="services">
 <h2 class="section-title">Our Services</h2>
 <div class="grid">
-<div class="card"><h3>AI Agent Automation</h3><p>Custom automation systems that handle workflows, lead capture and engagement.</p></div>
-<div class="card"><h3>AI Chatbots</h3><p>Conversational AI assistants for real-time customer interaction.</p></div>
-<div class="card"><h3>Web Development</h3><p>High-performance authority websites built for speed and impact.</p></div>
-<div class="card"><h3>App Development</h3><p>Scalable Flutter-based mobile applications.</p></div>
-<div class="card"><h3>Google & Meta Ads</h3><p>Conversion-focused paid marketing campaigns.</p></div>
-<div class="card"><h3>Domain & Hosting</h3><p>Complete infrastructure deployment and optimization.</p></div>
+<div class="card"><h3>AI Agent Automation</h3><p>Custom intelligent automation systems that manage workflows, leads, follow-ups and engagement pipelines.</p></div>
+<div class="card"><h3>AI Chatbot Systems</h3><p>Advanced conversational AI designed for real-time customer support and high-conversion engagement.</p></div>
+<div class="card"><h3>Web Development</h3><p>Premium high-performance websites engineered for scalability, speed and digital authority positioning.</p></div>
+<div class="card"><h3>App Development</h3><p>Scalable Flutter-based applications integrated with cloud systems and automation logic.</p></div>
+<div class="card"><h3>Google & Meta Ads</h3><p>Performance marketing campaigns built with ROI tracking, structured targeting and strategic scaling.</p></div>
+<div class="card"><h3>Domain & Hosting Infrastructure</h3><p>Complete deployment, hosting configuration, domain setup and optimization for stability and security.</p></div>
 </div>
 </section>
 
-<section>
+<!-- PORTFOLIO -->
+<section id="projects">
 <h2 class="section-title">Portfolio Demos</h2>
 <div class="grid">
-<a href="gym-demo.html" target="_blank" class="card"><h3>Gym Platform</h3><p>Premium fitness digital authority system.</p></a>
-<a href="fabrication-demo.html" target="_blank" class="card"><h3>Fabrication System</h3><p>Industrial transformation platform.</p></a>
-<a href="business-demo.html" target="_blank" class="card"><h3>Corporate Website</h3><p>Professional business branding system.</p></a>
-<a href="ecommerce-demo.html" target="_blank" class="card"><h3>Ecommerce Platform</h3><p>Conversion-driven product platform.</p></a>
-<a href="safe-life.html" target="_blank" class="card"><h3>Safe Life App</h3><p>Mental wellness automation project.</p></a>
-<a href="admin.html" target="_blank" class="card"><h3>Admin Dashboard</h3><p>Backend management interface.</p></a>
+<a href="gym-demo.html" target="_blank" class="card">
+<h3>Gym Authority Platform</h3>
+<p>A premium fitness-focused digital system engineered for authority branding and membership conversion.</p>
+</a>
+
+<a href="fabrication-demo.html" target="_blank" class="card">
+<h3>Fabrication Industrial System</h3>
+<p>Structured industrial presentation platform designed for trust-building and corporate positioning.</p>
+</a>
+
+<a href="business-demo.html" target="_blank" class="card">
+<h3>Corporate Business Website</h3>
+<p>Professional multi-section authority website for modern enterprises.</p>
+</a>
+
+<a href="ecommerce-demo.html" target="_blank" class="card">
+<h3>Ecommerce Platform</h3>
+<p>Conversion-focused product platform engineered for structured scaling.</p>
+</a>
+
+<a href="safe-life.html" target="_blank" class="card">
+<h3>Safe Life AI App</h3>
+<p>Mental wellness and AI support system designed for emotional intelligence interaction.</p>
+</a>
+
+<a href="admin.html" target="_blank" class="card">
+<h3>Admin Dashboard System</h3>
+<p>Backend control panel architecture for data-driven management.</p>
+</a>
 </div>
 </section>
 
-<section>
-<h2 class="section-title">FAQ</h2>
-<p><strong>How long does a project take?</strong><br>2–6 weeks depending on scope.</p>
-<p><strong>Do you offer support?</strong><br>Yes, ongoing optimization & maintenance plans available.</p>
-<p><strong>Can you integrate AI into existing systems?</strong><br>Yes, we build automation layers into your current infrastructure.</p>
+<!-- FAQ -->
+<section id="faq">
+<h2 class="section-title">Frequently Asked Questions</h2>
+<p><strong>How long does a project take?</strong><br>Depending on complexity, most systems are delivered within 2–6 weeks.</p>
+<p><strong>Do you provide long-term support?</strong><br>Yes. Ongoing optimization, upgrades and performance monitoring plans are available.</p>
+<p><strong>Can you integrate AI into existing infrastructure?</strong><br>Yes. We specialize in layering automation and AI systems into existing business structures.</p>
 </section>
 
+<!-- CTA -->
 <section class="cta">
-<h2>Ready to Scale Your Digital Authority?</h2>
-<button>Start Your Project</button>
+<h2>Ready to Transform Your Digital Presence?</h2>
+<button onclick="location.href='#contact'">Start Your Project</button>
 </section>
 
-<section>
+<!-- CONTACT -->
+<section id="contact">
 <h2 class="section-title">Contact</h2>
 <p>Email: Codly.rk@gmail.com</p>
-<p>Phone: 9324452580</p>
+<p>Phone: +91 9324452580</p>
 <p>Instagram: @codly.ai</p>
 </section>
 
+<!-- FOOTER -->
 <div class="footer">
 <div class="footer-grid">
 <div>
 <h3>About Codly</h3>
-<p>Premium AI automation and digital engineering studio building structured authority systems for ambitious brands.</p>
+<p>Codly is a premium AI-driven digital engineering studio building structured authority systems for ambitious businesses.</p>
 </div>
+
 <div>
-<h3>Services</h3>
-<p>AI Automation</p>
+<h3>Core Services</h3>
+<p>AI Automation Systems</p>
 <p>Web & App Development</p>
-<p>Marketing Systems</p>
-<p>Infrastructure Setup</p>
+<p>Performance Marketing</p>
+<p>Infrastructure Deployment</p>
 </div>
+
 <div>
 <h3>Location</h3>
 <p>Mumbai, India</p>
-<p>Serving clients globally</p>
+<p>Serving Clients Globally</p>
 </div>
+
 <div>
 <h3>Contact</h3>
 <p>Email: Codly.rk@gmail.com</p>
 <p>Phone: +91 9324452580</p>
 </div>
 </div>
+
 <div class="footer-bottom">
-© 2026 CODLY – All Rights Reserved. This digital architecture, design system, and brand identity are the exclusive intellectual property of Codly. Unauthorized replication, duplication, or distribution is strictly prohibited and subject to legal enforcement.
+© 2026 CODLY – All Rights Reserved. The digital architecture, brand system, interface design, automation logic and structural framework presented on this website are the exclusive intellectual property of Codly. Any unauthorized reproduction, duplication, modification or distribution without prior written consent is strictly prohibited and legally enforceable.
 </div>
 </div>
 
