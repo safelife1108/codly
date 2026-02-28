@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Cosmic Overdrive</title>
+<title>CODLY – Robotic Navy Master</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -23,7 +23,7 @@
 
 body{
 background:
-radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 40%, #000000 85%);
+radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 40%, #000000 80%);
 color:var(--text);
 overflow-x:hidden;
 }
@@ -37,7 +37,51 @@ height:100%;
 z-index:0;
 }
 
-/* ================= LOADER ================= */
+/* ===== ROBOTIC GLITCH TEXT ===== */
+
+.glitch-text{
+font-family:'Orbitron';
+position:relative;
+text-transform:uppercase;
+letter-spacing:10px;
+}
+
+.glitch-text::before,
+.glitch-text::after{
+content:attr(data-text);
+position:absolute;
+left:0;
+top:0;
+opacity:0.7;
+}
+
+.glitch-text::before{
+color:#00f0ff;
+animation:shift1 2s infinite linear;
+}
+
+.glitch-text::after{
+color:#ff00ff;
+animation:shift2 2s infinite linear;
+}
+
+@keyframes shift1{
+0%{transform:translate(0);}
+25%{transform:translate(-3px,2px);}
+50%{transform:translate(3px,-2px);}
+75%{transform:translate(-2px,3px);}
+100%{transform:translate(0);}
+}
+
+@keyframes shift2{
+0%{transform:translate(0);}
+25%{transform:translate(3px,-2px);}
+50%{transform:translate(-3px,2px);}
+75%{transform:translate(2px,-3px);}
+100%{transform:translate(0);}
+}
+
+/* ===== LOADER ===== */
 
 .loader{
 position:fixed;
@@ -50,46 +94,11 @@ z-index:5000;
 }
 
 .loader h1{
-font-family:'Orbitron';
 font-size:90px;
-letter-spacing:10px;
-position:relative;
+color:#fff;
 }
 
-.loader h1::before,
-.loader h1::after{
-content:"CODLY";
-position:absolute;
-left:0;
-top:0;
-opacity:0.6;
-}
-
-.loader h1::before{
-color:#00ffff;
-animation:glitch1 2s infinite linear;
-}
-
-.loader h1::after{
-color:#ff00ff;
-animation:glitch2 2s infinite linear;
-}
-
-@keyframes glitch1{
-0%,100%{transform:translate(0);}
-25%{transform:translate(-2px,1px);}
-50%{transform:translate(2px,-1px);}
-75%{transform:translate(-1px,2px);}
-}
-
-@keyframes glitch2{
-0%,100%{transform:translate(0);}
-25%{transform:translate(2px,-1px);}
-50%{transform:translate(-2px,1px);}
-75%{transform:translate(1px,-2px);}
-}
-
-/* ================= HEADER ================= */
+/* ===== HEADER ===== */
 
 header{
 position:fixed;
@@ -104,13 +113,7 @@ border-bottom:1px solid var(--border);
 z-index:1000;
 }
 
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-family:'Orbitron';
-}
-
+.logo{display:flex;align-items:center;gap:10px;font-family:'Orbitron';}
 .logo img{height:30px;}
 
 header nav a{
@@ -128,40 +131,22 @@ min-height:100vh;
 padding:160px 8%;
 position:relative;
 z-index:2;
-}
-
-/* ================= HERO ================= */
-
-.hero{
 display:flex;
 flex-direction:column;
 justify-content:center;
 }
 
-.hero h1{
+.section-title{
 font-family:'Orbitron';
+font-size:42px;
+margin-bottom:40px;
+letter-spacing:3px;
+}
+
+/* ===== HERO ===== */
+
+.hero h1{
 font-size:clamp(100px,12vw,170px);
-letter-spacing:10px;
-position:relative;
-}
-
-.hero h1::before,
-.hero h1::after{
-content:"CODLY";
-position:absolute;
-left:0;
-top:0;
-opacity:0.4;
-}
-
-.hero h1::before{
-color:#00ffff;
-animation:glitch1 3s infinite linear;
-}
-
-.hero h1::after{
-color:#ff00ff;
-animation:glitch2 3s infinite linear;
 }
 
 .hero p{
@@ -172,36 +157,27 @@ line-height:1.8;
 color:#c9d4ff;
 }
 
-/* ================= TITLES ================= */
+/* ===== STORY ===== */
 
-.section-title{
+.story-inner{
+display:flex;
+flex-direction:column;
+gap:40px;
+}
+
+.story-inner h2{
 font-family:'Orbitron';
-font-size:42px;
-margin-bottom:40px;
-letter-spacing:3px;
-position:relative;
-display:inline-block;
+font-size:32px;
+color:#fff;
 }
 
-.section-title::after{
-content:"";
-position:absolute;
-bottom:-10px;
-left:0;
-width:60px;
-height:3px;
-background:var(--accent);
-}
-
-/* ================= GRID ================= */
+/* ===== GRID + CARDS ===== */
 
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:35px;
 }
-
-/* ================= CARDS ================= */
 
 .card{
 background:rgba(255,255,255,0.08);
@@ -215,10 +191,9 @@ transition:.4s;
 .card:hover{
 transform:translateY(-10px);
 box-shadow:0 0 40px rgba(0,255,255,0.4);
-border-color:var(--accent);
 }
 
-/* ================= CTA ================= */
+/* ===== CTA ===== */
 
 .cta{
 text-align:center;
@@ -234,7 +209,7 @@ margin-bottom:40px;
 
 .cta button{
 padding:18px 50px;
-background:linear-gradient(90deg,#00eaff,#0077ff);
+background:linear-gradient(90deg,#00eaff,#ff00ff,#ffee00);
 border:none;
 border-radius:50px;
 font-size:16px;
@@ -246,10 +221,21 @@ transition:.3s;
 
 .cta button:hover{
 transform:scale(1.08);
-box-shadow:0 0 30px var(--accent);
+box-shadow:0 0 30px #00eaff;
 }
 
-/* ================= FOOTER ================= */
+/* ===== FAQ ===== */
+
+.faq-item{
+margin-bottom:30px;
+}
+
+.faq-item h4{
+font-family:'Orbitron';
+margin-bottom:10px;
+}
+
+/* ===== FOOTER ===== */
 
 .footer{
 background:#000814;
@@ -268,13 +254,6 @@ font-family:'Orbitron';
 margin-bottom:20px;
 }
 
-.footer p,.footer a{
-color:#b6c4ff;
-font-size:15px;
-line-height:1.9;
-text-decoration:none;
-}
-
 .footer-bottom{
 margin-top:60px;
 padding-top:30px;
@@ -288,9 +267,11 @@ font-size:14px;
 
 <body>
 
-<div class="loader"><h1>CODLY</h1></div>
+<div class="loader">
+<h1 class="glitch-text" data-text="CODLY">CODLY</h1>
+</div>
 
-<canvas id="stars"></canvas>
+<canvas id="bg"></canvas>
 
 <header>
 <div class="logo">
@@ -300,48 +281,76 @@ font-size:14px;
 <nav>
 <a href="#about">About</a>
 <a href="#services">Services</a>
-<a href="#portfolio">Portfolio</a>
+<a href="#projects">Portfolio</a>
+<a href="#faq">FAQ</a>
 <a href="#contact">Contact</a>
 </nav>
 </header>
 
 <section class="hero">
-<h1>CODLY</h1>
-<p>Engineering intelligent digital systems powered by AI automation, scalable web architecture, performance marketing and precision development strategies.</p>
+<h1 class="glitch-text" data-text="CODLY">CODLY</h1>
+<p>Engineering intelligent digital systems powered by AI automation, scalable web architecture, immersive user experience design, and high-performance marketing strategies built for long-term authority.</p>
+</section>
+
+<section class="story">
+<h2 class="section-title">Our Story</h2>
+<div class="story-inner">
+<h2>We design structured digital systems.</h2>
+<h2>We build authority-driven online presence.</h2>
+<h2>We engineer scalable automation ecosystems.</h2>
+<p>Codly was founded to transform ordinary businesses into premium digital brands through performance engineering, AI systems, and future-forward design strategy.</p>
+</div>
 </section>
 
 <section id="about">
 <h2 class="section-title">About Codly</h2>
-<p>Mumbai-based digital engineering studio founded by Rohit Kumar. We design premium digital ecosystems built for authority, automation and performance.</p>
+<p>Codly is a Mumbai-based premium digital engineering studio founded by Rohit Kumar. Our mission is to craft immersive, scalable and high-performance digital ecosystems that elevate brands beyond traditional websites.</p>
+<p>We combine AI automation, data-driven marketing, performance architecture and cinematic UI systems to deliver structured digital authority.</p>
 </section>
 
 <section id="services">
-<h2 class="section-title">Services</h2>
+<h2 class="section-title">Our Services</h2>
 <div class="grid">
-<div class="card">AI Agent Automation</div>
-<div class="card">AI Chatbot Development</div>
-<div class="card">Web Development</div>
-<div class="card">App Development</div>
-<div class="card">Google & Meta Ads</div>
-<div class="card">Domain & Hosting Setup</div>
+<div class="card"><h3>AI Agent Automation</h3><p>Intelligent systems that automate operations, lead capture and engagement workflows.</p></div>
+<div class="card"><h3>AI Chatbot Development</h3><p>Custom AI assistants designed for real-time support and conversion.</p></div>
+<div class="card"><h3>Web Development</h3><p>Premium scalable websites engineered for speed and authority.</p></div>
+<div class="card"><h3>App Development</h3><p>Flutter-based mobile applications with real-time integration.</p></div>
+<div class="card"><h3>Google & Meta Ads</h3><p>Strategic paid campaigns built for high ROI.</p></div>
+<div class="card"><h3>Domain & Hosting</h3><p>Complete infrastructure setup and deployment management.</p></div>
 </div>
 </section>
 
-<section id="portfolio">
+<section id="projects">
 <h2 class="section-title">Portfolio Demos</h2>
 <div class="grid">
-<a href="gym-demo.html" target="_blank" class="card">Gym Demo</a>
-<a href="fabrication-demo.html" target="_blank" class="card">Fabrication Demo</a>
-<a href="business-demo.html" target="_blank" class="card">Business Demo</a>
-<a href="ecommerce-demo.html" target="_blank" class="card">Ecommerce Demo</a>
-<a href="safe-life.html" target="_blank" class="card">Safe Life App</a>
-<a href="admin.html" target="_blank" class="card">Admin Dashboard</a>
+<a href="gym-demo.html" target="_blank" class="card"><h3>Gym Platform</h3><p>Premium fitness authority website system.</p></a>
+<a href="fabrication-demo.html" target="_blank" class="card"><h3>Fabrication System</h3><p>Industrial digital transformation site.</p></a>
+<a href="business-demo.html" target="_blank" class="card"><h3>Corporate Website</h3><p>Clean professional brand presentation.</p></a>
+<a href="ecommerce-demo.html" target="_blank" class="card"><h3>Ecommerce Platform</h3><p>Conversion-focused product system.</p></a>
+<a href="safe-life.html" target="_blank" class="card"><h3>Safe Life App</h3><p>Mental wellness automation project.</p></a>
+<a href="admin.html" target="_blank" class="card"><h3>Admin Dashboard</h3><p>Data-driven backend management panel.</p></a>
+</div>
+</section>
+
+<section id="faq">
+<h2 class="section-title">Frequently Asked Questions</h2>
+<div class="faq-item">
+<h4>How long does a project take?</h4>
+<p>Depending on complexity, projects range from 2–6 weeks.</p>
+</div>
+<div class="faq-item">
+<h4>Do you provide ongoing support?</h4>
+<p>Yes, we provide structured maintenance and optimization support.</p>
+</div>
+<div class="faq-item">
+<h4>Can you integrate AI into existing systems?</h4>
+<p>Yes. We build automation layers into existing infrastructures.</p>
 </div>
 </section>
 
 <section class="cta">
 <h2>Ready to Build Your Digital Authority?</h2>
-<button onclick="location.href='#contact'">Contact Now</button>
+<button onclick="location.href='#contact'">Start Your Project</button>
 </section>
 
 <section id="contact">
@@ -354,77 +363,36 @@ font-size:14px;
 <div class="footer">
 <div class="footer-grid">
 <div>
-<h3>Studio</h3>
-<p>Premium AI automation and digital engineering systems.</p>
+<h3>About Codly</h3>
+<p>We engineer premium AI-driven digital ecosystems for businesses ready to scale and dominate their industry.</p>
+</div>
+<div>
+<h3>Services</h3>
+<p>AI Automation</p>
+<p>Web & App Development</p>
+<p>Performance Marketing</p>
+<p>Brand Systems</p>
 </div>
 <div>
 <h3>Location</h3>
 <p>Mumbai, India</p>
+<p>Global Client Support</p>
 </div>
 <div>
-<h3>Connect</h3>
-<a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">Instagram</a>
+<h3>Contact</h3>
+<p>Email: Codly.rk@gmail.com</p>
+<p>Phone: +91 9324452580</p>
 </div>
 </div>
 <div class="footer-bottom">
-© 2026 CODLY – All Rights Reserved.
+© 2026 CODLY – All Rights Reserved. Unauthorized reproduction, duplication, or distribution of any content, design architecture, or system structure without written permission from Codly is strictly prohibited and legally enforceable.
 </div>
 </div>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
-
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
-
-gsap.utils.toArray("section").forEach(sec=>{
-gsap.from(sec,{
-opacity:0,
-y:80,
-duration:1,
-scrollTrigger:{
-trigger:sec,
-start:"top 85%"
-}
-});
-});
-
-/* Soft Starfield */
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer = new THREE.WebGLRenderer({canvas:document.getElementById("stars"),alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.z = 5;
-
-const starCount = 30000;
-const geometry = new THREE.BufferGeometry();
-const positions = new Float32Array(starCount*3);
-
-for(let i=0;i<starCount;i++){
-positions[i*3]=(Math.random()-0.5)*200;
-positions[i*3+1]=(Math.random()-0.5)*200;
-positions[i*3+2]=(Math.random()-0.5)*200;
-}
-
-geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
-
-const material = new THREE.PointsMaterial({
-color:0xffffff,
-size:0.015,
-transparent:true,
-opacity:0.6
-});
-
-const stars = new THREE.Points(geometry,material);
-scene.add(stars);
-
-function animate(){
-requestAnimationFrame(animate);
-stars.rotation.y += 0.0005;
-renderer.render(scene,camera);
-}
-animate();
 </script>
 
 </body>
