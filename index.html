@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Digital Systems Engineer</title>
+<title>CODLY – Robotic Navy Master</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -14,7 +14,7 @@
 <style>
 :root{
 --text:#ffffff;
---muted:#b7c7ff;
+--muted:#aabfff;
 --border:rgba(255,255,255,0.08);
 }
 
@@ -22,23 +22,24 @@
 html{scroll-behavior:smooth;}
 
 body{
-background:radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 45%, #000000 85%);
+background:
+radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 45%, #000000 85%);
 color:var(--text);
 overflow-x:hidden;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 
 header{
 position:fixed;
 top:0;
 width:100%;
-padding:18px 8%;
+padding:20px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-transition:.4s ease;
 z-index:1000;
+transition:.4s ease;
 }
 
 header.scrolled{
@@ -49,28 +50,25 @@ border-bottom:1px solid var(--border);
 
 .logo{
 font-family:'Orbitron';
-letter-spacing:2px;
-display:flex;
-align-items:center;
-gap:10px;
+letter-spacing:3px;
+font-size:18px;
 }
 
 nav a{
 color:var(--muted);
-margin-left:28px;
+margin-left:30px;
 text-decoration:none;
 font-size:14px;
 transition:.3s;
 }
-
 nav a:hover{color:#fff;}
 
-/* BLACK & WHITE GLITCH */
+/* ================= BLACK & WHITE GLITCH ================= */
 
 .brand-title{
 font-family:'Orbitron';
 font-size:clamp(100px,12vw,170px);
-letter-spacing:18px;
+letter-spacing:16px;
 color:#ffffff;
 position:relative;
 display:inline-block;
@@ -109,7 +107,7 @@ opacity:0.6;
 80%{transform:translate(-1px,-1px);}
 }
 
-/* LOADER */
+/* ================= LOADER ================= */
 
 .loader{
 position:fixed;
@@ -121,7 +119,7 @@ justify-content:center;
 z-index:5000;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 
 section{
 min-height:100vh;
@@ -134,7 +132,26 @@ z-index:2;
 font-family:'Orbitron';
 font-size:42px;
 margin-bottom:40px;
+letter-spacing:2px;
 }
+
+/* ================= AUTHORITY SCROLL ================= */
+
+.authority-sequence{
+margin-top:60px;
+font-weight:400;
+font-size:22px;
+line-height:1.7;
+color:#d6e0ff;
+}
+
+.authority-line{
+opacity:0;
+transform:translateY(40px);
+margin-bottom:15px;
+}
+
+/* ================= GRID & CARDS ================= */
 
 .grid{
 display:grid;
@@ -155,26 +172,10 @@ text-decoration:none;
 
 .card:hover{
 transform:translateY(-10px);
-box-shadow:0 0 30px rgba(255,255,255,0.2);
+box-shadow:0 0 30px rgba(255,255,255,0.25);
 }
 
-/* AUTHORITY LINES */
-
-.authority-sequence{
-margin-top:60px;
-font-weight:400;
-font-size:22px;
-line-height:1.7;
-color:#d6e0ff;
-}
-
-.authority-line{
-opacity:0;
-transform:translateY(40px);
-margin-bottom:15px;
-}
-
-/* CTA */
+/* ================= CTA ================= */
 
 .cta{
 padding:140px 8%;
@@ -198,7 +199,7 @@ cursor:pointer;
 color:#000;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 .footer{
 background:#000814;
@@ -221,7 +222,7 @@ color:#8ea0c5;
 font-size:14px;
 }
 
-/* STARFIELD */
+/* ================= STARFIELD ================= */
 
 canvas{
 position:fixed;
@@ -262,24 +263,16 @@ z-index:0;
 <div class="authority-line">AI Automation • Scalable Architecture</div>
 <div class="authority-line">Strategic Growth — From Concept to Conversion</div>
 </div>
-
-<p style="margin-top:30px;max-width:900px;color:#c9d4ff;">
-Engineering intelligent digital systems structured for automation, performance, authority positioning and scalable growth architecture.
-</p>
 </section>
 
 <section id="story">
 <h2 class="section-title">Our Story</h2>
-<p>
-Codly was created to engineer digital authority — not just websites. We build structured ecosystems combining automation systems, scalable architecture, and strategic growth funnels.
-</p>
+<p>Codly was created to engineer digital authority — not just websites. We build structured ecosystems combining automation systems, scalable architecture, and strategic growth funnels.</p>
 </section>
 
 <section id="about">
 <h2 class="section-title">About Codly</h2>
-<p>
-Founded by Rohit Kumar in Mumbai, Codly specializes in AI automation, intelligent chat systems, high-performance web platforms and digital growth engineering.
-</p>
+<p>Founded by Rohit Kumar in Mumbai, Codly specializes in AI automation, intelligent chat systems, high-performance web platforms and digital growth engineering.</p>
 </section>
 
 <section id="services">
@@ -297,19 +290,19 @@ Founded by Rohit Kumar in Mumbai, Codly specializes in AI automation, intelligen
 <section id="projects">
 <h2 class="section-title">Portfolio</h2>
 <div class="grid">
-<a href="gym-demo.html" class="card">Gym Demo<br><small>Modern fitness brand website</small></a>
-<a href="fabrication-demo.html" class="card">Fabrication Demo<br><small>Industrial digital platform</small></a>
-<a href="business-demo.html" class="card">Business Demo<br><small>Corporate presence system</small></a>
-<a href="ecommerce-demo.html" class="card">Ecommerce Demo<br><small>Conversion-focused online store</small></a>
-<a href="safe-life.html" class="card">Safe Life App<br><small>Mental wellness AI app</small></a>
-<a href="admin.html" class="card">Admin Dashboard<br><small>Control & analytics panel</small></a>
+<a href="gym-demo.html" class="card">Gym Demo</a>
+<a href="fabrication-demo.html" class="card">Fabrication Demo</a>
+<a href="business-demo.html" class="card">Business Demo</a>
+<a href="ecommerce-demo.html" class="card">Ecommerce Demo</a>
+<a href="safe-life.html" class="card">Safe Life App</a>
+<a href="admin.html" class="card">Admin Dashboard</a>
 </div>
 </section>
 
 <section id="faq">
 <h2 class="section-title">FAQ</h2>
-<p><strong>How long does a project take?</strong><br>Typically 2–6 weeks depending on scope.</p>
-<p><strong>Do you provide maintenance?</strong><br>Yes, scalable maintenance plans available.</p>
+<p><strong>Project Timeline?</strong><br>2–6 weeks depending on scale.</p>
+<p><strong>Maintenance?</strong><br>Yes. Long-term scalable support available.</p>
 </section>
 
 <section class="cta">
@@ -335,11 +328,11 @@ Founded by Rohit Kumar in Mumbai, Codly specializes in AI automation, intelligen
 </div>
 <div>
 <h3>Legal</h3>
-<p>This website, its design architecture, systems, brand assets, and digital frameworks are the intellectual property of Codly Studio.</p>
+<p>This website structure, design systems, automation frameworks, brand elements and architectural concepts are intellectual property of Codly Studio.</p>
 </div>
 </div>
 <div class="footer-bottom">
-© 2026 CODLY. All Rights Reserved. Unauthorized reproduction, duplication, or distribution of any content or structural system is strictly prohibited under applicable intellectual property laws.
+© 2026 CODLY. All Rights Reserved. Unauthorized duplication, replication, or structural reproduction of this digital framework is strictly prohibited.
 </div>
 </div>
 
