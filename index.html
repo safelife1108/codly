@@ -35,6 +35,7 @@ height:100%;
 z-index:0;
 }
 
+/* ===== GLITCH ===== */
 .glitch{
 font-family:'Orbitron',sans-serif;
 position:relative;
@@ -56,6 +57,7 @@ left:0;top:0;width:100%;
 100%{clip-path:inset(0 0 80% 0);}
 }
 
+/* ===== LOADER ===== */
 .loader{
 position:fixed;
 inset:0;
@@ -66,6 +68,7 @@ justify-content:center;
 z-index:5000;
 }
 
+/* ===== NAVBAR ===== */
 header{
 position:fixed;
 top:0;
@@ -100,6 +103,7 @@ flex-direction:column;
 justify-content:center;
 }
 
+/* ===== HERO ===== */
 .hero h1{
 font-size:clamp(90px,10vw,140px);
 letter-spacing:6px;
@@ -109,15 +113,16 @@ margin-top:25px;
 max-width:900px;
 color:var(--muted);
 font-size:18px;
+line-height:1.8;
 }
 
+/* ===== STORY ===== */
 .story{height:350vh;position:relative;}
 .story::before{
 content:"";
 position:absolute;
 inset:0;
 background:rgba(0,0,0,0.55);
-backdrop-filter:blur(2px);
 z-index:1;
 }
 .story-inner{
@@ -146,6 +151,7 @@ color:#cbd5ff;
 font-size:17px;
 }
 
+/* ===== GRID ===== */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -161,12 +167,13 @@ transition:.3s;
 text-decoration:none;
 color:#fff;
 }
-.card p{font-size:14px;color:var(--muted);margin-top:10px;}
+.card p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.6;}
 .card:hover{
 transform:translateY(-8px);
 background:rgba(255,255,255,0.1);
 }
 
+/* ===== CTA ===== */
 .cta{
 text-align:center;
 padding:160px 8%;
@@ -197,7 +204,7 @@ transform:scale(1.08);
 box-shadow:0 0 25px #00eaff;
 }
 
-/* PROFESSIONAL FOOTER */
+/* ===== FOOTER ===== */
 .footer{
 background:#000;
 padding:120px 8%;
@@ -205,14 +212,10 @@ border-top:1px solid var(--border);
 }
 .footer-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:60px;
 }
-.footer h3{
-margin-bottom:20px;
-font-weight:700;
-letter-spacing:1px;
-}
+.footer h3{margin-bottom:20px;}
 .footer p,.footer a{
 color:var(--muted);
 font-size:14px;
@@ -227,7 +230,6 @@ border-top:1px solid var(--border);
 text-align:center;
 font-size:13px;
 line-height:1.8;
-opacity:0.85;
 }
 </style>
 </head>
@@ -257,58 +259,114 @@ opacity:0.85;
 <section class="hero">
 <h1 class="glitch" data-text="CODLY">CODLY</h1>
 <p>
-Digital System Engineer for Authority.  
-AI Automation. Scalable Architecture.  
-Strategic Growth from Concept to Conversion.
+Digital System Engineer for Authority.<br>
+AI Automation & Intelligent Workflows.<br>
+Scalable Architecture Built for Growth.<br>
+Strategic Systems from Concept to Conversion.
 </p>
 </section>
 
-<!-- ALL OTHER SECTIONS REMAIN SAME -->
-
-<!-- ===== PROFESSIONAL FOOTER ===== -->
-<div class="footer">
-<div class="footer-grid">
-
+<section class="story">
+<div class="story-inner">
 <div>
-<h3>Codly Studio</h3>
+<h2 class="reveal-text"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
+<p class="story-sub">Structured architecture engineered for clarity and scale.</p>
+</div>
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Build</span> <span>Digital</span> <span>Authority.</span></h2>
+<p class="story-sub">Premium positioning powered by performance systems.</p>
+</div>
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Engineer</span> <span>Impact.</span></h2>
+<p class="story-sub">From idea to measurable digital conversion.</p>
+</div>
+</div>
+</section>
+
+<section id="about">
+<h2>About Codly</h2>
 <p>
-Premium AI automation and digital engineering systems built for authority and scalable growth.
-We engineer structured digital ecosystems designed for clarity, positioning, and performance.
+Codly is a Mumbai-based digital engineering studio founded by Rohit Kumar.
+We specialize in building authority-driven digital ecosystems powered by AI automation,
+scalable architecture, and strategic growth frameworks.
 </p>
-</div>
+<p>
+Every project is engineered for clarity, structured for long-term positioning,
+and optimized for measurable business impact.
+</p>
+</section>
 
-<div>
-<h3>Core Services</h3>
-<p>AI Agent Automation</p>
-<p>Authority Website Development</p>
-<p>Scalable App Architecture</p>
-<p>Performance Marketing Systems</p>
-<p>Domain & Hosting Infrastructure</p>
+<section id="services">
+<h2>Services</h2>
+<div class="grid">
+<div class="card"><strong>AI Agent Automation</strong><p>Custom automation systems that eliminate manual processes and increase operational scale.</p></div>
+<div class="card"><strong>Authority Web Development</strong><p>High-performance websites structured for credibility, clarity, and long-term positioning.</p></div>
+<div class="card"><strong>App Development</strong><p>Cross-platform scalable applications built for performance and user retention.</p></div>
+<div class="card"><strong>AI Chatbot Systems</strong><p>Conversational AI designed to convert visitors into automated leads.</p></div>
+<div class="card"><strong>Google & Meta Ads</strong><p>ROI-focused marketing systems engineered for strategic growth.</p></div>
+<div class="card"><strong>Domain & Hosting Infrastructure</strong><p>Complete deployment architecture with security and scalability.</p></div>
 </div>
+</section>
 
-<div>
-<h3>Portfolio</h3>
-<p><a href="gym-demo.html" target="_blank">Gym Demo</a></p>
-<p><a href="fabrication-demo.html" target="_blank">Fabrication Demo</a></p>
-<p><a href="business-demo.html" target="_blank">Business Demo</a></p>
-<p><a href="ecommerce-demo.html" target="_blank">Ecommerce Demo</a></p>
-<p><a href="safe-life.html" target="_blank">Safe Life App</a></p>
-<p><a href="admin.html" target="_blank">Admin Dashboard</a></p>
+<section id="projects">
+<h2>Portfolio Demos</h2>
+<div class="grid">
+<a href="gym-demo.html" target="_blank" class="card"><strong>Gym Demo</strong><p>Premium fitness authority website structured for conversion.</p></a>
+<a href="fabrication-demo.html" target="_blank" class="card"><strong>Fabrication Demo</strong><p>Industrial B2B digital positioning system.</p></a>
+<a href="business-demo.html" target="_blank" class="card"><strong>Business Demo</strong><p>Corporate presence platform engineered for trust.</p></a>
+<a href="ecommerce-demo.html" target="_blank" class="card"><strong>Ecommerce Demo</strong><p>Conversion-focused online store architecture.</p></a>
+<a href="safe-life.html" target="_blank" class="card"><strong>Safe Life App</strong><p>AI-powered wellness system with real-time engagement.</p></a>
+<a href="admin.html" target="_blank" class="card"><strong>Admin Dashboard</strong><p>Backend data management & automation control system.</p></a>
 </div>
+</section>
 
-<div>
-<h3>Contact</h3>
+<section id="faq">
+<h2>FAQ</h2>
+<p><strong>What makes Codly different?</strong><br>We engineer systems for authority and scalability, not just design.</p>
+<p><strong>Do you handle complete deployment?</strong><br>Yes. From strategy and architecture to production launch.</p>
+</section>
+
+<section class="cta">
+<h2>Ready to Engineer Your Digital Authority?</h2>
+<p>Let’s build AI-powered automation systems and scalable architecture that positions your brand for long-term growth.</p>
+<button onclick="location.href='#contact'">Start Your Project</button>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
 <p>Email: Codly.rk@gmail.com</p>
 <p>Phone: +91 9324452580</p>
+<p>Instagram: @codly.ai</p>
+</section>
+
+<div class="footer">
+<div class="footer-grid">
+<div>
+<h3>Codly Studio</h3>
+<p>Premium AI automation and digital engineering systems built for authority and scale.</p>
+</div>
+<div>
+<h3>Core Services</h3>
+<p>AI Automation</p>
+<p>Web Development</p>
+<p>App Development</p>
+<p>Marketing Systems</p>
+</div>
+<div>
+<h3>Portfolio</h3>
+<p>Gym Demo</p>
+<p>Fabrication Demo</p>
+<p>Business Demo</p>
+</div>
+<div>
+<h3>Contact</h3>
 <p>Mumbai, India</p>
-<p><a href="https://www.instagram.com/codly.ai?igsh=dXl0MWY0NnF0cnln" target="_blank">Instagram – @codly.ai</a></p>
+<p>Codly.rk@gmail.com</p>
 </div>
-
 </div>
-
 <div class="footer-bottom">
 © 2026 CODLY Studio – Rohit Kumar. All Rights Reserved.<br>
-All digital systems, automation frameworks, branding assets and architectural structures are protected intellectual property.
+All digital systems, automation frameworks, branding assets, and architectural structures are protected intellectual property.
 </div>
 </div>
 
@@ -317,6 +375,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
+});
+
+document.querySelectorAll(".reveal-text").forEach((text,i)=>{
+gsap.to(text.querySelectorAll("span"),{
+opacity:1,
+y:0,
+stagger:0.15,
+scrollTrigger:{
+trigger:".story",
+start:"top+=" + (i*600) + " top",
+end:"top+=" + (i*600+400) + " top",
+scrub:true
+}
+});
 });
 
 /* STARFIELD */
@@ -341,23 +413,11 @@ const material=new THREE.PointsMaterial({color:0xffffff,size:0.02});
 const stars=new THREE.Points(geometry,material);
 scene.add(stars);
 
-let warp=0;
-ScrollTrigger.create({
-trigger:document.body,
-start:"top top",
-end:"bottom bottom",
-scrub:true,
-onUpdate:self=>{
-warp=self.progress*4;
-camera.position.z=5-self.progress*2;
-}
-});
-
 function animate(){
 requestAnimationFrame(animate);
 const pos=geometry.attributes.position.array;
 for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.25+warp;
+pos[i*3+2]+=0.3;
 if(pos[i*3+2]>100){pos[i*3+2]=-200;}
 }
 geometry.attributes.position.needsUpdate=true;
