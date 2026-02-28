@@ -15,9 +15,10 @@
 --text:#ffffff;
 --muted:#a0aed0;
 --border:rgba(255,255,255,0.1);
+--accent:#00eaff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;scroll-behavior:smooth;}
 
 body{
 background:radial-gradient(circle at 30% 20%, #001f4d 0%, #000c24 40%, #000000 80%);
@@ -34,6 +35,62 @@ height:100%;
 z-index:0;
 }
 
+/* ================= NAVBAR ================= */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border);
+z-index:1000;
+transition:0.3s ease;
+}
+
+header.scrolled{
+background:rgba(0,0,0,0.85);
+box-shadow:0 5px 25px rgba(0,0,0,0.6);
+}
+
+.logo{
+font-family:'Orbitron';
+font-size:20px;
+letter-spacing:2px;
+}
+
+nav a{
+color:var(--muted);
+text-decoration:none;
+margin-left:30px;
+font-size:14px;
+position:relative;
+transition:.3s;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:0;
+height:2px;
+background:var(--accent);
+transition:.3s;
+}
+
+nav a:hover{
+color:#fff;
+}
+
+nav a:hover::after{
+width:100%;
+}
+
 /* ================= LOADER ================= */
 
 .loader{
@@ -48,10 +105,9 @@ z-index:5000;
 
 .loader-text{
 font-family:'Orbitron';
-font-size:100px;
+font-size:90px;
 letter-spacing:12px;
 position:relative;
-text-transform:uppercase;
 color:#fff;
 }
 
@@ -128,6 +184,27 @@ text-decoration:none;
 transform:translateY(-10px);
 box-shadow:0 0 40px rgba(0,255,255,0.4);
 }
+
+/* ================= CTA ================= */
+
+.cta{
+padding:140px 8%;
+text-align:center;
+background:linear-gradient(180deg,rgba(0,30,90,0.6),rgba(0,0,0,0.9));
+}
+
+.cta button{
+padding:18px 50px;
+background:linear-gradient(90deg,#00eaff,#ff00ff,#ffee00);
+border:none;
+border-radius:50px;
+font-weight:600;
+color:#000;
+cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
+
 .footer{
 background:#000814;
 padding:120px 8%;
@@ -159,115 +236,36 @@ font-size:14px;
 
 <canvas id="bg"></canvas>
 
+<header id="navbar">
+<div class="logo">CODLY</div>
+<nav>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#projects">Portfolio</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
 <section class="hero">
 <h1 style="font-family:Orbitron;font-size:clamp(100px,12vw,170px);letter-spacing:12px;">CODLY</h1>
-<p>Engineering intelligent digital ecosystems powered by AI automation, scalable web architecture, application systems and strategic marketing infrastructure.</p>
+<p>Engineering intelligent AI-powered digital ecosystems, scalable web architecture and performance marketing systems built for authority.</p>
 </section>
 
-<section>
-<h2 class="section-title">Our Story</h2>
-<p>Codly was built to eliminate generic digital presence. We design structured, performance-driven ecosystems engineered for authority positioning and long-term scalability.</p>
-<p>Our work combines automation logic, UI psychology and technical architecture to create powerful digital systems that convert trust into growth.</p>
-</section>
-
-<section id="about">
-<h2 class="section-title">About Codly</h2>
-<p>Founded in Mumbai by Rohit Kumar, Codly is a premium digital engineering studio specializing in AI automation, scalable web platforms, app development and integrated marketing systems.</p>
-<p>We do not build simple websites — we build intelligent, expandable digital frameworks structured for automation, clarity and measurable results.</p>
-</section>
-
-<section id="services">
-<h2 class="section-title">Our Services</h2>
-<div class="grid">
-<div class="card"><h3>AI Agent Automation</h3><p>Custom workflow automation systems designed to streamline operations and increase efficiency.</p></div>
-<div class="card"><h3>AI Chatbot Development</h3><p>Conversational AI assistants for real-time engagement and customer interaction.</p></div>
-<div class="card"><h3>Web Development</h3><p>High-performance authority websites optimized for speed, scalability and trust.</p></div>
-<div class="card"><h3>App Development</h3><p>Scalable mobile applications integrated with backend automation and analytics.</p></div>
-<div class="card"><h3>Google & Meta Ads</h3><p>Conversion-focused performance marketing campaigns.</p></div>
-<div class="card"><h3>Domain & Hosting</h3><p>Complete infrastructure setup, optimization and secure deployment.</p></div>
-</div>
-</section>
-
-<section id="projects">
-<h2 class="section-title">Portfolio Demos</h2>
-<div class="grid">
-<a href="https://safelife1108.github.io/codly/gym-demo.html" target="_blank" class="card">
-<h3>Gym Authority Platform</h3>
-<p>Premium fitness digital system designed for branding and conversion.</p>
-</a>
-<a href="https://safelife1108.github.io/codly/fabrication-demo.html" target="_blank" class="card">
-<h3>Fabrication System</h3>
-<p>Industrial authority platform structured for corporate trust.</p>
-</a>
-<a href="https://safelife1108.github.io/codly/business-demo.html" target="_blank" class="card">
-<h3>Business Website</h3>
-<p>Professional corporate presentation framework.</p>
-</a>
-<a href="https://safelife1108.github.io/codly/ecommerce-demo.html" target="_blank" class="card">
-<h3>Ecommerce Platform</h3>
-<p>Conversion-driven digital storefront system.</p>
-</a>
-<a href="https://safelife1108.github.io/codly/safe-life.html" target="_blank" class="card">
-<h3>Safe Life App</h3>
-<p>AI-powered mental wellness support application.</p>
-</a>
-<a href="https://safelife1108.github.io/codly/admin.html" target="_blank" class="card">
-<h3>Admin Dashboard</h3>
-<p>Backend management and analytics system.</p>
-</a>
-</div>
-</section>
-
-<section>
-<h2 class="section-title">Frequently Asked Questions</h2>
-<p><strong>How long does a project take?</strong><br>Most systems are delivered within 2–6 weeks depending on scope.</p>
-<p><strong>Do you provide maintenance?</strong><br>Yes. We offer structured support and performance optimization plans.</p>
-<p><strong>Can AI be integrated into existing systems?</strong><br>Yes. We specialize in automation layering and AI integration.</p>
-</section>
-
-<section style="text-align:center;padding:140px 8%;background:linear-gradient(180deg,rgba(0,30,90,0.6),rgba(0,0,0,0.9));">
-<h2 style="font-family:Orbitron;font-size:48px;margin-bottom:40px;">Ready to Scale Your Digital Authority?</h2>
-<button style="padding:18px 50px;background:linear-gradient(90deg,#00eaff,#ff00ff,#ffee00);border:none;border-radius:50px;font-weight:600;color:#000;">Start Your Project</button>
-</section>
-
-<section id="contact">
-<h2 class="section-title">Contact</h2>
-<p>Email: Codly.rk@gmail.com</p>
-<p>Phone: +91 9324452580</p>
-<p>Instagram: @codly.ai</p>
-</section>
-
-<div class="footer">
-<div class="footer-grid">
-<div>
-<h3>Codly Studio</h3>
-<p>Premium AI automation and digital engineering systems designed for structured growth.</p>
-</div>
-<div>
-<h3>Core Services</h3>
-<p>AI Automation</p>
-<p>Web & App Development</p>
-<p>Performance Marketing</p>
-<p>Infrastructure Setup</p>
-</div>
-<div>
-<h3>Location</h3>
-<p>Mumbai, India</p>
-<p>Serving clients globally</p>
-</div>
-<div>
-<h3>Contact</h3>
-<p>Email: Codly.rk@gmail.com</p>
-<p>Phone: +91 9324452580</p>
-</div>
-</div>
-
-<div class="footer-bottom">
-© 2026 CODLY – All Rights Reserved. This digital architecture, brand identity, structural framework, interface design and automation systems are the exclusive intellectual property of Codly. Unauthorized reproduction, duplication or distribution is strictly prohibited and legally enforceable.
-</div>
-</div>
+<!-- KEEP ALL YOUR OTHER SECTIONS EXACTLY SAME BELOW -->
 
 <script>
+
+/* Navbar scroll effect */
+window.addEventListener("scroll",()=>{
+const nav=document.getElementById("navbar");
+if(window.scrollY>50){
+nav.classList.add("scrolled");
+}else{
+nav.classList.remove("scrolled");
+}
+});
+
+/* Loader fade */
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
@@ -312,6 +310,7 @@ geometry.attributes.position.needsUpdate=true;
 renderer.render(scene,camera);
 }
 animate();
+
 </script>
 
 </body>
