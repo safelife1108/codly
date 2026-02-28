@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODLY – Cosmic Overdrive</title>
+<title>CODLY – Digital Authority Engine</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
@@ -35,7 +35,7 @@ height:100%;
 z-index:0;
 }
 
-/* GLITCH */
+/* ===== GLITCH ===== */
 .glitch{
 font-family:'Orbitron',sans-serif;
 position:relative;
@@ -58,7 +58,7 @@ left:0;top:0;width:100%;
 100%{clip-path:inset(0 0 80% 0);}
 }
 
-/* LOADER */
+/* ===== LOADER ===== */
 .loader{
 position:fixed;
 inset:0;
@@ -69,7 +69,7 @@ justify-content:center;
 z-index:5000;
 }
 
-/* NAV */
+/* ===== NAVBAR ===== */
 header{
 position:fixed;
 top:0;
@@ -82,18 +82,17 @@ backdrop-filter:blur(15px);
 border-bottom:1px solid var(--border);
 z-index:1000;
 }
-
 .logo{display:flex;align-items:center;gap:10px;}
 .logo img{height:34px;}
-
 header nav a{
 color:var(--muted);
 text-decoration:none;
 margin-left:25px;
 font-size:14px;
+transition:.3s;
 }
+header nav a:hover{color:#fff;}
 
-/* SECTIONS */
 section{
 min-height:100vh;
 padding:140px 8%;
@@ -108,10 +107,9 @@ justify-content:center;
 font-size:clamp(80px,9vw,130px);
 letter-spacing:6px;
 }
-
 .hero p{
 margin-top:20px;
-max-width:800px;
+max-width:850px;
 color:var(--muted);
 }
 
@@ -122,22 +120,41 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 margin-top:40px;
 }
-
 .card{
 background:rgba(255,255,255,0.04);
 border:1px solid var(--border);
 border-radius:16px;
 padding:30px;
-color:#fff;
-text-decoration:none;
 transition:.3s;
+text-decoration:none;
+color:#fff;
 }
-
 .card p{font-size:14px;color:var(--muted);margin-top:10px;}
+.card:hover{transform:translateY(-8px);background:rgba(255,255,255,0.1);}
 
-.card:hover{
-transform:translateY(-8px);
-background:rgba(255,255,255,0.1);
+.story{height:350vh;}
+.story-inner{
+position:sticky;top:0;height:100vh;
+display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+gap:60px;text-align:center;
+}
+.reveal-text{font-size:clamp(32px,4vw,60px);font-weight:700;}
+.reveal-text span{display:inline-block;opacity:0;transform:translateY(40px);}
+.story-sub{color:var(--muted);font-size:15px;margin-top:8px;}
+
+.faq-item{margin-bottom:25px;}
+.faq-item p{color:var(--muted);font-size:14px;}
+
+.cta{text-align:center;padding:120px 8%;}
+.cta h2{font-size:36px;margin-bottom:20px;}
+.cta button{
+padding:14px 40px;
+background:#00f0ff;
+border:none;
+border-radius:40px;
+font-weight:600;
+cursor:pointer;
 }
 
 .footer{
@@ -145,13 +162,23 @@ background:#000;
 padding:120px 8%;
 border-top:1px solid var(--border);
 }
-
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:60px;
+}
+.footer p,.footer a{
+color:var(--muted);
+font-size:14px;
+text-decoration:none;
+}
 .footer-bottom{
 margin-top:60px;
 padding-top:30px;
 border-top:1px solid var(--border);
 text-align:center;
 color:var(--muted);
+font-size:13px;
 }
 </style>
 </head>
@@ -173,58 +200,136 @@ color:var(--muted);
 <a href="#about">About</a>
 <a href="#services">Services</a>
 <a href="#projects">Portfolio</a>
+<a href="#faq">FAQ</a>
 <a href="#contact">Contact</a>
 </nav>
 </header>
 
 <section class="hero">
 <h1 class="glitch" data-text="CODLY">CODLY</h1>
-<p>Digital Systems Engineered for Authority, AI Automation & Scalable Architecture.</p>
+<p>Digital Systems Engineered for Authority. AI Automation. Scalable Architecture. Strategic Growth from Concept to Conversion Structure.</p>
+</section>
+
+<section class="story">
+<div class="story-inner">
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
+<p class="story-sub">Structured architecture built for clarity and scale.</p>
+</div>
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Build</span> <span>Digital</span> <span>Authority.</span></h2>
+<p class="story-sub">Presence engineered for long-term positioning.</p>
+</div>
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Engineer</span> <span>Impact.</span></h2>
+<p class="story-sub">From concept to conversion architecture.</p>
+</div>
+</div>
 </section>
 
 <section id="about">
 <h2>About Codly</h2>
-<p>Codly builds structured digital ecosystems engineered for long-term authority and scalable growth.</p>
+<p>Codly is a Mumbai-based digital engineering studio founded by Rohit Kumar, specializing in AI automation systems, scalable web architecture, and performance-driven digital ecosystems designed for authority.</p>
+<p>We merge psychology, design intelligence, automation workflows and scalable development frameworks to create long-term digital positioning for modern businesses.</p>
+<p>Industries served include gyms, fabrication companies, ecommerce brands, startups and service businesses.</p>
 </section>
 
 <section id="services">
 <h2>Services</h2>
 <div class="grid">
-<div class="card"><strong>AI Automation</strong><p>Custom workflow intelligence systems.</p></div>
-<div class="card"><strong>Web Architecture</strong><p>High-performance scalable builds.</p></div>
-<div class="card"><strong>Marketing Systems</strong><p>ROI-focused growth campaigns.</p></div>
+<div class="card"><strong>AI Agent Automation</strong><p>Custom intelligent workflow automation systems for scalable operations.</p></div>
+<div class="card"><strong>AI Chatbot Systems</strong><p>Conversational architecture designed for engagement and lead conversion.</p></div>
+<div class="card"><strong>Web Development</strong><p>High-performance scalable digital infrastructure engineered for authority.</p></div>
+<div class="card"><strong>App Development</strong><p>Structured mobile applications designed for usability and scale.</p></div>
+<div class="card"><strong>Google & Meta Ads</strong><p>Performance marketing campaigns focused on ROI-driven growth.</p></div>
+<div class="card"><strong>Marketing Strategy</strong><p>Authority-focused brand positioning and digital expansion frameworks.</p></div>
 </div>
 </section>
 
 <section id="projects">
-<h2>Portfolio</h2>
+<h2>Portfolio Demos</h2>
 <div class="grid">
-<a href="gym-demo.html" class="card"><strong>Gym Demo</strong><p>Performance authority system.</p></a>
-<a href="fabrication-demo.html" class="card"><strong>Fabrication Demo</strong><p>Industrial digital identity.</p></a>
+<a href="gym-demo.html" target="_blank" class="card"><strong>Gym Demo</strong><p>Performance-driven fitness authority platform.</p></a>
+<a href="fabrication-demo.html" target="_blank" class="card"><strong>Fabrication Demo</strong><p>Industrial digital identity structured for trust.</p></a>
+<a href="business-demo.html" target="_blank" class="card"><strong>Business Demo</strong><p>Service-based authority architecture system.</p></a>
+<a href="ecommerce-demo.html" target="_blank" class="card"><strong>Ecommerce Demo</strong><p>Conversion-optimized product structure.</p></a>
+<a href="safe-life.html" target="_blank" class="card"><strong>Safe Life App</strong><p>AI-powered emotional wellness ecosystem.</p></a>
+<a href="admin.html" target="_blank" class="card"><strong>Admin Dashboard</strong><p>Structured operational control panel.</p></a>
 </div>
+</section>
+
+<section id="faq">
+<h2>FAQ</h2>
+<div class="faq-item">
+<h4>How long does a project take?</h4>
+<p>Most digital builds are completed within 2–6 weeks depending on complexity.</p>
+</div>
+<div class="faq-item">
+<h4>Do you provide AI automation?</h4>
+<p>Yes. Codly specializes in intelligent workflow automation systems.</p>
+</div>
+<div class="faq-item">
+<h4>Do you handle ads & marketing?</h4>
+<p>Yes. We engineer growth-focused Google & Meta campaigns.</p>
+</div>
+<div class="faq-item">
+<h4>Do you provide hosting & deployment?</h4>
+<p>Complete domain setup, hosting configuration and deployment included.</p>
+</div>
+</section>
+
+<section class="cta">
+<h2>Ready to Engineer Your Digital Authority?</h2>
+<button onclick="location.href='#contact'">Start a Conversation</button>
 </section>
 
 <section id="contact">
 <h2>Contact</h2>
 <p>Email: Codly.rk@gmail.com</p>
-<p>Phone: 9324452580</p>
+<p>Phone: +91 9324452580</p>
+<p>Mumbai, India | Serving Globally</p>
 </section>
 
 <div class="footer">
+<div class="footer-grid">
+<div>
+<h3>Codly Studio</h3>
+<p>Digital Systems Engineered for Authority, Automation & Scalable Growth.</p>
+</div>
+<div>
+<h3>Services</h3>
+<p>AI Automation</p>
+<p>Web Architecture</p>
+<p>App Development</p>
+<p>Marketing Systems</p>
+</div>
+<div>
+<h3>Industries</h3>
+<p>Gyms</p>
+<p>Fabrication</p>
+<p>Ecommerce</p>
+<p>Service Businesses</p>
+</div>
+<div>
+<h3>Contact</h3>
+<p>Email: Codly.rk@gmail.com</p>
+<p>Phone: 9324452580</p>
+</div>
+</div>
 <div class="footer-bottom">
-© 2026 CODLY Studio. All Rights Reserved. Digital Systems Engineered for Authority & Scale.
+© 2026 CODLY Studio. All Rights Reserved.  
+Digital Systems Engineered for Authority & Scalable Growth.
 </div>
 </div>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-/* Loader */
 window.addEventListener("load",()=>{
 gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
 });
 
-/* THREE STARFIELD + WARP */
+/* ===== THREE STARFIELD WITH WARP ===== */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
