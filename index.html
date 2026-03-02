@@ -391,14 +391,32 @@ scrub:true
 });
 });
 
-/* STARFIELD */
+/* ===== OPTIMIZED STARFIELD (NO STRUCTURE CHANGE) ===== */
+
 const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
+const camera=new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+);
+
+const renderer=new THREE.WebGLRenderer({
+canvas:document.getElementById("bg"),
+alpha:true,
+antialias:true
+});
+
 renderer.setSize(window.innerWidth,window.innerHeight);
+
+/* 🔥 IMPORTANT MOBILE FIX */
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
+
 camera.position.z=5;
 
-const starCount=40000;
+/* 🔥 SMART STAR COUNT */
+const starCount = window.innerWidth < 768 ? 12000 : 40000;
+
 const geometry=new THREE.BufferGeometry();
 const positions=new Float32Array(starCount*3);
 
@@ -407,23 +425,44 @@ positions[i*3]=(Math.random()-0.5)*200;
 positions[i*3+1]=(Math.random()-0.5)*200;
 positions[i*3+2]=(Math.random()-0.5)*200;
 }
+
 geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const material=new THREE.PointsMaterial({color:0xffffff,size:0.02});
+const material=new THREE.PointsMaterial({
+color:0xffffff,
+size:0.02,
+transparent:true,
+opacity:0.85
+});
+
 const stars=new THREE.Points(geometry,material);
 scene.add(stars);
 
 function animate(){
 requestAnimationFrame(animate);
+
 const pos=geometry.attributes.position.array;
+
 for(let i=0;i<starCount;i++){
-pos[i*3+2]+=0.3;
-if(pos[i*3+2]>100){pos[i*3+2]=-200;}
+pos[i*3+2]+=0.25; /* smoother speed */
+if(pos[i*3+2]>100){
+pos[i*3+2]=-200;
 }
+}
+
 geometry.attributes.position.needsUpdate=true;
 renderer.render(scene,camera);
 }
+
 animate();
+
+/* RESPONSIVE FIX */
+window.addEventListener("resize",()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
+
 </script>
 
 </body>
