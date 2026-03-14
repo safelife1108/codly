@@ -1,314 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Codly | Modern Websites & AI Solutions</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg:#020617;
-      --card:#0f172a;
-      --muted:#94a3b8;
-      --accent:#3b82f6;
-      --text:#ffffff;
-      --border:rgba(148,163,184,0.15);
-    }
+<title>Codly | Cinematic Web Experiences</title>
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Inter',sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-    /* NAVBAR */
-    nav{
-      position:sticky;
-      top:0;
-      z-index:100;
-      background:rgba(2,6,23,0.9);
-      backdrop-filter: blur(8px);
-      border-bottom:1px solid var(--border);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:16px 8%;
-    }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    nav h2{
-      margin:0;
-      font-family:'Poppins',sans-serif;
-      letter-spacing:1px;
-    }
+<style>
 
-    nav a{
-      color:var(--text);
-      text-decoration:none;
-      margin-left:22px;
-      font-size:14px;
-      opacity:0.9;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    nav a:hover{
-      color:var(--accent);
-    }
+body{
+font-family:Inter;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
 
-    /* HERO */
-    .hero{
-      min-height:92vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:0 20px;
-      background:
-      radial-gradient(circle at top,#0f172a,transparent 60%),
-      var(--bg);
-    }
+/* NAVBAR */
 
-    .hero h1{
-      font-size:56px;
-      font-family:'Poppins',sans-serif;
-      margin-bottom:10px;
-    }
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:rgba(2,6,23,0.6);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
 
-    .hero p{
-      color:var(--muted);
-      max-width:600px;
-      font-size:18px;
-      margin-bottom:28px;
-    }
+nav h2{
+font-family:Poppins;
+}
 
-    .btn{
-      background:var(--accent);
-      padding:12px 26px;
-      border-radius:6px;
-      text-decoration:none;
-      color:white;
-      font-size:15px;
-      margin:6px;
-      display:inline-block;
-      transition:0.25s;
-    }
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
 
-    .btn.secondary{
-      background:transparent;
-      border:1px solid var(--border);
-    }
+/* HERO */
 
-    .btn:hover{
-      transform:translateY(-2px);
-    }
+#hero{
+position:relative;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
 
-    /* SECTION */
-    .section{
-      padding:90px 8%;
-      text-align:center;
-    }
+#bg{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
 
-    .section h2{
-      font-family:'Poppins',sans-serif;
-      margin-bottom:40px;
-      font-size:34px;
-    }
+.hero-content h1{
+font-size:64px;
+font-family:Poppins;
+}
 
-    /* GRID */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:26px;
-      margin-top:20px;
-    }
+.hero-content p{
+color:#94a3b8;
+margin-top:10px;
+}
 
-    /* CARD */
-    .card{
-      background:var(--card);
-      padding:30px;
-      border-radius:10px;
-      border:1px solid var(--border);
-      transition:0.25s;
-    }
+.btn{
+background:#3b82f6;
+padding:12px 28px;
+border-radius:6px;
+display:inline-block;
+margin-top:20px;
+color:white;
+text-decoration:none;
+}
 
-    .card:hover{
-      transform:translateY(-5px);
-      border-color:rgba(59,130,246,0.5);
-    }
+/* SECTIONS */
 
-    .card h3{
-      margin-top:0;
-      font-size:20px;
-      font-family:'Poppins';
-    }
+.section{
+padding:120px 10%;
+text-align:center;
+}
 
-    .card p{
-      color:var(--muted);
-      font-size:14px;
-    }
+.section h2{
+font-size:36px;
+font-family:Poppins;
+margin-bottom:40px;
+}
 
-    .card a{
-      display:inline-block;
-      margin-top:10px;
-      color:var(--accent);
-      text-decoration:none;
-      font-size:14px;
-    }
+/* GRID */
 
-    /* CTA */
-    .cta{
-      background:linear-gradient(135deg,#0f172a,#020617);
-      border-top:1px solid var(--border);
-    }
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
 
-    /* FOOTER */
-    footer{
-      text-align:center;
-      padding:40px;
-      border-top:1px solid var(--border);
-      color:var(--muted);
-      font-size:14px;
-    }
+/* CARD */
 
-    /* MOBILE */
-    @media(max-width:600px){
-      .hero h1{font-size:40px}
-      nav{flex-direction:column}
-      nav div{margin-top:8px}
-    }
+.card{
+background:#0f172a;
+padding:30px;
+border-radius:10px;
+transition:0.3s;
+}
 
-  </style>
+.card:hover{
+transform:translateY(-10px);
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:40px;
+color:#94a3b8;
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <h2>CODLY</h2>
-    <div>
-      <a href="#templates">Templates</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+<nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Build Modern Websites<br>For Your Business</h1>
+<h2>CODLY</h2>
 
-    <p>
-      Codly creates professional websites, digital products, and AI solutions
-      for startups and local businesses.
-    </p>
+<div>
+<a href="#templates">Templates</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
 
-    <div>
-      <a class="btn" href="#templates">View Templates</a>
-      <a class="btn secondary" href="#contact">Hire Codly</a>
-    </div>
-  </section>
+</nav>
 
-  <!-- TEMPLATES -->
-  <section id="templates" class="section">
-    <h2>Website Templates</h2>
+<section id="hero">
 
-    <div class="grid">
+<canvas id="bg"></canvas>
 
-      <div class="card">
-        <h3>Gym Website</h3>
-        <p>Perfect website template for gyms and fitness centers.</p>
-        <a href="gym-demo.html">View Demo</a>
-      </div>
+<div class="hero-content">
 
-      <div class="card">
-        <h3>Ecommerce Website</h3>
-        <p>Modern online store template for selling products.</p>
-        <a href="ecommerce-demo.html">View Demo</a>
-      </div>
+<h1>CODLY</h1>
 
-      <div class="card">
-        <h3>Fabrication Website</h3>
-        <p>Professional website for manufacturing companies.</p>
-        <a href="fabrication-demo.html">View Demo</a>
-      </div>
+<p>Cinematic Websites & AI Solutions</p>
 
-      <div class="card">
-        <h3>Business Website</h3>
-        <p>Clean and modern website template for businesses.</p>
-        <a href="business-demo.html">View Demo</a>
-      </div>
+<a class="btn" href="#templates">Explore Templates</a>
 
-    </div>
-  </section>
+</div>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="section">
-    <h2>Portfolio</h2>
+</section>
 
-    <div class="grid">
+<section id="templates" class="section">
 
-      <div class="card">
-        <h3>Safe Life App</h3>
-        <p>AI powered mental health support application.</p>
-      </div>
+<h2>Website Templates</h2>
 
-      <div class="card">
-        <h3>AI Receptionist</h3>
-        <p>AI voice assistant for clinics and healthcare services.</p>
-      </div>
+<div class="grid">
 
-      <div class="card">
-        <h3>Codly Platform</h3>
-        <p>Website template marketplace for businesses.</p>
-      </div>
+<div class="card">
+<h3>Gym Website</h3>
+<p>Perfect for fitness centers.</p>
+<a href="gym-demo.html">View Demo</a>
+</div>
 
-    </div>
-  </section>
+<div class="card">
+<h3>Ecommerce Website</h3>
+<p>Online store template.</p>
+<a href="ecommerce-demo.html">View Demo</a>
+</div>
 
-  <!-- SERVICES -->
-  <section id="services" class="section">
-    <h2>Services</h2>
+<div class="card">
+<h3>Fabrication Website</h3>
+<p>Manufacturing business template.</p>
+<a href="fabrication-demo.html">View Demo</a>
+</div>
 
-    <div class="grid">
+<div class="card">
+<h3>Business Website</h3>
+<p>Clean corporate website.</p>
+<a href="business-demo.html">View Demo</a>
+</div>
 
-      <div class="card">
-        <h3>Website Development</h3>
-        <p>Modern responsive websites built for businesses.</p>
-      </div>
+</div>
 
-      <div class="card">
-        <h3>AI Automation</h3>
-        <p>AI chatbots, automation tools, and digital assistants.</p>
-      </div>
+</section>
 
-      <div class="card">
-        <h3>UI / UX Design</h3>
-        <p>Beautiful interfaces designed for great user experience.</p>
-      </div>
+<section id="portfolio" class="section">
 
-    </div>
-  </section>
+<h2>Portfolio</h2>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section cta">
-    <h2>Start Your Website Today</h2>
-    <p style="color:#94a3b8;margin-bottom:20px;">
-      Want a modern website for your business? Let's build it together.
-    </p>
+<div class="grid">
 
-    <a class="btn" href="https://wa.me/91XXXXXXXXXX">Chat on WhatsApp</a>
-  </section>
+<div class="card">
+<h3>Safe Life App</h3>
+<p>AI mental health support app.</p>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Codly. Built by Rohit Kumar.
-  </footer>
+<div class="card">
+<h3>AI Receptionist</h3>
+<p>Voice AI assistant.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="services" class="section">
+
+<h2>Services</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Website Development</h3>
+<p>Modern business websites.</p>
+</div>
+
+<div class="card">
+<h3>AI Automation</h3>
+<p>AI chatbots and automation.</p>
+</div>
+
+<div class="card">
+<h3>UI / UX Design</h3>
+<p>Beautiful user interfaces.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact" class="section">
+
+<h2>Start Your Website Today</h2>
+
+<a class="btn" href="https://wa.me/91XXXXXXXXXX">Chat on WhatsApp</a>
+
+</section>
+
+<footer>
+
+<p>© 2026 Codly. Built by Rohit Kumar.</p>
+
+</footer>
+
+<script>
+
+const scene=new THREE.Scene()
+
+const camera=new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+)
+
+const renderer=new THREE.WebGLRenderer({
+canvas:document.querySelector('#bg'),
+})
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+const geometry=new THREE.TorusGeometry(10,3,16,100)
+
+const material=new THREE.MeshBasicMaterial({
+color:0x3b82f6,
+wireframe:true
+})
+
+const torus=new THREE.Mesh(geometry,material)
+
+scene.add(torus)
+
+camera.position.z=30
+
+function animate(){
+
+requestAnimationFrame(animate)
+
+torus.rotation.x+=0.01
+torus.rotation.y+=0.005
+
+renderer.render(scene,camera)
+
+}
+
+animate()
+
+</script>
 
 </body>
+
 </html>
