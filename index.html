@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Codly | Cinematic Web Experiences</title>
+
+<title>Codly | Cinematic Web Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 body{
 font-family:Inter;
@@ -46,10 +53,10 @@ text-decoration:none;
 margin-left:20px;
 }
 
-/* 3D HERO */
+/* HERO */
 
 #hero{
-height:250vh;
+height:200vh;
 position:relative;
 }
 
@@ -76,7 +83,6 @@ font-family:Poppins;
 .hero-content p{
 color:#94a3b8;
 margin-top:10px;
-font-size:18px;
 }
 
 .btn{
@@ -97,8 +103,8 @@ text-align:center;
 }
 
 .section h2{
-font-family:Poppins;
 font-size:36px;
+font-family:Poppins;
 margin-bottom:40px;
 }
 
@@ -110,7 +116,7 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
-/* GLASS CARDS */
+/* GLASS CARD */
 
 .card{
 background:rgba(15,23,42,0.7);
@@ -123,6 +129,26 @@ transition:0.4s;
 
 .card:hover{
 transform:translateY(-10px);
+}
+
+/* CAROUSEL */
+
+.carousel{
+display:flex;
+gap:20px;
+overflow-x:auto;
+padding:20px;
+}
+
+.carousel::-webkit-scrollbar{
+display:none;
+}
+
+.template{
+min-width:300px;
+background:#0f172a;
+padding:30px;
+border-radius:10px;
 }
 
 /* FOOTER */
@@ -139,13 +165,16 @@ color:#94a3b8;
 <body>
 
 <nav>
+
 <h2>CODLY</h2>
+
 <div>
 <a href="#templates">Templates</a>
 <a href="#portfolio">Portfolio</a>
 <a href="#services">Services</a>
 <a href="#contact">Contact</a>
 </div>
+
 </nav>
 
 <section id="hero">
@@ -166,32 +195,28 @@ color:#94a3b8;
 
 <section id="templates" class="section">
 
-<h2>Website Templates</h2>
+<h2>Template Showcase</h2>
 
-<div class="grid">
+<div class="carousel">
 
-<div class="card">
+<div class="template">
 <h3>Gym Website</h3>
-<p>Perfect website for gyms.</p>
-<a href="gym-demo.html">View Demo</a>
+<p>Perfect for gyms.</p>
 </div>
 
-<div class="card">
+<div class="template">
 <h3>Ecommerce Website</h3>
 <p>Online store template.</p>
-<a href="ecommerce-demo.html">View Demo</a>
 </div>
 
-<div class="card">
+<div class="template">
 <h3>Fabrication Website</h3>
-<p>Manufacturing website.</p>
-<a href="fabrication-demo.html">View Demo</a>
+<p>Manufacturing template.</p>
 </div>
 
-<div class="card">
+<div class="template">
 <h3>Business Website</h3>
-<p>Corporate website template.</p>
-<a href="business-demo.html">View Demo</a>
+<p>Corporate template.</p>
 </div>
 
 </div>
@@ -235,7 +260,7 @@ color:#94a3b8;
 </div>
 
 <div class="card">
-<h3>UI/UX Design</h3>
+<h3>UI / UX Design</h3>
 <p>Beautiful user interfaces.</p>
 </div>
 
@@ -286,7 +311,8 @@ scene.add(light)
 /* PARTICLES */
 
 const particlesGeometry=new THREE.BufferGeometry()
-const particlesCount=500
+
+const particlesCount=600
 
 const posArray=new Float32Array(particlesCount*3)
 
@@ -294,12 +320,12 @@ for(let i=0;i<particlesCount*3;i++){
 posArray[i]=(Math.random()-0.5)*50
 }
 
-particlesGeometry.setAttribute('position',
-new THREE.BufferAttribute(posArray,3))
+particlesGeometry.setAttribute(
+'position',
+new THREE.BufferAttribute(posArray,3)
+)
 
-const particlesMaterial=new THREE.PointsMaterial({
-size:0.05
-})
+const particlesMaterial=new THREE.PointsMaterial({size:0.05})
 
 const particlesMesh=new THREE.Points(
 particlesGeometry,
@@ -308,51 +334,46 @@ particlesMaterial
 
 scene.add(particlesMesh)
 
-/* LOAD 3D MODEL */
+/* OBJECT */
 
-const loader=new THREE.GLTFLoader()
+const geometry=new THREE.TorusGeometry(10,3,16,100)
 
-loader.load(
-'https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf',
-function(gltf){
+const material=new THREE.MeshStandardMaterial({
+color:0x3b82f6,
+wireframe:true
+})
 
-const model=gltf.scene
+const torus=new THREE.Mesh(geometry,material)
 
-model.scale.set(2,2,2)
+scene.add(torus)
 
-scene.add(model)
+camera.position.z=30
 
-function animateModel(){
-model.rotation.y+=0.01
-requestAnimationFrame(animateModel)
+/* SCROLL ANIMATION */
+
+gsap.registerPlugin(ScrollTrigger)
+
+gsap.to(torus.rotation,{
+x:6,
+y:6,
+scrollTrigger:{
+trigger:"#hero",
+start:"top top",
+end:"bottom top",
+scrub:1
 }
-
-animateModel()
-
-}
-)
-
-/* CAMERA */
-
-camera.position.z=15
-
-/* SCROLL CINEMATIC */
-
-document.body.onscroll=()=>{
-const t=document.body.getBoundingClientRect().top
-
-camera.position.z=15+t*-0.02
-camera.rotation.y=t*-0.0002
-}
+})
 
 /* MOUSE PARALLAX */
 
 document.addEventListener('mousemove',e=>{
+
 const x=(e.clientX/window.innerWidth)-0.5
 const y=(e.clientY/window.innerHeight)-0.5
 
 camera.rotation.y=x*0.3
 camera.rotation.x=y*0.2
+
 })
 
 /* ANIMATE */
