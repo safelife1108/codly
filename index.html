@@ -1,393 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODLY – Digital Authority Engine</title>
 
-<title>Codly | 3D Web Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+:root{
+--text:#ffffff;
+--muted:#9fb3ff;
+--border:rgba(255,255,255,0.08);
 }
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
 body{
-font-family:Inter;
-color:white;
+background:radial-gradient(circle at 30% 20%, #001233, #000814 60%);
+color:var(--text);
 overflow-x:hidden;
-
-background:
-radial-gradient(circle at 20% 20%, #1e3a8a, transparent 40%),
-radial-gradient(circle at 80% 60%, #0f172a, transparent 40%),
-#020617;
 }
 
-/* NAVBAR */
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 10%;
-background:rgba(2,6,23,0.6);
-backdrop-filter:blur(12px);
-z-index:1000;
-}
-
-nav h2{
-font-family:Poppins;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-}
-
-/* HERO */
-
-#hero{
-height:250vh;
-position:relative;
-}
-
-#bg{
+canvas{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-1;
+z-index:0;
 }
 
-.hero-content{
-position:sticky;
-top:30%;
-text-align:center;
+/* ===== GLITCH ===== */
+.glitch{
+font-family:'Orbitron',sans-serif;
+position:relative;
+}
+.glitch::before,.glitch::after{
+content:attr(data-text);
+position:absolute;
+left:0;top:0;width:100%;
+}
+.glitch::before{color:#00ffff;animation:gl1 1.2s infinite alternate;}
+.glitch::after{color:#ff00ff;animation:gl2 1.2s infinite alternate;}
+
+@keyframes gl1{
+0%{clip-path:inset(0 0 80% 0);}
+100%{clip-path:inset(60% 0 0 0);}
+}
+@keyframes gl2{
+0%{clip-path:inset(60% 0 0 0);}
+100%{clip-path:inset(0 0 80% 0);}
 }
 
-.hero-content h1{
-font-size:70px;
-font-family:Poppins;
+/* ===== LOADER ===== */
+.loader{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:5000;
 }
 
-.hero-content p{
-color:#94a3b8;
-margin-top:10px;
+/* ===== NAVBAR ===== */
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border);
+z-index:1000;
 }
+.logo{display:flex;align-items:center;gap:10px;}
+.logo img{height:34px;}
 
-/* BUTTON */
-
-.btn{
-background:#3b82f6;
-padding:14px 30px;
-border-radius:8px;
-display:inline-block;
-margin-top:20px;
-color:white;
+header nav a{
+color:var(--muted);
 text-decoration:none;
-transition:0.3s;
+margin-left:25px;
+font-size:14px;
+transition:.3s;
+}
+header nav a:hover{color:#fff;}
+
+section{
+min-height:100vh;
+padding:140px 8%;
+position:relative;
+z-index:2;
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
-.btn:hover{
-transform:translateY(-3px) scale(1.05);
-box-shadow:0 10px 25px rgba(59,130,246,0.4);
+/* ===== HERO ===== */
+.hero h1{
+font-size:clamp(90px,10vw,140px);
+letter-spacing:6px;
+}
+.hero p{
+margin-top:25px;
+max-width:900px;
+color:var(--muted);
+font-size:18px;
+line-height:1.8;
 }
 
-/* SECTIONS */
-
-.section{
-padding:140px 10%;
+/* ===== STORY ===== */
+.story{height:350vh;position:relative;}
+.story::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.55);
+z-index:1;
+}
+.story-inner{
+position:sticky;
+top:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:70px;
 text-align:center;
+z-index:2;
+}
+.reveal-text{
+font-size:clamp(36px,5vw,64px);
+font-weight:800;
+}
+.reveal-text span{
+display:inline-block;
 opacity:0;
 transform:translateY(40px);
-transition:1s;
+}
+.story-sub{
+color:#cbd5ff;
+font-size:17px;
 }
 
-.section.visible{
-opacity:1;
-transform:translateY(0);
-}
-
-.section h2{
-font-size:36px;
-font-family:Poppins;
-margin-bottom:40px;
-}
-
-/* GRID */
-
+/* ===== GRID ===== */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
+margin-top:40px;
 }
-
-/* GLASS CARD */
-
 .card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,0.1);
-box-shadow:0 8px 30px rgba(0,0,0,0.4);
-border-radius:14px;
+background:rgba(255,255,255,0.04);
+border:1px solid var(--border);
+border-radius:16px;
 padding:30px;
-transition:0.4s;
+transition:.3s;
+text-decoration:none;
+color:#fff;
 }
-
+.card p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.6;}
 .card:hover{
-transform:translateY(-10px) scale(1.03);
+transform:translateY(-8px);
+background:rgba(255,255,255,0.1);
 }
 
-/* FOOTER */
-
-footer{
+/* ===== CTA ===== */
+.cta{
 text-align:center;
-padding:40px;
-color:#94a3b8;
+padding:160px 8%;
+background:linear-gradient(180deg,rgba(0,18,50,0.8),rgba(0,0,0,0.95));
+}
+.cta h2{
+font-size:42px;
+margin-bottom:20px;
+font-weight:800;
+}
+.cta p{
+color:var(--muted);
+margin-bottom:40px;
+font-size:18px;
+}
+.cta button{
+padding:18px 50px;
+background:linear-gradient(90deg,#00eaff,#0077ff);
+border:none;
+border-radius:50px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+.cta button:hover{
+transform:scale(1.08);
+box-shadow:0 0 25px #00eaff;
 }
 
+/* ===== FOOTER ===== */
+.footer{
+background:#000;
+padding:120px 8%;
+border-top:1px solid var(--border);
+}
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:60px;
+}
+.footer h3{margin-bottom:20px;}
+.footer p,.footer a{
+color:var(--muted);
+font-size:14px;
+line-height:1.8;
+text-decoration:none;
+}
+.footer a:hover{color:#fff;}
+.footer-bottom{
+margin-top:60px;
+padding-top:30px;
+border-top:1px solid var(--border);
+text-align:center;
+font-size:13px;
+line-height:1.8;
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-
-<h2>CODLY</h2>
-
-<div>
-<a href="#portfolio">Portfolio</a>
-<a href="#services">Services</a>
-<a href="#contact">Contact</a>
+<div class="loader">
+<h1 class="glitch" data-text="CODLY" style="font-size:70px;">CODLY</h1>
 </div>
-
-</nav>
-
-<section id="hero">
 
 <canvas id="bg"></canvas>
 
-<div class="hero-content">
-
-<h1>CODLY</h1>
-
-<p>3D Website Showroom</p>
-
-<a class="btn" href="#portfolio">Explore Work</a>
-
+<header>
+<div class="logo">
+<img src="codly logo.jpg">
+<strong>CODLY</strong>
 </div>
+<nav>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#projects">Portfolio</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
 
+<section class="hero">
+<h1 class="glitch" data-text="CODLY">CODLY</h1>
+<p>
+Digital System Engineer for Authority.<br>
+AI Automation & Intelligent Workflows.<br>
+Scalable Architecture Built for Growth.<br>
+Strategic Systems from Concept to Conversion.
+</p>
 </section>
 
-<section id="portfolio" class="section">
-
-<h2>Portfolio</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Safe Life App</h3>
-<p>AI mental health support app.</p>
+<section class="story">
+<div class="story-inner">
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Design</span> <span>Systems.</span></h2>
+<p class="story-sub">Structured architecture engineered for clarity and scale.</p>
 </div>
-
-<div class="card">
-<h3>AI Receptionist</h3>
-<p>Voice AI assistant.</p>
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Build</span> <span>Digital</span> <span>Authority.</span></h2>
+<p class="story-sub">Premium positioning powered by performance systems.</p>
 </div>
-
+<div>
+<h2 class="reveal-text"><span>I</span> <span>Engineer</span> <span>Impact.</span></h2>
+<p class="story-sub">From idea to measurable digital conversion.</p>
 </div>
-
+</div>
 </section>
 
-<section id="services" class="section">
+<section id="about">
+<h2>About Codly</h2>
+<p>
+Codly is a Mumbai-based digital engineering studio founded by Rohit Kumar.
+We specialize in building authority-driven digital ecosystems powered by AI automation,
+scalable architecture, and strategic growth frameworks.
+</p>
+<p>
+Every project is engineered for clarity, structured for long-term positioning,
+and optimized for measurable business impact.
+</p>
+</section>
 
+<section id="services">
 <h2>Services</h2>
-
 <div class="grid">
-
-<div class="card">
-<h3>Website Development</h3>
-<p>Modern responsive websites.</p>
+<div class="card"><strong>AI Agent Automation</strong><p>Custom automation systems that eliminate manual processes and increase operational scale.</p></div>
+<div class="card"><strong>Authority Web Development</strong><p>High-performance websites structured for credibility, clarity, and long-term positioning.</p></div>
+<div class="card"><strong>App Development</strong><p>Cross-platform scalable applications built for performance and user retention.</p></div>
+<div class="card"><strong>AI Chatbot Systems</strong><p>Conversational AI designed to convert visitors into automated leads.</p></div>
+<div class="card"><strong>Google & Meta Ads</strong><p>ROI-focused marketing systems engineered for strategic growth.</p></div>
+<div class="card"><strong>Domain & Hosting Infrastructure</strong><p>Complete deployment architecture with security and scalability.</p></div>
 </div>
-
-<div class="card">
-<h3>AI Automation</h3>
-<p>AI chatbots and automation.</p>
-</div>
-
-<div class="card">
-<h3>UI / UX Design</h3>
-<p>Beautiful interfaces.</p>
-</div>
-
-</div>
-
 </section>
 
-<section id="contact" class="section">
-
-<h2>Start Your Website Today</h2>
-
-<a class="btn" href="https://wa.me/91XXXXXXXXXX">Chat on WhatsApp</a>
-
+<section id="projects">
+<h2>Portfolio Demos</h2>
+<div class="grid">
+<a href="gym-demo.html" target="_blank" class="card"><strong>Gym Demo</strong><p>Premium fitness authority website structured for conversion.</p></a>
+<a href="fabrication-demo.html" target="_blank" class="card"><strong>Fabrication Demo</strong><p>Industrial B2B digital positioning system.</p></a>
+<a href="business-demo.html" target="_blank" class="card"><strong>Business Demo</strong><p>Corporate presence platform engineered for trust.</p></a>
+<a href="ecommerce-demo.html" target="_blank" class="card"><strong>Ecommerce Demo</strong><p>Conversion-focused online store architecture.</p></a>
+<a href="safe-life.html" target="_blank" class="card"><strong>Safe Life App</strong><p>AI-powered wellness system with real-time engagement.</p></a>
+<a href="admin.html" target="_blank" class="card"><strong>Admin Dashboard</strong><p>Backend data management & automation control system.</p></a>
+</div>
 </section>
 
-<footer>
+<section id="faq">
+<h2>FAQ</h2>
+<p><strong>What makes Codly different?</strong><br>We engineer systems for authority and scalability, not just design.</p>
+<p><strong>Do you handle complete deployment?</strong><br>Yes. From strategy and architecture to production launch.</p>
+</section>
 
-<p>© 2026 Codly. Built by Rohit Kumar.</p>
+<section class="cta">
+<h2>Ready to Engineer Your Digital Authority?</h2>
+<p>Let’s build AI-powered automation systems and scalable architecture that positions your brand for long-term growth.</p>
+<button onclick="location.href='#contact'">Start Your Project</button>
+</section>
 
-</footer>
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: Codly.rk@gmail.com</p>
+<p>Phone: +91 9324452580</p>
+<p>Instagram: @codly.ai</p>
+</section>
+
+<div class="footer">
+<div class="footer-grid">
+<div>
+<h3>Codly Studio</h3>
+<p>Premium AI automation and digital engineering systems built for authority and scale.</p>
+</div>
+<div>
+<h3>Core Services</h3>
+<p>AI Automation</p>
+<p>Web Development</p>
+<p>App Development</p>
+<p>Marketing Systems</p>
+</div>
+<div>
+<h3>Portfolio</h3>
+<p>Gym Demo</p>
+<p>Fabrication Demo</p>
+<p>Business Demo</p>
+</div>
+<div>
+<h3>Contact</h3>
+<p>Mumbai, India</p>
+<p>Codly.rk@gmail.com</p>
+</div>
+</div>
+<div class="footer-bottom">
+© 2026 CODLY Studio – Rohit Kumar. All Rights Reserved.<br>
+All digital systems, automation frameworks, branding assets, and architectural structures are protected intellectual property.
+</div>
+</div>
 
 <script>
+gsap.registerPlugin(ScrollTrigger);
 
-/* THREE SCENE */
+window.addEventListener("load",()=>{
+gsap.to(".loader",{opacity:0,duration:1.5,delay:2,onComplete:()=>document.querySelector(".loader").style.display="none"});
+});
 
-const scene=new THREE.Scene()
+document.querySelectorAll(".reveal-text").forEach((text,i)=>{
+gsap.to(text.querySelectorAll("span"),{
+opacity:1,
+y:0,
+stagger:0.15,
+scrollTrigger:{
+trigger:".story",
+start:"top+=" + (i*600) + " top",
+end:"top+=" + (i*600+400) + " top",
+scrub:true
+}
+});
+});
 
+/* ===== OPTIMIZED STARFIELD (NO STRUCTURE CHANGE) ===== */
+
+const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(
 75,
 window.innerWidth/window.innerHeight,
 0.1,
 1000
-)
+);
 
 const renderer=new THREE.WebGLRenderer({
-canvas:document.querySelector('#bg'),
-alpha:true
-})
+canvas:document.getElementById("bg"),
+alpha:true,
+antialias:true
+});
 
-renderer.setSize(window.innerWidth,window.innerHeight)
+renderer.setSize(window.innerWidth,window.innerHeight);
 
-/* LIGHT */
+/* 🔥 IMPORTANT MOBILE FIX */
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
 
-const light=new THREE.PointLight(0xffffff,1)
-light.position.set(20,20,20)
-scene.add(light)
+camera.position.z=5;
 
-/* FLOATING TEMPLATE PANELS */
+/* 🔥 SMART STAR COUNT */
+const starCount = window.innerWidth < 768 ? 12000 : 40000;
 
-const templates=[]
+const geometry=new THREE.BufferGeometry();
+const positions=new Float32Array(starCount*3);
 
-for(let i=0;i<5;i++){
-
-const geometry=new THREE.BoxGeometry(4,3,0.2)
-
-const material=new THREE.MeshStandardMaterial({
-color:0x3b82f6,
-wireframe:true
-})
-
-const panel=new THREE.Mesh(geometry,material)
-
-panel.position.x=(i-2)*6
-panel.position.y=0
-panel.position.z=-10
-
-scene.add(panel)
-
-templates.push(panel)
-
+for(let i=0;i<starCount;i++){
+positions[i*3]=(Math.random()-0.5)*200;
+positions[i*3+1]=(Math.random()-0.5)*200;
+positions[i*3+2]=(Math.random()-0.5)*200;
 }
 
-/* PARTICLES */
+geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
 
-const particlesGeometry=new THREE.BufferGeometry()
+const material=new THREE.PointsMaterial({
+color:0xffffff,
+size:0.02,
+transparent:true,
+opacity:0.85
+});
 
-const count=400
-
-const posArray=new Float32Array(count*3)
-
-for(let i=0;i<count*3;i++){
-posArray[i]=(Math.random()-0.5)*60
-}
-
-particlesGeometry.setAttribute(
-'position',
-new THREE.BufferAttribute(posArray,3)
-)
-
-const particlesMaterial=new THREE.PointsMaterial({
-size:0.05
-})
-
-const particlesMesh=new THREE.Points(
-particlesGeometry,
-particlesMaterial
-)
-
-scene.add(particlesMesh)
-
-camera.position.z=20
-
-/* SCROLL CAMERA */
-
-document.body.onscroll=()=>{
-
-const t=document.body.getBoundingClientRect().top
-
-camera.position.z=20+t*-0.02
-
-}
-
-/* MOUSE PARALLAX */
-
-document.addEventListener('mousemove',e=>{
-
-const x=(e.clientX/window.innerWidth)-0.5
-const y=(e.clientY/window.innerHeight)-0.5
-
-camera.rotation.y=x*0.3
-camera.rotation.x=y*0.2
-
-})
-
-/* ANIMATION */
+const stars=new THREE.Points(geometry,material);
+scene.add(stars);
 
 function animate(){
+requestAnimationFrame(animate);
 
-requestAnimationFrame(animate)
+const pos=geometry.attributes.position.array;
 
-templates.forEach(panel=>{
-panel.rotation.y+=0.005
-})
-
-particlesMesh.rotation.y+=0.0005
-
-renderer.render(scene,camera)
-
+for(let i=0;i<starCount;i++){
+pos[i*3+2]+=0.25; /* smoother speed */
+if(pos[i*3+2]>100){
+pos[i*3+2]=-200;
+}
 }
 
-animate()
-
-/* SCROLL REVEAL */
-
-const sections=document.querySelectorAll(".section")
-
-window.addEventListener("scroll",()=>{
-
-sections.forEach(sec=>{
-
-const top=sec.getBoundingClientRect().top
-
-if(top<window.innerHeight*0.8){
-sec.classList.add("visible")
+geometry.attributes.position.needsUpdate=true;
+renderer.render(scene,camera);
 }
 
-})
+animate();
 
-})
+/* RESPONSIVE FIX */
+window.addEventListener("resize",()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
 
 </script>
 
